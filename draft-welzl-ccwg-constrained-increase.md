@@ -35,14 +35,14 @@ informative:
 
 --- abstract
 
-TODO Abstract
+TODO Yeah we crazy people want to increase even when the app is limited! Whoa!
 
 
 --- middle
 
 # Introduction
 
-TODO Introduction
+TODO Introduction and now I'm really still only testing this.
 
 
 # Conventions and Definitions
