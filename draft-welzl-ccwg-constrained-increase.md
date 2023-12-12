@@ -101,6 +101,7 @@ In rule #2, "inc" is a function returning the maximum unconstrained increase tha
 
 ```
 cwnd_new = cwnd + min (N, SMSS)
+
 cwnd = min(cwnd_new, 2*maxFS)
 ```
 
@@ -108,6 +109,7 @@ Similarly, with rule #2 applied to Congestion Avoidance, equation 3 in {{!RFC568
 
 ```
 cwnd_new = cwnd + SMSS*SMSS/cwnd
+
 cwnd = min(cwnd_new, 1+maxFS)
 ```
 
