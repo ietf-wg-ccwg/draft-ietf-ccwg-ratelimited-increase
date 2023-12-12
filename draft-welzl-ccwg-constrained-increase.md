@@ -23,6 +23,10 @@ venue:
   github: "mwelzl/draft-ccwg-constrained-increase"
   latest: "https://mwelzl.github.io/draft-ccwg-constrained-increase/draft-welzl-ccwg-constrained-increase.html"
 
+stand_alone: yes
+smart_quotes: no
+pi: [toc, sortrefs, symrefs]
+
 author:
   -
     ins: M. Welzl
@@ -127,7 +131,7 @@ This section is meant as input for IETF discussion, and to be removed before pub
 
 ### Specification
 
-{{!RFC5681} does not contain a rule to limit cwnd growth when the sender is constrained. This statement (page 8) even gives an impression that such cwnd growth may be expected:
+{{!RFC5681}} does not contain a rule to limit cwnd growth when the sender is constrained. This statement (page 8) even gives an impression that such cwnd growth may be expected:
 
 >Implementation Note: An easy mistake to make is to simply use cwnd, rather than FlightSize, which in some implementations may incidentally increase well beyond rwnd.
 
@@ -142,7 +146,7 @@ information about the state of the network path the flow is using.
 
 ### Implementation
 
-- ns-2 allows cwnd to grow in the face of a rwnd constraint. [Application-limited: not tested]
+- ns-2 allows cwnd to grow in the face of a rwnd constraint. (Application-limited: not tested)
 - ns-3 allows cwnd to grow in the face of either an application or rwnd constraint.
 - Linux only allows cwnd to grow when the sender is unconstrained. Specifically, for Linux kernel 6.0.9, an increase is only allowed if a function called `tcp_is_cwnd_limited` in `tcp.h` yields `true`. This function checks the flag `tp->is_cwnd_limited`, which is initialised to `false` in `tcp_output.c` and later set to `true` only if FlightSize is greater or equal to cwnd (`is_cwnd_limited |= (tcp_packets_in_flight(tp) >= tcp_snd_cwnd(tp))`).
 
@@ -150,4 +154,4 @@ information about the state of the network path the flow is using.
 
 ### Specification
 
-{{!RFC9260} to be discussed here.
+{{!RFC9260}} to be discussed here.
