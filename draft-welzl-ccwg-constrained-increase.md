@@ -6,7 +6,7 @@ docname: draft-welzl-ccwg-constrained-increase-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
-updates: RFC5681, RFC9438, RFC9260
+updates: RFC5681, RFC9002, RFC9260, RFC9438
 consensus: true
 v: 3
 area: "Transport"
@@ -160,7 +160,8 @@ The specification, and the ns-2 and ns-3 implementations are in conflict with ru
 
 ### Specification
 
-{{Section 5.8 of !RFC9438}} says: `Cubic doesn't increase cwnd when it's limited by the sending application or rwnd`.
+{{Section 5.8 of !RFC9438}} says:
+>Cubic doesn't increase cwnd when it's limited by the sending application or rwnd`
 
 ### Implementation
 
@@ -175,4 +176,28 @@ Both the specification and the Linux implementation limit cwnd growth in accorda
 
 ### Specification
 
-{{!RFC9260}} to be discussed here.
+{{Section 7.2.1 of !RFC9260}} says:
+>When cwnd is less than or equal to ssthresh, an SCTP endpoint MUST use the slow-start algorithm to increase cwnd only if the current congestion window is being fully utilized and the data sender is not in Fast Recovery. Only when these two conditions are met can the cwnd be increased; otherwise, the cwnd MUST NOT be increased.
+
+### Assessment
+
+The quoted statement from {{!RFC9260}} prescribes the same cwnd growth limitation that is also specified for Cubic, and implemented for both Reno and Cubic in Linux. It is in accordance with rule #1 in {{rules}}, and more conservative than rule #2 in {{rules}}.
+
+{{Section 7.2.1 of !RFC9260}} is specifically limited to Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}} -- and this section neither contains nor refers back to the rule that limits cwnd growth in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies to Slow Start, whereas the rules in {{rules}} apply to both Slow Start and Congestion Avoidance.
+
+## QUIC
+
+### Specification
+
+{{Section 7.8 of !RFC9002}} states:
+>When bytes in flight is smaller than the congestion window and sending is not pacing limited, the congestion window is underutilized. This can happen due to insufficient application data or flow control limits. When this occurs, the congestion window SHOULD NOT be increased in either slow start or congestion avoidance.
+
+>A sender that paces packets (see Section 7.7) might delay sending packets and not fully utilize the congestion window due to this delay. A sender SHOULD NOT consider itself application limited if it would have fully utilized the congestion window without pacing delay."
+
+### Assessment
+
+With the exception of pacing, this specification conservatively limits cwnd growth similar to Cubic and SCTP. The exception for pacing in the second paragraph requires the application to notify the transport layer that it paces packets. Pacing is typically done with delays below an RTT; thus, rule #2 in {{rules}} should cover this case without the need for such a notification from the application.
+
+## Others
+
+Other protocols and mechanisms in RFCs include: TFRC; various multicast and multipath mechanisms; the RMCAT mechanisms for real-time media. Other protocol specs containing congestion control include: DCCP, MP-DCCP, MPTCP, RTP extensions for CC. This can get huge... how many / which of these should we discuss?
