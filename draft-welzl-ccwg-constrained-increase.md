@@ -99,19 +99,17 @@ Irrespective of the current state of a congestion control mechanism, senders of 
 
 In rule #2, "inc" is a function returning the maximum unconstrained increase that would be carried out by the congestion control mechanism within one RTT, based on the "maxFS" parameter. For example, for Slow Start as specified in {{!RFC5681}}, equation 2 in {{!RFC5681}} becomes:
 
-```
+~~~
 cwnd_new = cwnd + min (N, SMSS)
-
 cwnd = min(cwnd_new, 2*maxFS)
-```
+~~~
 
 Similarly, with rule #2 applied to Congestion Avoidance, equation 3 in {{!RFC5681}} becomes:
 
-```
+~~~
 cwnd_new = cwnd + SMSS*SMSS/cwnd
-
 cwnd = min(cwnd_new, 1+maxFS)
-```
+~~~
 
 maxFS is the largest FlightSize value since the last time cwnd was decreased. If cwnd has never been decreased, it is the maximum FlightSize value since the beginning of the data transfer.
 
