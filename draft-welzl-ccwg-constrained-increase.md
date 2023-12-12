@@ -93,7 +93,6 @@ This document uses the terms defined in {{Section 2 of !RFC5681}}.
 Senders of congestion controlled transport protocols:
 
 1. MUST impose a limit on cwnd growth when FlightSize < cwnd.
-
 2. SHOULD limit cwnd growth with inc(max(FlightSize)), where "inc" is the maximum unconstrained increase that would be carried out by the congestion control mechanism within one RTT, based on the "max(FlightSize)" parameter. For example, in case of Slow Start specified in {{!RFC5681}}, this limit is 2*max(FlightSize), and for Congestion Avoidance specified in {{!RFC5681}}, this limit is max(FlightSize)+1.
 
 The maximum value to be used in the above rules is calculated as the maximum since the last time cwnd was decreased. If cwnd has never been decreased, it is the maximum since the beginning of the data transfer.
@@ -124,12 +123,15 @@ TODO acknowledge.
 
 
 # The state of the art
+{:numbered="false"}
 
 This section is meant as input for IETF discussion, and to be removed before publication.
 
 ## TCP
+{:numbered="false"}
 
 ### Specification
+{:numbered="false"}
 
 {{!RFC5681}} does not contain a rule to limit cwnd growth when the sender is constrained. This statement (page 8) even gives an impression that such cwnd growth may be expected:
 
@@ -145,13 +147,16 @@ transmit rate, resulting in a value that does not reflect current
 information about the state of the network path the flow is using.
 
 ### Implementation
+{:numbered="false"}
 
 - ns-2 allows cwnd to grow in the face of a rwnd constraint. (Application-limited: not tested)
 - ns-3 allows cwnd to grow in the face of either an application or rwnd constraint.
 - Linux only allows cwnd to grow when the sender is unconstrained. Specifically, for Linux kernel 6.0.9, an increase is only allowed if a function called `tcp_is_cwnd_limited` in `tcp.h` yields `true`. This function checks the flag `tp->is_cwnd_limited`, which is initialised to `false` in `tcp_output.c` and later set to `true` only if FlightSize is greater or equal to cwnd (`is_cwnd_limited |= (tcp_packets_in_flight(tp) >= tcp_snd_cwnd(tp))`).
 
 ## SCTP
+{:numbered="false"}
 
 ### Specification
+{:numbered="false"}
 
 {{!RFC9260}} to be discussed here.
