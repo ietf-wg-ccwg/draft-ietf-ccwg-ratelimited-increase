@@ -1,12 +1,12 @@
 ---
 title: "Constrained Increase of the Congestion Window"
 category: std
-updates: 5681,9438
 
 docname: draft-welzl-ccwg-constrained-increase-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
+updates: 5681,9438
 consensus: true
 v: 3
 area: "Transport"
@@ -68,7 +68,7 @@ This document specifies how transport protocols should increase their congestion
 
 # Introduction
 
-TODO Introduction and now I'm really still only testing this.
+There is no uniform rule across in the RFC series on what rules
 
 
 # Conventions and Definitions
