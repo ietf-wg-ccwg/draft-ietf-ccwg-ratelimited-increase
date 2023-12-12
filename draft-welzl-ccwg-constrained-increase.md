@@ -23,7 +23,7 @@ venue:
   latest: "https://mwelzl.github.io/draft-ccwg-constrained-increase/draft-welzl-ccwg-constrained-increase.html"
 
 author:
- -
+  -
     ins: M. Welzl
     name: Michael Welzl
     org: University of Oslo
