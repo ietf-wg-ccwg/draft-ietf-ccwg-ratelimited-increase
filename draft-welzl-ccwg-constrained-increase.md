@@ -1,5 +1,6 @@
 ---
 title: "Constrained Increase of the Congestion Window"
+abbrev: "Constrained cwnd Increase"
 category: std
 
 docname: draft-welzl-ccwg-constrained-increase-latest
