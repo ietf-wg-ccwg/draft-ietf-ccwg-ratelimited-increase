@@ -52,7 +52,6 @@ author:
     country: Scotland
     email: gorry@erg.abdn.ac.uk
     uri: https://www.erg.abdn.ac.uk/
-  -
 
 normative:
 
