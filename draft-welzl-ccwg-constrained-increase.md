@@ -24,7 +24,7 @@ venue:
   latest: "https://mwelzl.github.io/draft-ccwg-constrained-increase/draft-welzl-ccwg-constrained-increase.html"
 
 author:
- -
+  -
     ins: M. Welzl
     name: Michael Welzl
     org: University of Oslo
@@ -68,7 +68,7 @@ This document specifies how transport protocols should increase their congestion
 
 # Introduction
 
-RFCs specifying congestion control mechanisms for various protocols diverge regarding the 
+RFCs specifying congestion control mechanisms for various protocols diverge regarding the rules for increasing the congestion window (cwnd) when the sender is limited, either by the application
 
 There is no uniform rule across in the RFC series on what rules
 
