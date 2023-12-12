@@ -72,12 +72,13 @@ This document specifies how transport protocols should increase their congestion
 
 # Introduction
 
-RFCs specifying congestion control mechanisms for various protocols diverge regarding the rules for increasing the congestion window (cwnd) when the sender is constrained. We call a sender "constrained" when the sender does not have data to send (i.e., the application has not provided enough data) even though the congestion control rules would allow it to, or when flow control limits apply (e.g., the receiver window (rwnd) in case of TCP).
+We call a sender "constrained" when the sender does not have data to send (i.e., the application has not provided enough data) even though the congestion control rules would allow it to, or when flow control limits apply (e.g., the receiver window (rwnd) in case of TCP).
+RFCs specifying congestion control mechanisms diverge regarding the rules for increasing the congestion window (cwnd) when the sender is constrained.
 
 This document specifies a uniform rule that MUST apply and gives a recommendation that congestion control implementations SHOULD follow.
-It also gives an overview of the divergence in RFCs and some current implementations regarding the constrained cwnd increase behavior.
+An appendix gives an overview of the divergence in RFCs and some current implementations regarding constrained cwnd increase.
 
-Different from {{?RFC5952}}, this document is solely concerned with the increase behavior.
+Different from {{?RFC5952}}, this document is solely concerned with the increase behavior. (should we discuss the relationship with this RFC some more?)
 
 ## Terminology
 
@@ -88,7 +89,7 @@ This document uses the terms defined in {{Section 2 of !RFC5681}}.
 {::boilerplate bcp14-tagged}
 
 
-# Constrained cwnd Increase
+# Constrained cwnd Increase {#rules}
 
 Senders of congestion controlled transport protocols:
 
@@ -116,22 +117,21 @@ This document has no IANA actions.
 
 --- back
 
-# Acknowledgments
+<!-- # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+TODO acknowledge. Note, numbered sections shouldn't appear
+after an unnumbered one - so either move this last, or take
+the numbering rule out. -->
 
 
-# The state of the art
-{:numbered="false"}
+# The state of RFCs and implementations
 
 This section is meant as input for IETF discussion, and to be removed before publication.
 
-## TCP
-{:numbered="false"}
+## TCP ("Reno" congestion control)
 
 ### Specification
-{:numbered="false"}
 
 {{!RFC5681}} does not contain a rule to limit cwnd growth when the sender is constrained. This statement (page 8) even gives an impression that such cwnd growth may be expected:
 
@@ -146,17 +146,33 @@ sender may grow a cwnd far beyond that corresponding to the current
 transmit rate, resulting in a value that does not reflect current
 information about the state of the network path the flow is using.
 
-### Implementation
-{:numbered="false"}
+### Implementation {#tcp-impl}
 
 - ns-2 allows cwnd to grow in the face of a rwnd constraint. (Application-limited: not tested)
 - ns-3 allows cwnd to grow in the face of either an application or rwnd constraint.
 - Linux only allows cwnd to grow when the sender is unconstrained. Specifically, for Linux kernel 6.0.9, an increase is only allowed if a function called `tcp_is_cwnd_limited` in `tcp.h` yields `true`. This function checks the flag `tp->is_cwnd_limited`, which is initialised to `false` in `tcp_output.c` and later set to `true` only if FlightSize is greater or equal to cwnd (`is_cwnd_limited |= (tcp_packets_in_flight(tp) >= tcp_snd_cwnd(tp))`).
 
-## SCTP
-{:numbered="false"}
+### Assessment
+
+The specification, and the ns-2 and ns-3 implementations are in conflict with rules #1 and #2 in {{rules}}. Linux implements a limit in accordance with rule #1 in {{rules}}; this limit is more conservative than rule #2 in {{rules}}.
+
+## CUBIC
 
 ### Specification
-{:numbered="false"}
+
+{{Section 5.8 of !RFC9438}} says: `Cubic doesn't increase cwnd when it's limited by the sending application or rwnd`.
+
+### Implementation
+
+- The limitation in Linux described in {{tcp-impl}} also applies to Cubic.
+
+### Assessment
+
+Both the specification and the Linux implementation limit cwnd growth in accordance with rule #1 in {{rules}}; this limit is more conservative than rule #2 in {{rules}}.
+
+
+## SCTP
+
+### Specification
 
 {{!RFC9260}} to be discussed here.
