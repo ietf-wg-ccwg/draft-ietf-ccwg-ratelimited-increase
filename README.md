@@ -1,6 +1,6 @@
-# Application-Constrained Increase of the Congestion Window
+# Constrained Increase of the Congestion Window
 
-This is the working area for the individual Internet-Draft, "Application-Constrained Increase of the Congestion Window".
+This is the working area for the individual Internet-Draft, "Constrained Increase of the Congestion Window".
 
 * [Editor's Copy](https://mwelzl.github.io/draft-ccwg-constrained-increase/#go.draft-welzl-ccwg-constrained-increase.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-welzl-ccwg-constrained-increase)
