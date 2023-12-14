@@ -66,7 +66,7 @@ informative:
 
 --- abstract
 
-This document specifies how transport protocols should increase their congestion window when the sender is constrained, either by the application stopping to supply data or by flow control.
+This document specifies how transport protocols should increase their congestion window when the sender is constrained. Such a constraint can  be caused by the application stopping to supply data or by flow control.
 
 
 --- middle
@@ -117,7 +117,7 @@ maxFS is the largest FlightSize value since the last time cwnd was decreased. If
 
 If the sender is limited for multiple RTTs, either by the application or by rwnd, continuously increasing cwnd can cause a mismatch between cwnd and the capacity the path provides. Such unlimited increase is therefore disallowed by the first rule.
 
-However, in most common congestion control mechanisms, a cwnd that has been fully utilized during an RTT grants an increase during the immediately following RTT. Thus, such an increase is allowed by the second rule.
+However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT grants an increase during the immediately following RTT. Thus, such an increase is allowed by the second rule.
 
 
 # Security Considerations
