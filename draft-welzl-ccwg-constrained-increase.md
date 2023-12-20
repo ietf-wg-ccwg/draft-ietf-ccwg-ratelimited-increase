@@ -82,7 +82,12 @@ This is also known as a rate-limited sender.
 This document specifies a uniform rule that congestion control mechanisms MUST apply and gives a recommendation that congestion control implementations SHOULD follow.
 An appendix provides an overview of the divergence in current RFCs and some current implementations regarding constrained cwnd increase.
 
-Whereas Congestion Window Validation (CWV) {{?RFC7661}} describes how to manage a congestion window that is larger than the current cwnd, the present document is solely concerned with the way that the cwnd is increased when the sending rate is limited.
+Whereas, Congestion Window Validation (CWV) {{?RFC7661}} provides an experimental specification for how to manage a congestion window that is larger than the current cwnd, the present document is solely concerned with the way that the cwnd is increased when the sending rate is limited.
+
+{XXX - Explain the differences ... {{?RFC7661}} states: "A sender that is not cwnd-limited MUST NOT increase the cwnd
+         when ACK packets are received in this phase (i.e., needs to
+         avoid growing the cwnd when it has not recently sent using the
+         current size of cwnd)." XXX}
 
 ## Terminology
 
