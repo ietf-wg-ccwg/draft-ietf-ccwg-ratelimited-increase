@@ -2,16 +2,16 @@
 
 This is the working area for the individual Internet-Draft, "Increase of the Congestion Window when the Sender Is Rate-Limited".
 
-* [Editor's Copy](https://mwelzl.github.io/draft-ccwg-constrained-increase/#go.draft-welzl-ccwg-constrained-increase.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-welzl-ccwg-constrained-increase)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-welzl-ccwg-constrained-increase)
-* [Compare Editor's Copy to Individual Draft](https://mwelzl.github.io/draft-ccwg-constrained-increase/#go.draft-welzl-ccwg-constrained-increase.diff)
+* [Editor's Copy](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/#go.draft-welzl-ccwg-ratelimited-increase.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-welzl-ccwg-ratelimited-increase)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-welzl-ccwg-ratelimited-increase)
+* [Compare Editor's Copy to Individual Draft](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/#go.draft-welzl-ccwg-ratelimited-increase.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/mwelzl/draft-ccwg-constrained-increase/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/mwelzl/draft-ccwg-ratelimited-increase/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.

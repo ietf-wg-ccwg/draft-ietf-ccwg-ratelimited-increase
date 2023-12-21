@@ -3,7 +3,7 @@ title: "Increase of the Congestion Window when the Sender Is Rate-Limited"
 abbrev: "Constrained cwnd Increase"
 category: std
 
-docname: draft-welzl-ccwg-constrained-increase-latest
+docname: draft-welzl-ccwg-ratelimited-increase-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
