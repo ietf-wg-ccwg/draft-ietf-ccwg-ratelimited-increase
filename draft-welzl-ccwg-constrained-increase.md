@@ -227,7 +227,7 @@ in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies 
 
 ### Assessment
 
-With the exception of pacing, this specification conservatively limits the grworth in cwnd, similar to Cubic and SCTP. The exception for pacing in the second paragraph requires the application to notify the transport layer that it paces packets. Pacing is typically done with delays below an RTT; thus, rule #2 in {{rules}} should cover this case without the need for such a notification from the application.
+With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. The exception for pacing in the second paragraph requires the application to notify the transport layer that it paces packets. Pacing is typically done with delays below an RTT; thus, rule #2 in {{rules}} should cover this case without the need for such a notification from the application.
 
 ## Others
 
