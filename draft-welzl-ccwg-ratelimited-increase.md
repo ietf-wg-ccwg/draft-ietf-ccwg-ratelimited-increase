@@ -63,7 +63,7 @@ informative:
 --- abstract
 
 This document specifies how transport protocols should increase their congestion window when the sender is rate-limited.
-Such a limitation can be caused by the application stopping to supply data or by flow control. Just a test to see if scripts can be started like this?
+Such a limitation can be caused by the application stopping to supply data or by flow control.
 
 
 --- middle
