@@ -63,7 +63,7 @@ informative:
 --- abstract
 
 This document specifies how transport protocols should increase their congestion window when the sender is rate-limited.
-Such a limitation can be caused by the application stopping to supply data or by flow control.
+Such a limitation can be caused by the application stopping to supply data or by flow control. Just a test to see if scripts can be started like this?
 
 
 --- middle
@@ -128,8 +128,8 @@ Thus, such an increase is allowed by the second rule.
 
 # Security Considerations
 
-The second rule in {{rules}} is more aggressive than the specifications in {{!RFC9438}}, {{!RFC9260}} and {{!RFC9002}}, but it follows general congestion control principles.
-It is not possible for an application or a receiver (for instance using rwnd) to provoke a cwnd increase that would exceed the congestion control behavior with an unconstrained sender.
+While congestion control issues could result in unwanted competing traffic, they do not directly result in security considerations. Transport protocols that provide authentication (including those using encryption) or that are carried over protocols that provide authentication, can protect the congestion control mechanisms from network attack.
+
 
 # IANA Considerations
 
