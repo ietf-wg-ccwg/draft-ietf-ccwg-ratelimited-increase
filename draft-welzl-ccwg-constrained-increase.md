@@ -77,7 +77,6 @@ Such a constraint can  be caused by the application stopping to supply data or b
 We call a sender of a congestion controlled transport protocol "constrained" when it does not have data to send (i.e., the application has not provided sufficient data) even though the congestion control rules would allow it to transmit data.
 A sender can also be constrained by the receiver when flow control limits apply (e.g., via the receiver window (rwnd) in case of TCP, of the flow credit in quic).
 RFCs specifying congestion control mechanisms diverge regarding the rules for increasing the congestion window (cwnd) when the sender is constrained.
-This is also known as a rate-limited sender.
 
 This document specifies a uniform rule that congestion control mechanisms MUST apply and gives a recommendation that congestion control implementations SHOULD follow.
 An appendix provides an overview of the divergence in current RFCs and some current implementations regarding constrained cwnd increase.
