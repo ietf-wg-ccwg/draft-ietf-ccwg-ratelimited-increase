@@ -17,7 +17,7 @@
 /versioned/
 Gemfile.lock
 archive.json
-draft-welzl-ccwg-constrained-increase.xml
+draft-welzl-ccwg-ratelimited-increase.xml
 package-lock.json
 report.xml
 !requirements.txt
