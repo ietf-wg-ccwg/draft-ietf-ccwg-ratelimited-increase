@@ -12,10 +12,6 @@ consensus: true
 v: 3
 area: "Transport"
 workgroup: "Congestion Control Working Group"
-keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
 venue:
   group: "Congestion Control Working Group"
   type: "Working Group"
