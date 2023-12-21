@@ -62,20 +62,27 @@ informative:
 
 --- abstract
 
-This document specifies how transport protocols should increase their congestion window when the sender is constrained. Such a constraint can  be caused by the application stopping to supply data or by flow control.
+This document specifies how transport protocols should increase their congestion window when the sender is constrained.
+Such a constraint can  be caused by the application stopping to supply data or by flow control.
 
 
 --- middle
 
 # Introduction
 
-We call a sender of a congestion controlled transport protocol "constrained" when it does not have data to send (i.e., the application has not provided enough data) even though the congestion control rules would allow it to transmit data. A sender can also be constrained when flow control limits apply (e.g., via the receiver window (rwnd) in case of TCP).
+We call a sender of a congestion controlled transport protocol "constrained" when it does not have data to send (i.e., the application has not provided sufficient data) even though the congestion control rules would allow it to transmit data.
+A sender can also be constrained by the receiver when flow control limits apply (e.g., via the receiver window (rwnd) in case of TCP, of the flow credit in quic).
 RFCs specifying congestion control mechanisms diverge regarding the rules for increasing the congestion window (cwnd) when the sender is constrained.
 
 This document specifies a uniform rule that congestion control mechanisms MUST apply and gives a recommendation that congestion control implementations SHOULD follow.
-An appendix gives an overview of the divergence in RFCs and some current implementations regarding constrained cwnd increase.
+An appendix provides an overview of the divergence in current RFCs and some current implementations regarding constrained cwnd increase.
 
-Different from {{?RFC7661}}, the present document is solely concerned with the increase behavior. (should we discuss the relationship with this RFC some more?)
+Whereas, Congestion Window Validation (CWV) {{?RFC7661}} provides an experimental specification for how to manage a congestion window that is larger than the current cwnd, the present document is solely concerned with the way that the cwnd is increased when the sending rate is limited.
+
+{XXX - Explain the differences ... {{?RFC7661}} states: "A sender that is not cwnd-limited MUST NOT increase the cwnd
+         when ACK packets are received in this phase (i.e., needs to
+         avoid growing the cwnd when it has not recently sent using the
+         current size of cwnd)." XXX}
 
 ## Terminology
 
@@ -90,10 +97,11 @@ This document uses the terms defined in {{Section 2 of !RFC5681}}.
 
 Irrespective of the current state of a congestion control mechanism, senders of congestion controlled transport protocols:
 
-1. MUST impose a limit on cwnd growth when FlightSize < cwnd.
-2. SHOULD limit cwnd growth with inc(maxFS).
+1. MUST limit the growth of cwnd when FlightSize < cwnd.
+2. SHOULD limit the growth of cwnd with inc(maxFS).
 
-In rule #2, "inc" is a function returning the maximum unconstrained increase that would be carried out by the congestion control mechanism within one RTT, based on the "maxFS" parameter. For example, for Slow Start as specified in {{!RFC5681}}, equation 2 in {{!RFC5681}} becomes:
+In rule #2, "inc" is a function returning the maximum unconstrained increase that would result from the congestion control mechanism within one RTT, based on the "maxFS" parameter.
+For example, for Slow Start, as specified in {{!RFC5681}}, equation 2 in {{!RFC5681}} becomes:
 
 ~~~
 cwnd_new = cwnd + min (N, SMSS)
@@ -107,19 +115,21 @@ cwnd_new = cwnd + SMSS*SMSS/cwnd
 cwnd = min(cwnd_new, 1+maxFS)
 ~~~
 
-maxFS is the largest FlightSize value since the last time cwnd was decreased. If cwnd has never been decreased, it is the maximum FlightSize value since the beginning of the data transfer.
+maxFS is the largest FlightSize value since the last time that cwnd was decreased.
+If cwnd has never been decreased, it is the maximum FlightSize value since the beginning of the data transfer.
 
 ## Discussion
 
-If the sender is limited for multiple RTTs, either by the application or by rwnd, continuously increasing cwnd can cause a mismatch between cwnd and the capacity the path provides. Such unlimited increase is therefore disallowed by the first rule.
+If the sender rate is limited for multiple RTTs, either by the sending application or by the receiving application, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity the path provides (i.e., over-estimating the capacity).
+Such unlimited cwnd increase is therefore disallowed by the first rule.
 
-However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT grants an increase during the immediately following RTT. Thus, such an increase is allowed by the second rule.
-
+However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT grants an increase during the immediately following RTT.
+Thus, such an increase is allowed by the second rule.
 
 # Security Considerations
 
-The second rule in {{rules}} is more aggressive than the specifications in {{!RFC9438}}, {{!RFC9260}} and {{!RFC9002}}, but it follows general congestion control principles. It is not possible for an application or a receiver (using rwnd, for instance) to provoke a cwnd increase that would exceed the congestion control behavior with an unconstrained sender.
-
+The second rule in {{rules}} is more aggressive than the specifications in {{!RFC9438}}, {{!RFC9260}} and {{!RFC9002}}, but it follows general congestion control principles.
+It is not possible for an application or a receiver (for instance using rwnd) to provoke a cwnd increase that would exceed the congestion control behavior with an unconstrained sender.
 
 # IANA Considerations
 
@@ -138,17 +148,17 @@ the numbering rule out. -->
 
 # The state of RFCs and implementations
 
-This section is meant as input for IETF discussion, and should be removed before publication.
+This section is provided as input for IETF discussion, and should be removed before publication.
 
 ## TCP ("Reno" congestion control)
 
 ### Specification
 
-{{!RFC5681}} does not contain a rule to limit cwnd growth when the sender is constrained. This statement (page 8) even gives an impression that such cwnd growth may be expected:
+{{!RFC5681}} does not contain a rule to limit the growth of cwnd when the sender is rate-limited. This statement (page 8) gives an impression that such cwnd growth might be expected:
 
 >Implementation Note: An easy mistake to make is to simply use cwnd, rather than FlightSize, which in some implementations may incidentally increase well beyond rwnd.
 
-{{?RFC7661}} also gives the impression that this is the expected TCP behavior (which {{?RFC7661}} changes), on page 4:
+{{?RFC7661}} also suggests there is no increase limitation in the standard TCP behavior (which {{?RFC7661}} changes), on page 4:
 
 >Standard TCP does not impose additional restrictions on the growth of
 the congestion window when a TCP sender is unable to send at the
@@ -159,13 +169,15 @@ information about the state of the network path the flow is using.
 
 ### Implementation {#tcp-impl}
 
-- ns-2 allows cwnd to grow in the face of a rwnd constraint. (Application-limited: not tested)
-- ns-3 allows cwnd to grow in the face of either an application or rwnd constraint.
-- Linux only allows cwnd to grow when the sender is unconstrained. Specifically, for Linux kernel 6.0.9, an increase is only allowed if a function called `tcp_is_cwnd_limited` in `tcp.h` yields `true`. This function checks the flag `tp->is_cwnd_limited`, which is initialised to `false` in `tcp_output.c` and later set to `true` only if FlightSize is greater or equal to cwnd (`is_cwnd_limited |= (tcp_packets_in_flight(tp) >= tcp_snd_cwnd(tp))`).
+- ns-2 allows cwnd to grow when it is rate-limited by rwnd. (Rate-limited by the sending application: not tested.)
+- ns-3 allows cwnd to grow when it is rate-limited by either an application or the rwnd.
+- Linux only allows cwnd to grow when the sender is unconstrained.
+  Specifically, for Linux kernel 2.6.11, an increase is only allowed if a function called `tcp_is_cwnd_limited` in `tcp.h` yields `true`. This function checks the flag `tp->is_cwnd_limited`, which is initialised to `false` in `tcp_output.c` and later set to `true` only if FlightSize is greater or equal to cwnd (`is_cwnd_limited |= (tcp_packets_in_flight(tp) >= tcp_snd_cwnd(tp))`).
 
 ### Assessment
 
-The specification and the ns-2 and ns-3 implementations are in conflict with rules #1 and #2 in {{rules}}. Linux implements a limit in accordance with rule #1 in {{rules}}; this limit is more conservative than rule #2 in {{rules}}.
+The specification and the ns-2 and ns-3 implementations are in conflict with rules #1 and #2 in {{rules}}.
+Linux implements a limit in accordance with rule #1 in {{rules}}; this limit is more conservative than rule #2 in {{rules}}.
 
 ## CUBIC
 
@@ -183,20 +195,21 @@ The limitation of Linux described in {{tcp-impl}} also applies to Cubic.
 
 Both the specification and the Linux implementation limit cwnd growth in accordance with rule #1 in {{rules}}; this limit is more conservative than rule #2 in {{rules}}.
 
-
 ## SCTP
 
 ### Specification
 
 {{Section 7.2.1 of !RFC9260}} says:
 
->When cwnd is less than or equal to ssthresh, an SCTP endpoint MUST use the slow-start algorithm to increase cwnd only if the current congestion window is being fully utilized and the data sender is not in Fast Recovery. Only when these two conditions are met can the cwnd be increased; otherwise, the cwnd MUST NOT be increased.
+>When cwnd is less than or equal to ssthresh, an SCTP endpoint MUST use the slow-start algorithm to increase cwnd only if the current congestion window is being fully utilized and the data sender is not in Fast Recovery.
+Only when these two conditions are met can the cwnd be increased; otherwise, the cwnd MUST NOT be increased.
 
 ### Assessment
 
 The quoted statement from {{!RFC9260}} prescribes the same cwnd growth limitation that is also specified for Cubic and implemented for both Reno and Cubic in Linux. It is in accordance with rule #1 in {{rules}}, and more conservative than rule #2 in {{rules}}.
 
-{{Section 7.2.1 of !RFC9260}} is specifically limited to Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}}, but this section neither contains a similar rule nor refers back to the rule that limits cwnd growth in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies to Slow Start, whereas the rules in {{rules}} apply to both Slow Start and Congestion Avoidance.
+{{Section 7.2.1 of !RFC9260}} is specifically limited to Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}}, but this section neither contains a similar rule nor does it refer back to the rule that limits the growth of cwnd
+in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies to Slow Start, whereas the rules in {{rules}} apply to both Slow Start and Congestion Avoidance.
 
 ## QUIC
 
@@ -210,8 +223,9 @@ The quoted statement from {{!RFC9260}} prescribes the same cwnd growth limitatio
 
 ### Assessment
 
-With the exception of pacing, this specification conservatively limits cwnd growth similar to Cubic and SCTP. The exception for pacing in the second paragraph requires the application to notify the transport layer that it paces packets. Pacing is typically done with delays below an RTT; thus, rule #2 in {{rules}} should cover this case without the need for such a notification from the application.
+With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. The exception for pacing in the second paragraph requires the application to notify the transport layer that it paces packets. Pacing is typically done with delays below an RTT; thus, rule #2 in {{rules}} should cover this case without the need for such a notification from the application.
 
 ## Others
 
-Other protocols and mechanisms in RFCs include: TFRC; various multicast and multipath mechanisms; the RMCAT mechanisms for real-time media. Other protocol specs containing congestion control include: DCCP, MP-DCCP, MPTCP, RTP extensions for CC. This can get huge... how many / which of these should we discuss?
+Other protocols and mechanisms in RFCs include: TFRC; various multicast and multipath mechanisms; the RMCAT mechanisms for real-time media. Other protocol specs containing congestion control include: DCCP, MP-DCCP, MPTCP, RTP extensions for CC. 
+This can get huge... how many / which of these should we discuss?
