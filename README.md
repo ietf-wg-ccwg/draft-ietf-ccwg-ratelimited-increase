@@ -1,4 +1,4 @@
-# Constrained Increase of the Congestion Window
+# Increase of the Congestion Window when the Sender Is Rate-Limited
 
 This is the working area for the individual Internet-Draft, "Constrained Increase of the Congestion Window".
 
