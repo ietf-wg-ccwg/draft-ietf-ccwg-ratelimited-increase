@@ -37,13 +37,10 @@ author:
   -
     ins: T. Henderson
     name: Tom Henderson
-    org: Please fill out your affiliation
-    street: and street etc., though...
-    street: it's really optional, I think.
-    city: City
-    country: Country
+    city: Mercer Island, WA
+    country: United States
     email: tomh@tomh.org
-    uri: https://tomh.org/
+    uri: https://www.tomh.org/
   -
     ins: G. Fairhurst
     name: Godred Fairhurst
