@@ -232,8 +232,7 @@ This can get huge... how many / which of these should we discuss? XXX}
 
 # Security Considerations
 
-Transport protocols that provide authentication (including those using encryption) or that are carried over protocols that provide authentication, 
+Transport protocols that provide authentication (including those using encryption) or that are carried over protocols that provide authentication,
 can protect the congestion control mechanisms from network attack.
 
-While congestion control issues could result in unwanted competing traffic, they do not directly result in new security considerations. 
-
+While congestion control issues could result in unwanted competing traffic, they do not directly result in new security considerations.
