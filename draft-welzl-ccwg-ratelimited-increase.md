@@ -48,7 +48,7 @@ author:
     ins: G. Fairhurst
     name: Godred Fairhurst
     org: University of Aberdeen
-    street: Department of Engineering
+    street: School of Engineering
     street: Fraser Noble Building
     city: Aberdeen, AB24 3UE
     country: Scotland
