@@ -171,13 +171,12 @@ information about the state of the network path the flow is using.
 
 - ns-2 allows cwnd to grow when it is rate-limited by rwnd. (Rate-limited by the sending application: not tested.)
 - ns-3 allows cwnd to grow when it is rate-limited by either an application or the rwnd.
-- Linux only allows cwnd to grow when the sender is unconstrained.
-  Specifically, for Linux kernel 2.6.11, an increase is only allowed if a function called `tcp_is_cwnd_limited` in `tcp.h` yields `true`. This function checks the flag `tp->is_cwnd_limited`, which is initialised to `false` in `tcp_output.c` and later set to `true` only if FlightSize is greater or equal to cwnd (`is_cwnd_limited |= (tcp_packets_in_flight(tp) >= tcp_snd_cwnd(tp))`).
+- In Congestion Avoidance, Linux only allows cwnd to grow when the sender is unconstrained. Before kernel version 3.16, this also applied to Slow Start. The check for "unconstrained" is done by checking if FlightSize is greater or equal to cwnd. Since kernel version 3.16, in Slow Start, the increase implements rule #2 in {{rules}} in the `tcp_is_cwnd_limited` function in `tcp.h`.
 
 ### Assessment
 
 The specification and the ns-2 and ns-3 implementations are in conflict with rules #1 and #2 in {{rules}}.
-Linux implements a limit in accordance with rule #1 in {{rules}}; this limit is more conservative than rule #2 in {{rules}}.
+Linux implements a limit in accordance with rule #1 in {{rules}}; in Slow Start, this limit follows rule #2, while in Congestion Avoidance, it is more conservative than rule #2.
 
 ## CUBIC
 
@@ -189,11 +188,11 @@ Linux implements a limit in accordance with rule #1 in {{rules}}; this limit is 
 
 ### Implementation
 
-The limitation of Linux described in {{tcp-impl}} also applies to Cubic.
+The description of Linux described in {{tcp-impl}} also applies to Cubic.
 
 ### Assessment
 
-Both the specification and the Linux implementation limit cwnd growth in accordance with rule #1 in {{rules}}; this limit is more conservative than rule #2 in {{rules}}.
+Both the specification and the Linux implementation limit cwnd growth in accordance with rule #1 in {{rules}}; in Congestion Avoidance, this limit is more conservative than rule #2 in {{rules}}, and in Slow Start, it implements rule #2 in {{rules}}.
 
 ## SCTP
 
