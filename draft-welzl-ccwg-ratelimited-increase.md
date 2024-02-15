@@ -171,7 +171,7 @@ information about the state of the network path the flow is using.
 
 - ns-2 allows cwnd to grow when it is rate-limited by rwnd. (Rate-limited by the sending application: not tested.)
 - ns-3 allows cwnd to grow when it is rate-limited by either an application or the rwnd.
-- In Congestion Avoidance, Linux only allows cwnd to grow when the sender is unconstrained. Before kernel version 3.16, this also applied to Slow Start. The check for "unconstrained" is done by checking if FlightSize is greater or equal to cwnd. Since kernel version 3.16, in Slow Start, the increase implements rule #2 in {{rules}} in the `tcp_is_cwnd_limited` function in `tcp.h`.
+- In Congestion Avoidance, Linux only allows cwnd to grow when the sender is unconstrained. Before kernel version 3.16, this also applied to Slow Start. The check for "unconstrained" is done by checking if FlightSize is greater or equal to cwnd. Since kernel version 3.16, which was published in August 2014, in Slow Start, the increase implements rule #2 in {{rules}} in the `tcp_is_cwnd_limited` function in `tcp.h`.
 
 ### Assessment
 
