@@ -176,7 +176,7 @@ information about the state of the network path the flow is using.
 ### Assessment
 
 The specification and the ns-2 and ns-3 implementations are in conflict with rules #1 and #2 in {{rules}}.
-Linux implements a limit in accordance with rule #1 in {{rules}}; in Slow Start, this limit follows rule #2, while in Congestion Avoidance, it is more conservative than rule #2.
+Linux implements a limit to cwnd growth in accordance with rule #1 in {{rules}}; in Slow Start, this limit follows rule #2, while in Congestion Avoidance, it is more conservative than rule #2.
 
 ## CUBIC
 
