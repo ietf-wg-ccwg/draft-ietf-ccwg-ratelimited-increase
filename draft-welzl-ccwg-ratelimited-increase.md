@@ -128,8 +128,10 @@ Thus, such an increase is allowed by the second rule.
 
 # Security Considerations
 
-While congestion control issues could result in unwanted competing traffic, they do not directly result in security considerations. Transport protocols that provide authentication (including those using encryption) or that are carried over protocols that provide authentication, can protect the congestion control mechanisms from network attack.
+Transport protocols that provide authentication (including those using encryption) or that are carried over protocols that provide authentication,
+can protect the congestion control mechanisms from network attack.
 
+While congestion control design could result in unwanted competing traffic, they do not directly result in new security considerations.
 
 # IANA Considerations
 
@@ -229,10 +231,3 @@ With the exception of pacing, this specification conservatively limits the growt
 
 {XXX - Other protocols and mechanisms in RFCs include: TFRC; various multicast and multipath mechanisms; the RMCAT mechanisms for real-time media. Other protocol specs containing congestion control include: DCCP, MP-DCCP, MPTCP, RTP extensions for CC.
 This can get huge... how many / which of these should we discuss? XXX}
-
-# Security Considerations
-
-Transport protocols that provide authentication (including those using encryption) or that are carried over protocols that provide authentication,
-can protect the congestion control mechanisms from network attack.
-
-While congestion control issues could result in unwanted competing traffic, they do not directly result in new security considerations.
