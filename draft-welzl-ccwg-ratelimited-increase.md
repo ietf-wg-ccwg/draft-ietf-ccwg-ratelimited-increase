@@ -123,7 +123,7 @@ If cwnd has never been decreased, maxFS is the maximum value of FlightSize since
 If the sending rate is less than permitted by cwnd for multiple RTTs, either by the sending application or by the receiver-advertised flow limit, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity that is supported by the path (i.e., over-estimating the capacity).
 Such unlimited growth in the cwnd is therefore disallowed by the first rule.
 
-However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT grants an increase during the immediately following RTT.
+However, most common congestion control mechanisms, in the absence of an indication of congestion, grans an increase of cwnd in trhwe following RTT when the cwnd has been fully utilized.
 Thus, such an increase is allowed by the second rule.
 
 # Security Considerations
