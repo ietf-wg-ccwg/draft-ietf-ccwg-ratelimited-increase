@@ -97,8 +97,8 @@ This document uses the terms defined in {{Section 2 of !RFC5681}}.
 
 Irrespective of the current state of a congestion control mechanism, senders of congestion controlled transport protocols:
 
-1. MUST limit the growth of cwnd when FlightSize < cwnd.
-2. SHOULD limit the growth of cwnd with inc(maxFS).
+1. MUST limit the growth of cwnd when FlightSize < cwnd in some way.
+2. SHOULD limit the growth of cwnd when FlightSize < cwnd with inc(maxFS).
 
 In rule #2, "inc" is a function returning the maximum unconstrained increase that would result from the congestion control mechanism within one RTT, based on the "maxFS" parameter.
 For example, for Slow Start, as specified in {{!RFC5681}}, equation 2 in {{!RFC5681}} becomes:
