@@ -51,7 +51,7 @@ author:
     street: School of Engineering
     street: Fraser Noble Building
     city: Aberdeen, AB24 3UE
-    country: Scotland
+    country: UK
     email: gorry@erg.abdn.ac.uk
     uri: https://www.erg.abdn.ac.uk/
 
