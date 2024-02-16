@@ -37,21 +37,18 @@ author:
   -
     ins: T. Henderson
     name: Tom Henderson
-    org: Please fill out your affiliation
-    street: and street etc., though...
-    street: it's really optional, I think.
-    city: City
-    country: Country
+    city: Mercer Island, WA
+    country: United States
     email: tomh@tomh.org
-    uri: https://tomh.org/
+    uri: https://www.tomh.org/
   -
     ins: G. Fairhurst
     name: Godred Fairhurst
     org: University of Aberdeen
-    street: Department of Engineering
+    street: School of Engineering
     street: Fraser Noble Building
     city: Aberdeen, AB24 3UE
-    country: Scotland
+    country: UK
     email: gorry@erg.abdn.ac.uk
     uri: https://www.erg.abdn.ac.uk/
 
@@ -62,8 +59,8 @@ informative:
 
 --- abstract
 
-This document specifies how transport protocols should increase their congestion window when the sender is rate-limited.
-Such a limitation can be caused by the application stopping to supply data or by flow control.
+This document specifies how transport protocols increase their congestion window when the sender is rate-limited.
+Such a limitation can be caused by the sending application not supplying data or by receiver flow control.
 
 
 --- middle
@@ -115,21 +112,24 @@ cwnd_new = cwnd + SMSS*SMSS/cwnd
 cwnd = min(cwnd_new, 1+maxFS)
 ~~~
 
-maxFS is the largest FlightSize value since the last time that cwnd was decreased.
-If cwnd has never been decreased, it is the maximum FlightSize value since the beginning of the data transfer.
+maxFS is the largest value of FlightSize since the last time that cwnd was decreased.
+If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.
 
 ## Discussion
 
-If the sender rate is limited for multiple RTTs, either by the sending application or by the receiving application, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity the path provides (i.e., over-estimating the capacity).
-Such unlimited cwnd increase is therefore disallowed by the first rule.
+If the sending rate is less than permitted by cwnd for multiple RTTs, either by the sending application or by the receiver-advertised window, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity the path supports (i.e., over-estimating the capacity).
+Such unlimited growth in the cwnd is therefore disallowed by the first rule.
 
-However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT grants an increase during the immediately following RTT.
+However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT is permitted to be increased during the immediately following RTT.
+
 Thus, such an increase is allowed by the second rule.
 
 # Security Considerations
 
-While congestion control issues could result in unwanted competing traffic, they do not directly result in security considerations. Transport protocols that provide authentication (including those using encryption) or that are carried over protocols that provide authentication, can protect the congestion control mechanisms from network attack.
+Transport protocols that provide authentication (including those using encryption), or are carried over protocols that provide authentication,
+can protect the congestion control mechanisms from network attack.
 
+While congestion control design could result in unwanted competing traffic, they do not directly result in new security considerations.
 
 # IANA Considerations
 
@@ -175,8 +175,8 @@ information about the state of the network path the flow is using.
 
 ### Assessment
 
-The specification and the ns-2 and ns-3 implementations are in conflict with rules #1 and #2 in {{rules}}.
 Linux implements a limit to cwnd growth in accordance with rule #1 in {{rules}}; in Slow Start, this limit follows rule #2, while in Congestion Avoidance, it is more conservative than rule #2.
+The specification and the ns-2 and ns-3 implementations are in conflict with rules #1 and #2 in {{rules}}.
 
 ## CUBIC
 
@@ -226,5 +226,5 @@ With the exception of pacing, this specification conservatively limits the growt
 
 ## Others
 
-Other protocols and mechanisms in RFCs include: TFRC; various multicast and multipath mechanisms; the RMCAT mechanisms for real-time media. Other protocol specs containing congestion control include: DCCP, MP-DCCP, MPTCP, RTP extensions for CC.
-This can get huge... how many / which of these should we discuss?
+{XXX - Other protocols and mechanisms in RFCs include: TFRC; various multicast and multipath mechanisms; the RMCAT mechanisms for real-time media. Other protocol specs containing congestion control include: DCCP, MP-DCCP, MPTCP, RTP extensions for CC.
+This can get huge... how many / which of these should we discuss? XXX}
