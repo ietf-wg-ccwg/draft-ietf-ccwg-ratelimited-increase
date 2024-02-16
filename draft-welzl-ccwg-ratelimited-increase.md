@@ -125,8 +125,10 @@ Thus, such an increase is allowed by the second rule.
 
 # Security Considerations
 
-While congestion control issues could result in unwanted competing traffic, they do not directly result in security considerations. Transport protocols that provide authentication (including those using encryption) or that are carried over protocols that provide authentication, can protect the congestion control mechanisms from network attack.
+Transport protocols that provide authentication (including those using encryption), or are carried over protocols that provide authentication,
+can protect the congestion control mechanisms from network attack.
 
+While congestion control design could result in unwanted competing traffic, they do not directly result in new security considerations.
 
 # IANA Considerations
 
