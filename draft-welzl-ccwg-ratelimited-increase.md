@@ -73,7 +73,7 @@ Such a limitation can be caused by the application stopping to supply data or by
 A sender of a congestion controlled transport protocol becomes "rate-limited" when it does not have data to send
 even though the congestion control rules would allow it to transmit data.
 This could occur because the application has not provided sufficient data to fully utilise the congestion window (cwnd).
-It couldalso occur because a sender is limited because the receiver has limited the flow control
+could also occur because the receiver has limited the flow control
 (e.g., by the advertised TCP receiver window (rwnd) or by the conenction or stream flow credit in quic).
 Current RFCs specifying congestion control mechanisms diverge regarding the rules for increasing the cwnd when the sender is rate-limited.
 
