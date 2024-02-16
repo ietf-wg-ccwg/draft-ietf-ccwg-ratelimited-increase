@@ -80,7 +80,7 @@ Current RFCs specifying congestion control mechanisms diverge regarding the rule
 Congestion Window Validation (CWV) {{?RFC7661}} provides an experimental specification defining how to manage a cwnd that has
 becone larger than the current flight size.
 In contrast, this present document concerns the increase in cwnd when a sender is rate is limited. These two topics are distinct,
-but are related, because both define the managment of cwnd when the sender does not fully utilise the current cwnd.
+but are related, because both describe the managment of cwnd when the sender does not fully utilise the current cwnd.
 
 This document specifies a uniform rule that congestion control mechanisms MUST apply and provides a recommendation that congestion control implementations SHOULD follow.
 An appendix provides an overview of the divergence in current RFCs and some current implementations regarding cwnd increase when the sender is rate-limited.
