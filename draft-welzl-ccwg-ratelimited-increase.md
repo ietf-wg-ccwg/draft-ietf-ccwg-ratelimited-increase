@@ -37,13 +37,10 @@ author:
   -
     ins: T. Henderson
     name: Tom Henderson
-    org: Please fill out your affiliation
-    street: and street etc., though...
-    street: it's really optional, I think.
-    city: City
-    country: Country
+    city: Mercer Island, WA
+    country: United States
     email: tomh@tomh.org
-    uri: https://tomh.org/
+    uri: https://www.tomh.org/
   -
     ins: G. Fairhurst
     name: Godred Fairhurst
@@ -62,8 +59,8 @@ informative:
 
 --- abstract
 
-This document specifies how transport protocols should increase their congestion window when the sender is rate-limited.
-Such a limitation can be caused by the application stopping to supply data or by flow control.
+This document specifies how transport protocols increase their congestion window when the sender is rate-limited.
+Such a limitation can be caused by the sending application not supplying data or by receiver flow control.
 
 
 --- middle
@@ -115,8 +112,8 @@ cwnd_new = cwnd + SMSS*SMSS/cwnd
 cwnd = min(cwnd_new, 1+maxFS)
 ~~~
 
-maxFS is the largest FlightSize value since the last time that cwnd was decreased.
-If cwnd has never been decreased, it is the maximum FlightSize value since the beginning of the data transfer.
+maxFS is the largest value of FlightSize since the last time that cwnd was decreased.
+If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.
 
 ## Discussion
 
@@ -124,12 +121,15 @@ If the sending rate is less than permitted by cwnd for multiple RTTs, either by 
 Such unlimited growth in the cwnd is therefore disallowed by the first rule.
 
 However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT is permitted to be increased during the immediately following RTT.
+
 Thus, such an increase is allowed by the second rule.
 
 # Security Considerations
 
-While congestion control issues could result in unwanted competing traffic, they do not directly result in security considerations. Transport protocols that provide authentication (including those using encryption) or that are carried over protocols that provide authentication, can protect the congestion control mechanisms from network attack.
+Transport protocols that provide authentication (including those using encryption), or are carried over protocols that provide authentication,
+can protect the congestion control mechanisms from network attack.
 
+While congestion control design could result in unwanted competing traffic, they do not directly result in new security considerations.
 
 # IANA Considerations
 
