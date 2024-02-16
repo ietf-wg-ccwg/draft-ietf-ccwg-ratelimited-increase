@@ -117,10 +117,11 @@ If cwnd has never been decreased, maxFS is the maximum value of FlightSize since
 
 ## Discussion
 
-If the sending rate is less than permitted by cwnd for multiple RTTs, either by the sending application or by the receiver-advertised flow limit, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity that is supported by the path (i.e., over-estimating the capacity).
+If the sending rate is less than permitted by cwnd for multiple RTTs, either by the sending application or by the receiver-advertised window, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity the path supports (i.e., over-estimating the capacity).
 Such unlimited growth in the cwnd is therefore disallowed by the first rule.
 
-However, in the absence of an indication of congestion and when the cwnd has been fully utilized, most common congestion control mechanisms  grant an increase in cwnd for the following RTT.
+However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT is permitted to be increased during the immediately following RTT.
+
 Thus, such an increase is allowed by the second rule.
 
 # Security Considerations
@@ -175,8 +176,8 @@ information about the state of the network path the flow is using.
 
 ### Assessment
 
+Linux implements a limit in accordance with rule #1 in {{rules}}; the Linux limit is more conservative than rule #2 in {{rules}}.
 The specification and the ns-2 and ns-3 implementations are in conflict with rules #1 and #2 in {{rules}}.
-Linux implements a limit in accordance with rule #1 in {{rules}}; this limit is more conservative than rule #2 in {{rules}}.
 
 ## CUBIC
 
