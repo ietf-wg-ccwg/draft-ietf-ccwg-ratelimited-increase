@@ -112,15 +112,15 @@ cwnd_new = cwnd + SMSS*SMSS/cwnd
 cwnd = min(cwnd_new, 1+maxFS)
 ~~~
 
-maxFS is the largest FlightSize value since the last time that cwnd was decreased.
-If cwnd has never been decreased, it is the maximum FlightSize value since the beginning of the data transfer.
+maxFS is the largest value of FlightSize since the last time that cwnd was decreased.
+If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.
 
 ## Discussion
 
-If the sending rate is less than permitted by cwnd for multiple RTTs, either by the sending application or by the receiver-adevrtised flow limit, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity the path supports (i.e., over-estimating the capacity).
-Such unlimited growt in the cwnd is therefore disallowed by the first rule.
+If the sending rate is less than permitted by cwnd for multiple RTTs, either by the sending application or by the receiver-advertised flow limit, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity that is supported by the path (i.e., over-estimating the capacity).
+Such unlimited growth in the cwnd is therefore disallowed by the first rule.
 
-However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT grants an increase during the immediately following RTT.
+However, in the absence of an indication of congestion and when the cwnd has been fully utilized, most common congestion control mechanisms  grant an increase in cwnd for the following RTT.
 Thus, such an increase is allowed by the second rule.
 
 # Security Considerations
