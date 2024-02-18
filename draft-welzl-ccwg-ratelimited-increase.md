@@ -93,7 +93,7 @@ This document uses the terms defined in {{Section 2 of !RFC5681}}.
 
 # Increase rules {#rules}
 
-When not operating in a recovery state (i.e., recovering from recent losses or ECN marking), a transport protocol MUST support a way to detect that it is likely to be rate-limited if it were to increase its cwnd.  One possible approach, when supporting bulk-transfer applications, would be to detect conditions in which the amount of unsent data in the transmit buffer is unlikely to allow the protocol to fully realize the corresponding FlightSize over the next RTT.  Other application sending patterns may lead to different heuristics, however.
+When not operating in a recovery state (i.e., recovering from recent losses), a transport protocol MUST support a way to detect that it is likely to be rate-limited if it were to increase its cwnd.  One possible approach, when supporting bulk-transfer applications, would be to detect conditions in which the amount of unsent data in the transmit buffer is unlikely to allow the protocol to fully realize the corresponding FlightSize over the next RTT.  Other application sending patterns may lead to different heuristics, however.
 
 When in a rate-limited state, senders of congestion controlled transport protocols:
 
