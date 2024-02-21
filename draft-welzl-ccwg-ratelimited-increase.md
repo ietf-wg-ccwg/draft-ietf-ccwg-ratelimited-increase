@@ -234,7 +234,7 @@ in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies 
 ### Assessment
 
 With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP.
-The exception for pacing in the second paragraph requires pacing is enabled, this is specifically taken into account. Pacing could occur over various timescales, but
+The exception for pacing in the second paragraph requires that when pacing is enabled, it is specifically taken into account. Pacing could occur over various timescales, but
 is typically done with delays below an RTT; thus, rule #2 in {{rules}} should cover this case.
 
 ## DCCP CCID2
