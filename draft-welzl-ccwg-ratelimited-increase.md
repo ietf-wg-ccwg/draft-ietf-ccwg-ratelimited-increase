@@ -188,7 +188,7 @@ The specification and the ns-2 and ns-3 implementations are in conflict with rul
 
 {{Section 5.8 of !RFC9438}} says:
 
->Cubic does not increase cwnd when it is limited by the sending application or rwnd.
+>Cubic doesn't increase cwnd when it's limited by the sending application or rwnd.
 
 ### Implementation
 
