@@ -123,6 +123,19 @@ Such unlimited growth in the cwnd is therefore disallowed by the first rule.
 However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT is permitted to be increased during the immediately following RTT.
 Thus, such an increase is allowed by the second rule.
 
+
+### Rate-based congestion control
+
+The present document updates congestion control specifications that use a congestion window (cwnd) to limit the number of unacknowledged packets a sender is allowed to emit. This is only one way to constrain the rate of a sender.
+
+Congestion control mechanisms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{I-D.cardwell-iccrg-bbr-congestion-control}}). The guiding principle behind the rules in {{rules}} applies to all  congestion control mechanisms: in the absence of a congestion indication, a sender should be allowed to increase its rate from the amount of data that it has transmitted during the previous RTT. This holds irrespective of whether the sender is rate-limited or not.
+
+
+### Pacing
+
+Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (flights of packets transmitted back-to-back). This is usually without limiting the number of packets that are sent per RTT. The present specification introduces a limitation using "maxFS", which is measured over an RTT; thus, as long as the number of packets per RTT is unaffected by pacing, the rules in {{rules}} also do not constrain the use of pacing mechanisms.
+
+
 # Security Considerations
 
 While congestion control designs could result in unwanted competing traffic, they do not directly result in new security considerations.
