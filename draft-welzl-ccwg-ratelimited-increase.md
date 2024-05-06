@@ -247,7 +247,7 @@ is typically done with delays below an RTT; thus, rule #2 in {{rules}} should co
 ### Assessment
 
 A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to {{!RFC2861}}.
-The text in {{section 5.1 of !RFC4341}} is updated by this document to specify the management of the
+The text in {{Section 5.1 of !RFC4341}} is updated by this document to specify the management of the
 cwnd during an application-limited period.
 
 
