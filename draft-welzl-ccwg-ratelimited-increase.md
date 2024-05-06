@@ -55,7 +55,7 @@ author:
 normative:
 
 informative:
-I-D.ietf-taps-arch:
+I-D.cardwell-iccrg-bbr-congestion-control:
 
 
 --- abstract
@@ -129,7 +129,7 @@ Thus, such an increase is allowed by the second rule.
 
 The present document updates congestion control specifications that use a congestion window (cwnd) to limit the number of unacknowledged packets a sender is allowed to emit. This is only one way to constrain the rate of a sender.
 
-Congestion control mechanisms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{?I-D.ietf-taps-arch}}). The guiding principle behind the rules in {{rules}} applies to all  congestion control mechanisms: in the absence of a congestion indication, a sender should be allowed to increase its rate from the amount of data that it has transmitted during the previous RTT. This holds irrespective of whether the sender is rate-limited or not.
+Congestion control mechanisms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{?I-D.cardwell-iccrg-bbr-congestion-control}}). The guiding principle behind the rules in {{rules}} applies to all  congestion control mechanisms: in the absence of a congestion indication, a sender should be allowed to increase its rate from the amount of data that it has transmitted during the previous RTT. This holds irrespective of whether the sender is rate-limited or not.
 
 
 ### Pacing
