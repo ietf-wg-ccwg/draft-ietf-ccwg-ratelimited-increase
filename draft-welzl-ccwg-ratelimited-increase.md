@@ -256,30 +256,19 @@ is typically done with delays below an RTT; thus, rule #2 in {{rules}} should co
 ### Specification
 
 {{Section 5.1 of !RFC4341}} states:
->    There are currently no standards governing TCP's use of the
-   congestion window during an application-limited period.  In
-   particular, it is possible for TCP's congestion window to grow quite
-   large during a long uncongested period when the sender is application
-   limited, sending at a low rate.  [RFC2861] essentially suggests that
-   TCP's congestion window not be increased during application-limited
-   periods when the congestion window is not being fully utilized.
+>There are currently no standards governing TCP's use of the congestion window during an application-limited period.  In particular, it is possible for TCP's congestion window to grow quite large during a long uncongested period when the sender is application limited, sending at a low rate.  {{?RFC2861}} essentially suggests that TCP's congestion window not be increased during application-limited periods when the congestion window is not being fully utilized.
 
 ### Assessment
 
-A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to !RFC2861.
-The text in section 5.1 CCID2 !RFC4341, is updated by this document to specify the management of the
+A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to {{!RFC2861}}.
+The text in {{Section 5.1 of !RFC4341}} is updated by this document to specify the management of the
 cwnd during an application-limited period.
 
-## Other Transports
-
-{XXX - Other protocols and mechanisms in RFCs include: TFRC; various multicast and multipath mechanisms; the RMCAT mechanisms for real-time media. Other protocol specs containing congestion control include: MPTCP, RTP extensions for CC. A DCCP Congestion Control ID (CCID) specifing TFRC-like behaviour (including CCID3 !RFC4341), needs to follow the recommendations for TFRC.
-
-This can get huge... how many / which of these should we discuss? XXX}
 
 # Change Log
 
--00 was the first individual submission for feedback by CCWG.
--01 includes editorial improvements
-  -- Removes application interaction with QUIC pacing, since pacing is might be within the QUIC stack.
-  -- Adds explicit mention of DCCP/CCID2.
-  -- Adds this change log.
+* -00 was the first individual submission for feedback by CCWG.
+* -01 includes editorial improvements
+   * Removes application interaction with QUIC pacing, since pacing might be within the QUIC stack.
+   * Adds explicit mention of DCCP/CCID2.
+   * Adds this change log.
