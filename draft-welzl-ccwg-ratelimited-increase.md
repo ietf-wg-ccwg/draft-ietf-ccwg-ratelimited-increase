@@ -60,7 +60,7 @@ I-D.cardwell-iccrg-bbr-congestion-control:
 
 --- abstract
 
-This document specifies how transport protocols increase their congestion window when the sender is rate-limited.
+This document specifies how transport protocols increase their congestion window when the sender is rate-limited, and updates RFC 5681, RFC 9002, RFC 9260, and RFC 9438.
 Such a limitation can be caused by the sending application not supplying data or by receiver flow control.
 
 
@@ -73,19 +73,22 @@ even though the congestion control rules would allow it to transmit data.
 This could occur because the application has not provided sufficient data to fully utilise the congestion window (cwnd).
 It could also occur because the receiver has limited the sender using flow control
 (e.g., by the advertised TCP receiver window (rwnd) or by the conection or stream flow credit in quic).
-Current RFCs specifying congestion control mechanisms diverge regarding the rules for increasing the cwnd when the sender is rate-limited.
+Current RFCs specifying congestion control algorithms diverge regarding the rules for increasing the cwnd when the sender is rate-limited.
 
 Congestion Window Validation (CWV) {{?RFC7661}} provides an experimental specification defining how to manage a cwnd that has
 become larger than the current flight size.
 In contrast, this present document concerns the increase in cwnd when a sender is rate-limited. These two topics are distinct,
 but are related, because both describe the management of the cwnd when the sender does not fully utilise the current cwnd.
 
-This document specifies a uniform rule that congestion control mechanisms MUST apply and provides a recommendation that congestion control implementations SHOULD follow.
+This document specifies a uniform rule that congestion control algorithms MUST apply and provides a recommendation that congestion control implementations SHOULD follow.
 An appendix provides an overview of the divergence in current RFCs and some current implementations regarding cwnd increase when the sender is rate-limited.
 
 ## Terminology
 
-This document uses the terms defined in {{Section 2 of !RFC5681}}.
+This document uses the terms defined in {{Section 2 of !RFC5681}}. Additionally, we define:
+
+- maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.
+
 
 # Conventions and Definitions
 
@@ -93,12 +96,12 @@ This document uses the terms defined in {{Section 2 of !RFC5681}}.
 
 # Increase rules {#rules}
 
-Irrespective of the current state of a congestion control mechanism, senders using a congestion controlled transport protocol:
+Irrespective of the current state of a congestion control algorithm, senders using a congestion controlled transport protocol:
 
 1. MUST include a limit to the growth of cwnd when FlightSize < cwnd.
 2. SHOULD limit the growth of cwnd when FlightSize < cwnd with inc(maxFS).
 
-In rule #2, "inc" is a function that returns the maximum unconstrained increase that would result from the congestion control mechanism within one RTT, based on the "maxFS" parameter.
+In rule #2, "inc" is a function that returns the maximum unconstrained increase that would result from the congestion control algorithm within one RTT, based on the "maxFS" parameter.
 For example, for Slow Start, as specified in {{!RFC5681}}, inc(maxFS)=2*maxFS, such that equation 2 in {{!RFC5681}} becomes:
 
 ~~~
@@ -121,7 +124,7 @@ If cwnd has never been decreased, maxFS is the maximum value of FlightSize since
 If the sending rate is less than permitted by cwnd for multiple RTTs, limited either by the sending application or by the receiver-advertised window, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity that the path supports (i.e., over-estimating the capacity).
 Such unlimited growth in the cwnd is therefore disallowed by the first rule.
 
-However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT is permitted to be increased during the immediately following RTT.
+However, in most common congestion control algorithms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT is permitted to be increased during the immediately following RTT.
 Thus, such an increase is allowed by the second rule.
 
 
@@ -129,7 +132,7 @@ Thus, such an increase is allowed by the second rule.
 
 The present document updates congestion control specifications that use a congestion window (cwnd) to limit the number of unacknowledged packets a sender is allowed to emit. Use of a congestion window variable to control sending rate is not the only mechanism available and used in practice.
 
-Congestion control mechanisms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{?I-D.cardwell-iccrg-bbr-congestion-control}}). The guiding principle behind the rules in {{rules}} applies to all  congestion control mechanisms: in the absence of a congestion indication, a sender should be allowed to increase its rate from the amount of data that it has transmitted during the previous RTT. This holds irrespective of whether the sender is rate-limited or not.
+Congestion control algorithms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{?I-D.cardwell-iccrg-bbr-congestion-control}}). The guiding principle behind the rules in {{rules}} applies to all  congestion control algorithms: in the absence of a congestion indication, a sender should be allowed to increase its rate from the amount of data that it has transmitted during the previous RTT. This holds irrespective of whether the sender is rate-limited or not.
 
 
 ### Pacing
@@ -142,7 +145,7 @@ Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (f
 While congestion control designs could result in unwanted competing traffic, they do not directly result in new security considerations.
 
 Transport protocols that provide authentication (including those using encryption), or are carried over protocols that provide authentication,
-can protect their congestion control mechanisms from network attack. This is orthogonal to the congestion control rules.
+can protect their congestion control algorithm from network attack. This is orthogonal to the congestion control rules.
 
 # IANA Considerations
 
@@ -272,3 +275,7 @@ cwnd during an application-limited period.
    * Removes application interaction with QUIC pacing, since pacing might be within the QUIC stack.
    * Adds explicit mention of DCCP/CCID2.
    * Adds this change log.
+* -02 addresses comments from IETF-119
+   * Discusses rate-based controls and pacing.
+   * Trims the list of possible RFCs to update.
+   * Some editorial fixes: "congestion control algorithm" instead of "mechanism" for consistency with RFC5033.bis; earlier definition of maxFS; explicit mention of RFCs to update in abstract.
