@@ -37,7 +37,10 @@ author:
   -
     ins: T. Henderson
     name: Tom Henderson
-    city: Mercer Island, WA
+    org: University of Washington
+    street: Campus Box 352500
+    street: 185 Stevens Way
+    city: Seattle, WA 98195
     country: United States
     email: tomh@tomh.org
     uri: https://www.tomh.org/
