@@ -1,6 +1,6 @@
 ---
 title: "Increase of the Congestion Window when the Sender Is Rate-Limited"
-abbrev: "Constrained cwnd Increase"
+abbrev: "Rate-Limited cwnd Increase"
 category: std
 
 docname: draft-welzl-ccwg-ratelimited-increase-latest
@@ -17,8 +17,8 @@ venue:
   type: "Working Group"
   mail: "ccwg@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ccwg/"
-  github: "mwelzl/draft-ccwg-constrained-increase"
-  latest: "https://mwelzl.github.io/draft-ccwg-constrained-increase/draft-welzl-ccwg-constrained-increase.html"
+  github: "mwelzl/draft-ccwg-ratelimited-increase"
+  latest: "https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html"
 
 stand_alone: yes
 smart_quotes: no
