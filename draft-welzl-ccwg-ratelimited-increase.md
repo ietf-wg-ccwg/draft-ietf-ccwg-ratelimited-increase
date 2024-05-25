@@ -119,9 +119,6 @@ cwnd_new = cwnd + SMSS*SMSS/cwnd
 cwnd = min(cwnd_new, 1+maxFS)
 ~~~
 
-maxFS is the largest value of FlightSize since the last time that cwnd was decreased.
-If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.
-
 ## Discussion
 
 If the sending rate is less than permitted by cwnd for multiple RTTs, limited either by the sending application or by the receiver-advertised window, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity that the path supports (i.e., over-estimating the capacity).
