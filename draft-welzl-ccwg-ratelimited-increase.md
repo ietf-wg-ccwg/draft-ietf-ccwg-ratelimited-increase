@@ -75,7 +75,7 @@ A sender of a congestion controlled transport protocol becomes "rate-limited" wh
 even though the congestion control rules would allow it to transmit data.
 This could occur because the application has not provided sufficient data to fully utilise the congestion window (cwnd).
 It could also occur because the receiver has limited the sender using flow control
-(e.g., by the advertised TCP receiver window (rwnd) or by the conection or stream flow credit in quic).
+(e.g., by the advertised TCP receiver window (rwnd) or by the connection or stream flow credit in QUIC).
 Current RFCs specifying congestion control algorithms diverge regarding the rules for increasing the cwnd when the sender is rate-limited.
 
 Congestion Window Validation (CWV) {{?RFC7661}} provides an experimental specification defining how to manage a cwnd that has
