@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-13T00:36:30.725936+00:00",
+  "timestamp": "2024-10-15T00:34:04.817063+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -400,6 +400,76 @@
       "createdAt": "2024-05-25T17:43:47Z",
       "updatedAt": "2024-05-25T19:50:20Z",
       "closedAt": "2024-05-25T19:50:20Z",
+      "comments": []
+    },
+    {
+      "number": 30,
+      "id": "I_kwDOK4gIBc6aDzfj",
+      "title": "maxFS should only be valid for one RTT",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/30",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "mwelzl"
+      ],
+      "labels": [],
+      "body": "IETF-120:\r\n\r\n- Neal: The MaxFS could seem to be over a time longer than an RTT, so we could use evidence from minutes, hours, days ago to justify the increase of the cwnd now. I wonder if we want to structure it so you can only use the flight size in the most recent round trip time, that's how the Linux code is structured.\r\n- Michael: New congestion window validation (CWV) controls this case, which is an Experimental spec. Either way this is just a SHOULD.\r\n\r\nWe can point at new-cwv more than we already do, but it's interesting that Neal says that \"that's how the Linux code is structured\". We should check how Linux pulls this off. Hint to self: see the function: tcp_is_cwnd_limited",
+      "createdAt": "2024-10-14T04:17:26Z",
+      "updatedAt": "2024-10-14T04:17:27Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 31,
+      "id": "I_kwDOK4gIBc6aDz4_",
+      "title": "Double check if it's worth updating RFC 9002",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/31",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "mwelzl"
+      ],
+      "labels": [],
+      "body": "From IETF-120:\r\n- Ian Swett: [RFC9002](https://datatracker.ietf.org/doc/rfc9002/) already has text similar to the words in the slides. Not sure it's worth bothering to update [RFC 9002](https://datatracker.ietf.org/doc/rfc9002/).\r\n\r\nMaybe make it clearer *why* we update RFC 9002.",
+      "createdAt": "2024-10-14T04:19:27Z",
+      "updatedAt": "2024-10-14T04:19:30Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 32,
+      "id": "I_kwDOK4gIBc6aD0Fz",
+      "title": "Double check: is the boundary to new-cwv clear enough?",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/32",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "mwelzl"
+      ],
+      "labels": [],
+      "body": "IETF-120:\r\n\r\n- Matt Mathis: There needs to be a clear boundary between this work and new experimental CWND validation work.\r\n- Michael:\u202fExactly, that's what we're trying to do.\r\n",
+      "createdAt": "2024-10-14T04:20:25Z",
+      "updatedAt": "2024-10-14T04:20:28Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 33,
+      "id": "I_kwDOK4gIBc6aD2oI",
+      "title": "Suggestions from MM",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/33",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "I hope he doesn't mind me making this public here - I *really* doubt he would, so I'm just going ahead, it's easier to remember and discuss that way. Here it comes, from an email on 20.7.2024:\r\n\r\n\r\nMichael, I really like your doc!\r\n\r\nCan I suggest a slightly different and stronger direction?\r\n1) Make maxFS central and add the timestamp of the most recent ACK that supports  (within 1 segment of) the current value of maxFS.  I will assume maxFStime.\r\n\r\nObserve that maxFS and maxFStime can be precisely defined and  accurately estimated from a packet capture.\r\n\r\n2) Generalize the \"increase function\", citing 5681 as an non-normative example\r\n\r\n3) Change Increase rule 1 to:  Allow growth when maxFS matches cwnd and is within one RTT of maxFStime.  This specifically allows increases during application limited phases if there is a recent observation that cwnd fits in the pipe.   Although a completely different implementation, this is more closely aligned with the way that linux behaves.   This detail is known to be important to some applications.  e.g DASH video, when the chunk size is similar to the pipe size. \r\n\r\n4) Imagine in the future, recasting several other algorithms by replacing cwnd with time decaying filters applied to maxFS.   All such filters should probably decay in parallel, and represent estimates of the total acceleration of the cross traffic at the bottleneck.\r\n\r\nNote that for a start/stop application, restart after idle can estimate the distribution of the cross traffic's acceleration.  This is the one part of CC where I would expect that simple ML might do better than a hand crafted algorithm.\r\n",
+      "createdAt": "2024-10-14T04:31:56Z",
+      "updatedAt": "2024-10-14T04:31:56Z",
+      "closedAt": null,
       "comments": []
     }
   ],
