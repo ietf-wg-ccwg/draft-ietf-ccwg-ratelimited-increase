@@ -7,8 +7,8 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 26 November 2024                         University of Aberdeen
-                                                             25 May 2024
+Expires: 20 April 2025                            University of Aberdeen
+                                                         17 October 2024
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 November 2024.
+   This Internet-Draft will expire on 20 April 2025.
 
 Copyright Notice
 
@@ -163,6 +163,9 @@ Table of Contents
    2.  SHOULD limit the growth of cwnd when FlightSize < cwnd with
        inc(maxFS).
 
+   3.  MAY limit maxFS as min(maxFS, pipeACK), using "pipeACK" as
+       defined in [RFC7661], when FlightSize < cwnd.
+
    In rule #2, "inc" is a function that returns the maximum
    unconstrained increase that would result from the congestion control
    algorithm within one RTT, based on the "maxFS" parameter.  For
@@ -177,6 +180,15 @@ Table of Contents
 
    cwnd_new = cwnd + SMSS*SMSS/cwnd
    cwnd = min(cwnd_new, 1+maxFS)
+
+   As with cwnd, without a way to reduce it when the transport sender
+   becomes rate-limited, rule #2 allows for maxFS to stay valid for a
+   long time, possibly not reflecting the reality of the end-to-end
+   Internet path in use.  For cwnd, this is remedied by "Congestion
+   Window Validation" in [RFC7661], which also defines a "pipeACK"
+   variable that measures the acknowledged size of the network pipe when
+   the sender is rate-limited.  Accordingly, to implement CWV, rule #3
+   can be used.
 
 3.1.  Discussion
 
@@ -257,6 +269,11 @@ Table of Contents
               Control", RFC 5681, DOI 10.17487/RFC5681, September 2009,
               <https://www.rfc-editor.org/rfc/rfc5681>.
 
+   [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, "Updating
+              TCP to Support Rate-Limited Traffic", RFC 7661,
+              DOI 10.17487/RFC7661, October 2015,
+              <https://www.rfc-editor.org/rfc/rfc7661>.
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
@@ -283,11 +300,6 @@ Table of Contents
               control-02, 7 March 2022,
               <https://datatracker.ietf.org/doc/html/draft-cardwell-
               iccrg-bbr-congestion-control-02>.
-
-   [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, "Updating
-              TCP to Support Rate-Limited Traffic", RFC 7661,
-              DOI 10.17487/RFC7661, October 2015,
-              <https://www.rfc-editor.org/rfc/rfc7661>.
 
 Appendix A.  The state of RFCs and implementations
 
