@@ -78,7 +78,7 @@ It could also occur because the receiver has limited the sender using flow contr
 (e.g., by the advertised TCP receiver window (rwnd) or by the connection or stream flow credit in QUIC).
 Current RFCs specifying congestion control algorithms diverge regarding the rules for increasing the cwnd when the sender is rate-limited.
 
-Congestion Window Validation (CWV) {{?RFC7661}} provides an experimental specification defining how to manage a cwnd that has
+Congestion Window Validation (CWV) {{!RFC7661}} provides an experimental specification defining how to manage a cwnd that has
 become larger than the current flight size.
 In contrast, this present document concerns the increase in cwnd when a sender is rate-limited. These two topics are distinct,
 but are related, because both describe the management of the cwnd when the sender does not fully utilise the current cwnd.
@@ -103,6 +103,7 @@ Irrespective of the current state of a congestion control algorithm, senders usi
 
 1. MUST include a limit to the growth of cwnd when FlightSize < cwnd.
 2. SHOULD limit the growth of cwnd when FlightSize < cwnd with inc(maxFS).
+3. MAY limit maxFS as min(maxFS, pipeACK), using "pipeACK" as defined in {{!RFC7661}}, when FlightSize < cwnd.
 
 In rule #2, "inc" is a function that returns the maximum unconstrained increase that would result from the congestion control algorithm within one RTT, based on the "maxFS" parameter.
 For example, for Slow Start, as specified in {{!RFC5681}}, inc(maxFS)=2*maxFS, such that equation 2 in {{!RFC5681}} becomes:
@@ -118,6 +119,10 @@ Similarly, with rule #2 applied to Congestion Avoidance, inc(maxFS)=1+maxFS, suc
 cwnd_new = cwnd + SMSS*SMSS/cwnd
 cwnd = min(cwnd_new, 1+maxFS)
 ~~~
+
+As with cwnd, without a way to reduce it when the transport sender becomes rate-limited, rule #2 allows for maxFS to stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. For cwnd, this is remedied by "Congestion Window Validation" in {{!RFC7661}}, which also defines a "pipeACK" variable that measures the acknowledged size of the network pipe when the sender is rate-limited. Accordingly, to implement CWV, rule #3 can be used.
+
+
 
 ## Discussion
 
@@ -174,7 +179,7 @@ This section is provided as input for IETF discussion, and should be removed bef
 
 >Implementation Note: An easy mistake to make is to simply use cwnd, rather than FlightSize, which in some implementations may incidentally increase well beyond rwnd.
 
-{{?RFC7661}} also suggests there is no increase limitation in the standard TCP behavior (which {{?RFC7661}} changes), on page 4:
+{{!RFC7661}} also suggests there is no increase limitation in the standard TCP behavior (which {{!RFC7661}} changes), on page 4:
 
 >Standard TCP does not impose additional restrictions on the growth of
 the congestion window when a TCP sender is unable to send at the
