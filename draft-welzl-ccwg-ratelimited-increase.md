@@ -191,7 +191,7 @@ information about the state of the network path the flow is using.
 ### Implementation {#tcp-impl}
 
 - ns-2 allows cwnd to grow when it is rate-limited by rwnd. (Rate-limited by the sending application: not tested.)
-- ns-3 allows cwnd to grow when it is rate-limited by either an application or the rwnd.
+- Until release 3.42, ns-3 allowed cwnd to grow when rate-limited, either due to an application or rwnd limit.  Since release 3.42, ns-3 TCP models conform to rule #2 in {{rules}}, following the current Linux TCP approach in this regard (see next bullet).
 - In Congestion Avoidance, Linux only allows the cwnd to grow when the sender is unconstrained.
 Before kernel version 3.16, this also applied to Slow Start.
 The check for "unconstrained" is perfomed by checking if FlightSize is greater or equal to cwnd.
@@ -202,7 +202,7 @@ implements rule #2 in {{rules}} in the `tcp_is_cwnd_limited` function in `tcp.h`
 
 Linux implements a limit to cwnd growth in accordance with rule #1 in {{rules}};
 in Slow Start, this limit follows rule #2, while in Congestion Avoidance, it is more conservative than rule #2.
-The specification and the ns-2 and ns-3 implementations are in conflict with rules #1 and #2 in {{rules}}.
+The specification and the ns-2 and (older) ns-3 implementations are in conflict with rules #1 and #2 in {{rules}}.
 
 ## CUBIC
 
