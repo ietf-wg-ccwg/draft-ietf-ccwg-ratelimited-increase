@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-17T00:33:41.689389+00:00",
+  "timestamp": "2024-10-20T00:37:22.961401+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -405,7 +405,7 @@
     {
       "number": 30,
       "id": "I_kwDOK4gIBc6aDzfj",
-      "title": "maxFS should only be valid for one RTT",
+      "title": "maxFS should only be valid for one RTT => fixed by master, if you agree?",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/30",
       "state": "OPEN",
       "author": "mwelzl",
@@ -416,9 +416,24 @@
       "labels": [],
       "body": "IETF-120:\r\n\r\n- Neal: The MaxFS could seem to be over a time longer than an RTT, so we could use evidence from minutes, hours, days ago to justify the increase of the cwnd now. I wonder if we want to structure it so you can only use the flight size in the most recent round trip time, that's how the Linux code is structured.\r\n- Michael: New congestion window validation (CWV) controls this case, which is an Experimental spec. Either way this is just a SHOULD.\r\n\r\nWe can point at new-cwv more than we already do, but it's interesting that Neal says that \"that's how the Linux code is structured\". We should check how Linux pulls this off. Hint to self: see the function: tcp_is_cwnd_limited",
       "createdAt": "2024-10-14T04:17:26Z",
-      "updatedAt": "2024-10-14T04:17:27Z",
+      "updatedAt": "2024-10-17T14:37:35Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Neal must have thought: because this isn't done in CA in Linux?  I don't know - the Linux check is here:\r\nhttps://elixir.bootlin.com/linux/v6.11.3/source/include/net/tcp.h#L1387\r\nand it's a check against max_packets_out, which is only written here:\r\nhttps://elixir.bootlin.com/linux/v6.11.3/source/net/ipv4/tcp_output.c#L1930\r\nwhich just implements the \"max\" function.\r\n",
+          "createdAt": "2024-10-17T14:22:33Z",
+          "updatedAt": "2024-10-17T14:22:33Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Ahhh, I closed this by accident, by issuing a push to master, not a new branch!   Please take a look at rule 3 and the last paragraph in section 3, both new - and if you dislike, propose a fix (or push to master like I did   :-)  )",
+          "createdAt": "2024-10-17T14:33:34Z",
+          "updatedAt": "2024-10-17T14:33:34Z"
+        }
+      ]
     },
     {
       "number": 31,
@@ -452,9 +467,17 @@
       "labels": [],
       "body": "IETF-120:\r\n\r\n- Matt Mathis: There needs to be a clear boundary between this work and new experimental CWND validation work.\r\n- Michael:\u202fExactly, that's what we're trying to do.\r\n",
       "createdAt": "2024-10-14T04:20:25Z",
-      "updatedAt": "2024-10-14T04:20:28Z",
+      "updatedAt": "2024-10-17T14:34:15Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "I think it is. Our new rule #3 refers to CWND, but it's a MAY. Should we find a way to make this *even* clearer, or just close this issue?",
+          "createdAt": "2024-10-17T14:34:14Z",
+          "updatedAt": "2024-10-17T14:34:14Z"
+        }
+      ]
     },
     {
       "number": 33,
@@ -468,9 +491,17 @@
       "labels": [],
       "body": "I hope he doesn't mind me making this public here - I *really* doubt he would, so I'm just going ahead, it's easier to remember and discuss that way. Here it comes, from an email on 20.7.2024:\r\n\r\n\r\nMichael, I really like your doc!\r\n\r\nCan I suggest a slightly different and stronger direction?\r\n1) Make maxFS central and add the timestamp of the most recent ACK that supports  (within 1 segment of) the current value of maxFS.  I will assume maxFStime.\r\n\r\nObserve that maxFS and maxFStime can be precisely defined and  accurately estimated from a packet capture.\r\n\r\n2) Generalize the \"increase function\", citing 5681 as an non-normative example\r\n\r\n3) Change Increase rule 1 to:  Allow growth when maxFS matches cwnd and is within one RTT of maxFStime.  This specifically allows increases during application limited phases if there is a recent observation that cwnd fits in the pipe.   Although a completely different implementation, this is more closely aligned with the way that linux behaves.   This detail is known to be important to some applications.  e.g DASH video, when the chunk size is similar to the pipe size. \r\n\r\n4) Imagine in the future, recasting several other algorithms by replacing cwnd with time decaying filters applied to maxFS.   All such filters should probably decay in parallel, and represent estimates of the total acceleration of the cross traffic at the bottleneck.\r\n\r\nNote that for a start/stop application, restart after idle can estimate the distribution of the cross traffic's acceleration.  This is the one part of CC where I would expect that simple ML might do better than a hand crafted algorithm.\r\n",
       "createdAt": "2024-10-14T04:31:56Z",
-      "updatedAt": "2024-10-14T04:31:56Z",
+      "updatedAt": "2024-10-17T14:43:00Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "About item 1: This relates to item 3, where I disagree - and item 4 is based upon it.\r\nAbout item 2: I think we're general enough - RFC 5681 is just used as an example. We have a normative reference only because we propose to update RFC 5681.\r\nAbout item 3: Interesting, he says the same as Neal about Linux, but I fail to find that code (see #30). I think the time-proposed limit is overly conservative: what if maxFS is 30 segments in one RTT, and becomes 35 in the next, even though the sender is rate-limited?   Hence I think it's better to point at using pipeACK from RFC 7661 as a MAY (since this is an Experimental RFC).\r\nAbout item 4: too conservative too, then?",
+          "createdAt": "2024-10-17T14:43:00Z",
+          "updatedAt": "2024-10-17T14:43:00Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -1542,6 +1573,79 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 34,
+      "id": "PR_kwDOK4gIBc5--tHi",
+      "title": "Clearer text about RFC 9002.",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/34",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #31",
+      "createdAt": "2024-10-17T14:36:26Z",
+      "updatedAt": "2024-10-18T14:24:05Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "718041fdbeddff586bed2f0cfa27dcec40612a52",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "mw-more-about-RFC9002",
+      "headRefOid": "5f2aa55f403ed8d3b8066bc39a6025738432eb1f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc6NwbK4",
+          "commit": {
+            "abbreviatedOid": "5f2aa55"
+          },
+          "author": "tomhenderson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-18T14:24:05Z",
+          "updatedAt": "2024-10-18T14:24:05Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "What about instead saying that RFC 9002 is consistent with this draft, and no specific update is needed?  I don't think of the second paragraph in Section 7.8 as an unnecessary limitation; I view it as an implementation clarification in the same way that the distinction between FlightSize and cwnd may need to be clearly understood in implementations.",
+              "createdAt": "2024-10-18T14:24:05Z",
+              "updatedAt": "2024-10-18T14:24:05Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "id": "PR_kwDOK4gIBc5_HB9c",
+      "title": "Update ns-3 status",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/35",
+      "state": "OPEN",
+      "author": "tomhenderson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-10-18T14:10:57Z",
+      "updatedAt": "2024-10-18T14:10:58Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "718041fdbeddff586bed2f0cfa27dcec40612a52",
+      "headRepository": "tomhenderson/draft-ccwg-ratelimited-increase",
+      "headRefName": "ns-3-update",
+      "headRefOid": "f5855e7bb547cd7a2d83a7dcf8fa124cf9625578",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
