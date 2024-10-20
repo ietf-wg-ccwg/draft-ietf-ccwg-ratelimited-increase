@@ -7,8 +7,8 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 20 April 2025                            University of Aberdeen
-                                                         17 October 2024
+Expires: 23 April 2025                            University of Aberdeen
+                                                         20 October 2024
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 April 2025.
+   This Internet-Draft will expire on 23 April 2025.
 
 Copyright Notice
 
@@ -334,8 +334,10 @@ A.1.2.  Implementation
    *  ns-2 allows cwnd to grow when it is rate-limited by rwnd.  (Rate-
       limited by the sending application: not tested.)
 
-   *  ns-3 allows cwnd to grow when it is rate-limited by either an
-      application or the rwnd.
+   *  Until release 3.42, ns-3 allowed cwnd to grow when rate-limited,
+      either due to an application or rwnd limit.  Since release 3.42,
+      ns-3 TCP models conform to rule #2 in Section 3, following the
+      current Linux TCP approach in this regard (see next bullet).
 
    *  In Congestion Avoidance, Linux only allows the cwnd to grow when
       the sender is unconstrained.  Before kernel version 3.16, this
@@ -350,8 +352,8 @@ A.1.3.  Assessment
    Linux implements a limit to cwnd growth in accordance with rule #1 in
    Section 3; in Slow Start, this limit follows rule #2, while in
    Congestion Avoidance, it is more conservative than rule #2.  The
-   specification and the ns-2 and ns-3 implementations are in conflict
-   with rules #1 and #2 in Section 3.
+   specification and the ns-2 and (older) ns-3 implementations are in
+   conflict with rules #1 and #2 in Section 3.
 
 A.2.  CUBIC
 
