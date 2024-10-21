@@ -469,6 +469,18 @@ Appendix B.  Change Log
          definition of maxFS; explicit mention of RFCs to update in
          abstract.
 
+   *  -03 addresses comments from IETF-120
+
+      -  Introduces a third rule, with MAY, that avoids having an
+         unvalidated long-lived maxFS (using pipeACK from RFC 7661).
+
+      -  Changes "inc" to "limit" and adapts the wording of rule 2 to
+         make it clearer (thanks to Neal Cardwell).
+
+      -  Appendix: updates ns-3 in line with the recent implementation.
+
+      -  Appendix: makes the RFC 9002 text clearer and shorter.
+
 Acknowledgments
 
    The authors would like to thank Neal Cardwell for suggesting
