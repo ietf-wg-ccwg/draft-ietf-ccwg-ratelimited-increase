@@ -251,13 +251,9 @@ in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies 
 
 >When bytes in flight is smaller than the congestion window and sending is not pacing limited, the congestion window is underutilized. This can happen due to insufficient application data or flow control limits. When this occurs, the congestion window SHOULD NOT be increased in either slow start or congestion avoidance.
 
->A sender that paces packets might delay sending packets and not fully utilize the congestion window due to this delay. A sender SHOULD NOT consider itself application limited if it would have fully utilized the congestion window without pacing delay.
-
 ### Assessment
 
-With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP.
-The exception for pacing in the second paragraph requires that when pacing is enabled, it is specifically taken into account. Pacing could occur over various timescales, but
-is typically done with delays below an RTT; thus, rule #2 in {{rules}} should cover this case.
+With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with rule #1 in {{rules}}, and more conservative than rule #2 in {{rules}}.
 
 ## DCCP CCID2
 
