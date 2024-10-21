@@ -1253,7 +1253,10 @@ Such a limitation can be caused by the sending application not supplying data or
             <p id="section-toc.1-1.8.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-change-log" class="internal xref">Change Log</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1313,21 +1316,21 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <p id="section-3-2.1.1"><span class="bcp14">MUST</span> include a limit to the growth of cwnd when FlightSize &lt; cwnd.<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li id="section-3-2.2">
-          <p id="section-3-2.2.1"><span class="bcp14">SHOULD</span> limit the growth of cwnd when FlightSize &lt; cwnd with inc(maxFS).<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.2.1"><span class="bcp14">SHOULD</span> limit cwnd when FlightSize &lt; cwnd to be no larger than limit(maxFS).<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </li>
         <li id="section-3-2.3">
           <p id="section-3-2.3.1"><span class="bcp14">MAY</span> limit maxFS as min(maxFS, pipeACK), using "pipeACK" as defined in <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>, when FlightSize &lt; cwnd.<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
-<p id="section-3-3">In rule #2, "inc" is a function that returns the maximum unconstrained increase that would result from the congestion control algorithm within one RTT, based on the "maxFS" parameter.
-For example, for Slow Start, as specified in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>, inc(maxFS)=2*maxFS, such that equation 2 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-3">In rule #2, "limit()" is a function that returns the maximum cwnd value that would result from the congestion control algorithm within one RTT, based on the "maxFS" parameter.
+For example, for Slow Start, as specified in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>, limit(maxFS)=2*maxFS, such that equation 2 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3-4">
 <pre>
 cwnd_new = cwnd + min (N, SMSS)
 cwnd = min(cwnd_new, 2*maxFS)
 </pre><a href="#section-3-4" class="pilcrow">¶</a>
 </div>
-<p id="section-3-5">Similarly, with rule #2 applied to Congestion Avoidance, inc(maxFS)=1+maxFS, such that equation 3 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-5" class="pilcrow">¶</a></p>
+<p id="section-3-5">Similarly, with rule #2 applied to Congestion Avoidance, limit(maxFS)=1+maxFS, such that equation 3 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-5" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3-6">
 <pre>
 cwnd_new = cwnd + SMSS*SMSS/cwnd
@@ -1687,8 +1690,16 @@ cwnd during an application-limited period.<a href="#appendix-A.5.2-1" class="pil
       </ul>
 </section>
 </div>
-<div id="authors-addresses">
+<div id="acknowledgments">
 <section id="appendix-C">
+      <h2 id="name-acknowledgments">
+<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-C-1">The authors would like to thank Neal Cardwell for suggesting improvements to this document.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-D">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
