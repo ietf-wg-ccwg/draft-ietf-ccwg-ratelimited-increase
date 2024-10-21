@@ -102,18 +102,18 @@ This document uses the terms defined in {{Section 2 of !RFC5681}}. Additionally,
 Irrespective of the current state of a congestion control algorithm, senders using a congestion controlled transport protocol:
 
 1. MUST include a limit to the growth of cwnd when FlightSize < cwnd.
-2. SHOULD limit the growth of cwnd when FlightSize < cwnd with inc(maxFS).
+2. SHOULD limit cwnd when FlightSize < cwnd to be no larger than limit(maxFS).
 3. MAY limit maxFS as min(maxFS, pipeACK), using "pipeACK" as defined in {{!RFC7661}}, when FlightSize < cwnd.
 
-In rule #2, "inc" is a function that returns the maximum unconstrained increase that would result from the congestion control algorithm within one RTT, based on the "maxFS" parameter.
-For example, for Slow Start, as specified in {{!RFC5681}}, inc(maxFS)=2*maxFS, such that equation 2 in {{!RFC5681}} becomes:
+In rule #2, "limit()" is a function that returns the maximum cwnd value that would result from the congestion control algorithm within one RTT, based on the "maxFS" parameter.
+For example, for Slow Start, as specified in {{!RFC5681}}, limit(maxFS)=2*maxFS, such that equation 2 in {{!RFC5681}} becomes:
 
 ~~~
 cwnd_new = cwnd + min (N, SMSS)
 cwnd = min(cwnd_new, 2*maxFS)
 ~~~
 
-Similarly, with rule #2 applied to Congestion Avoidance, inc(maxFS)=1+maxFS, such that equation 3 in {{!RFC5681}} becomes:
+Similarly, with rule #2 applied to Congestion Avoidance, limit(maxFS)=1+maxFS, such that equation 3 in {{!RFC5681}} becomes:
 
 ~~~
 cwnd_new = cwnd + SMSS*SMSS/cwnd
@@ -158,13 +158,6 @@ This document requests no IANA action.
 
 
 --- back
-
-<!-- # Acknowledgments
-{:numbered="false"}
-
-TODO acknowledge. Note, numbered sections shouldn't appear
-after an unnumbered one - so either move this last, or take
-the numbering rule out. -->
 
 
 # The state of RFCs and implementations
@@ -280,3 +273,9 @@ cwnd during an application-limited period.
    * Discusses rate-based controls and pacing.
    * Trims the list of possible RFCs to update.
    * Some editorial fixes: "congestion control algorithm" instead of "mechanism" for consistency with RFC5033.bis; earlier definition of maxFS; explicit mention of RFCs to update in abstract.
+
+
+# Acknowledgments
+{:numbered="false"}
+
+The authors would like to thank Neal Cardwell for suggesting improvements to this document.
