@@ -284,3 +284,7 @@ cwnd during an application-limited period.
    * Discusses rate-based controls and pacing.
    * Trims the list of possible RFCs to update.
    * Some editorial fixes: "congestion control algorithm" instead of "mechanism" for consistency with RFC5033.bis; earlier definition of maxFS; explicit mention of RFCs to update in abstract.
+* -03 addresses comments from IETF-120
+   * Introduces a third rule, with MAY, that avoids having an unvalidated long-lived maxFS (using pipeACK from RFC 7661).
+   * Appendix: updates ns-3 in line with the recent implementation.
+   * Appendix: makes the RFC 9002 text clearer and shorter.
