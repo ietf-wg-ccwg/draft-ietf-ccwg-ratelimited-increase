@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-20T00:37:22.961401+00:00",
+  "timestamp": "2024-10-22T00:34:17.720412+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -407,7 +407,7 @@
       "id": "I_kwDOK4gIBc6aDzfj",
       "title": "maxFS should only be valid for one RTT => fixed by master, if you agree?",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/30",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -416,8 +416,8 @@
       "labels": [],
       "body": "IETF-120:\r\n\r\n- Neal: The MaxFS could seem to be over a time longer than an RTT, so we could use evidence from minutes, hours, days ago to justify the increase of the cwnd now. I wonder if we want to structure it so you can only use the flight size in the most recent round trip time, that's how the Linux code is structured.\r\n- Michael: New congestion window validation (CWV) controls this case, which is an Experimental spec. Either way this is just a SHOULD.\r\n\r\nWe can point at new-cwv more than we already do, but it's interesting that Neal says that \"that's how the Linux code is structured\". We should check how Linux pulls this off. Hint to self: see the function: tcp_is_cwnd_limited",
       "createdAt": "2024-10-14T04:17:26Z",
-      "updatedAt": "2024-10-17T14:37:35Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-21T15:43:47Z",
+      "closedAt": "2024-10-21T15:43:47Z",
       "comments": [
         {
           "author": "mwelzl",
@@ -432,6 +432,27 @@
           "body": "Ahhh, I closed this by accident, by issuing a push to master, not a new branch!   Please take a look at rule 3 and the last paragraph in section 3, both new - and if you dislike, propose a fix (or push to master like I did   :-)  )",
           "createdAt": "2024-10-17T14:33:34Z",
           "updatedAt": "2024-10-17T14:33:34Z"
+        },
+        {
+          "author": "nealcardwell",
+          "authorAssociation": "NONE",
+          "body": "> Neal must have thought: because this isn't done in CA in Linux? I don't know - the Linux check is here: https://elixir.bootlin.com/linux/v6.11.3/source/include/net/tcp.h#L1387 and it's a check against max_packets_out, which is only written here: https://elixir.bootlin.com/linux/v6.11.3/source/net/ipv4/tcp_output.c#L1930 which just implements the \"max\" function.\r\n\r\nIt doesn't just implement a \"max\" function. :-)\r\n\r\nNote that the expression !before(tp->snd_una, tp->cwnd_usage_seq) checks whether a round trip has elapsed. If a round trip has elapsed, then it sets tp->max_packets_out = tp->packets_out. That means that tp->max_packets_out only reflects the number of packets out in the network over the time scale of the last round trip.\r\n",
+          "createdAt": "2024-10-21T15:05:02Z",
+          "updatedAt": "2024-10-21T15:05:02Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Aha!!!  Thanks!\r\n\r\nAnd: guilty as charged!   I admit, when I looked, I reacted to seeing this line with its \"snd_una, ...\" by thinking: \"yeah, yeah, some seqno check, not so important\" and then missed this. My sloppiness wasted your time here. I'm sorry and will try to be more careful in the future!",
+          "createdAt": "2024-10-21T15:10:08Z",
+          "updatedAt": "2024-10-21T15:10:08Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "So it seems the fix to master is ok [private email among the authors, and also to the authors]. Closing this.",
+          "createdAt": "2024-10-21T15:43:47Z",
+          "updatedAt": "2024-10-21T15:43:47Z"
         }
       ]
     },
@@ -440,7 +461,7 @@
       "id": "I_kwDOK4gIBc6aDz4_",
       "title": "Double check if it's worth updating RFC 9002",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/31",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -449,8 +470,8 @@
       "labels": [],
       "body": "From IETF-120:\r\n- Ian Swett: [RFC9002](https://datatracker.ietf.org/doc/rfc9002/) already has text similar to the words in the slides. Not sure it's worth bothering to update [RFC 9002](https://datatracker.ietf.org/doc/rfc9002/).\r\n\r\nMaybe make it clearer *why* we update RFC 9002.",
       "createdAt": "2024-10-14T04:19:27Z",
-      "updatedAt": "2024-10-14T04:19:30Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-21T15:44:15Z",
+      "closedAt": "2024-10-21T15:44:15Z",
       "comments": []
     },
     {
@@ -467,15 +488,15 @@
       "labels": [],
       "body": "IETF-120:\r\n\r\n- Matt Mathis: There needs to be a clear boundary between this work and new experimental CWND validation work.\r\n- Michael:\u202fExactly, that's what we're trying to do.\r\n",
       "createdAt": "2024-10-14T04:20:25Z",
-      "updatedAt": "2024-10-17T14:34:15Z",
+      "updatedAt": "2024-10-21T15:47:02Z",
       "closedAt": null,
       "comments": [
         {
           "author": "mwelzl",
           "authorAssociation": "OWNER",
-          "body": "I think it is. Our new rule #3 refers to CWND, but it's a MAY. Should we find a way to make this *even* clearer, or just close this issue?",
+          "body": "I think it is. Our new rule #3 refers to CWND validation, but it's a MAY. Should we find a way to make this *even* clearer, or just close this issue?",
           "createdAt": "2024-10-17T14:34:14Z",
-          "updatedAt": "2024-10-17T14:34:14Z"
+          "updatedAt": "2024-10-21T15:47:02Z"
         }
       ]
     },
@@ -502,6 +523,22 @@
           "updatedAt": "2024-10-17T14:43:00Z"
         }
       ]
+    },
+    {
+      "number": 38,
+      "id": "I_kwDOK4gIBc6bMfdq",
+      "title": "PS RFC: MAY use x from exp RFC y.... is this ok?",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/38",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "This is about our new rule 3. Gotta check. Else, we need to rephrase this.",
+      "createdAt": "2024-10-21T21:52:11Z",
+      "updatedAt": "2024-10-21T21:52:11Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -1579,24 +1616,26 @@
       "id": "PR_kwDOK4gIBc5--tHi",
       "title": "Clearer text about RFC 9002.",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/34",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Closes #31",
       "createdAt": "2024-10-17T14:36:26Z",
-      "updatedAt": "2024-10-18T14:24:05Z",
+      "updatedAt": "2024-10-21T15:44:14Z",
       "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "718041fdbeddff586bed2f0cfa27dcec40612a52",
       "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "headRefName": "mw-more-about-RFC9002",
-      "headRefOid": "5f2aa55f403ed8d3b8066bc39a6025738432eb1f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "b0352003470f2c7756ba5aead892ba50c795a551",
+      "closedAt": "2024-10-21T15:44:14Z",
+      "mergedAt": "2024-10-21T15:44:14Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "3cfec952ffdb522ec633e3d6d869a33169888668"
+      },
       "comments": [],
       "reviews": [
         {
@@ -1618,6 +1657,26 @@
               "updatedAt": "2024-10-18T14:24:05Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6N4U4J",
+          "commit": {
+            "abbreviatedOid": "5f2aa55"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-20T10:28:47Z",
+          "updatedAt": "2024-10-20T10:28:47Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Ahh, I see, this is quite unclear text from me. I agree that the unnecessary pacing limitation is not related to the second paragraph of Section 7.8 of RFC 9002, even though it certainly reads that way.  I do think we need to update RFC 9002 because, like the other specs we update, it's unnecessarily strict - it doesn't allow cwnd to grow based on maxFS as we do.\r\n\r\nI'll propose an update.",
+              "createdAt": "2024-10-20T10:28:47Z",
+              "updatedAt": "2024-10-20T10:28:47Z"
+            }
+          ]
         }
       ]
     },
@@ -1626,24 +1685,96 @@
       "id": "PR_kwDOK4gIBc5_HB9c",
       "title": "Update ns-3 status",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/35",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "tomhenderson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-10-18T14:10:57Z",
-      "updatedAt": "2024-10-18T14:10:58Z",
+      "updatedAt": "2024-10-20T10:21:46Z",
       "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "718041fdbeddff586bed2f0cfa27dcec40612a52",
       "headRepository": "tomhenderson/draft-ccwg-ratelimited-increase",
       "headRefName": "ns-3-update",
       "headRefOid": "f5855e7bb547cd7a2d83a7dcf8fa124cf9625578",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-20T10:21:46Z",
+      "mergedAt": "2024-10-20T10:21:46Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "165804539cfd726d3e37e9d5cd15307137d37cb9"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc6N4UTr",
+          "commit": {
+            "abbreviatedOid": "f5855e7"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-20T10:21:27Z",
+          "updatedAt": "2024-10-20T10:21:27Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "id": "PR_kwDOK4gIBc5_S5tw",
+      "title": "Change log",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/36",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-10-21T10:10:18Z",
+      "updatedAt": "2024-10-21T15:50:14Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "5b9f79164af8faed88bd6d9eb98cac1ce1f7b1b9",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "mw-changelog-03",
+      "headRefOid": "cdfb54cec4173d2a99cbeda2108812054b99fd3c",
+      "closedAt": "2024-10-21T15:50:14Z",
+      "mergedAt": "2024-10-21T15:50:14Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "2cd8b6de445b9c0747244f11e0eff89d6f7be364"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 37,
+      "id": "PR_kwDOK4gIBc5_V0iV",
+      "title": "Neal's suggested use of \"limit\" instead of \"inc\", and ACK Neal.",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/37",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-10-21T15:38:39Z",
+      "updatedAt": "2024-10-21T15:44:54Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "165804539cfd726d3e37e9d5cd15307137d37cb9",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "mw-inc-becomes-limit",
+      "headRefOid": "274fc92ca0af3f114fedc91b7a7dd98f664c9ee8",
+      "closedAt": "2024-10-21T15:44:54Z",
+      "mergedAt": "2024-10-21T15:44:54Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "5b9f79164af8faed88bd6d9eb98cac1ce1f7b1b9"
+      },
       "comments": [],
       "reviews": []
     }
