@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-22T00:34:17.720412+00:00",
+  "timestamp": "2024-10-24T00:33:51.010475+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -537,6 +537,22 @@
       "body": "This is about our new rule 3. Gotta check. Else, we need to rephrase this.",
       "createdAt": "2024-10-21T21:52:11Z",
       "updatedAt": "2024-10-21T21:52:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 39,
+      "id": "I_kwDOK4gIBc6beDNr",
+      "title": "Include examples in \"Discussion\" section",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/39",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "To better explain the point of rules 1 and 2.",
+      "createdAt": "2024-10-23T12:00:58Z",
+      "updatedAt": "2024-10-23T12:00:59Z",
       "closedAt": null,
       "comments": []
     }
