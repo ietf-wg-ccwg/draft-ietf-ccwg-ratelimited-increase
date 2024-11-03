@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-31T00:34:41.364466+00:00",
+  "timestamp": "2024-11-03T00:37:16.870034+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -568,9 +568,17 @@
       "labels": [],
       "body": "...as in \"limit with limit(..)\"  - especially in rule #3 where it's a different limit.",
       "createdAt": "2024-10-30T08:30:08Z",
-      "updatedAt": "2024-10-30T08:30:08Z",
+      "updatedAt": "2024-11-02T20:05:34Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "mohittahiliani",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "In my opinion, the beginning of Section 3 can be simplified as below:\r\n\r\nWhen FlightSize < cwnd, regardless of the current state of a congestion control algorithm, senders using a congestion-controlled transport protocol:\r\n\r\n1. MUST include a constraint on the growth of cwnd\r\n2. SHOULD cap cwnd to be no larger than limit(maxFS)\r\n3. MAY restrict maxFS as min(maxFS, pipeACK), using \"pipeACK\" as defined in [RFC7661]\r\n\r\nNote: In rule #2, the function limit() determines the maximum cwnd value possible in one RTT based on the congestion control algorithm and the maxFS parameter. For example, with rule #2 applied to Slow Start, as specified in [[RFC5681](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html#RFC5681)], limit(maxFS)=2*maxFS, such that equation 2 in [[RFC5681](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html#RFC5681)] becomes:",
+          "createdAt": "2024-11-02T20:03:10Z",
+          "updatedAt": "2024-11-02T20:05:34Z"
+        }
+      ]
     }
   ],
   "pulls": [
