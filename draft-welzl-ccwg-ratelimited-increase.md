@@ -168,11 +168,7 @@ This section is provided as input for IETF discussion, and should be removed bef
 
 ### Specification
 
-{{!RFC5681}} does not contain a rule to limit the growth of cwnd when the sender is rate-limited. This statement (page 8) gives an impression that such cwnd growth might be expected:
-
->Implementation Note: An easy mistake to make is to simply use cwnd, rather than FlightSize, which in some implementations may incidentally increase well beyond rwnd.
-
-{{!RFC7661}} also suggests there is no increase limitation in the standard TCP behavior (which {{!RFC7661}} changes), on page 4:
+{{!RFC7661}} suggests there is no increase limitation in the standard TCP behavior (which {{!RFC7661}} changes), on page 4:
 
 >Standard TCP does not impose additional restrictions on the growth of
 the congestion window when a TCP sender is unable to send at the
