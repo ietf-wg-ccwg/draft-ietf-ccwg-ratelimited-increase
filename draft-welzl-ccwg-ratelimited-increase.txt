@@ -7,8 +7,8 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 24 April 2025                            University of Aberdeen
-                                                         21 October 2024
+Expires: 8 May 2025                               University of Aberdeen
+                                                         4 November 2024
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 April 2025.
+   This Internet-Draft will expire on 8 May 2025.
 
 Copyright Notice
 
@@ -137,8 +137,8 @@ Table of Contents
 
 1.1.  Terminology
 
-   This document uses the terms defined in Section 2 of [RFC5681].
-   Additionally, we define:
+   This document uses the terms defined in Section 2 of [RFC5681] and
+   Section 3 of [RFC7661].  Additionally, we define:
 
    *  maxFS: the largest value of FlightSize since the last time that
       cwnd was decreased.  If cwnd has never been decreased, maxFS is
