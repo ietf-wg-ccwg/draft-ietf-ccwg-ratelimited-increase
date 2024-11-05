@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-03T00:37:16.870034+00:00",
+  "timestamp": "2024-11-05T00:33:32.997153+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -339,7 +339,7 @@
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/24",
       "state": "CLOSED",
       "author": "mohittahiliani",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The following link in the note gives a 404:\r\n\r\nhttps://mwelzl.github.io/draft-ccwg-constrained-increase/draft-welzl-ccwg-constrained-increase.html",
@@ -363,7 +363,7 @@
         },
         {
           "author": "mohittahiliani",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "> Thanks! That must be to do with the renaming that we did - from \"constrained\" to ratelimited\". I see, this must be the link in the draft itself? (easy to fix, and will, if that's all !) Or where else have you seen that URL?\r\n\r\nYes, it's in the draft. The link with \"ratelimited\" works. ",
           "createdAt": "2024-05-23T07:33:15Z",
           "updatedAt": "2024-05-23T07:33:15Z"
@@ -377,7 +377,7 @@
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/27",
       "state": "CLOSED",
       "author": "mohittahiliani",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "There are two typos in the first paragraph of Introduction:\r\n\r\nconection --> connection\r\nquic --> QUIC",
@@ -393,7 +393,7 @@
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/28",
       "state": "CLOSED",
       "author": "mohittahiliani",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "maxFS is defined twice: once in Section 1.1 and then in Section 3 with the same statement -- \"the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.\"",
@@ -568,17 +568,104 @@
       "labels": [],
       "body": "...as in \"limit with limit(..)\"  - especially in rule #3 where it's a different limit.",
       "createdAt": "2024-10-30T08:30:08Z",
-      "updatedAt": "2024-11-02T20:05:34Z",
+      "updatedAt": "2024-11-04T17:28:49Z",
       "closedAt": null,
       "comments": [
         {
           "author": "mohittahiliani",
-          "authorAssociation": "CONTRIBUTOR",
-          "body": "In my opinion, the beginning of Section 3 can be simplified as below:\r\n\r\nWhen FlightSize < cwnd, regardless of the current state of a congestion control algorithm, senders using a congestion-controlled transport protocol:\r\n\r\n1. MUST include a constraint on the growth of cwnd\r\n2. SHOULD cap cwnd to be no larger than limit(maxFS)\r\n3. MAY restrict maxFS as min(maxFS, pipeACK), using \"pipeACK\" as defined in [RFC7661]\r\n\r\nNote: In rule #2, the function limit() determines the maximum cwnd value possible in one RTT based on the congestion control algorithm and the maxFS parameter. For example, with rule #2 applied to Slow Start, as specified in [[RFC5681](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html#RFC5681)], limit(maxFS)=2*maxFS, such that equation 2 in [[RFC5681](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html#RFC5681)] becomes:",
+          "authorAssociation": "COLLABORATOR",
+          "body": "In my opinion, the beginning of Section 3 can be simplified as below:\r\n\r\nWhen FlightSize < cwnd, regardless of the current state of a congestion control algorithm, senders using a congestion-controlled transport protocol:\r\n\r\n1. MUST include a constraint on the growth of cwnd\r\n2. SHOULD cap cwnd to be no larger than limit(maxFS)\r\n3. MAY restrict maxFS as min(maxFS, pipeACK), using \"pipeACK\" as defined in [RFC7661]\r\n\r\nNote: In rule #2, the function limit() returns the maximum cwnd value possible in one RTT based on the congestion control algorithm and the maxFS parameter. For example, with rule #2 applied to Slow Start, as specified in [[RFC5681](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html#RFC5681)], limit(maxFS)=2*maxFS, such that equation 2 in [[RFC5681](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html#RFC5681)] becomes:",
           "createdAt": "2024-11-02T20:03:10Z",
-          "updatedAt": "2024-11-02T20:05:34Z"
+          "updatedAt": "2024-11-04T17:28:12Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "I prefer the phrasing proposed by @mohittahiliani  - others?",
+          "createdAt": "2024-11-04T17:28:48Z",
+          "updatedAt": "2024-11-04T17:28:48Z"
         }
       ]
+    },
+    {
+      "number": 41,
+      "id": "I_kwDOK4gIBc6c06Mq",
+      "title": "Section 1.1 - Terminology should cover the usage of pipeACK",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/41",
+      "state": "CLOSED",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Since pipeACK is an important variable in one of the three rules, it would be better to cover it in the Terminology section in my opinion.",
+      "createdAt": "2024-11-03T10:28:06Z",
+      "updatedAt": "2024-11-04T17:30:22Z",
+      "closedAt": "2024-11-04T17:30:22Z",
+      "comments": []
+    },
+    {
+      "number": 43,
+      "id": "I_kwDOK4gIBc6c1cvn",
+      "title": "Implementation Note in A.1.1.",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/43",
+      "state": "OPEN",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The 'Implementation Note' in A.1.1. cited from Page 8 of RFC 5681 might require some more explanation because this note is primarily related to ssthresh in RFC 5681. It would be good to add the details of how this could lead to the growth of cwnd when sender is rate-limited.",
+      "createdAt": "2024-11-03T14:52:47Z",
+      "updatedAt": "2024-11-04T17:39:50Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "The first two paragraphs of A 1.1 can be deleted, and the word \"also\" removed from the following sentence. Then this is easier to read. Thanks!",
+          "createdAt": "2024-11-04T17:39:48Z",
+          "updatedAt": "2024-11-04T17:39:48Z"
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "id": "I_kwDOK4gIBc6c9_vg",
+      "title": "Move some normative refs to informative",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/44",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "e.g. the DCCP RFC: we don't update it anymore, we just discuss it in the appendix. So why is it normative?",
+      "createdAt": "2024-11-04T18:04:34Z",
+      "updatedAt": "2024-11-04T18:06:53Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "It doesn't look normative now.",
+          "createdAt": "2024-11-04T18:06:52Z",
+          "updatedAt": "2024-11-04T18:06:52Z"
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "id": "I_kwDOK4gIBc6dACNE",
+      "title": "Add Mohit as an author",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/46",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-11-04T22:56:11Z",
+      "updatedAt": "2024-11-04T22:56:11Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -1574,7 +1661,7 @@
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/26",
       "state": "MERGED",
       "author": "mohittahiliani",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes two typos in the first paragraph of the Introduction Section.",
@@ -1616,7 +1703,7 @@
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/29",
       "state": "MERGED",
       "author": "mohittahiliani",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "maxFS is defined twice: once in Section 1.1 and then in Section 3 with the same statement -- \"the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.\"\r\n\r\nThis PR removes the definition from Section 3.",
@@ -1815,6 +1902,74 @@
       "mergeCommit": {
         "oid": "5b9f79164af8faed88bd6d9eb98cac1ce1f7b1b9"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 42,
+      "id": "PR_kwDOK4gIBc6AucCB",
+      "title": "Cover pipeACK in Terminology (fixes Issue #41)",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/42",
+      "state": "MERGED",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #41 ",
+      "createdAt": "2024-11-03T14:12:56Z",
+      "updatedAt": "2024-11-04T17:30:21Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "2cd8b6de445b9c0747244f11e0eff89d6f7be364",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "improvements",
+      "headRefOid": "73c76998caae58e6915f8dade58bb7181321f801",
+      "closedAt": "2024-11-04T17:30:21Z",
+      "mergedAt": "2024-11-04T17:30:21Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "41f1fa25326b227cf64bfa0bdcd1aca3d1f4756c"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc6P3fwI",
+          "commit": {
+            "abbreviatedOid": "73c7699"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-11-04T17:30:12Z",
+          "updatedAt": "2024-11-04T17:30:12Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "id": "PR_kwDOK4gIBc6A1p7N",
+      "title": "Simplify Section A.1.1. (fixes Issue #43)",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/45",
+      "state": "OPEN",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Resolves #43 ",
+      "createdAt": "2024-11-04T18:40:36Z",
+      "updatedAt": "2024-11-04T18:40:37Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "41f1fa25326b227cf64bfa0bdcd1aca3d1f4756c",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "improvements",
+      "headRefOid": "e223173f7d958c67763d16006fd5e80b0daefa66",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
