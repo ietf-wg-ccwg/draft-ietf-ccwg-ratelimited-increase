@@ -7,8 +7,8 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 8 May 2025                               University of Aberdeen
-                                                         4 November 2024
+Expires: 10 May 2025                              University of Aberdeen
+                                                         6 November 2024
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 May 2025.
+   This Internet-Draft will expire on 10 May 2025.
 
 Copyright Notice
 
@@ -311,16 +311,8 @@ A.1.  TCP ("Reno" congestion control)
 
 A.1.1.  Specification
 
-   [RFC5681] does not contain a rule to limit the growth of cwnd when
-   the sender is rate-limited.  This statement (page 8) gives an
-   impression that such cwnd growth might be expected:
-
-      Implementation Note: An easy mistake to make is to simply use
-      cwnd, rather than FlightSize, which in some implementations may
-      incidentally increase well beyond rwnd.
-
-   [RFC7661] also suggests there is no increase limitation in the
-   standard TCP behavior (which [RFC7661] changes), on page 4:
+   [RFC7661] suggests there is no increase limitation in the standard
+   TCP behavior (which [RFC7661] changes), on page 4:
 
       Standard TCP does not impose additional restrictions on the growth
       of the congestion window when a TCP sender is unable to send at
