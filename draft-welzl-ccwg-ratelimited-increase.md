@@ -99,7 +99,7 @@ This document uses the terms defined in {{Section 2 of !RFC5681}} and {{Section 
 
 # Increase rules {#rules}
 
-When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, senders using a congestion-controlled transport protocol:
+When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, senders using a congestion controlled transport protocol:
 
 1. MUST include a constraint on the growth of cwnd
 2. SHOULD cap cwnd to be no larger than limit(maxFS)
