@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-05T00:33:32.997153+00:00",
+  "timestamp": "2024-11-07T00:33:28.832096+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -479,7 +479,7 @@
       "id": "I_kwDOK4gIBc6aD0Fz",
       "title": "Double check: is the boundary to new-cwv clear enough?",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/32",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -488,8 +488,8 @@
       "labels": [],
       "body": "IETF-120:\r\n\r\n- Matt Mathis: There needs to be a clear boundary between this work and new experimental CWND validation work.\r\n- Michael:\u202fExactly, that's what we're trying to do.\r\n",
       "createdAt": "2024-10-14T04:20:25Z",
-      "updatedAt": "2024-10-21T15:47:02Z",
-      "closedAt": null,
+      "updatedAt": "2024-11-06T11:28:45Z",
+      "closedAt": "2024-11-06T11:28:45Z",
       "comments": [
         {
           "author": "mwelzl",
@@ -529,16 +529,24 @@
       "id": "I_kwDOK4gIBc6bMfdq",
       "title": "PS RFC: MAY use x from exp RFC y.... is this ok?",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/38",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "This is about our new rule 3. Gotta check. Else, we need to rephrase this.",
       "createdAt": "2024-10-21T21:52:11Z",
-      "updatedAt": "2024-10-21T21:52:11Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-11-06T11:30:17Z",
+      "closedAt": "2024-11-06T11:30:17Z",
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "At CCWG @ IETF-121, Lars Eggert said that this is okay to do. So, closing this issue.",
+          "createdAt": "2024-11-06T11:30:17Z",
+          "updatedAt": "2024-11-06T11:30:17Z"
+        }
+      ]
     },
     {
       "number": 39,
@@ -568,15 +576,15 @@
       "labels": [],
       "body": "...as in \"limit with limit(..)\"  - especially in rule #3 where it's a different limit.",
       "createdAt": "2024-10-30T08:30:08Z",
-      "updatedAt": "2024-11-04T17:28:49Z",
+      "updatedAt": "2024-11-06T11:33:31Z",
       "closedAt": null,
       "comments": [
         {
           "author": "mohittahiliani",
           "authorAssociation": "COLLABORATOR",
-          "body": "In my opinion, the beginning of Section 3 can be simplified as below:\r\n\r\nWhen FlightSize < cwnd, regardless of the current state of a congestion control algorithm, senders using a congestion-controlled transport protocol:\r\n\r\n1. MUST include a constraint on the growth of cwnd\r\n2. SHOULD cap cwnd to be no larger than limit(maxFS)\r\n3. MAY restrict maxFS as min(maxFS, pipeACK), using \"pipeACK\" as defined in [RFC7661]\r\n\r\nNote: In rule #2, the function limit() returns the maximum cwnd value possible in one RTT based on the congestion control algorithm and the maxFS parameter. For example, with rule #2 applied to Slow Start, as specified in [[RFC5681](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html#RFC5681)], limit(maxFS)=2*maxFS, such that equation 2 in [[RFC5681](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html#RFC5681)] becomes:",
+          "body": "In my opinion, the beginning of Section 3 can be simplified as below:\r\n\r\nWhen FlightSize < cwnd, regardless of the current state of a congestion control algorithm, senders using a congestion-controlled transport protocol:\r\n\r\n1. MUST include a constraint on the growth of cwnd\r\n2. SHOULD cap cwnd to be no larger than limit(maxFS)\r\n3. MAY restrict maxFS as min(maxFS, pipeACK), using \"pipeACK\" as defined in [RFC7661]\r\n\r\nIn rule #2, the function limit() returns the maximum cwnd value possible in one RTT based on the congestion control algorithm and the maxFS parameter. For example, with rule #2 applied to Slow Start, as specified in [[RFC5681](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html#RFC5681)], limit(maxFS)=2*maxFS, such that equation 2 in [[RFC5681](https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html#RFC5681)] becomes:",
           "createdAt": "2024-11-02T20:03:10Z",
-          "updatedAt": "2024-11-04T17:28:12Z"
+          "updatedAt": "2024-11-06T11:33:31Z"
         },
         {
           "author": "mwelzl",
@@ -608,15 +616,15 @@
       "id": "I_kwDOK4gIBc6c1cvn",
       "title": "Implementation Note in A.1.1.",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/43",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mohittahiliani",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The 'Implementation Note' in A.1.1. cited from Page 8 of RFC 5681 might require some more explanation because this note is primarily related to ssthresh in RFC 5681. It would be good to add the details of how this could lead to the growth of cwnd when sender is rate-limited.",
       "createdAt": "2024-11-03T14:52:47Z",
-      "updatedAt": "2024-11-04T17:39:50Z",
-      "closedAt": null,
+      "updatedAt": "2024-11-06T11:27:23Z",
+      "closedAt": "2024-11-06T11:27:23Z",
       "comments": [
         {
           "author": "mwelzl",
@@ -1952,20 +1960,48 @@
       "id": "PR_kwDOK4gIBc6A1p7N",
       "title": "Simplify Section A.1.1. (fixes Issue #43)",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/45",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mohittahiliani",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Resolves #43 ",
       "createdAt": "2024-11-04T18:40:36Z",
-      "updatedAt": "2024-11-04T18:40:37Z",
+      "updatedAt": "2024-11-06T11:27:22Z",
       "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "41f1fa25326b227cf64bfa0bdcd1aca3d1f4756c",
       "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
       "headRefName": "improvements",
       "headRefOid": "e223173f7d958c67763d16006fd5e80b0daefa66",
+      "closedAt": "2024-11-06T11:27:22Z",
+      "mergedAt": "2024-11-06T11:27:22Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "5e1552249f6290c4e4f370e8c5a91e5ccf6dd5b4"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 47,
+      "id": "PR_kwDOK4gIBc6BC8mr",
+      "title": "Simplify the writeup on rules (fixes Issue #40)",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/47",
+      "state": "OPEN",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Resolves #40",
+      "createdAt": "2024-11-06T11:59:32Z",
+      "updatedAt": "2024-11-06T13:38:10Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "5e1552249f6290c4e4f370e8c5a91e5ccf6dd5b4",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "improvements",
+      "headRefOid": "712d94c0f1198e02662f71bd4d961969e8b3c37b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
