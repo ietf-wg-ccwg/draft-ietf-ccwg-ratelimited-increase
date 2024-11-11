@@ -248,13 +248,13 @@ With the exception of pacing, this specification conservatively limits the growt
 
 ### Specification
 
-{{Section 5.1 of !RFC4341}} states:
+{{Section 5.1 of ?RFC4341}} states:
 >There are currently no standards governing TCP's use of the congestion window during an application-limited period.  In particular, it is possible for TCP's congestion window to grow quite large during a long uncongested period when the sender is application limited, sending at a low rate.  {{?RFC2861}} essentially suggests that TCP's congestion window not be increased during application-limited periods when the congestion window is not being fully utilized.
 
 ### Assessment
 
-A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to {{!RFC2861}}.
-The text in {{Section 5.1 of !RFC4341}} is updated by this document to specify the management of the
+A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to {{?RFC2861}}.
+The text in {{Section 5.1 of ?RFC4341}} is updated by this document to specify the management of the
 cwnd during an application-limited period.
 
 
