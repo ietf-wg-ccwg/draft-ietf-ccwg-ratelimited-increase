@@ -7,8 +7,8 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 10 May 2025                              University of Aberdeen
-                                                         6 November 2024
+Expires: 15 May 2025                              University of Aberdeen
+                                                        11 November 2024
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 May 2025.
+   This Internet-Draft will expire on 15 May 2025.
 
 Copyright Notice
 
@@ -257,15 +257,6 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
-   [RFC2861]  Handley, M., Padhye, J., and S. Floyd, "TCP Congestion
-              Window Validation", RFC 2861, DOI 10.17487/RFC2861, June
-              2000, <https://www.rfc-editor.org/rfc/rfc2861>.
-
-   [RFC4341]  Floyd, S. and E. Kohler, "Profile for Datagram Congestion
-              Control Protocol (DCCP) Congestion Control ID 2: TCP-like
-              Congestion Control", RFC 4341, DOI 10.17487/RFC4341, March
-              2006, <https://www.rfc-editor.org/rfc/rfc4341>.
-
    [RFC5681]  Allman, M., Paxson, V., and E. Blanton, "TCP Congestion
               Control", RFC 5681, DOI 10.17487/RFC5681, September 2009,
               <https://www.rfc-editor.org/rfc/rfc5681>.
@@ -301,6 +292,15 @@ Table of Contents
               control-02, 7 March 2022,
               <https://datatracker.ietf.org/doc/html/draft-cardwell-
               iccrg-bbr-congestion-control-02>.
+
+   [RFC2861]  Handley, M., Padhye, J., and S. Floyd, "TCP Congestion
+              Window Validation", RFC 2861, DOI 10.17487/RFC2861, June
+              2000, <https://www.rfc-editor.org/rfc/rfc2861>.
+
+   [RFC4341]  Floyd, S. and E. Kohler, "Profile for Datagram Congestion
+              Control Protocol (DCCP) Congestion Control ID 2: TCP-like
+              Congestion Control", RFC 4341, DOI 10.17487/RFC4341, March
+              2006, <https://www.rfc-editor.org/rfc/rfc4341>.
 
 Appendix A.  The state of RFCs and implementations
 
