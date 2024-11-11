@@ -101,11 +101,11 @@ This document uses the terms defined in {{Section 2 of !RFC5681}} and {{Section 
 
 When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, senders using a congestion controlled transport protocol:
 
-1. MUST include a constraint on the growth of cwnd
+1. MUST constrain the growth of cwnd/
 2. SHOULD cap cwnd to be no larger than limit(maxFS)
 3. MAY restrict maxFS as min(maxFS, pipeACK), using "pipeACK" as defined in {{!RFC7661}}
 
-In rule #2, the function limit() returns the maximum cwnd value possible in one RTT based on the congestion control algorithm and the maxFS parameter.
+In rule #2, the function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing from the value of the maxFS parameter within one RTT.
 For example, for Slow Start, as specified in {{!RFC5681}}, limit(maxFS)=2*maxFS, such that equation 2 in {{!RFC5681}} becomes:
 
 ~~~
