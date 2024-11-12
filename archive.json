@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-10T00:36:12.443290+00:00",
+  "timestamp": "2024-11-12T00:32:58.188658+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -505,15 +505,15 @@
       "id": "I_kwDOK4gIBc6aD2oI",
       "title": "Suggestions from MM",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/33",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "I hope he doesn't mind me making this public here - I *really* doubt he would, so I'm just going ahead, it's easier to remember and discuss that way. Here it comes, from an email on 20.7.2024:\r\n\r\n\r\nMichael, I really like your doc!\r\n\r\nCan I suggest a slightly different and stronger direction?\r\n1) Make maxFS central and add the timestamp of the most recent ACK that supports  (within 1 segment of) the current value of maxFS.  I will assume maxFStime.\r\n\r\nObserve that maxFS and maxFStime can be precisely defined and  accurately estimated from a packet capture.\r\n\r\n2) Generalize the \"increase function\", citing 5681 as an non-normative example\r\n\r\n3) Change Increase rule 1 to:  Allow growth when maxFS matches cwnd and is within one RTT of maxFStime.  This specifically allows increases during application limited phases if there is a recent observation that cwnd fits in the pipe.   Although a completely different implementation, this is more closely aligned with the way that linux behaves.   This detail is known to be important to some applications.  e.g DASH video, when the chunk size is similar to the pipe size. \r\n\r\n4) Imagine in the future, recasting several other algorithms by replacing cwnd with time decaying filters applied to maxFS.   All such filters should probably decay in parallel, and represent estimates of the total acceleration of the cross traffic at the bottleneck.\r\n\r\nNote that for a start/stop application, restart after idle can estimate the distribution of the cross traffic's acceleration.  This is the one part of CC where I would expect that simple ML might do better than a hand crafted algorithm.\r\n",
       "createdAt": "2024-10-14T04:31:56Z",
-      "updatedAt": "2024-10-17T14:43:00Z",
-      "closedAt": null,
+      "updatedAt": "2024-11-11T13:24:42Z",
+      "closedAt": "2024-11-11T13:24:42Z",
       "comments": [
         {
           "author": "mwelzl",
@@ -640,15 +640,15 @@
       "id": "I_kwDOK4gIBc6c9_vg",
       "title": "Move some normative refs to informative",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/44",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "e.g. the DCCP RFC: we don't update it anymore, we just discuss it in the appendix. So why is it normative?",
       "createdAt": "2024-11-04T18:04:34Z",
-      "updatedAt": "2024-11-04T18:06:53Z",
-      "closedAt": null,
+      "updatedAt": "2024-11-11T13:30:51Z",
+      "closedAt": "2024-11-11T13:30:51Z",
       "comments": [
         {
           "author": "gorryfair",
@@ -656,6 +656,27 @@
           "body": "It doesn't look normative now.",
           "createdAt": "2024-11-04T18:06:52Z",
           "updatedAt": "2024-11-04T18:06:52Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "I meant, it's in the section of \"Normative References\"",
+          "createdAt": "2024-11-11T13:25:44Z",
+          "updatedAt": "2024-11-11T13:25:44Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I wasn't clear - I saw it in the Normative References section, and think it now ought to be informative.",
+          "createdAt": "2024-11-11T13:30:16Z",
+          "updatedAt": "2024-11-11T13:30:16Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Done with a push to master. AGAIN - by accident, but I don't think this needs much discussion, so it should be fine.",
+          "createdAt": "2024-11-11T13:30:51Z",
+          "updatedAt": "2024-11-11T13:30:51Z"
         }
       ]
     },
@@ -667,11 +688,13 @@
       "state": "OPEN",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
-      "assignees": [],
+      "assignees": [
+        "mohittahiliani"
+      ],
       "labels": [],
       "body": "",
       "createdAt": "2024-11-04T22:56:11Z",
-      "updatedAt": "2024-11-04T22:56:11Z",
+      "updatedAt": "2024-11-11T13:17:16Z",
       "closedAt": null,
       "comments": []
     }
@@ -1995,19 +2018,86 @@
       "labels": [],
       "body": "Resolves #40",
       "createdAt": "2024-11-06T11:59:32Z",
-      "updatedAt": "2024-11-06T13:38:10Z",
+      "updatedAt": "2024-11-11T16:35:47Z",
       "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "5e1552249f6290c4e4f370e8c5a91e5ccf6dd5b4",
       "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
       "headRefName": "improvements",
-      "headRefOid": "712d94c0f1198e02662f71bd4d961969e8b3c37b",
+      "headRefOid": "fff22cb6cd6837c5d872b3dbd4760a78c474605e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc6QrTqZ",
+          "commit": {
+            "abbreviatedOid": "712d94c"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Many thanks, this is good!  Two suggestions, please take a look.",
+          "createdAt": "2024-11-11T13:18:48Z",
+          "updatedAt": "2024-11-11T13:23:07Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\n1. MUST apply a constraint on the growth of cwnd\r\n```",
+              "createdAt": "2024-11-11T13:18:49Z",
+              "updatedAt": "2024-11-11T13:23:07Z"
+            },
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\nIn rule #2, the function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing from the value of the maxFS parameter within one RTT.\r\n```",
+              "createdAt": "2024-11-11T13:22:30Z",
+              "updatedAt": "2024-11-11T13:23:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6QracL",
+          "commit": {
+            "abbreviatedOid": "712d94c"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-11T13:28:20Z",
+          "updatedAt": "2024-11-11T13:28:20Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "/MUST constrain the growth of cwnd/ / ?",
+              "createdAt": "2024-11-11T13:28:20Z",
+              "updatedAt": "2024-11-11T13:28:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6Qrb9w",
+          "commit": {
+            "abbreviatedOid": "712d94c"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-11T13:31:29Z",
+          "updatedAt": "2024-11-11T13:31:29Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\n1. MUST constrain the growth of cwnd\r\n```",
+              "createdAt": "2024-11-11T13:31:29Z",
+              "updatedAt": "2024-11-11T13:31:29Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
