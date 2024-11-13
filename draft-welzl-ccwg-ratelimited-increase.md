@@ -54,6 +54,16 @@ author:
     country: UK
     email: gorry@erg.abdn.ac.uk
     uri: https://www.erg.abdn.ac.uk/
+  -
+    ins: M. P. Tahiliani
+    name: Mohit P. Tahiliani
+    org: National Institute of Technology Karnataka
+    street: Department of Computer Science and Engineering
+    street: P. O. Srinivasnagar, Surathkal
+    city: Mangalore, Karnataka - 575025
+    country: India
+    email: tahiliani@nitk.edu.in
+    uri: https://tahiliani.in/
 
 normative:
 
