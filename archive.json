@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-12T00:32:58.188658+00:00",
+  "timestamp": "2024-11-14T00:33:44.998277+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -569,15 +569,15 @@
       "id": "I_kwDOK4gIBc6cW9N2",
       "title": "Avoid over-use of the word \"limit\" in rules",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/40",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "...as in \"limit with limit(..)\"  - especially in rule #3 where it's a different limit.",
       "createdAt": "2024-10-30T08:30:08Z",
-      "updatedAt": "2024-11-06T11:33:31Z",
-      "closedAt": null,
+      "updatedAt": "2024-11-12T17:22:51Z",
+      "closedAt": "2024-11-12T17:22:51Z",
       "comments": [
         {
           "author": "mohittahiliani",
@@ -685,7 +685,7 @@
       "id": "I_kwDOK4gIBc6dACNE",
       "title": "Add Mohit as an author",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/46",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -694,7 +694,23 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-11-04T22:56:11Z",
-      "updatedAt": "2024-11-11T13:17:16Z",
+      "updatedAt": "2024-11-13T10:03:29Z",
+      "closedAt": "2024-11-13T10:03:29Z",
+      "comments": []
+    },
+    {
+      "number": 49,
+      "id": "I_kwDOK4gIBc6eW6ht",
+      "title": "We should define \"N\" !",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/49",
+      "state": "OPEN",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-11-13T21:13:12Z",
+      "updatedAt": "2024-11-13T21:13:12Z",
       "closedAt": null,
       "comments": []
     }
@@ -2011,24 +2027,26 @@
       "id": "PR_kwDOK4gIBc6BC8mr",
       "title": "Simplify the writeup on rules (fixes Issue #40)",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/47",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mohittahiliani",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Resolves #40",
       "createdAt": "2024-11-06T11:59:32Z",
-      "updatedAt": "2024-11-11T16:35:47Z",
+      "updatedAt": "2024-11-12T17:22:51Z",
       "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "5e1552249f6290c4e4f370e8c5a91e5ccf6dd5b4",
       "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
       "headRefName": "improvements",
-      "headRefOid": "fff22cb6cd6837c5d872b3dbd4760a78c474605e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "99af2a289c7e52a1cecf29991eb207a7ee6b4125",
+      "closedAt": "2024-11-12T17:22:50Z",
+      "mergedAt": "2024-11-12T17:22:50Z",
+      "mergedBy": "mohittahiliani",
+      "mergeCommit": {
+        "oid": "2dca423ea96601f05cc11e9779d840696d5a5172"
+      },
       "comments": [],
       "reviews": [
         {
@@ -2096,8 +2114,68 @@
               "updatedAt": "2024-11-11T13:31:29Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6Qv_oH",
+          "commit": {
+            "abbreviatedOid": "fff22cb"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-11-12T03:21:50Z",
+          "updatedAt": "2024-11-12T03:23:47Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\n1. MUST constrain the growth of cwnd.\r\n```",
+              "createdAt": "2024-11-12T03:21:50Z",
+              "updatedAt": "2024-11-12T03:23:47Z"
+            },
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\n2. SHOULD cap cwnd to be no larger than limit(maxFS).\r\n```",
+              "createdAt": "2024-11-12T03:22:06Z",
+              "updatedAt": "2024-11-12T03:23:47Z"
+            },
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\n3. MAY restrict maxFS as min(maxFS, pipeACK), using \"pipeACK\" as defined in {{!RFC7661}}.\r\n```",
+              "createdAt": "2024-11-12T03:22:16Z",
+              "updatedAt": "2024-11-12T03:23:47Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 48,
+      "id": "PR_kwDOK4gIBc6BqmDn",
+      "title": "Add co-author name",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/48",
+      "state": "MERGED",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Added name as a co-author.\r\n\r\nResolves #46 ",
+      "createdAt": "2024-11-12T17:38:41Z",
+      "updatedAt": "2024-11-13T10:03:28Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "2dca423ea96601f05cc11e9779d840696d5a5172",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "improvements",
+      "headRefOid": "fa17fbf77045aa021b608009c20415a435dbd66d",
+      "closedAt": "2024-11-13T10:03:28Z",
+      "mergedAt": "2024-11-13T10:03:28Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "2fed69eee99cfddfc7eeebe5aff00cd2e5a079da"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
