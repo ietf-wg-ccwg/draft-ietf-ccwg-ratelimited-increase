@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-14T00:33:44.998277+00:00",
+  "timestamp": "2024-11-17T00:38:40.496370+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -2176,6 +2176,113 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 50,
+      "id": "PR_kwDOK4gIBc6B4iHT",
+      "title": "Define N, SMSS, cwnd",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/50",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #49 ",
+      "createdAt": "2024-11-14T07:51:12Z",
+      "updatedAt": "2024-11-14T09:37:00Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "2fed69eee99cfddfc7eeebe5aff00cd2e5a079da",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "mw-define-N",
+      "headRefOid": "da1df2f4082477b16a257d60f0dc68e172def682",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc6RKCsx",
+          "commit": {
+            "abbreviatedOid": "da1df2f"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-14T08:16:38Z",
+          "updatedAt": "2024-11-14T08:16:38Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "\"incoming\" or \"received\"?",
+              "createdAt": "2024-11-14T08:16:38Z",
+              "updatedAt": "2024-11-14T08:16:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6RKw8S",
+          "commit": {
+            "abbreviatedOid": "da1df2f"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-14T09:35:38Z",
+          "updatedAt": "2024-11-14T09:35:39Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\nwhere cwnd and SMSS follow their definitions in {{!RFC5681}}, which states that N \"is the number of previously unacknowledged bytes acknowledged in the incoming ACK\".\r\n```",
+              "createdAt": "2024-11-14T09:35:38Z",
+              "updatedAt": "2024-11-14T09:35:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6RKxnW",
+          "commit": {
+            "abbreviatedOid": "da1df2f"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-14T09:36:24Z",
+          "updatedAt": "2024-11-14T09:36:25Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "See my suggestion (open in browser I think, since it seems you commented on the old text, not the new?!)",
+              "createdAt": "2024-11-14T09:36:24Z",
+              "updatedAt": "2024-11-14T09:36:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6RKyLa",
+          "commit": {
+            "abbreviatedOid": "da1df2f"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-14T09:37:00Z",
+          "updatedAt": "2024-11-14T09:37:00Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "The point of this is to clarify that this is the original wording from RFC 5681. I don't think we should attempt to massage that text instead, since it's copy+pasted from there.",
+              "createdAt": "2024-11-14T09:37:00Z",
+              "updatedAt": "2024-11-14T09:37:00Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
