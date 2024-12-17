@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-15T00:40:59.522155+00:00",
+  "timestamp": "2024-12-17T00:37:33.258714+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -556,11 +556,13 @@
       "state": "OPEN",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
-      "assignees": [],
+      "assignees": [
+        "mohittahiliani"
+      ],
       "labels": [],
       "body": "To better explain the point of rules 1 and 2.",
       "createdAt": "2024-10-23T12:00:58Z",
-      "updatedAt": "2024-10-23T12:00:59Z",
+      "updatedAt": "2024-12-16T12:42:24Z",
       "closedAt": null,
       "comments": []
     },
@@ -703,15 +705,15 @@
       "id": "I_kwDOK4gIBc6eW6ht",
       "title": "We should define \"N\" !",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/49",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "gorryfair",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-11-13T21:13:12Z",
-      "updatedAt": "2024-11-13T21:13:12Z",
-      "closedAt": null,
+      "updatedAt": "2024-12-16T12:42:02Z",
+      "closedAt": "2024-12-16T12:42:02Z",
       "comments": []
     }
   ],
@@ -2182,24 +2184,26 @@
       "id": "PR_kwDOK4gIBc6B4iHT",
       "title": "Define N, SMSS, cwnd",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/50",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Closes #49 ",
       "createdAt": "2024-11-14T07:51:12Z",
-      "updatedAt": "2024-11-14T09:37:00Z",
+      "updatedAt": "2024-12-16T12:42:01Z",
       "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "2fed69eee99cfddfc7eeebe5aff00cd2e5a079da",
       "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "headRefName": "mw-define-N",
       "headRefOid": "da1df2f4082477b16a257d60f0dc68e172def682",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-12-16T12:42:01Z",
+      "mergedAt": "2024-12-16T12:42:01Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "bca507411dcbc817881bb74a8de250cb709ed8c8"
+      },
       "comments": [],
       "reviews": [
         {
