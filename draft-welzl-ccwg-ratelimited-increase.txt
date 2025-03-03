@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 1 September 2025                         University of Aberdeen
+Expires: 4 September 2025                         University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                        28 February 2025
+                                                            3 March 2025
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 September 2025.
+   This Internet-Draft will expire on 4 September 2025.
 
 Copyright Notice
 
@@ -79,9 +79,12 @@ Table of Contents
      1.1.  Terminology
    2.  Conventions and Definitions
    3.  Increase rules
-     3.1.  Discussion
-       3.1.1.  Rate-based congestion control
-       3.1.2.  Pacing
+     3.1.  Example
+       3.1.1.  Unconstrained sender
+       3.1.2.  Sender constrained by the increase rules
+     3.2.  Discussion
+       3.2.1.  Rate-based congestion control
+       3.2.2.  Pacing
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -198,7 +201,41 @@ Table of Contents
    the sender is rate-limited.  Accordingly, to implement CWV, rule #3
    can be used.
 
-3.1.  Discussion
+3.1.  Example
+
+   We illustrate the working of the rules by showing the increase of
+   cwnd in two scenarios: when the growth of cwnd is unconstrained, and
+   when it is constrained by the increase rules.  In both cases we
+   assume initial cwnd (initcwnd) = 10 segments, a single connection
+   begins with Slow Start, the sender transmits a total of 14 segments
+   but pauses after transmitting 10 segments and resumes the
+   transmission for the remaining 4 segments afterwards, no packets are
+   lost, and an ACK is sent for every packet.
+
+3.1.1.  Unconstrained sender
+
+   Initially, cwnd = initcwnd = 10 segments.  The sender transmits 10
+   segments and pauses.  Since the sender is in the Slow Start phase,
+   the arrival of an ACK for each of the 10 segments increases the cwnd
+   by 1 segment, resulting in the cwnd increasing to 20 segments.
+   Subsequently, after the pause, the sender transmits 4 segments and
+   pauses again.  As a consequence, the arrival of 4 ACKs results in
+   cwnd further increasing to 24 segments even though the sender is
+   rate-limited (i.e., has never sent more than 10 segments/RTT).
+
+3.1.2.  Sender constrained by the increase rules
+
+   Initially, cwnd = initcwnd = 10 segments.  The sender transmits 10
+   segments and pauses; note that FlightSize and maxFS are 10 segments
+   at this point.  Since the sender is in the Slow Start phase, the
+   arrival of an ACK for each of the 10 segments increases the cwnd by 1
+   segment, resulting in cwnd increasing to 20 segments.  Subsequently,
+   when the sender resumes and transmits 4 segments, rule #1 constrains
+   the growth of cwnd because FlightSize < cwnd and rule #2 caps cwnd to
+   be no larger than limit(maxFS) = 2_maxFS = 2_10 segments = 20
+   segments.
+
+3.2.  Discussion
 
    If the sending rate is less than permitted by cwnd for multiple RTTs,
    limited either by the sending application or by the receiver-
@@ -212,7 +249,7 @@ Table of Contents
    during an RTT is permitted to be increased during the immediately
    following RTT.  Thus, such an increase is allowed by the second rule.
 
-3.1.1.  Rate-based congestion control
+3.2.1.  Rate-based congestion control
 
    The present document updates congestion control specifications that
    use a congestion window (cwnd) to limit the number of unacknowledged
@@ -231,7 +268,7 @@ Table of Contents
    it has transmitted during the previous RTT.  This holds irrespective
    of whether the sender is rate-limited or not.
 
-3.1.2.  Pacing
+3.2.2.  Pacing
 
    Pacing mechanisms seek to avoid the negative impacts associated with
    "bursts" (flights of packets transmitted back-to-back).  This is
