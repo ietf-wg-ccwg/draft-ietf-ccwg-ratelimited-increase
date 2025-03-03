@@ -293,6 +293,10 @@ cwnd during an application-limited period.
    * Changes "inc" to "limit" and adapts the wording of rule 2 to make it clearer (thanks to Neal Cardwell).
    * Appendix: updates ns-3 in line with the recent implementation.
    * Appendix: makes the RFC 9002 text clearer and shorter.
+* draft-ietf-ccwg-ratelimited-increase-00
+   * adds Mohit Tahiliani as a co-author
+   * refines the "rule" text (shorter, clearer)
+   * adds an example
 
 
 # Acknowledgments
