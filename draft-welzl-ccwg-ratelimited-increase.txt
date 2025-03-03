@@ -517,6 +517,14 @@ Appendix B.  Change Log
 
       -  Appendix: makes the RFC 9002 text clearer and shorter.
 
+   *  draft-ietf-ccwg-ratelimited-increase-00
+
+      -  adds Mohit Tahiliani as a co-author
+
+      -  refines the "rule" text (shorter, clearer)
+
+      -  adds an example
+
 Acknowledgments
 
    The authors would like to thank Neal Cardwell for suggesting
