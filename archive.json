@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-02T00:38:11.264514+00:00",
+  "timestamp": "2025-03-04T00:35:56.482958+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -553,7 +553,7 @@
       "id": "I_kwDOK4gIBc6beDNr",
       "title": "Include examples in \"Discussion\" section",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/39",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -562,8 +562,8 @@
       "labels": [],
       "body": "To better explain the point of rules 1 and 2.",
       "createdAt": "2024-10-23T12:00:58Z",
-      "updatedAt": "2024-12-16T12:42:24Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-03T08:28:55Z",
+      "closedAt": "2025-03-03T08:28:55Z",
       "comments": []
     },
     {
@@ -2283,6 +2283,208 @@
               "body": "The point of this is to clarify that this is the original wording from RFC 5681. I don't think we should attempt to massage that text instead, since it's copy+pasted from there.",
               "createdAt": "2024-11-14T09:37:00Z",
               "updatedAt": "2024-11-14T09:37:00Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "id": "PR_kwDOK4gIBc6NDjHX",
+      "title": "Add an example in Section 3 (fixes #39)",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/51",
+      "state": "MERGED",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Note: as discussed during our call with Michael, the example has been added in Section 3 directly instead of putting it in Section 3.1 (which is Discussion).",
+      "createdAt": "2025-03-02T07:02:45Z",
+      "updatedAt": "2025-03-03T08:28:54Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "b885aadcf77935425f50b94d3effaa786f0e7f58",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "improvements",
+      "headRefOid": "974bac84650442b8b9376e7cad9e8813d77b8447",
+      "closedAt": "2025-03-03T08:28:54Z",
+      "mergedAt": "2025-03-03T08:28:54Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "5c50af4bf1fdd8673d536fbf6c4ef6c599863926"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc6eHLHQ",
+          "commit": {
+            "abbreviatedOid": "4d19104"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-02T10:05:19Z",
+          "updatedAt": "2025-03-02T10:05:19Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nWe illustrate the working of the rules by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when it is constrained by the increase rules. In both cases we assume initial cwnd (initcwnd) = 10 segments, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.\r\n```",
+              "createdAt": "2025-03-02T10:05:19Z",
+              "updatedAt": "2025-03-02T10:05:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6eHLKB",
+          "commit": {
+            "abbreviatedOid": "4d19104"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-02T10:06:09Z",
+          "updatedAt": "2025-03-02T10:06:09Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nInitially, cwnd = initcwnd = 10 segments. The sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments even though the sender is rate-limited.\r\n```",
+              "createdAt": "2025-03-02T10:06:09Z",
+              "updatedAt": "2025-03-02T10:06:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6eHLOd",
+          "commit": {
+            "abbreviatedOid": "4d19104"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-02T10:07:36Z",
+          "updatedAt": "2025-03-02T10:07:37Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\nInitially, cwnd = initcwnd = 10 segments. The sender transmits 10 segments and pauses; note that FlightSize and maxFS are 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 segments, rule #1 constrains the growth of cwnd because FlightSize < cwnd and rule #2 caps cwnd to be no larger than limit(maxFS) = 2*maxFS = 2*10 segments = 20 segments.\r\n```",
+              "createdAt": "2025-03-02T10:07:37Z",
+              "updatedAt": "2025-03-02T10:09:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6eHLXJ",
+          "commit": {
+            "abbreviatedOid": "f44db62"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "Many thanks!  Looks good to me",
+          "createdAt": "2025-03-02T10:10:15Z",
+          "updatedAt": "2025-03-02T10:10:15Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6eHYJZ",
+          "commit": {
+            "abbreviatedOid": "f44db62"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-02T14:04:43Z",
+          "updatedAt": "2025-03-02T14:04:43Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "do we want to finish the thought?:\r\n...is rate-limited (i.e., has never sent more than 10 segments/RTT).\r\n",
+              "createdAt": "2025-03-02T14:04:43Z",
+              "updatedAt": "2025-03-02T14:04:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6eHc-v",
+          "commit": {
+            "abbreviatedOid": "f44db62"
+          },
+          "author": "tomhenderson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-02T15:26:27Z",
+          "updatedAt": "2025-03-02T15:26:27Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "I agree with Gorry's proposed extension above and with this MR in general",
+              "createdAt": "2025-03-02T15:26:27Z",
+              "updatedAt": "2025-03-02T15:26:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6eHxZu",
+          "commit": {
+            "abbreviatedOid": "f44db62"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-02T22:31:26Z",
+          "updatedAt": "2025-03-02T22:31:26Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nInitially, cwnd = initcwnd = 10 segments. The sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments even though the sender is rate-limited (i.e., has never sent more than 10 segments/RTT)..\r\n```",
+              "createdAt": "2025-03-02T22:31:26Z",
+              "updatedAt": "2025-03-02T22:31:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6eHxa1",
+          "commit": {
+            "abbreviatedOid": "b78f88b"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-02T22:31:47Z",
+          "updatedAt": "2025-03-02T22:31:47Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nInitially, cwnd = initcwnd = 10 segments. The sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments even though the sender is rate-limited (i.e., has never sent more than 10 segments/RTT).\r\n```",
+              "createdAt": "2025-03-02T22:31:47Z",
+              "updatedAt": "2025-03-02T22:31:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc6eHxb2",
+          "commit": {
+            "abbreviatedOid": "974bac8"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-02T22:32:04Z",
+          "updatedAt": "2025-03-02T22:32:04Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "Done, change applied - and thanks!!",
+              "createdAt": "2025-03-02T22:32:04Z",
+              "updatedAt": "2025-03-02T22:32:04Z"
             }
           ]
         }
