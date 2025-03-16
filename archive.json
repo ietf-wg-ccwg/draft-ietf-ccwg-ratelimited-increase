@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-13T00:36:35.153074+00:00",
+  "timestamp": "2025-03-16T00:39:31.332563+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -715,6 +715,30 @@
       "updatedAt": "2024-12-16T12:42:02Z",
       "closedAt": "2024-12-16T12:42:02Z",
       "comments": []
+    },
+    {
+      "number": 52,
+      "id": "I_kwDOK4gIBc6uFjA1",
+      "title": "Considerations for Handling Persistent Rate-Limitation",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/52",
+      "state": "CLOSED",
+      "author": "shaileshprabhu95",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "The draft provides well-defined rules for constraining _cwnd_ growth when the sender is rate-limited. However, in scenarios where the sender remains consistently below _maxFS_ for an extended period, additional guidance on how _cwnd_ should evolve over time could enhance clarity. Ensuring that _cwnd_ accurately reflects the available network capacity in such cases may help maintain efficient congestion control behavior.\n\n**Potential Considerations**:\n\n1. **Ensuring accurate _cwnd_ adaptation**: If a sender remains rate-limited for multiple RTTs, there may be value in specifying how _cwnd_ should evolve to avoid potential overestimation of network capacity.\n2. **Clarifying the role of CWV (Congestion Window Validation)**: While RFC 7661 provides mechanisms for _cwnd_ validation, explicitly referencing its applicability in the context of persistent rate-limitation could be beneficial.\n3. **Alignment with real network conditions**: Providing guidance on how _cwnd_ should adapt when rate-limitation persists for an extended period could help maintain an accurate reflection of the path\u2019s characteristics.\n\n**Proposed Enhancement**:\n\n- Clarify whether an adjustment mechanism for _cwnd_ under prolonged rate-limitation is needed, and if so, how it should be handled.\n- Consider referencing CWV from RFC 7661 more explicitly as a possible approach or suggest alternative guidance for such scenarios.\n- Define conditions under which the sender might need to re-evaluate _cwnd_ to ensure alignment with actual network conditions.\n\nThese considerations could further strengthen the draft by ensuring that _cwnd_ behaves optimally even in cases of persistent rate-limitation.",
+      "createdAt": "2025-03-14T16:21:39Z",
+      "updatedAt": "2025-03-14T16:31:20Z",
+      "closedAt": "2025-03-14T16:31:19Z",
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "These suggestions are very high-level and generic; they don't *really* make sense (we do address these things appropriately already). I have a strong suspicion that you used an LLM such as ChatGPT to produce this. That's a big waste of everyone's time, please stop.",
+          "createdAt": "2025-03-14T16:31:19Z",
+          "updatedAt": "2025-03-14T16:31:19Z"
+        }
+      ]
     }
   ],
   "pulls": [
