@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-25T00:37:15.359192+00:00",
+  "timestamp": "2025-03-27T00:36:47.587491+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -739,6 +739,22 @@
           "updatedAt": "2025-03-14T16:31:19Z"
         }
       ]
+    },
+    {
+      "number": 53,
+      "id": "I_kwDOK4gIBc6vxqrF",
+      "title": "Clarify what an RTT is",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/53",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We state:\n`In rule #2, the function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing from the value of the maxFS parameter within one RTT.`\n\nLet's be clearer about what an \"RTT\" is, here. Proposal from @gorryfair -  we could add:\n`The RTT includes the minimum path propagation delay plus any delay accumulated by queing in the stack, at the interface and in network elements along the path.`\n",
+      "createdAt": "2025-03-26T10:06:09Z",
+      "updatedAt": "2025-03-26T10:06:09Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
