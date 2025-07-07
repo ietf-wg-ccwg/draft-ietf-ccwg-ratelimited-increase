@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 7 January 2026                           University of Aberdeen
+Expires: 8 January 2026                           University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                             6 July 2025
+                                                             7 July 2025
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2026.
+   This Internet-Draft will expire on 8 January 2026.
 
 Copyright Notice
 
@@ -242,12 +242,12 @@ Table of Contents
    advertised window, continuously increasing the cwnd would cause a
    mismatch between the cwnd and the capacity that the path supports
    (i.e., over-estimating the capacity).  Such unlimited growth in the
-   cwnd is therefore disallowed by the first rule.
+   cwnd is therefore disallowed.
 
    However, in most common congestion control algorithms, in the absence
    of an indication of congestion, a cwnd that has been fully utilized
    during an RTT is permitted to be increased during the immediately
-   following RTT.  Thus, such an increase is allowed by the second rule.
+   following RTT.  Thus, such an increase is allowed by the first rule.
 
 3.2.1.  Rate-based congestion control
 
