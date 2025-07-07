@@ -297,9 +297,13 @@ cwnd during an application-limited period.
    * adds Mohit Tahiliani as a co-author
    * refines the "rule" text (shorter, clearer)
    * adds an example
+* draft-ietf-ccwg-ratelimited-increase-01
+      * Clarified what we mean with an RTT
+      * rephrased example regarding initcwnd, citing RFCs 6928 and 9002
+      * removed the too vague rule 1 and made rule 2 (now rule 1) a MUST
 
 
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Neal Cardwell for suggesting improvements to this document.
+The authors would like to thank Neal Cardwell and Martin Duke for suggesting improvements to this document.
