@@ -111,11 +111,10 @@ This document uses the terms defined in {{Section 2 of !RFC5681}} and {{Section 
 
 When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, senders using a congestion controlled transport protocol:
 
-1. MUST constrain the growth of cwnd.
-2. SHOULD cap cwnd to be no larger than limit(maxFS).
-3. MAY restrict maxFS as min(maxFS, pipeACK), using "pipeACK" as defined in {{!RFC7661}}.
+1. MUST cap cwnd to be no larger than limit(maxFS).
+2. MAY restrict maxFS as min(maxFS, pipeACK), using "pipeACK" as defined in {{!RFC7661}}.
 
-In rule #2, the function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing from the value of the maxFS parameter within one RTT.
+In rule #1, the function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing from the value of the maxFS parameter within one RTT.
 The RTT includes the minimum path propagation delay plus any delay accumulated by queing in the stack, at the interface and in network elements along the path.
 For example, for Slow Start, as specified in {{!RFC5681}}, limit(maxFS)=2*maxFS, such that equation 2 in {{!RFC5681}} becomes:
 
@@ -125,7 +124,7 @@ cwnd = min(cwnd_new, 2*maxFS)
 ~~~
 where cwnd and SMSS follow their definitions in {{!RFC5681}} and N is the number of previously unacknowledged bytes acknowledged in the incoming ACK.
 
-Similarly, with rule #2 applied to Congestion Avoidance, limit(maxFS)=1+maxFS, such that equation 3 in {{!RFC5681}} becomes:
+Similarly, with rule #1 applied to Congestion Avoidance, limit(maxFS)=1+maxFS, such that equation 3 in {{!RFC5681}} becomes:
 
 ~~~
 cwnd_new = cwnd + SMSS*SMSS/cwnd
@@ -133,24 +132,24 @@ cwnd = min(cwnd_new, 1+maxFS)
 ~~~
 where cwnd and SMSS follow their definitions in {{!RFC5681}}.
 
-As with cwnd, without a way to reduce it when the transport sender becomes rate-limited, rule #2 allows for maxFS to stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. For cwnd, this is remedied by "Congestion Window Validation" in {{!RFC7661}}, which also defines a "pipeACK" variable that measures the acknowledged size of the network pipe when the sender is rate-limited. Accordingly, to implement CWV, rule #3 can be used.
+As with cwnd, without a way to reduce it when the transport sender becomes rate-limited, rule #1 allows for maxFS to stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. For cwnd, this is remedied by "Congestion Window Validation" in {{!RFC7661}}, which also defines a "pipeACK" variable that measures the acknowledged size of the network pipe when the sender is rate-limited. Accordingly, to implement CWV, rule #2 can be used.
 
 ## Example
-We illustrate the working of the rules by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when it is constrained by the increase rules. In both cases we assume initial cwnd (initcwnd) = 10 segments, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.
+We illustrate the working of the rules by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when it is constrained by the increase rules. In both cases we assume initial cwnd (initcwnd) = 10 segments, as defined for TCP in {{?RFC6928}}, QUIC in {{?RFC9002}}, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.
 
 ### Unconstrained sender
-Initially, cwnd = initcwnd = 10 segments. The sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments even though the sender is rate-limited (i.e., has never sent more than 10 segments/RTT).
+Initially, cwnd = initcwnd; Therefore, using initcwnd = 10 segments, as defined for TCP in {{?RFC6928}}, QUIC in {{?RFC9002}}, the sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments even though the sender is rate-limited (i.e., has never sent more than 10 segments/RTT).
 
 ### Sender constrained by the increase rules
-Initially, cwnd = initcwnd = 10 segments. The sender transmits 10 segments and pauses; note that FlightSize and maxFS are 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 segments, rule #1 constrains the growth of cwnd because FlightSize < cwnd and rule #2 caps cwnd to be no larger than limit(maxFS) = 2*maxFS = 2*10 segments = 20 segments.
+Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, as defined for TCP in {{?RFC6928}}, QUIC in {{?RFC9002}}, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 segments, rule #1 constrains the growth of cwnd because FlightSize < cwnd and rule #1 caps cwnd to be no larger than limit(maxFS) = 2*maxFS = 2*10 segments = 20 segments.
 
 ## Discussion
 
 If the sending rate is less than permitted by cwnd for multiple RTTs, limited either by the sending application or by the receiver-advertised window, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity that the path supports (i.e., over-estimating the capacity).
-Such unlimited growth in the cwnd is therefore disallowed by the first rule.
+Such unlimited growth in the cwnd is therefore disallowed.
 
 However, in most common congestion control algorithms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT is permitted to be increased during the immediately following RTT.
-Thus, such an increase is allowed by the second rule.
+Thus, such an increase is allowed by the first rule.
 
 
 ### Rate-based congestion control
@@ -200,18 +199,18 @@ information about the state of the network path the flow is using.
 ### Implementation {#tcp-impl}
 
 - ns-2 allows cwnd to grow when it is rate-limited by rwnd. (Rate-limited by the sending application: not tested.)
-- Until release 3.42, ns-3 allowed cwnd to grow when rate-limited, either due to an application or rwnd limit.  Since release 3.42, ns-3 TCP models conform to rule #2 in {{rules}}, following the current Linux TCP approach in this regard (see next bullet).
+- Until release 3.42, ns-3 allowed cwnd to grow when rate-limited, either due to an application or rwnd limit.  Since release 3.42, ns-3 TCP models conform to rule #1 in {{rules}}, following the current Linux TCP approach in this regard (see next bullet).
 - In Congestion Avoidance, Linux only allows the cwnd to grow when the sender is unconstrained.
 Before kernel version 3.16, this also applied to Slow Start.
 The check for "unconstrained" is perfomed by checking if FlightSize is greater or equal to cwnd.
 Since kernel version 3.16, which was published in August 2014, in Slow Start, the increase
-implements rule #2 in {{rules}} in the `tcp_is_cwnd_limited` function in `tcp.h`.
+implements rule #1 in {{rules}} in the `tcp_is_cwnd_limited` function in `tcp.h`.
 
 ### Assessment
 
 Linux implements a limit to cwnd growth in accordance with rule #1 in {{rules}};
-in Slow Start, this limit follows rule #2, while in Congestion Avoidance, it is more conservative than rule #2.
-The specification and the ns-2 and (older) ns-3 implementations are in conflict with rules #1 and #2 in {{rules}}.
+in Slow Start, this limit follows the rule's upper limit, while in Congestion Avoidance, it is more conservative than rule #1.
+The specification and the ns-2 and (older) ns-3 implementations are in conflict with rule #1 in {{rules}}.
 
 ## CUBIC
 
@@ -228,8 +227,8 @@ The description of Linux described in {{tcp-impl}} also applies to Cubic.
 ### Assessment
 
 Both the specification and the Linux implementation limit the cwnd growth in accordance with rule #1 in {{rules}};
-in Congestion Avoidance, this limit is more conservative than rule #2 in {{rules}},
-and in Slow Start, it implements rule #2 in {{rules}}.
+in Congestion Avoidance, this limit is more conservative than rule #1 in {{rules}},
+and in Slow Start, it implements the upper limit of rule #1 in {{rules}}.
 
 ## SCTP
 
@@ -245,7 +244,7 @@ Only when these two conditions are met can the cwnd be increased; otherwise, the
 ### Assessment
 
 The quoted statement from {{!RFC9260}} prescribes the same cwnd growth limitation that is also specified for Cubic and implemented for both Reno and Cubic in Linux.
-It is in accordance with rule #1 in {{rules}}, and more conservative than rule #2 in {{rules}}.
+It is in accordance with rule #1 in {{rules}}, and more conservative.
 
 {{Section 7.2.1 of !RFC9260}} is specifically limited to Slow Start.
 Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}}
@@ -262,7 +261,7 @@ in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies 
 
 ### Assessment
 
-With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with rule #1 in {{rules}}, and more conservative than rule #2 in {{rules}}.
+With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with rule #1 in {{rules}}, and more conservative.
 
 ## DCCP CCID2
 
