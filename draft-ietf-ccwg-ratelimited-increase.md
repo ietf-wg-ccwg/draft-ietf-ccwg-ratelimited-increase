@@ -146,10 +146,10 @@ Initially, cwnd = initcwnd = 10 segments. The sender transmits 10 segments and p
 ## Discussion
 
 If the sending rate is less than permitted by cwnd for multiple RTTs, limited either by the sending application or by the receiver-advertised window, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity that the path supports (i.e., over-estimating the capacity).
-Such unlimited growth in the cwnd is therefore disallowed by the first rule.
+Such unlimited growth in the cwnd is therefore disallowed.
 
 However, in most common congestion control algorithms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT is permitted to be increased during the immediately following RTT.
-Thus, such an increase is allowed by the second rule.
+Thus, such an increase is allowed by the first rule.
 
 
 ### Rate-based congestion control
