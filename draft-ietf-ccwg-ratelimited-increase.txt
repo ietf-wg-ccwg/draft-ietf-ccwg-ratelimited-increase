@@ -215,7 +215,7 @@ Table of Contents
 
 3.1.1.  Unconstrained sender
 
-   Initially, cwnd = initcwnd; Therefore, using initcwnd = 10 segments,
+   Initially, cwnd = initcwnd.  Therefore, using initcwnd = 10 segments,
    as defined for TCP in [RFC6928], QUIC in [RFC9002], the sender
    transmits 10 segments and pauses.  Since the sender is in the Slow
    Start phase, the arrival of an ACK for each of the 10 segments
