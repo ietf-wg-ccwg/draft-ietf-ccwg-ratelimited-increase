@@ -1051,7 +1051,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Welzl, et al.</td>
-<td class="center">Expires 3 January 2026</td>
+<td class="center">Expires 8 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1067,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfcRFC5681" class="eref">RFC5681</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9002" class="eref">RFC9002</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9260" class="eref">RFC9260</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9438" class="eref">RFC9438</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-02" class="published">2 July 2025</time>
+<time datetime="2025-07-07" class="published">7 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-03">3 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-01-08">8 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1135,7 +1135,7 @@ Such a limitation can be caused by the sending application not supplying data or
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 3 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1349,16 +1349,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3-1">When FlightSize &lt; cwnd, regardless of the current state of a congestion control algorithm, senders using a congestion controlled transport protocol:<a href="#section-3-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3-2">
 <li id="section-3-2.1">
-          <p id="section-3-2.1.1"><span class="bcp14">MUST</span> constrain the growth of cwnd.<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.1.1"><span class="bcp14">MUST</span> cap cwnd to be no larger than limit(maxFS).<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li id="section-3-2.2">
-          <p id="section-3-2.2.1"><span class="bcp14">SHOULD</span> cap cwnd to be no larger than limit(maxFS).<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li id="section-3-2.3">
-          <p id="section-3-2.3.1"><span class="bcp14">MAY</span> restrict maxFS as min(maxFS, pipeACK), using "pipeACK" as defined in <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>.<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.2.1"><span class="bcp14">MAY</span> restrict maxFS as min(maxFS, pipeACK), using "pipeACK" as defined in <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
-<p id="section-3-3">In rule #2, the function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing from the value of the maxFS parameter within one RTT.
+<p id="section-3-3">In rule #1, the function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing from the value of the maxFS parameter within one RTT.
 The RTT includes the minimum path propagation delay plus any delay accumulated by queing in the stack, at the interface and in network elements along the path.
 For example, for Slow Start, as specified in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>, limit(maxFS)=2*maxFS, such that equation 2 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3-4">
@@ -1368,7 +1365,7 @@ cwnd = min(cwnd_new, 2*maxFS)
 </pre><a href="#section-3-4" class="pilcrow">¶</a>
 </div>
 <p id="section-3-5">where cwnd and SMSS follow their definitions in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> and N is the number of previously unacknowledged bytes acknowledged in the incoming ACK.<a href="#section-3-5" class="pilcrow">¶</a></p>
-<p id="section-3-6">Similarly, with rule #2 applied to Congestion Avoidance, limit(maxFS)=1+maxFS, such that equation 3 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-6" class="pilcrow">¶</a></p>
+<p id="section-3-6">Similarly, with rule #1 applied to Congestion Avoidance, limit(maxFS)=1+maxFS, such that equation 3 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-6" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3-7">
 <pre>
 cwnd_new = cwnd + SMSS*SMSS/cwnd
@@ -1376,19 +1373,19 @@ cwnd = min(cwnd_new, 1+maxFS)
 </pre><a href="#section-3-7" class="pilcrow">¶</a>
 </div>
 <p id="section-3-8">where cwnd and SMSS follow their definitions in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>.<a href="#section-3-8" class="pilcrow">¶</a></p>
-<p id="section-3-9">As with cwnd, without a way to reduce it when the transport sender becomes rate-limited, rule #2 allows for maxFS to stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. For cwnd, this is remedied by "Congestion Window Validation" in <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>, which also defines a "pipeACK" variable that measures the acknowledged size of the network pipe when the sender is rate-limited. Accordingly, to implement CWV, rule #3 can be used.<a href="#section-3-9" class="pilcrow">¶</a></p>
+<p id="section-3-9">As with cwnd, without a way to reduce it when the transport sender becomes rate-limited, rule #1 allows for maxFS to stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. For cwnd, this is remedied by "Congestion Window Validation" in <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>, which also defines a "pipeACK" variable that measures the acknowledged size of the network pipe when the sender is rate-limited. Accordingly, to implement CWV, rule #2 can be used.<a href="#section-3-9" class="pilcrow">¶</a></p>
 <div id="example">
 <section id="section-3.1">
         <h3 id="name-example">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-example" class="section-name selfRef">Example</a>
         </h3>
-<p id="section-3.1-1">We illustrate the working of the rules by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when it is constrained by the increase rules. In both cases we assume initial cwnd (initcwnd) = 10 segments, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">We illustrate the working of the rules by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when it is constrained by the increase rules. In both cases we assume initial cwnd (initcwnd) = 10 segments, as defined for TCP in <span>[<a href="#RFC6928" class="cite xref">RFC6928</a>]</span>, QUIC in <span>[<a href="#RFC9002" class="cite xref">RFC9002</a>]</span>, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <div id="unconstrained-sender">
 <section id="section-3.1.1">
           <h4 id="name-unconstrained-sender">
 <a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-unconstrained-sender" class="section-name selfRef">Unconstrained sender</a>
           </h4>
-<p id="section-3.1.1-1">Initially, cwnd = initcwnd = 10 segments. The sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments even though the sender is rate-limited (i.e., has never sent more than 10 segments/RTT).<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-1">Initially, cwnd = initcwnd; Therefore, using initcwnd = 10 segments, as defined for TCP in <span>[<a href="#RFC6928" class="cite xref">RFC6928</a>]</span>, QUIC in <span>[<a href="#RFC9002" class="cite xref">RFC9002</a>]</span>, the sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments even though the sender is rate-limited (i.e., has never sent more than 10 segments/RTT).<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sender-constrained-by-the-increase-rules">
@@ -1396,7 +1393,7 @@ cwnd = min(cwnd_new, 1+maxFS)
           <h4 id="name-sender-constrained-by-the-i">
 <a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-sender-constrained-by-the-i" class="section-name selfRef">Sender constrained by the increase rules</a>
           </h4>
-<p id="section-3.1.2-1">Initially, cwnd = initcwnd = 10 segments. The sender transmits 10 segments and pauses; note that FlightSize and maxFS are 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 segments, rule #1 constrains the growth of cwnd because FlightSize &lt; cwnd and rule #2 caps cwnd to be no larger than limit(maxFS) = 2<em>maxFS = 2</em>10 segments = 20 segments.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-1">Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, as defined for TCP in <span>[<a href="#RFC6928" class="cite xref">RFC6928</a>]</span>, QUIC in <span>[<a href="#RFC9002" class="cite xref">RFC9002</a>]</span>, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 segments, rule #1 constrains the growth of cwnd because FlightSize &lt; cwnd and rule #1 caps cwnd to be no larger than limit(maxFS) = 2<em>maxFS = 2</em>10 segments = 20 segments.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1407,9 +1404,9 @@ cwnd = min(cwnd_new, 1+maxFS)
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-discussion" class="section-name selfRef">Discussion</a>
         </h3>
 <p id="section-3.2-1">If the sending rate is less than permitted by cwnd for multiple RTTs, limited either by the sending application or by the receiver-advertised window, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity that the path supports (i.e., over-estimating the capacity).
-Such unlimited growth in the cwnd is therefore disallowed by the first rule.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+Such unlimited growth in the cwnd is therefore disallowed.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2">However, in most common congestion control algorithms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT is permitted to be increased during the immediately following RTT.
-Thus, such an increase is allowed by the second rule.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+Thus, such an increase is allowed by the first rule.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 <div id="rate-based-congestion-control">
 <section id="section-3.2.1">
           <h4 id="name-rate-based-congestion-contr">
@@ -1506,8 +1503,12 @@ can protect their congestion control algorithm from network attack. This is orth
 <span class="refAuthor">Handley, M.</span>, <span class="refAuthor">Padhye, J.</span>, and <span class="refAuthor">S. Floyd</span>, <span class="refTitle">"TCP Congestion Window Validation"</span>, <span class="seriesInfo">RFC 2861</span>, <span class="seriesInfo">DOI 10.17487/RFC2861</span>, <time datetime="2000-06" class="refDate">June 2000</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2861">https://www.rfc-editor.org/rfc/rfc2861</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4341">[RFC4341]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Floyd, S.</span> and <span class="refAuthor">E. Kohler</span>, <span class="refTitle">"Profile for Datagram Congestion Control Protocol (DCCP) Congestion Control ID 2: TCP-like Congestion Control"</span>, <span class="seriesInfo">RFC 4341</span>, <span class="seriesInfo">DOI 10.17487/RFC4341</span>, <time datetime="2006-03" class="refDate">March 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4341">https://www.rfc-editor.org/rfc/rfc4341</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6928">[RFC6928]</dt>
+      <dd>
+<span class="refAuthor">Chu, J.</span>, <span class="refAuthor">Dukkipati, N.</span>, <span class="refAuthor">Cheng, Y.</span>, and <span class="refAuthor">M. Mathis</span>, <span class="refTitle">"Increasing TCP's Initial Window"</span>, <span class="seriesInfo">RFC 6928</span>, <span class="seriesInfo">DOI 10.17487/RFC6928</span>, <time datetime="2013-04" class="refDate">April 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6928">https://www.rfc-editor.org/rfc/rfc6928</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1553,14 +1554,14 @@ information about the state of the network path the flow is using.<a href="#appe
               <p id="appendix-A.1.2-1.1.1">ns-2 allows cwnd to grow when it is rate-limited by rwnd. (Rate-limited by the sending application: not tested.)<a href="#appendix-A.1.2-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="appendix-A.1.2-1.2">
-              <p id="appendix-A.1.2-1.2.1">Until release 3.42, ns-3 allowed cwnd to grow when rate-limited, either due to an application or rwnd limit.  Since release 3.42, ns-3 TCP models conform to rule #2 in <a href="#rules" class="auto internal xref">Section 3</a>, following the current Linux TCP approach in this regard (see next bullet).<a href="#appendix-A.1.2-1.2.1" class="pilcrow">¶</a></p>
+              <p id="appendix-A.1.2-1.2.1">Until release 3.42, ns-3 allowed cwnd to grow when rate-limited, either due to an application or rwnd limit.  Since release 3.42, ns-3 TCP models conform to rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>, following the current Linux TCP approach in this regard (see next bullet).<a href="#appendix-A.1.2-1.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="appendix-A.1.2-1.3">
               <p id="appendix-A.1.2-1.3.1">In Congestion Avoidance, Linux only allows the cwnd to grow when the sender is unconstrained.
 Before kernel version 3.16, this also applied to Slow Start.
 The check for "unconstrained" is perfomed by checking if FlightSize is greater or equal to cwnd.
 Since kernel version 3.16, which was published in August 2014, in Slow Start, the increase
-implements rule #2 in <a href="#rules" class="auto internal xref">Section 3</a> in the <code>tcp_is_cwnd_limited</code> function in <code>tcp.h</code>.<a href="#appendix-A.1.2-1.3.1" class="pilcrow">¶</a></p>
+implements rule #1 in <a href="#rules" class="auto internal xref">Section 3</a> in the <code>tcp_is_cwnd_limited</code> function in <code>tcp.h</code>.<a href="#appendix-A.1.2-1.3.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </section>
@@ -1571,8 +1572,8 @@ implements rule #2 in <a href="#rules" class="auto internal xref">Section 3</a> 
 <a href="#appendix-A.1.3" class="section-number selfRef">A.1.3. </a><a href="#name-assessment" class="section-name selfRef">Assessment</a>
           </h4>
 <p id="appendix-A.1.3-1">Linux implements a limit to cwnd growth in accordance with rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>;
-in Slow Start, this limit follows rule #2, while in Congestion Avoidance, it is more conservative than rule #2.
-The specification and the ns-2 and (older) ns-3 implementations are in conflict with rules #1 and #2 in <a href="#rules" class="auto internal xref">Section 3</a>.<a href="#appendix-A.1.3-1" class="pilcrow">¶</a></p>
+in Slow Start, this limit follows the rule's upper limit, while in Congestion Avoidance, it is more conservative than rule #1.
+The specification and the ns-2 and (older) ns-3 implementations are in conflict with rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>.<a href="#appendix-A.1.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1609,8 +1610,8 @@ The specification and the ns-2 and (older) ns-3 implementations are in conflict 
 <a href="#appendix-A.2.3" class="section-number selfRef">A.2.3. </a><a href="#name-assessment-2" class="section-name selfRef">Assessment</a>
           </h4>
 <p id="appendix-A.2.3-1">Both the specification and the Linux implementation limit the cwnd growth in accordance with rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>;
-in Congestion Avoidance, this limit is more conservative than rule #2 in <a href="#rules" class="auto internal xref">Section 3</a>,
-and in Slow Start, it implements rule #2 in <a href="#rules" class="auto internal xref">Section 3</a>.<a href="#appendix-A.2.3-1" class="pilcrow">¶</a></p>
+in Congestion Avoidance, this limit is more conservative than rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>,
+and in Slow Start, it implements the upper limit of rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>.<a href="#appendix-A.2.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1642,7 +1643,7 @@ Only when these two conditions are met can the cwnd be increased; otherwise, the
 <a href="#appendix-A.3.2" class="section-number selfRef">A.3.2. </a><a href="#name-assessment-3" class="section-name selfRef">Assessment</a>
           </h4>
 <p id="appendix-A.3.2-1">The quoted statement from <span>[<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> prescribes the same cwnd growth limitation that is also specified for Cubic and implemented for both Reno and Cubic in Linux.
-It is in accordance with rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>, and more conservative than rule #2 in <a href="#rules" class="auto internal xref">Section 3</a>.<a href="#appendix-A.3.2-1" class="pilcrow">¶</a></p>
+It is in accordance with rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>, and more conservative.<a href="#appendix-A.3.2-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.3.2-2"><span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.1" class="relref">Section 7.2.1</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> is specifically limited to Slow Start.
 Congestion Avoidance is discussed in <span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.2" class="relref">Section 7.2.2</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span>
 However, this section neither contains a similar rule, nor does it refer back to the rule that limits the growth of cwnd
@@ -1674,7 +1675,7 @@ in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies 
           <h4 id="name-assessment-4">
 <a href="#appendix-A.4.2" class="section-number selfRef">A.4.2. </a><a href="#name-assessment-4" class="section-name selfRef">Assessment</a>
           </h4>
-<p id="appendix-A.4.2-1">With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>, and more conservative than rule #2 in <a href="#rules" class="auto internal xref">Section 3</a>.<a href="#appendix-A.4.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.4.2-1">With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>, and more conservative.<a href="#appendix-A.4.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
