@@ -1379,13 +1379,13 @@ cwnd = min(cwnd_new, 1+maxFS)
         <h3 id="name-example">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-example" class="section-name selfRef">Example</a>
         </h3>
-<p id="section-3.1-1">We illustrate the working of the rules by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when it is constrained by the increase rules. In both cases we assume initial cwnd (initcwnd) = 10 segments, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">We illustrate the working of the rules by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when it is constrained by the increase rules. In both cases we assume initial cwnd (initcwnd) = 10 segments, as defined for TCP in <span>[<a href="#RFC6928" class="cite xref">RFC6928</a>]</span>, QUIC in <span>[<a href="#RFC9002" class="cite xref">RFC9002</a>]</span>, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <div id="unconstrained-sender">
 <section id="section-3.1.1">
           <h4 id="name-unconstrained-sender">
 <a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-unconstrained-sender" class="section-name selfRef">Unconstrained sender</a>
           </h4>
-<p id="section-3.1.1-1">Initially, cwnd = initcwnd = 10 segments. The sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments even though the sender is rate-limited (i.e., has never sent more than 10 segments/RTT).<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-1">Initially, cwnd = initcwnd; Therefore, using initcwnd = 10 segments, as defined for TCP in <span>[<a href="#RFC6928" class="cite xref">RFC6928</a>]</span>, QUIC in <span>[<a href="#RFC9002" class="cite xref">RFC9002</a>]</span>, the sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments even though the sender is rate-limited (i.e., has never sent more than 10 segments/RTT).<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sender-constrained-by-the-increase-rules">
@@ -1393,7 +1393,7 @@ cwnd = min(cwnd_new, 1+maxFS)
           <h4 id="name-sender-constrained-by-the-i">
 <a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-sender-constrained-by-the-i" class="section-name selfRef">Sender constrained by the increase rules</a>
           </h4>
-<p id="section-3.1.2-1">Initially, cwnd = initcwnd = 10 segments. The sender transmits 10 segments and pauses; note that FlightSize and maxFS are 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 segments, rule #1 constrains the growth of cwnd because FlightSize &lt; cwnd and rule #1 caps cwnd to be no larger than limit(maxFS) = 2<em>maxFS = 2</em>10 segments = 20 segments.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-1">Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, as defined for TCP in <span>[<a href="#RFC6928" class="cite xref">RFC6928</a>]</span>, QUIC in <span>[<a href="#RFC9002" class="cite xref">RFC9002</a>]</span>, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 segments, rule #1 constrains the growth of cwnd because FlightSize &lt; cwnd and rule #1 caps cwnd to be no larger than limit(maxFS) = 2<em>maxFS = 2</em>10 segments = 20 segments.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1503,8 +1503,12 @@ can protect their congestion control algorithm from network attack. This is orth
 <span class="refAuthor">Handley, M.</span>, <span class="refAuthor">Padhye, J.</span>, and <span class="refAuthor">S. Floyd</span>, <span class="refTitle">"TCP Congestion Window Validation"</span>, <span class="seriesInfo">RFC 2861</span>, <span class="seriesInfo">DOI 10.17487/RFC2861</span>, <time datetime="2000-06" class="refDate">June 2000</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2861">https://www.rfc-editor.org/rfc/rfc2861</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4341">[RFC4341]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Floyd, S.</span> and <span class="refAuthor">E. Kohler</span>, <span class="refTitle">"Profile for Datagram Congestion Control Protocol (DCCP) Congestion Control ID 2: TCP-like Congestion Control"</span>, <span class="seriesInfo">RFC 4341</span>, <span class="seriesInfo">DOI 10.17487/RFC4341</span>, <time datetime="2006-03" class="refDate">March 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4341">https://www.rfc-editor.org/rfc/rfc4341</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6928">[RFC6928]</dt>
+      <dd>
+<span class="refAuthor">Chu, J.</span>, <span class="refAuthor">Dukkipati, N.</span>, <span class="refAuthor">Cheng, Y.</span>, and <span class="refAuthor">M. Mathis</span>, <span class="refTitle">"Increasing TCP's Initial Window"</span>, <span class="seriesInfo">RFC 6928</span>, <span class="seriesInfo">DOI 10.17487/RFC6928</span>, <time datetime="2013-04" class="refDate">April 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6928">https://www.rfc-editor.org/rfc/rfc6928</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

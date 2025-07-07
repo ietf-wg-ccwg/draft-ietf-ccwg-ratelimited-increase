@@ -206,34 +206,38 @@ Table of Contents
    We illustrate the working of the rules by showing the increase of
    cwnd in two scenarios: when the growth of cwnd is unconstrained, and
    when it is constrained by the increase rules.  In both cases we
-   assume initial cwnd (initcwnd) = 10 segments, a single connection
-   begins with Slow Start, the sender transmits a total of 14 segments
-   but pauses after transmitting 10 segments and resumes the
-   transmission for the remaining 4 segments afterwards, no packets are
-   lost, and an ACK is sent for every packet.
+   assume initial cwnd (initcwnd) = 10 segments, as defined for TCP in
+   [RFC6928], QUIC in [RFC9002], a single connection begins with Slow
+   Start, the sender transmits a total of 14 segments but pauses after
+   transmitting 10 segments and resumes the transmission for the
+   remaining 4 segments afterwards, no packets are lost, and an ACK is
+   sent for every packet.
 
 3.1.1.  Unconstrained sender
 
-   Initially, cwnd = initcwnd = 10 segments.  The sender transmits 10
-   segments and pauses.  Since the sender is in the Slow Start phase,
-   the arrival of an ACK for each of the 10 segments increases the cwnd
-   by 1 segment, resulting in the cwnd increasing to 20 segments.
-   Subsequently, after the pause, the sender transmits 4 segments and
-   pauses again.  As a consequence, the arrival of 4 ACKs results in
-   cwnd further increasing to 24 segments even though the sender is
-   rate-limited (i.e., has never sent more than 10 segments/RTT).
+   Initially, cwnd = initcwnd; Therefore, using initcwnd = 10 segments,
+   as defined for TCP in [RFC6928], QUIC in [RFC9002], the sender
+   transmits 10 segments and pauses.  Since the sender is in the Slow
+   Start phase, the arrival of an ACK for each of the 10 segments
+   increases the cwnd by 1 segment, resulting in the cwnd increasing to
+   20 segments.  Subsequently, after the pause, the sender transmits 4
+   segments and pauses again.  As a consequence, the arrival of 4 ACKs
+   results in cwnd further increasing to 24 segments even though the
+   sender is rate-limited (i.e., has never sent more than 10 segments/
+   RTT).
 
 3.1.2.  Sender constrained by the increase rules
 
-   Initially, cwnd = initcwnd = 10 segments.  The sender transmits 10
-   segments and pauses; note that FlightSize and maxFS are 10 segments
-   at this point.  Since the sender is in the Slow Start phase, the
-   arrival of an ACK for each of the 10 segments increases the cwnd by 1
-   segment, resulting in cwnd increasing to 20 segments.  Subsequently,
-   when the sender resumes and transmits 4 segments, rule #1 constrains
-   the growth of cwnd because FlightSize < cwnd and rule #1 caps cwnd to
-   be no larger than limit(maxFS) = 2_maxFS = 2_10 segments = 20
-   segments.
+   Initially, cwnd = initcwnd.  Therefore, using initcwnd = 10 segments,
+   as defined for TCP in [RFC6928], QUIC in [RFC9002], the sender
+   transmits 10 segments and pauses; note that FlightSize and maxFS are
+   10 segments at this point.  Since the sender is in the Slow Start
+   phase, the arrival of an ACK for each of the 10 segments increases
+   the cwnd by 1 segment, resulting in cwnd increasing to 20 segments.
+   Subsequently, when the sender resumes and transmits 4 segments, rule
+   #1 constrains the growth of cwnd because FlightSize < cwnd and rule
+   #1 caps cwnd to be no larger than limit(maxFS) = 2_maxFS = 2_10
+   segments = 20 segments.
 
 3.2.  Discussion
 
@@ -345,6 +349,11 @@ Table of Contents
               Control Protocol (DCCP) Congestion Control ID 2: TCP-like
               Congestion Control", RFC 4341, DOI 10.17487/RFC4341, March
               2006, <https://www.rfc-editor.org/rfc/rfc4341>.
+
+   [RFC6928]  Chu, J., Dukkipati, N., Cheng, Y., and M. Mathis,
+              "Increasing TCP's Initial Window", RFC 6928,
+              DOI 10.17487/RFC6928, April 2013,
+              <https://www.rfc-editor.org/rfc/rfc6928>.
 
 Appendix A.  The state of RFCs and implementations
 
