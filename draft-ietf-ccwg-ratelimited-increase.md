@@ -301,7 +301,7 @@ cwnd during an application-limited period.
   * Clarified what we mean with an RTT
   * rephrased example regarding initcwnd, citing RFCs 6928 and 9002
   * removed the too vague rule 1 and made rule 2 (now rule 1) a MUST
-* draft-ietf-ccwg-ratelimited-increase-01
+* draft-ietf-ccwg-ratelimited-increase-02
   * Improved the last sentence of section 3.1.2.
   * Removed a confusing and unnecessary sentence about pacing (as suggested at IETF-123).
 
