@@ -542,7 +542,7 @@ Appendix B.  Change Log
       -  removed the too vague rule 1 and made rule 2 (now rule 1) a
          MUST
 
-   *  draft-ietf-ccwg-ratelimited-increase-01
+   *  draft-ietf-ccwg-ratelimited-increase-02
 
       -  Improved the last sentence of section 3.1.2.
 
