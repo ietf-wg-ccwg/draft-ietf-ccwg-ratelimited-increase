@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 8 January 2026                           University of Aberdeen
+Expires: 10 April 2026                            University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                             7 July 2025
+                                                          7 October 2025
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 January 2026.
+   This Internet-Draft will expire on 10 April 2026.
 
 Copyright Notice
 
@@ -235,8 +235,8 @@ Table of Contents
    phase, the arrival of an ACK for each of the 10 segments increases
    the cwnd by 1 segment, resulting in cwnd increasing to 20 segments.
    Subsequently, when the sender resumes and transmits 4 segments, rule
-   #1 constrains the growth of cwnd because FlightSize < cwnd and rule
-   #1 caps cwnd to be no larger than limit(maxFS) = 2_maxFS = 2_10
+   #1 constrains the growth of cwnd because FlightSize < cwnd and it
+   caps cwnd to be no larger than limit(maxFS) = 2 X maxFS = 2 X 10
    segments = 20 segments.
 
 3.2.  Discussion
@@ -275,12 +275,11 @@ Table of Contents
 3.2.2.  Pacing
 
    Pacing mechanisms seek to avoid the negative impacts associated with
-   "bursts" (flights of packets transmitted back-to-back).  This is
-   usually without limiting the number of packets that are sent per RTT.
-   The present specification introduces a limitation using "maxFS",
-   which is measured over an RTT; thus, as long as the number of packets
-   per RTT is unaffected by pacing, the rules in Section 3 also do not
-   constrain the use of pacing mechanisms.
+   "bursts" (flights of packets transmitted back-to-back).  The present
+   specification introduces a limitation using "maxFS", which is
+   measured over an RTT; thus, as long as the number of packets per RTT
+   is unaffected by pacing, the rules in Section 3 also do not constrain
+   the use of pacing mechanisms.
 
 4.  Security Considerations
 
@@ -534,10 +533,21 @@ Appendix B.  Change Log
 
       -  adds an example
 
-   *  draft-ietf-ccwg-ratelimited-increase-01 * Clarified what we mean
-      with an RTT * rephrased example regarding initcwnd, citing RFCs
-      6928 and 9002 * removed the too vague rule 1 and made rule 2 (now
-      rule 1) a MUST
+   *  draft-ietf-ccwg-ratelimited-increase-01
+
+      -  Clarified what we mean with an RTT
+
+      -  rephrased example regarding initcwnd, citing RFCs 6928 and 9002
+
+      -  removed the too vague rule 1 and made rule 2 (now rule 1) a
+         MUST
+
+   *  draft-ietf-ccwg-ratelimited-increase-02
+
+      -  Improved the last sentence of section 3.1.2.
+
+      -  Removed a confusing and unnecessary sentence about pacing (as
+         suggested at IETF-123).
 
 Acknowledgments
 
