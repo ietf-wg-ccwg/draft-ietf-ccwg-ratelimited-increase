@@ -141,7 +141,7 @@ We illustrate the working of the rules by showing the increase of cwnd in two sc
 Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, as defined for TCP in {{?RFC6928}}, QUIC in {{?RFC9002}}, the sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments even though the sender is rate-limited (i.e., has never sent more than 10 segments/RTT).
 
 ### Sender constrained by the increase rules
-Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, as defined for TCP in {{?RFC6928}}, QUIC in {{?RFC9002}}, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 segments, rule #1 constrains the growth of cwnd because FlightSize < cwnd and rule #1 caps cwnd to be no larger than limit(maxFS) = 2*maxFS = 2*10 segments = 20 segments.
+Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, as defined for TCP in {{?RFC6928}}, QUIC in {{?RFC9002}}, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of an ACK for each of the 10 segments increases the cwnd by 1 segment, resulting in cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 segments, rule #1 constrains the growth of cwnd because FlightSize < cwnd and it caps cwnd to be no larger than limit(maxFS) = 2 X maxFS = 2 X 10 segments = 20 segments.
 
 ## Discussion
 
@@ -161,7 +161,7 @@ Congestion control algorithms can also constrain data transmission by explicitly
 
 ### Pacing
 
-Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (flights of packets transmitted back-to-back). This is usually without limiting the number of packets that are sent per RTT. The present specification introduces a limitation using "maxFS", which is measured over an RTT; thus, as long as the number of packets per RTT is unaffected by pacing, the rules in {{rules}} also do not constrain the use of pacing mechanisms.
+Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (flights of packets transmitted back-to-back). The present specification introduces a limitation using "maxFS", which is measured over an RTT; thus, as long as the number of packets per RTT is unaffected by pacing, the rules in {{rules}} also do not constrain the use of pacing mechanisms.
 
 
 # Security Considerations
@@ -298,9 +298,12 @@ cwnd during an application-limited period.
    * refines the "rule" text (shorter, clearer)
    * adds an example
 * draft-ietf-ccwg-ratelimited-increase-01
-      * Clarified what we mean with an RTT
-      * rephrased example regarding initcwnd, citing RFCs 6928 and 9002
-      * removed the too vague rule 1 and made rule 2 (now rule 1) a MUST
+  * Clarified what we mean with an RTT
+  * rephrased example regarding initcwnd, citing RFCs 6928 and 9002
+  * removed the too vague rule 1 and made rule 2 (now rule 1) a MUST
+* draft-ietf-ccwg-ratelimited-increase-02
+  * Improved the last sentence of section 3.1.2.
+  * Removed a confusing and unnecessary sentence about pacing (as suggested at IETF-123).
 
 
 # Acknowledgments
