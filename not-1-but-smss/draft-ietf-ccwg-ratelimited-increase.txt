@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 9 April 2026                             University of Aberdeen
+Expires: 19 May 2026                              University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                          6 October 2025
+                                                        15 November 2025
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 April 2026.
+   This Internet-Draft will expire on 19 May 2026.
 
 Copyright Notice
 
@@ -185,10 +185,10 @@ Table of Contents
    incoming ACK.
 
    Similarly, with rule #1 applied to Congestion Avoidance,
-   limit(maxFS)=1+maxFS, such that equation 3 in [RFC5681] becomes:
+   limit(maxFS)=SMSS+maxFS, such that equation 3 in [RFC5681] becomes:
 
    cwnd_new = cwnd + SMSS*SMSS/cwnd
-   cwnd = min(cwnd_new, 1+maxFS)
+   cwnd = min(cwnd_new, SMSS+maxFS)
 
    where cwnd and SMSS follow their definitions in [RFC5681].
 
