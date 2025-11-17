@@ -154,9 +154,9 @@ Thus, such an increase is allowed by the first rule.
 
 ### Rate-based congestion control
 
-The present document updates congestion control specifications that use a congestion window (cwnd) to limit the number of unacknowledged packets a sender is allowed to emit. Use of a congestion window variable to control sending rate is not the only mechanism available and used in practice.
+The present document updates congestion control specifications that use a cwnd to limit the number of unacknowledged bytes (or packets) that a sender is allowed to emit. Use of a cwnd variable to control sending rate is not the only mechanism available and not the only mechanism that is used in practice.
 
-Congestion control algorithms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{?I-D.cardwell-iccrg-bbr-congestion-control}}). The guiding principle behind the rules in {{rules}} applies to all  congestion control algorithms: in the absence of a congestion indication, a sender should be allowed to increase its rate from the amount of data that it has transmitted during the previous RTT. This holds irrespective of whether the sender is rate-limited or not.
+Congestion control algorithms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{?I-D.cardwell-iccrg-bbr-congestion-control}}). The guiding principle behind the rules in {{rules}} applies to all congestion control algorithms: in the absence of a congestion indication, a sender should be allowed to increase its rate from the amount of data that it has transmitted during the previous RTT. This holds irrespective of whether the sender is rate-limited or not.
 
 
 ### Pacing
@@ -168,6 +168,11 @@ Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (f
 
 While congestion control designs could result in unwanted competing traffic, they do not directly result in new security considerations.
 
+The security considerations are the same as for other
+   congestion control methods.  Such methods rely on the receiver
+   appropriately acknowledging receipt of data.  The ability of an on-
+   path or off-path attacker to influence congestion control depends
+   upon the security properties of the transport protocol being used.
 Transport protocols that provide authentication (including those using encryption), or are carried over protocols that provide authentication,
 can protect their congestion control algorithm from network attack. This is orthogonal to the congestion control rules.
 
@@ -304,6 +309,7 @@ cwnd during an application-limited period.
 * draft-ietf-ccwg-ratelimited-increase-02
   * Improved the last sentence of section 3.1.2.
   * Removed a confusing and unnecessary sentence about pacing (as suggested at IETF-123).
+* draft-ietf-ccwg-ratelimited-increase-03
 
 
 # Acknowledgments
