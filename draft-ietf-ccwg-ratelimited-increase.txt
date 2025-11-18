@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 10 April 2026                            University of Aberdeen
+Expires: 22 May 2026                              University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                          7 October 2025
+                                                        18 November 2025
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 April 2026.
+   This Internet-Draft will expire on 22 May 2026.
 
 Copyright Notice
 
@@ -256,10 +256,10 @@ Table of Contents
 3.2.1.  Rate-based congestion control
 
    The present document updates congestion control specifications that
-   use a congestion window (cwnd) to limit the number of unacknowledged
-   packets a sender is allowed to emit.  Use of a congestion window
-   variable to control sending rate is not the only mechanism available
-   and used in practice.
+   use a cwnd to limit the number of unacknowledged bytes (or packets)
+   that a sender is allowed to emit.  Use of a cwnd variable to control
+   sending rate is not the only mechanism available and not the only
+   mechanism that is used in practice.
 
    Congestion control algorithms can also constrain data transmission by
    explicitly calculating the sending rate over some time interval, by
@@ -286,8 +286,13 @@ Table of Contents
    While congestion control designs could result in unwanted competing
    traffic, they do not directly result in new security considerations.
 
-   Transport protocols that provide authentication (including those
-   using encryption), or are carried over protocols that provide
+   The security considerations are the same as for other congestion
+   control methods.  Such methods rely on the receiver appropriately
+   acknowledging receipt of data.  The ability of an on- path or off-
+   path attacker to influence congestion control depends upon the
+   security properties of the transport protocol being used.  Transport
+   protocols that provide authentication (including those using
+   encryption), or are carried over protocols that provide
    authentication, can protect their congestion control algorithm from
    network attack.  This is orthogonal to the congestion control rules.
 
@@ -548,6 +553,8 @@ Appendix B.  Change Log
 
       -  Removed a confusing and unnecessary sentence about pacing (as
          suggested at IETF-123).
+
+   *  draft-ietf-ccwg-ratelimited-increase-03
 
 Acknowledgments
 
