@@ -124,11 +124,11 @@ cwnd = min(cwnd_new, 2*maxFS)
 ~~~
 where cwnd and SMSS follow their definitions in {{!RFC5681}} and N is the number of previously unacknowledged bytes acknowledged in the incoming ACK.
 
-Similarly, with rule #1 applied to Congestion Avoidance, limit(maxFS)=1+maxFS, such that equation 3 in {{!RFC5681}} becomes:
+Similarly, with rule #1 applied to Congestion Avoidance, limit(maxFS)=SMSS+maxFS, such that equation 3 in {{!RFC5681}} becomes:
 
 ~~~
 cwnd_new = cwnd + SMSS*SMSS/cwnd
-cwnd = min(cwnd_new, 1+maxFS)
+cwnd = min(cwnd_new, SMSS+maxFS)
 ~~~
 where cwnd and SMSS follow their definitions in {{!RFC5681}}.
 
