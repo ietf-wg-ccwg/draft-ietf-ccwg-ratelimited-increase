@@ -1364,11 +1364,11 @@ cwnd = min(cwnd_new, 2*maxFS)
 </pre><a href="#section-3-4" class="pilcrow">¶</a>
 </div>
 <p id="section-3-5">where cwnd and SMSS follow their definitions in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> and N is the number of previously unacknowledged bytes acknowledged in the incoming ACK.<a href="#section-3-5" class="pilcrow">¶</a></p>
-<p id="section-3-6">Similarly, with rule #1 applied to Congestion Avoidance, limit(maxFS)=1+maxFS, such that equation 3 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-6" class="pilcrow">¶</a></p>
+<p id="section-3-6">Similarly, with rule #1 applied to Congestion Avoidance, limit(maxFS)=SMSS+maxFS, such that equation 3 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-6" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3-7">
 <pre>
 cwnd_new = cwnd + SMSS*SMSS/cwnd
-cwnd = min(cwnd_new, 1+maxFS)
+cwnd = min(cwnd_new, SMSS+maxFS)
 </pre><a href="#section-3-7" class="pilcrow">¶</a>
 </div>
 <p id="section-3-8">where cwnd and SMSS follow their definitions in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>.<a href="#section-3-8" class="pilcrow">¶</a></p>
