@@ -1050,7 +1050,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Welzl, et al.</td>
-<td class="center">Expires 22 May 2026</td>
+<td class="center">Expires 1 June 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1066,12 +1066,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfcRFC5681" class="eref">RFC5681</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9002" class="eref">RFC9002</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9260" class="eref">RFC9260</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9438" class="eref">RFC9438</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-11-18" class="published">18 November 2025</time>
+<time datetime="2025-11-28" class="published">28 November 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-05-22">22 May 2026</time></dd>
+<dd class="expires"><time datetime="2026-06-01">1 June 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1134,7 +1134,7 @@ Such a limitation can be caused by the sending application not supplying data or
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 1 June 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1354,7 +1354,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <p id="section-3-2.2.1"><span class="bcp14">MAY</span> restrict maxFS as min(maxFS, pipeACK), using "pipeACK" as defined in <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
-<p id="section-3-3">In rule #1, the function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing from the value of the maxFS parameter within one RTT.
+<p id="section-3-3">In rule #1, the function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing for every ACK that is caused by bytes in flight, starting from the value of the maxFS parameter.
 The RTT includes the minimum path propagation delay plus any delay accumulated by queing in the stack, at the interface and in network elements along the path.
 For example, for Slow Start, as specified in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>, limit(maxFS)=2*maxFS, such that equation 2 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3-4">
