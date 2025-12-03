@@ -287,7 +287,7 @@ With the exception of pacing, this specification conservatively limits the growt
 
 A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to {{?RFC2861}}.
 The text in {{Section 5.1 of ?RFC4341}} is updated by this document to specify the management of the
-cwnd when the sender is rated-limited.
+cwnd when the sender is rate-limited.
 
 
 # Change Log
