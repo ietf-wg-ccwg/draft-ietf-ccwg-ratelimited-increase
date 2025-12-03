@@ -119,8 +119,8 @@ maxFS = max(FlightSize, maxFS)
 ~~~
 
 The sender MUST reset the maxFS parameter to initcwnd after any adjustment that reduces the cwnd. It will then track the current FlightSize.
-   
-  
+ 
+
 2. The sender MUST cap cwnd to be no larger than limit(maxFS).
 
 In rule #1, the function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing for every ACK that acknowledges bytes in flight, starting from the value of the maxFS parameter.
