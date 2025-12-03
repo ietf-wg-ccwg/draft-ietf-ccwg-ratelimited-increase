@@ -109,7 +109,7 @@ This document uses the terms defined in {{Section 2 of !RFC5681}} and {{Section 
 
 This document specifies a uniform rule that congestion control algorithms MUST apply and provides a recommendation that congestion control implementations ought to follow.
 
-When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, senders using a congestion controlled transport protocol:
+When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, the following rules apply for senders using a congestion controlled transport protocol:
 
 1. The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started or restarted. Thereafter when the FlightSize is updated, the sender updates maxFS:
 
