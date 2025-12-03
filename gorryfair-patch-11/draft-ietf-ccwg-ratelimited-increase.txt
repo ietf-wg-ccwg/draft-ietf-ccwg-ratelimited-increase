@@ -157,7 +157,7 @@ Table of Contents
       transfer.
 
    *  initcwnd: The initial value of the congestion window, also known
-      as the "initial window".
+      as the "initial window" ("IW" in [RFC5681]).
 
 3.  Increase rules
 
