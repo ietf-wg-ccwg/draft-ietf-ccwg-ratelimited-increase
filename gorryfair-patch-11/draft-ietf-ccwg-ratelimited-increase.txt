@@ -502,7 +502,7 @@ A.5.2.  Assessment
    ought to follow the method specified in this document.  The current
    guidance relates only to [RFC2861].  The text in Section 5.1 of
    [RFC4341] is updated by this document to specify the management of
-   the cwnd when the sender is rated-limited.
+   the cwnd when the sender is rate-limited.
 
 Appendix B.  Change Log
 
