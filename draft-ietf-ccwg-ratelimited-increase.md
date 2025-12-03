@@ -1,4 +1,4 @@
----
+NOTE---
 title: "Increase of the Congestion Window when the Sender Is Rate-Limited"
 abbrev: "Rate-Limited cwnd Increase"
 category: std
@@ -139,7 +139,7 @@ cwnd = min(cwnd_new, SMSS+maxFS)
 ~~~
 where cwnd and SMSS follow their definitions in {{!RFC5681}}.
 
-NOTE: This specification defines the current method used to increase the cwnd for a rate-limited sender. Without a way to reduce cwnd when the transport sender becomes rate-limited, rule #1 allows maxFS to stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. This is remedied by "Congestion Window Validation" in {{!RFC7661}}, which also defines a "pipeACK" variable that measures the recently acknowledged size of the network pipe when the sender was rate-limited. 
+NOTE: This specification defines the current method used to increase the cwnd for a rate-limited sender. Without a way to reduce cwnd when the transport sender becomes rate-limited, rule #1 allows maxFS to stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. This is remedied by "Congestion Window Validation" in {{!RFC7661}}, which also defines a "pipeACK" variable that measures the recently acknowledged size of the network pipe when the sender was rate-limited.
 
 ## Example
 We illustrate the working of rule #1 by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when the rate-limited sender is constrained by the increase rule. In both cases, we assume the initial cwnd (initcwnd) = 10 segments, as defined for TCP in {{?RFC6928}} and QUIC in {{?RFC9002}}, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.
