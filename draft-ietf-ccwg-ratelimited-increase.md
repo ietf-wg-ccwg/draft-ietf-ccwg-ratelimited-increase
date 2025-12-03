@@ -149,7 +149,7 @@ We illustrate the working of rule #1 by showing the increase of cwnd in two scen
 Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments, even though the sender is rate-limited (i.e., has never sent more than 10 segments/RTT).
 
 ### Sender constrained by the increase rules
-For simplicty, this example accounts for the cwnd in segments, rather than bytes.
+For simplicity, this example accounts for the cwnd in segments, rather than bytes.
 Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are both 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 new segments, rule #1 constrains the growth of the cwnd because FlightSize < cwnd and therefore this caps the cwnd to be no larger than limit(maxFS) = 2 X maxFS = 2 X 10 segments = 20 segments.
 
 ## Discussion
