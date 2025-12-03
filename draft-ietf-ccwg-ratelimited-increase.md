@@ -119,7 +119,7 @@ maxFS = max(FlightSize, maxFS)
 ~~~
 
 The sender MUST reset the maxFS parameter to initcwnd after any adjustment that reduces the cwnd. It will then track the current FlightSize.
- 
+
 
 2. The sender MUST cap cwnd to be no larger than limit(maxFS).
 
