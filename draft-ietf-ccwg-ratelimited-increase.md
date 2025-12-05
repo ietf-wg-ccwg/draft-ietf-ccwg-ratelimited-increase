@@ -177,7 +177,7 @@ congestion control methods.  Such methods rely on the receiver
 appropriately acknowledging receipt of data.  The ability of an on-path or off-path attacker to influence congestion control depends
 upon the security properties of the transport protocol being used.
 Transport protocols that provide authentication (including those using encryption), or are carried over protocols that provide authentication,
-can protect their congestion control algorithm from network attacks. This is orthogonal to the specification of congestion control rules.
+can protect their congestion control algorithm from network attack. This is orthogonal to the specification of congestion control rules.
 
 # IANA Considerations
 
