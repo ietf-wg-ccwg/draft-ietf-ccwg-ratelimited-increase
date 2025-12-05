@@ -304,7 +304,7 @@ Table of Contents
    properties of the transport protocol being used.  Transport protocols
    that provide authentication (including those using encryption), or
    are carried over protocols that provide authentication, can protect
-   their congestion control algorithm from network attacks.  This is
+   their congestion control algorithm from network attack.  This is
    orthogonal to the specification of congestion control rules.
 
 5.  IANA Considerations
