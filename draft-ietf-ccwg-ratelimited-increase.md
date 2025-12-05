@@ -112,14 +112,13 @@ This document specifies a uniform rule that congestion control algorithms MUST a
 
 When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, the following rules apply for senders using a congestion controlled transport protocol:
 
-1. The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started or restarted. Thereafter when the FlightSize is updated, the sender updates maxFS:
+1. The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter when the FlightSize is updated, the sender updates maxFS:
 
 ~~~
 maxFS = max(FlightSize, maxFS)
 ~~~
 
-The sender MUST reset the maxFS parameter to initcwnd after any adjustment that reduces the cwnd. It will then track the current FlightSize.
-
+Upon a reduction of cwnd (for any reason), the maxFS MUST be reset to zero. This results in a maxFS value that reflects the first FlightSize measurement taken after the cwnd reduction.
 
 2. The sender MUST cap cwnd to be no larger than limit(maxFS).
 
