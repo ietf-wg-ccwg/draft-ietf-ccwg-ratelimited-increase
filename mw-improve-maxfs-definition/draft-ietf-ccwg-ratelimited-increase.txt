@@ -154,10 +154,9 @@ Table of Contents
    *  maxFS: the largest value of FlightSize since the last time that
       cwnd was decreased.  If cwnd has never been decreased, maxFS is
       the maximum value of FlightSize since the start of the data
-      transfer.  Upon a reduction in the cwnd (for any reason), the
-      maxFS is reset to zero.  This results in a maxFS value that
-      reflects the first FlightSize measurement taken after the cwnd
-      reduction.
+      transfer.  Upon a reduction of cwnd (for any reason), the maxFS is
+      reset to zero.  This results in a maxFS value that reflects the
+      first FlightSize measurement taken after the cwnd reduction.
 
    *  initcwnd: The initial value of the congestion window, also known
       as the "initial window" ("IW" in [RFC5681]).
