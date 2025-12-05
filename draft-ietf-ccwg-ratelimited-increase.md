@@ -103,7 +103,7 @@ An appendix provides an overview of the divergence in current RFCs and some curr
 
 This document uses the terms defined in {{Section 2 of !RFC5681}} and {{Section 3 of !RFC7661}}. Additionally, we define:
 
-- maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer. Upon a reduction of cwnd (for any reason), the maxFS is reset to zero. This results in a maxFS value that reflects the first FlightSize measurement taken after the cwnd reduction.
+- maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.
 - initcwnd: The initial value of the congestion window, also known as the "initial window" ("IW" in {{!RFC5681}}).
 
 # Increase rules {#rules}
@@ -112,14 +112,13 @@ This document specifies a uniform rule that congestion control algorithms MUST a
 
 When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, the following rules apply for senders using a congestion controlled transport protocol:
 
-1. The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started or restarted. Thereafter when the FlightSize is updated, the sender updates maxFS:
+1. The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter when the FlightSize is updated, the sender updates maxFS:
 
 ~~~
 maxFS = max(FlightSize, maxFS)
 ~~~
 
-The sender MUST reset the maxFS parameter to initcwnd after any adjustment that reduces the cwnd. It will then track the current FlightSize.
-
+Upon a reduction of cwnd (for any reason), the maxFS MUST be reset to zero. This results in a maxFS value that reflects the first FlightSize measurement taken after the cwnd reduction.
 
 2. The sender MUST cap cwnd to be no larger than limit(maxFS).
 
