@@ -93,7 +93,7 @@ become larger than the current flight size, and how to respond to detected conge
 In contrast, this present document concerns the increase in cwnd when a sender is rate-limited. These two topics are distinct,
 but are related, because both describe the management of the cwnd when a sender does not fully utilise the current cwnd.
 
-An appendix provides an overview of the divergence in current RFCs and some current implementations regarding cwnd increase when the sender is rate-limited.
+An appendix provides an overview of the divergence in current RFCs and some implementations regarding cwnd increase when the sender is rate-limited (to be removed before publication).
 
 # Conventions and Definitions
 
@@ -106,23 +106,21 @@ This document uses the terms defined in {{Section 2 of !RFC5681}} and {{Section 
 - maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.
 - initcwnd: The initial value of the congestion window, also known as the "initial window" ("IW" in {{!RFC5681}}).
 
-# Increase rules {#rules}
+# Rate-Limited Increase {#rules}
 
-This document specifies a uniform rule that congestion control algorithms MUST apply and provides a recommendation that congestion control implementations ought to follow.
+When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, the following  "Rate-Limited Increase" rules apply for senders using a congestion controlled transport protocol:
 
-When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, the following rules apply for senders using a congestion controlled transport protocol:
-
-1. The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter when the FlightSize is updated, the sender updates maxFS:
+The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter when the FlightSize is updated, the sender updates maxFS:
 
 ~~~
 maxFS = max(FlightSize, maxFS)
 ~~~
 
-Upon a reduction of cwnd (for any reason), the maxFS MUST be reset to zero. This results in a maxFS value that reflects the first FlightSize measurement taken after the cwnd reduction.
+Upon a reduction of cwnd (for any reason), maxFS MUST be reset to zero. This results in a maxFS value that reflects the first FlightSize measurement taken after the cwnd reduction.
 
-2. The sender MUST cap cwnd to be no larger than limit(maxFS).
+The sender MUST cap cwnd to be no larger than limit(maxFS).
 
-In rule #1, the function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing for every ACK that acknowledges bytes in flight, starting from the value of the maxFS parameter.
+The function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing for every ACK that acknowledges bytes in flight, starting from the value of the maxFS parameter.
 For example, for Slow Start, as specified in {{!RFC5681}}, limit(maxFS)=2*maxFS, such that equation 2 in {{!RFC5681}} becomes:
 
 ~~~
@@ -131,7 +129,7 @@ cwnd = min(cwnd_new, 2*maxFS)
 ~~~
 where cwnd and SMSS follow their definitions in {{!RFC5681}} and N is the number of previously unacknowledged bytes acknowledged in the incoming ACK.
 
-Similarly, with rule #1 applied to Congestion Avoidance, limit(maxFS)=SMSS+maxFS, such that equation 3 in {{!RFC5681}} becomes:
+Similarly, with Rate-Limited Increase applied in Congestion Avoidance, limit(maxFS)=SMSS+maxFS, such that equation 3 in {{!RFC5681}} becomes:
 
 ~~~
 cwnd_new = cwnd + SMSS*SMSS/cwnd
@@ -139,36 +137,35 @@ cwnd = min(cwnd_new, SMSS+maxFS)
 ~~~
 where cwnd and SMSS follow their definitions in {{!RFC5681}}.
 
-NOTE: This specification defines the current method used to increase the cwnd for a rate-limited sender. Without a way to reduce cwnd when the transport sender becomes rate-limited, rule #1 allows maxFS to stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. This is remedied by "Congestion Window Validation" in {{!RFC7661}}, which also defines a "pipeACK" variable that measures the recently acknowledged size of the network pipe when the sender was rate-limited.
+NOTE: This specification defines the current method used to increase the cwnd for a rate-limited sender. Without a way to reduce cwnd when the transport sender becomes rate-limited, maxFS can stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. This is remedied by "Congestion Window Validation" in {{!RFC7661}}, which also defines a "pipeACK" variable that measures the recently acknowledged size of the network pipe when the sender was rate-limited.
 
 ## Example
-We illustrate the working of rule #1 by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when the rate-limited sender is constrained by the increase rule. In both cases, we assume the initial cwnd (initcwnd) = 10 segments, as defined for TCP in {{?RFC6928}} and QUIC in {{?RFC9002}}, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.
+We illustrate the working of Rate-Limited Increase by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when the rate-limited sender is constrained by Rate-Limited Increase. For simplicity, this example accounts for the cwnd in segments, rather than bytes. In both cases, we assume the initial cwnd (initcwnd) = 10 segments, as defined for TCP in {{?RFC6928}} and QUIC in {{?RFC9002}}, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.
 
 ### Unconstrained sender
-Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments, even though the sender is rate-limited (i.e., has never sent more than 10 segments/RTT).
+Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments, even though the sender is rate-limited (i.e., has never sent more than 10 segments per round-trip time (RTT)).
 
-### Sender constrained by the increase rules
-For simplicity, this example accounts for the cwnd in segments, rather than bytes.
-Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are both 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 new segments, rule #1 constrains the growth of the cwnd because FlightSize < cwnd and therefore this caps the cwnd to be no larger than limit(maxFS) = 2 X maxFS = 2 X 10 segments = 20 segments.
+### Sender constrained by Rate-Limited Increase
+Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are both 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 new segments, Rate-Limited Increase constrains the growth of the cwnd because FlightSize < cwnd and therefore this caps the cwnd to be no larger than limit(maxFS) = 2 X maxFS = 2 X 10 segments = 20 segments.
 
 ## Discussion
 
 If the sending rate is less than the rate permitted by the cwnd for multiple RTTs, limited either by the sending application or by the receiver-advertised window, a continuous increase in the cwnd would cause a mismatch between the cwnd and the capacity that the path supports (i.e., over-estimating the capacity).
 Such unlimited growth in the cwnd is therefore disallowed.
 
-However, in most common congestion control algorithms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT (where a sender was cwnd-limited) permits the cwnd to be increased during the immediately following RTT. This increase is allowed by rule #1.
+However, in most common congestion control algorithms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT (where a sender was cwnd-limited) permits the cwnd to be increased during the immediately following RTT. This increase is allowed by Rate-Limited Increase.
 
 
 ### Rate-based congestion control
 
 The present document updates congestion control specifications that use a cwnd to limit the number of unacknowledged bytes (or packets) that a sender is allowed to emit. Use of a cwnd variable to control sending rate is not the only mechanism available and not the only mechanism that is used in practice.
 
-Congestion control algorithms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{?I-D.ietf-ccwg-bbr}}). The guiding principle behind rule #1 applies to all congestion control algorithms: in the absence of a congestion indication, a sender is allowed to increase its rate from the amount of data that it has transmitted during the previous RTT. This holds irrespective of whether the sender is rate-limited or not.
+Congestion control algorithms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{?I-D.ietf-ccwg-bbr}}). The guiding principle behind Rate-Limited Increase applies to all congestion control algorithms: in the absence of a congestion indication, a sender is allowed to increase its rate from the amount of data that it has transmitted during the previous RTT (this holds irrespective of whether the sender is rate-limited or not). Therefore, congestion control algorithms SHOULD implement a behavior that is equivalent to Rate-Limited Increase, irrespective of whether they use a cwnd variable or not.
 
 
 ### Pacing
 
-Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (flights of packets transmitted back-to-back). The present specification introduces a limit using "maxFS"; thus, as long as the number of packets per RTT is unaffected by pacing, rule #1 also does not constrain the use of pacing mechanisms.
+Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (flights of packets transmitted back-to-back). Rate-Limited Increase introduces a limit using "maxFS", which is based on the number of bytes in flight during a previous RTT; thus, as long as the number of bytes in flight per RTT is unaffected by pacing, Rate-Limited Increase does not constrain the use of pacing mechanisms.
 
 
 # Security Considerations
@@ -176,12 +173,11 @@ Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (f
 While congestion control designs could result in unwanted competing traffic, they do not directly result in new security considerations.
 
 The security considerations are the same as for other
-   congestion control methods.  Such methods rely on the receiver
-   appropriately acknowledging receipt of data.  The ability of an on-
-   path or off-path attacker to influence congestion control depends
-   upon the security properties of the transport protocol being used.
+congestion control methods.  Such methods rely on the receiver
+appropriately acknowledging receipt of data.  The ability of an on-path or off-path attacker to influence congestion control depends
+upon the security properties of the transport protocol being used.
 Transport protocols that provide authentication (including those using encryption), or are carried over protocols that provide authentication,
-can protect their congestion control algorithm from network attack. This is orthogonal to the specification of congestion control rules.
+can protect their congestion control algorithm from network attacks. This is orthogonal to the specification of congestion control rules.
 
 # IANA Considerations
 
@@ -211,18 +207,18 @@ information about the state of the network path the flow is using.
 ### Implementation {#tcp-impl}
 
 - ns-2 allows cwnd to grow when it is rate-limited by rwnd. (Rate-limited by the sending application: not tested.)
-- Until release 3.42, ns-3 allowed cwnd to grow when rate-limited, either due to an application or rwnd limit.  Since release 3.42, ns-3 TCP models conform to rule #1 in {{rules}}, following the current Linux TCP approach in this regard (see next bullet).
+- Until release 3.42, ns-3 allowed cwnd to grow when rate-limited, either due to an application or rwnd limit.  Since release 3.42, ns-3 TCP models conform to Rate-Limited Increase, following the current Linux TCP approach in this regard (see next bullet).
 - In Congestion Avoidance, Linux only allows the cwnd to grow when the sender is unconstrained.
 Before kernel version 3.16, this also applied to Slow Start.
 The check for "unconstrained" is perfomed by checking if FlightSize is greater or equal to cwnd.
 Since kernel version 3.16, which was published in August 2014, in Slow Start, the increase
-implements rule #1 in {{rules}} in the `tcp_is_cwnd_limited` function in `tcp.h`.
+implements Rate-Limited Increase in the `tcp_is_cwnd_limited` function in `tcp.h`.
 
 ### Assessment
 
-Linux implements a limit to cwnd growth in accordance with rule #1 in {{rules}};
-in Slow Start, this limit follows the rule's upper limit, while in Congestion Avoidance, it is more conservative than rule #1.
-The specification and the ns-2 and (older) ns-3 implementations are in conflict with rule #1 in {{rules}}.
+Linux implements a limit to cwnd growth in accordance with Rate-Limited Increase;
+in Slow Start, this limit follows the rule's upper limit, while in Congestion Avoidance, it is more conservative than Rate-Limited Increase.
+The specification and the ns-2 and (older) ns-3 implementations are in conflict with Rate-Limited Increase.
 
 ## CUBIC
 
@@ -238,9 +234,9 @@ The description of Linux described in {{tcp-impl}} also applies to Cubic.
 
 ### Assessment
 
-Both the specification and the Linux implementation limit the cwnd growth in accordance with rule #1 in {{rules}};
-in Congestion Avoidance, this limit is more conservative than rule #1 in {{rules}},
-and in Slow Start, it implements the upper limit of rule #1.
+Both the specification and the Linux implementation limit the cwnd growth in accordance with Rate-Limited Increase;
+in Congestion Avoidance, this limit is more conservative than Rate-Limited Increase,
+and in Slow Start, it implements the "maxFS" upper limit of Rate-Limited Increase.
 
 ## The Stream Control Transmission Protocol (SCTP)
 
@@ -256,12 +252,12 @@ Only when these two conditions are met can the cwnd be increased; otherwise, the
 ### Assessment
 
 The quoted statement from {{!RFC9260}} prescribes the same cwnd growth limitation that is also specified for Cubic and implemented for both Reno and Cubic in Linux.
-It is in accordance with rule #1 in {{rules}}, and more conservative.
+It is in accordance with Rate-Limited Increase, and more conservative.
 
 {{Section 7.2.1 of !RFC9260}} is specifically limited to Slow Start.
 Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}}
 However, this section neither contains a similar rule, nor does it refer back to the rule that limits the growth of cwnd
-in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies to Slow Start, whereas the rules in {{rules}} apply to both Slow Start and Congestion Avoidance.
+in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies to Slow Start, whereas Rate-Limited Increase applies to both Slow Start and Congestion Avoidance.
 
 ## The QUIC Transport Protocol
 
@@ -273,7 +269,7 @@ in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies 
 
 ### Assessment
 
-With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with rule #1 in {{rules}}, and more conservative.
+With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with Rate-Limited Increase, and more conservative.
 
 ## The Datagram Congestion Control Protocol (DCCP) CCID2
 
