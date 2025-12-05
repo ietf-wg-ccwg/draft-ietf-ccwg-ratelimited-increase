@@ -1332,7 +1332,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-2.1-1">This document uses the terms defined in <span><a href="https://rfc-editor.org/rfc/rfc5681#section-2" class="relref">Section 2</a> of [<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> and <span><a href="https://rfc-editor.org/rfc/rfc7661#section-3" class="relref">Section 3</a> of [<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>. Additionally, we define:<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.1-2.1">
-            <p id="section-2.1-2.1.1">maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer. Upon a reduction of cwnd (for any reason), the maxFS is reset to zero. This results in a maxFS value that reflects the first FlightSize measurement taken after the cwnd reduction.<a href="#section-2.1-2.1.1" class="pilcrow">¶</a></p>
+            <p id="section-2.1-2.1.1">maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.<a href="#section-2.1-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.1-2.2">
             <p id="section-2.1-2.2.1">initcwnd: The initial value of the congestion window, also known as the "initial window" ("IW" in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>).<a href="#section-2.1-2.2.1" class="pilcrow">¶</a></p>
@@ -1351,7 +1351,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3-2">When FlightSize &lt; cwnd, regardless of the current state of a congestion control algorithm, the following rules apply for senders using a congestion controlled transport protocol:<a href="#section-3-2" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3-3">
 <li id="section-3-3.1">
-          <p id="section-3-3.1.1">The sender <span class="bcp14">MUST</span> initialise the maxFS parameter to initcwnd when the congestion control algorithm is started or restarted. Thereafter when the FlightSize is updated, the sender updates maxFS:<a href="#section-3-3.1.1" class="pilcrow">¶</a></p>
+          <p id="section-3-3.1.1">The sender <span class="bcp14">MUST</span> initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter when the FlightSize is updated, the sender updates maxFS:<a href="#section-3-3.1.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
 <div class="alignLeft art-text artwork" id="section-3-4">
@@ -1359,7 +1359,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 maxFS = max(FlightSize, maxFS)
 </pre><a href="#section-3-4" class="pilcrow">¶</a>
 </div>
-<p id="section-3-5">The sender <span class="bcp14">MUST</span> reset the maxFS parameter to initcwnd after any adjustment that reduces the cwnd. It will then track the current FlightSize.<a href="#section-3-5" class="pilcrow">¶</a></p>
+<p id="section-3-5">Upon a reduction of cwnd (for any reason), the maxFS <span class="bcp14">MUST</span> be reset to zero. This results in a maxFS value that reflects the first FlightSize measurement taken after the cwnd reduction.<a href="#section-3-5" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3-6">
 <li id="section-3-6.1">
           <p id="section-3-6.1.1">The sender <span class="bcp14">MUST</span> cap cwnd to be no larger than limit(maxFS).<a href="#section-3-6.1.1" class="pilcrow">¶</a></p>
