@@ -103,7 +103,7 @@ An appendix provides an overview of the divergence in current RFCs and some curr
 
 This document uses the terms defined in {{Section 2 of !RFC5681}} and {{Section 3 of !RFC7661}}. Additionally, we define:
 
-- maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.
+- maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer. Upon a reduction in the cwnd (for any reason), the maxFS is reset to zero. This results in a maxFS value that reflects the first FlightSize measurement taken after the cwnd reduction.
 - initcwnd: The initial value of the congestion window, also known as the "initial window" ("IW" in {{!RFC5681}}).
 
 # Increase rules {#rules}
