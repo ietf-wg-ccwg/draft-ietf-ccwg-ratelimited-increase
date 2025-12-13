@@ -286,7 +286,7 @@ cwnd when the sender is rate-limited.
 
 # An Example using cwnd represented in bytes
 
-The following informatibe exmaple is provided for a sender that maintains the cwnd in bytes. This example uses a simplified calculation for the cwnd increase in slow start that can inflate the cwnd by not more than the number of bytes acknowledged in a single ACK.
+The following informative example is provided for a sender that maintains the cwnd in bytes. This example uses a simplified calculation for the cwnd increase in slow start that can inflate the cwnd by not more than the number of bytes acknowledged in a single ACK.
 
 30 packets are sent in this example in three bursts of packetys.
 The initial sender state is:
