@@ -513,7 +513,7 @@ Appendix B.  An Example using cwnd represented in bytes
    cwnd by not more than the number of bytes acknowledged in a single
    ACK.
 
-   30 packets are sent in this example in three bursts of packetys.  The
+   30 packets are sent in this example in three bursts of packets.  The
    initial sender state is: MSS=1000 bytes cwnd=10000 bytes maxFS=10000
    bytes ssthresh is infinity, i.e. the congestion control algorithm is
    in slow start.  One ACK is generated for each 2*MSS received bytes.
