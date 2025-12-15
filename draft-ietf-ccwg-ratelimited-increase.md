@@ -286,9 +286,9 @@ cwnd when the sender is rate-limited.
 
 # An Example using cwnd represented in bytes
 
-The following informative example is provided for a sender that maintains the cwnd in bytes. This example uses a simplified calculation for the cwnd increase in slow start that can inflate the cwnd by not more than the number of bytes acknowledged in a single ACK.
+The following informative example is provided for a sender that maintains the cwnd in bytes. This example uses a simplified calculation for the cwnd increase in slow start.
 
-30 packets are sent in this example in three bursts of packets.
+XX packets are sent in this example in three bursts of packets.
 The initial sender state is:
   MSS=1000 bytes
   cwnd=10000 bytes
@@ -296,60 +296,13 @@ The initial sender state is:
   ssthresh is infinity, i.e. the congestion control algorithm is in slow start.
   One ACK is generated for each 2*MSS received bytes.
 
-Send 4000B MSS=1000, cwnd =10000
+Sender has 4000B to send: MSS=1000, cwnd =10000
   Send 1000  FS=1000; maxFS=10000
   Send 2000  FS=2000; maxFS=10000
   Send 3000  FS=3000; maxFS=10000
   Send 4000  FS=4000; maxFS=10000
-Received 2 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
-  ACK for 2000 ACK’ed=2000; maxFS=10000, cwnd+=2000; cwnd=12000
-  ACK for 4000 ACK’ed=2000; maxFS=10000, cwnd+=2000; cwnd=14000
-Note: cwnd was increased, because FS used more than one half of cwnd.
-
-Send 8000B MSS=1000, cwnd =10000
-  Send 9000, FS=1000; maxFS=10000
-  Send 10000 FS=2000; maxFS=10000
-  Send 11000 FS=3000; maxFS=10000
-  Send 12000 FS=4000; maxFS=10000
-  Send 13000 FS=5000; maxFS=10000
-  Send 14000 FS=6000; maxFS=10000
-  Send 15000 FS=7000; maxFS=10000
-  Send 16000 FS=8000; maxFS=10000
-Received 4  ACKs, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
-  ACK for 10000, ACK’ed=2000; maxFS=10000; cwnd+=2000; cwnd=18000
-  ACK for 12000, ACK’ed=2000; maxFS=10000; cwnd+=2000; cwnd=20000
-  ACK for 14000, ACK’ed=2000; maxFS=10000; cwnd+=0;    cwnd=20000
-  ACK for 16000, ACK’ed=2000; maxFS=10000; cwnd+=0;    cwnd=20000
-Note: cwnd increased,for the part of flight that used more than one half of cwnd.
-
-Send 12000B MSS=1000, cwnd =20000
-  Send 17000 FS=1000; maxFS=10000
-  Send 18000 FS=2000; maxFS=10000
-  Send 19000 FS=3000; maxFS=10000
-  Send 20000 FS=4000; maxFS=10000
-  Send 21000 FS=5000; maxFS=10000
-  Send 22000 FS=6000; maxFS=10000
-  Send 23000 FS=7000; maxFS=10000
-  Send 24000 FS=8000; maxFS=10000
-  Send 25000 FS=9000; maxFS=10000
-  Send 26000 FS=10000; maxFS=10000
-  Send 27000 FS=11000; maxFS=11000
-  Send 28000 FS=12000; maxFS=12000
-Received 6  ACKs, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
-  ACK for 18000, ACK’ed=2000; maxFS=12000; cwnd+=2000; cwnd=22000
-  ACK for 20000, ACK’ed=2000; maxFS=12000; cwnd+=2000; cwnd=24000
-  ACK for 22000, ACK’ed=2000; maxFS=12000; cwnd+=0;    cwnd=24000
-  ACK for 24000, ACK’ed=2000; maxFS=12000; cwnd+=0;    cwnd=24000
-  ACK for 26000, ACK’ed=2000; maxFS=12000; cwnd+=0;    cwnd=24000
-  ACK for 28000, ACK’ed=2000; maxFS=12000; cwnd+=0;    cwnd=24000
-Note: cwnd increased,for the part of flight that used more than one half of cwnd.
-
-Send 2000B, MSS=1000B, cwnd =6000
-  Send 29000 FS=1000; maxFS=12000
-  Send 30000 FS=2000; maxFS=12000
-Received 1 ACK,   if (cwnd<2*maxFS) {cwnd +=ACK’ed}
-  ACK for 30000, ACK’ed=2000; maxFS= 12000, cwnd+=0;   cwnd= 24000
-Note: cwnd was not increased, because FS did not use more than one half of cwnd.
+  
+  etc ... << example here >>
 
 ------------
 
