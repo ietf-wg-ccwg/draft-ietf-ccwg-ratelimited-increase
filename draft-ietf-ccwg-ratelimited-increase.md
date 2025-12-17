@@ -93,7 +93,7 @@ become larger than the current flight size, and how to respond to detected conge
 In contrast, this present document concerns the increase in cwnd when a sender is rate-limited. These two topics are distinct,
 but are related, because both describe the management of the cwnd when a sender does not fully utilise the current cwnd.
 
-An appendix provides an overview of the divergence in current RFCs and some implementations regarding cwnd increase when the sender is rate-limited (to be removed before publication).
+An appendix provides an example of how rate-limited increase can play out. Another appendix provides an overview of the divergence in current RFCs and some implementations regarding cwnd increase when the sender is rate-limited (the second appendix is to be removed before publication).
 
 # Conventions and Definitions
 
@@ -185,6 +185,127 @@ This document requests no IANA action.
 
 
 --- back
+
+
+# An Example Using cwnd Represented in Bytes
+
+The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd.
+
+The initial sender state is:
+
+~~~~~~~~~~
+  Sender sequence number (seqno) = 0 
+  MSS = 1000 bytes
+  cwnd = 10000 bytes (initcwnd)
+  maxFS = 10000 bytes (initcwnd)
+  FlightSize (FS) = 0 bytes
+  ssthresh is infinity, i.e. the congestion control algorithm is in slow start.
+~~~~~~~~~~
+
+The network path’s bandwidth-delay product is such that, throughout this example, all packets in each round are sent before an ACK is received for the first packet in a round.
+  One ACK is generated for each 2*MSS received bytes.
+
+Round 1, the sender has 4000B to send in 4 packets: MSS=1000, cwnd=10000
+
+~~~~~~~~~~
+  Send  seqno=0; FS=1000; maxFS=10000
+  Send  seqno=1000; FS=1000; maxFS=10000
+  Send  seqno=2000; FS=2000; maxFS=10000
+  Send  seqno=3000; FS=3000; maxFS=10000
+~~~~~~~~~~
+
+Received 2 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+
+~~~~~~~~~~
+  ACK for  2000 ACK’ed=2000 : cwnd+= 2000; cwnd=12000
+  ACK for  4000 ACK’ed=2000 : cwnd+= 2000; cwnd=14000
+~~~~~~~~~~
+
+Note: This round maxFS was not increased and cwnd was increased.
+
+Round 2, the sender has 8000B to send in 8 packets: MSS=1000, cwnd=14000
+
+~~~~~~~~~~
+  Send  seqno=4000; FS=1000; maxFS=10000
+  Send  seqno=5000; FS=2000; maxFS=10000
+  Send  seqno=6000; FS=3000; maxFS=10000
+  Send  seqno=7000; FS=4000; maxFS=10000
+  Send  seqno=8000; FS=5000; maxFS=10000
+  Send  seqno=9000; FS=6000; maxFS=10000
+  Send seqno=10000; FS=7000; maxFS=10000
+  Send seqno=11000; FS=8000; maxFS=10000
+~~~~~~~~~~
+
+Received 4 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+
+~~~~~~~~~~
+  ACK for  6000 ACK’ed=2000 : cwnd+=2000; cwnd=16000
+  ACK for  8000 ACK’ed=2000 : cwnd+=2000; cwnd=18000
+  ACK for 10000 ACK’ed=2000 : cwnd+=2000; cwnd=20000
+  ACK for 12000 ACK’ed=2000 : cwnd+=0; cwnd=20000
+~~~~~~~~~~
+
+Note: This round maxFS was not increased and cwnd was increased to 2*maxFS.
+
+Round 3, the sender has 4000B to send in 4 packets: MSS=1000, cwnd=20000
+
+~~~~~~~~~~
+  Send seqno=12000; FS=1000; maxFS=10000
+  Send seqno=13000; FS=2000; maxFS=10000
+  Send seqno=14000; FS=3000; maxFS=10000
+  Send seqno=15000; FS=4000; maxFS=10000
+~~~~~~~~~~
+
+Received 2 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+
+~~~~~~~~~~
+  ACK for 14000 ACK’ed=2000 : cwnd+=0; cwnd=20000
+  ACK for 16000 ACK’ed=2000 : cwnd+=0; cwnd=20000
+~~~~~~~~~~
+
+Note: This round maxFS was not increased and cwnd was not increased.
+
+Round 4, the sender has 20000B to send in 20 packets: MSS=1000, cwnd=20000
+
+~~~~~~~~~~
+  Send seqno=16000; FS= 1000; maxFS=10000
+  Send seqno=17000; FS= 2000; maxFS=10000
+  Send seqno=18000; FS= 3000; maxFS=10000
+  Send seqno=19000; FS= 4000; maxFS=10000
+  Send seqno=20000; FS= 5000; maxFS=10000
+  Send seqno=21000; FS= 6000; maxFS=10000
+  Send seqno=22000; FS= 7000; maxFS=10000
+  Send seqno=23000; FS= 8000; maxFS=10000
+  Send seqno=24000; FS= 9000; maxFS=10000
+  Send seqno=25000; FS=10000; maxFS=10000
+  Send seqno=26000; FS=11000; maxFS=11000
+  Send seqno=27000; FS=12000; maxFS=12000
+  Send seqno=28000; FS=13000; maxFS=13000
+  Send seqno=29000; FS=14000; maxFS=14000
+  Send seqno=30000; FS=15000; maxFS=15000
+  Send seqno=31000; FS=16000; maxFS=16000
+  Send seqno=32000; FS=17000; maxFS=17000
+  Send seqno=33000; FS=18000; maxFS=18000
+  Send seqno=34000; FS=19000; maxFS=19000
+  Send seqno=35000; FS=20000; maxFS=20000
+~~~~~~~~~~
+
+Received 10 ACKs; maxFS=20000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+
+~~~~~~~~~~
+  ACK for 18000 ACK’ed=2000 : cwnd+=2000; cwnd=22000
+  ACK for 20000 ACK’ed=2000 : cwnd+=2000; cwnd=24000
+  ACK for 22000 ACK’ed=2000 : cwnd+=2000; cwnd=26000
+  ACK for 24000 ACK’ed=2000 : cwnd+=2000; cwnd=28000
+  ACK for 26000 ACK’ed=2000 : cwnd+=2000; cwnd=30000
+  ACK for 28000 ACK’ed=2000 : cwnd+=2000; cwnd=32000
+  ACK for 30000 ACK’ed=2000 : cwnd+=2000; cwnd=34000
+  ACK for 32000 ACK’ed=2000 : cwnd+=2000; cwnd=36000
+  ACK for 34000 ACK’ed=2000 : cwnd+=2000; cwnd=38000
+  ACK for 36000 ACK’ed=2000 : cwnd+=2000; cwnd=40000
+~~~~~~~~~~
+
+Note: In this round, maxFS was increased and cwnd was increased to 2*maxFS.
 
 
 # The state of RFCs and implementations
