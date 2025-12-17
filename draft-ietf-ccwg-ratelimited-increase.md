@@ -93,7 +93,7 @@ become larger than the current flight size, and how to respond to detected conge
 In contrast, this present document concerns the increase in cwnd when a sender is rate-limited. These two topics are distinct,
 but are related, because both describe the management of the cwnd when a sender does not fully utilise the current cwnd.
 
-An appendix provides an example of how rate-limited increase can play out. 
+An appendix provides an example of how rate-limited increase can play out.
 
 RFC-Ed Note, please remove the following sentence prior to publication::
 Another appendix provides an overview of the divergence in current RFCs and some implementations regarding cwnd increase when the sender is rate-limited (the second appendix is to be removed before publication).
