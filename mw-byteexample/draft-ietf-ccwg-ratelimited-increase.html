@@ -1315,7 +1315,9 @@ Current RFCs specifying congestion control algorithms diverge regarding the rule
 become larger than the current flight size, and how to respond to detected congestion when this is the case.
 In contrast, this present document concerns the increase in cwnd when a sender is rate-limited. These two topics are distinct,
 but are related, because both describe the management of the cwnd when a sender does not fully utilise the current cwnd.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">An appendix provides an example of how rate-limited increase can play out. Another appendix provides an overview of the divergence in current RFCs and some implementations regarding cwnd increase when the sender is rate-limited (the second appendix is to be removed before publication).<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-3">An appendix provides an example of how rate-limited increase can play out.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">RFC-Ed Note, please remove the following sentence prior to publication::
+Another appendix provides an overview of the divergence in current RFCs and some implementations regarding cwnd increase when the sender is rate-limited (the second appendix is to be removed before publication).<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1539,7 +1541,7 @@ can protect their congestion control algorithm from network attack. This is orth
 </pre><a href="#appendix-A-3" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-4">The network path’s bandwidth-delay product is such that, throughout this example, all packets in each round are sent before an ACK is received for the first packet in a round.
-  One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
 <p id="appendix-A-5">Round 1, the sender has 4000B to send in 4 packets: MSS=1000, cwnd=10000<a href="#appendix-A-5" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-6">
 <pre>
@@ -1645,7 +1647,7 @@ can protect their congestion control algorithm from network attack. This is orth
       <h2 id="name-the-state-of-rfcs-and-imple">
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-the-state-of-rfcs-and-imple" class="section-name selfRef">The state of RFCs and implementations</a>
       </h2>
-<p id="appendix-B-1">This section is provided as input for IETF discussion, and should be removed before publication.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">RFC-Ed Note:: This section is provided as input for IETF discussion, and should be removed before publication.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <div id="tcp-reno-congestion-control">
 <section id="appendix-B.1">
         <h3 id="name-tcp-reno-congestion-control">
