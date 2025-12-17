@@ -194,7 +194,7 @@ The following informative example is provided for a sender that maintains the cw
 The initial sender state is:
 
 ~~~~~~~~~~
-  Sender sequence number (seqno) = 0 
+  Sender sequence number (seqno) = 0
   MSS = 1000 bytes
   cwnd = 10000 bytes (initcwnd)
   maxFS = 10000 bytes (initcwnd)
