@@ -93,7 +93,10 @@ become larger than the current flight size, and how to respond to detected conge
 In contrast, this present document concerns the increase in cwnd when a sender is rate-limited. These two topics are distinct,
 but are related, because both describe the management of the cwnd when a sender does not fully utilise the current cwnd.
 
-An appendix provides an example of how rate-limited increase can play out. Another appendix provides an overview of the divergence in current RFCs and some implementations regarding cwnd increase when the sender is rate-limited (the second appendix is to be removed before publication).
+An appendix provides an example of how rate-limited increase can play out. 
+
+RFC-Ed Note, please remove the following sentence prior to publication:: 
+Another appendix provides an overview of the divergence in current RFCs and some implementations regarding cwnd increase when the sender is rate-limited (the second appendix is to be removed before publication).
 
 # Conventions and Definitions
 
@@ -203,7 +206,7 @@ The initial sender state is:
 ~~~~~~~~~~
 
 The network path’s bandwidth-delay product is such that, throughout this example, all packets in each round are sent before an ACK is received for the first packet in a round.
-  One ACK is generated for each 2*MSS received bytes.
+One ACK is generated for each 2*MSS received bytes.
 
 Round 1, the sender has 4000B to send in 4 packets: MSS=1000, cwnd=10000
 
@@ -310,7 +313,7 @@ Note: In this round, maxFS was increased and cwnd was increased to 2*maxFS.
 
 # The state of RFCs and implementations
 
-This section is provided as input for IETF discussion, and should be removed before publication.
+RFC-Ed Note:: This section is provided as input for IETF discussion, and should be removed before publication.
 
 ## TCP ("Reno" congestion control)
 
