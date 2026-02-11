@@ -119,7 +119,7 @@ The sender MUST initialise the maxFS parameter to initcwnd when the congestion c
 maxFS = max(FlightSize, maxFS)
 ~~~
 
-Upon a reduction of cwnd (for any reason), maxFS MUST be reset to zero. This results in a maxFS value that reflects the first FlightSize measurement taken after the cwnd reduction.
+Upon a reduction of cwnd (for any reason), maxFS MUST be reset to zero. This ensures that maxFS is reinitialized using the first FlightSize measurement taken after the cwnd reduction.
 
 The sender MUST cap cwnd to be no larger than limit(maxFS).
 
