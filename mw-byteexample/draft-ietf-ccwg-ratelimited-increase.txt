@@ -491,7 +491,7 @@ Appendix A.  An Example Using cwnd Represented in Bytes
 
 Appendix B.  The state of RFCs and implementations
 
-   RFC-Ed Note:: This section is provided as input for IETF discussion,
+   RFC-Ed Note: This section is provided as input for IETF discussion,
    and should be removed before publication.
 
 B.1.  TCP ("Reno" congestion control)
