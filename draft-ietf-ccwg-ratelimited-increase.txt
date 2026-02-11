@@ -179,7 +179,7 @@ Table of Contents
    maxFS = max(FlightSize, maxFS)
 
    Upon a reduction of cwnd (for any reason), maxFS MUST be reset to
-   zero.  This results in a maxFS value that reflects the first
+   zero.  This ensures that maxFS is reinitialized using the first
    FlightSize measurement taken after the cwnd reduction.
 
    The sender MUST cap cwnd to be no larger than limit(maxFS).
