@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 20 June 2026                             University of Aberdeen
+Expires: 15 August 2026                           University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                        17 December 2025
+                                                        11 February 2026
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,11 +57,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 June 2026.
+   This Internet-Draft will expire on 15 August 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -139,7 +139,7 @@ Table of Contents
    out.
 
    RFC-Ed Note, please remove the following sentence prior to
-   publication:: Another appendix provides an overview of the divergence
+   publication: Another appendix provides an overview of the divergence
    in current RFCs and some implementations regarding cwnd increase when
    the sender is rate-limited (the second appendix is to be removed
    before publication).
