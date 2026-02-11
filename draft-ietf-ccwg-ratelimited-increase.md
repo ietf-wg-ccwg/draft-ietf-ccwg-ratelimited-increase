@@ -313,7 +313,7 @@ Note: In this round, maxFS was increased and cwnd was increased to 2*maxFS.
 
 # The state of RFCs and implementations
 
-RFC-Ed Note:: This section is provided as input for IETF discussion, and should be removed before publication.
+RFC-Ed Note: This section is provided as input for IETF discussion, and should be removed before publication.
 
 ## TCP ("Reno" congestion control)
 
