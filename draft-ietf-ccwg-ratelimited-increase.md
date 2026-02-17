@@ -440,6 +440,7 @@ cwnd when the sender is rate-limited.
   * The editors checked rule 2, and found that rule 1 was sufficient, and did not depend on the ordering of rules in newCWV (RFC7661), hence rule 2 was finally removed.
   * Cleaned language and improved text explaining how this compliments RFC7661.
   * Checked/updated definitions.
+  * Added an example with cwnd in bytes.
 
 
 # Acknowledgments
