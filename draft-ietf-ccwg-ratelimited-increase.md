@@ -123,7 +123,7 @@ Upon a reduction of cwnd (for any reason), maxFS MUST be reset to zero. This ens
 
 The sender MUST cap cwnd to be no larger than limit(maxFS).
 
-The function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing for every ACK that acknowledges bytes in flight, starting from the value of the maxFS parameter.
+The function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing for all ACKs that would be produced by successfully transmitting one window of size maxFS.
 For example, for Slow Start, as specified in {{!RFC5681}}, limit(maxFS)=2*maxFS, such that equation 2 in {{!RFC5681}} becomes:
 
 ~~~
