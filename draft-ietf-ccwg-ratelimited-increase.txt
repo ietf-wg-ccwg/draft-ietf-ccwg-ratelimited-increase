@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 15 August 2026                           University of Aberdeen
+Expires: 21 August 2026                           University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                        11 February 2026
+                                                        17 February 2026
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 August 2026.
+   This Internet-Draft will expire on 21 August 2026.
 
 Copyright Notice
 
@@ -157,13 +157,13 @@ Table of Contents
    This document uses the terms defined in Section 2 of [RFC5681] and
    Section 3 of [RFC7661].  Additionally, we define:
 
+   *  initcwnd: The initial value of the congestion window, also known
+      as the "initial window" ("IW" in [RFC5681]).
+
    *  maxFS: the largest value of FlightSize since the last time that
       cwnd was decreased.  If cwnd has never been decreased, maxFS is
       the maximum value of FlightSize since the start of the data
-      transfer.
-
-   *  initcwnd: The initial value of the congestion window, also known
-      as the "initial window" ("IW" in [RFC5681]).
+      transfer, and at least as large as initcwnd.
 
 3.  Rate-Limited Increase
 
