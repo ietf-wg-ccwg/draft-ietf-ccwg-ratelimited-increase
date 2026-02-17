@@ -695,6 +695,8 @@ Appendix C.  Change Log
 
       -  Checked/updated definitions.
 
+      -  Added an example with cwnd in bytes.
+
 Acknowledgments
 
    The authors would like to thank Neal Cardwell and Martin Duke for
