@@ -13,7 +13,7 @@ v: 3
 area: "Transport"
 workgroup: "Congestion Control Working Group"
 venue:
-  group: "Congestion Control Working Group"
+  group: "Congestion Control"
   type: "Working Group"
   mail: "ccwg@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ccwg/"
@@ -113,7 +113,7 @@ This document uses the terms defined in {{Section 2 of !RFC5681}} and {{Section 
 
 When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, the following  "Rate-Limited Increase" rules apply for senders using a congestion controlled transport protocol:
 
-The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter when the FlightSize is updated, the sender updates maxFS:
+The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter, when the FlightSize is updated, the sender updates maxFS:
 
 ~~~
 maxFS = max(FlightSize, maxFS)
@@ -146,7 +146,7 @@ NOTE: This specification defines the current method used to increase the cwnd fo
 We illustrate the working of Rate-Limited Increase by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when the rate-limited sender is constrained by Rate-Limited Increase. For simplicity, this example accounts for the cwnd in segments, rather than bytes. In both cases, we assume the initial cwnd (initcwnd) = 10 segments, as defined for TCP in {{?RFC6928}} and QUIC in {{?RFC9002}}, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.
 
 ### Unconstrained sender
-Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of an each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments, even though the sender is rate-limited (i.e., has never sent more than 10 segments per round-trip time (RTT)).
+Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments, even though the sender is rate-limited (i.e., has never sent more than 10 segments per round-trip time (RTT)).
 
 ### Sender constrained by Rate-Limited Increase
 Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are both 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 new segments, Rate-Limited Increase constrains the growth of the cwnd because FlightSize < cwnd and therefore this caps the cwnd to be no larger than limit(maxFS) = 2 X maxFS = 2 X 10 segments = 20 segments.
@@ -380,7 +380,7 @@ It is in accordance with Rate-Limited Increase, and more conservative.
 
 {{Section 7.2.1 of !RFC9260}} is specifically limited to Slow Start.
 Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}}
-However, this section neither contains a similar rule, nor does it refer back to the rule that limits the growth of cwnd
+However, this section neither contains a similar rule nor does it refer back to the rule that limits the growth of cwnd
 in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies to Slow Start, whereas Rate-Limited Increase applies to both Slow Start and Congestion Avoidance.
 
 ## The QUIC Transport Protocol
