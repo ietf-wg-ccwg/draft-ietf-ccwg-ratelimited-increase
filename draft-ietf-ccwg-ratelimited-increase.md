@@ -17,8 +17,8 @@ venue:
   type: "Working Group"
   mail: "ccwg@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ccwg/"
-  github: "mwelzl/draft-ccwg-ratelimited-increase"
-  latest: "https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-ietf-ccwg-ratelimited-increase.html"
+  github: "ietf-wg-ccwg/draft-ccwg-ratelimited-increase"
+  latest: "https://ietf-wg-ccwg.github.io/draft-ietf-ccwg-ratelimited-increase/draft-ietf-ccwg-ratelimited-increase.html"
 
 stand_alone: yes
 smart_quotes: no
@@ -43,7 +43,6 @@ author:
     city: Seattle, WA 98195
     country: United States
     email: tomh@tomh.org
-    uri: https://www.tomh.org/
   -
     ins: G. Fairhurst
     name: Godred Fairhurst
