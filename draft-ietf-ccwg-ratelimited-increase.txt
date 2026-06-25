@@ -28,10 +28,10 @@ About This Document
 
    This note is to be removed before publishing as an RFC.
 
-   The latest revision of this draft can be found at
-   https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-ietf-
-   ccwg-ratelimited-increase.html.  Status information for this document
-   may be found at https://datatracker.ietf.org/doc/draft-ietf-ccwg-
+   The latest revision of this draft can be found at https://ietf-wg-
+   ccwg.github.io/draft-ietf-ccwg-ratelimited-increase/draft-ietf-ccwg-
+   ratelimited-increase.html.  Status information for this document may
+   be found at https://datatracker.ietf.org/doc/draft-ietf-ccwg-
    ratelimited-increase/.
 
    Discussion of this document takes place on the Congestion Control
@@ -40,7 +40,7 @@ About This Document
    https://www.ietf.org/mailman/listinfo/ccwg/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/mwelzl/draft-ccwg-ratelimited-increase.
+   https://github.com/ietf-wg-ccwg/draft-ccwg-ratelimited-increase.
 
 Status of This Memo
 
@@ -730,7 +730,6 @@ Authors' Addresses
    Seattle, WA 98195,
    United States
    Email: tomh@tomh.org
-   URI:   https://www.tomh.org/
 
 
    Godred Fairhurst
