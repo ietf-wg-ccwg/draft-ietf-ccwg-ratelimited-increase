@@ -126,13 +126,10 @@ The sender MUST cap cwnd to be no larger than limit(maxFS).
 The function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing for all ACKs that would be produced by successfully transmitting one window of size maxFS.
 For example, for Slow Start, as specified in {{!RFC5681}}, limit(maxFS)=2*maxFS, such that equation 2 in {{!RFC5681}} becomes:
 
-$$
-\mathit{cwnd}_{\text{new}} = \mathit{cwnd} + \min(N, \mathit{SMSS})
-$$
-
-$$
-\mathit{cwnd} = \min(\mathit{cwnd}_{\text{new}}, 2 \times \mathit{maxFS})
-$$
+~~~
+cwnd_new = cwnd + min (N, SMSS)
+cwnd = min(cwnd_new, 2*maxFS)
+~~~
 where cwnd and SMSS follow their definitions in {{!RFC5681}} and N is the number of previously unacknowledged bytes acknowledged in the incoming ACK.
 
 Similarly, with Rate-Limited Increase applied in Congestion Avoidance, limit(maxFS)=SMSS+maxFS, such that equation 3 in {{!RFC5681}} becomes:
