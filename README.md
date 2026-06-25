@@ -1,3 +1,5 @@
+<!-- regenerate: on (set to off if you edit this file) -->
+
 # Increase of the Congestion Window when the Sender Is Rate-Limited
 
 This is the working area for the IETF [CCWG Working Group](https://datatracker.ietf.org/group/ccwg/documents/) Internet-Draft, "Increase of the Congestion Window when the Sender Is Rate-Limited".
@@ -13,9 +15,8 @@ This is the working area for the IETF [CCWG Working Group](https://datatracker.i
 See the
 [guidelines for contributions](https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/blob/main/CONTRIBUTING.md).
 
-Contributions can be made by creating pull requests.
-The GitHub interface supports creating pull requests using the Edit (✏) button.
-
+The contributing file also has tips on how to make contributions, if you
+don't already know how to do that.
 
 ## Command Line Usage
 
