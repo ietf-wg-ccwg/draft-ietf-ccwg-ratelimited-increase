@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 21 August 2026                           University of Aberdeen
+Expires: 27 December 2026                         University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                        17 February 2026
+                                                            25 June 2026
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -35,9 +35,9 @@ About This Document
    ratelimited-increase/.
 
    Discussion of this document takes place on the Congestion Control
-   Working Group Working Group mailing list (mailto:ccwg@ietf.org),
-   which is archived at https://mailarchive.ietf.org/arch/browse/ccwg/.
-   Subscribe at https://www.ietf.org/mailman/listinfo/ccwg/.
+   Working Group mailing list (mailto:ccwg@ietf.org), which is archived
+   at https://mailarchive.ietf.org/arch/browse/ccwg/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/ccwg/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/mwelzl/draft-ccwg-ratelimited-increase.
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 August 2026.
+   This Internet-Draft will expire on 27 December 2026.
 
 Copyright Notice
 
@@ -173,7 +173,7 @@ Table of Contents
    protocol:
 
    The sender MUST initialise the maxFS parameter to initcwnd when the
-   congestion control algorithm is started.  Thereafter when the
+   congestion control algorithm is started.  Thereafter, when the
    FlightSize is updated, the sender updates maxFS:
 
    maxFS = max(FlightSize, maxFS)
@@ -233,7 +233,7 @@ Table of Contents
 
    Initially, cwnd = initcwnd.  Therefore, using initcwnd = 10 segments,
    the sender transmits 10 segments and pauses.  Since the sender is in
-   the Slow Start phase, the arrival of an each ACK for the 10 sent
+   the Slow Start phase, the arrival of each ACK for the 10 sent
    segments increases the cwnd by 1 segment, resulting in the cwnd
    increasing to 20 segments.  Subsequently, after the pause, the sender
    transmits 4 segments and pauses again.  As a consequence, the arrival
@@ -357,9 +357,9 @@ Table of Contents
    [I-D.ietf-ccwg-bbr]
               Cardwell, N., Swett, I., and J. Beshay, "BBR Congestion
               Control", Work in Progress, Internet-Draft, draft-ietf-
-              ccwg-bbr-04, 20 October 2025,
+              ccwg-bbr-05, 2 March 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccwg-
-              bbr-04>.
+              bbr-05>.
 
    [RFC2861]  Handley, M., Padhye, J., and S. Floyd, "TCP Congestion
               Window Validation", RFC 2861, DOI 10.17487/RFC2861, June
@@ -578,7 +578,7 @@ B.3.2.  Assessment
 
    Section 7.2.1 of [RFC9260] is specifically limited to Slow Start.
    Congestion Avoidance is discussed in Section 7.2.2 of [RFC9260]
-   However, this section neither contains a similar rule, nor does it
+   However, this section neither contains a similar rule nor does it
    refer back to the rule that limits the growth of cwnd in
    Section 7.2.1.  It is thus implicitly clear that the quoted rule only
    applies to Slow Start, whereas Rate-Limited Increase applies to both
