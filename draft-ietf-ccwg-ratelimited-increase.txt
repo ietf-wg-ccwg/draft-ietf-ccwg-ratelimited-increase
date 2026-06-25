@@ -154,8 +154,19 @@ Table of Contents
 
 2.1.  Terminology
 
-   This document uses the terms defined in Section 2 of [RFC5681] and
-   Section 3 of [RFC7661].  Additionally, we define:
+   This document uses the terms defined in Section 2 of [RFC5681].
+
+   Additionally, the following are defined:
+
+   *  cwnd-limited: A TCP flow that has sent the maximum number of
+      segments permitted by the cwnd, where the application utilises the
+      allowed sending rate {Section 4.5.3 of of ?RFC7661}.
+
+   *  rate-limited: A TCP flow that does not consume more than one half
+      of cwnd and hence operates in the non-validated phase.  This
+      includes periods when an application is either idle or chooses to
+      send at a rate less than the maximum permitted by the cwnd
+      {Section 3 of ?RFC7661}.
 
    *  initcwnd: The initial value of the congestion window, also known
       as the "initial window" ("IW" in [RFC5681]).
@@ -210,7 +221,7 @@ Table of Contents
    the cwnd for a rate-limited sender.  Without a way to reduce cwnd
    when the transport sender becomes rate-limited, maxFS can stay valid
    for a long time, possibly not reflecting the reality of the end-to-
-   end Internet path in use.  This is remedied by "Congestion Window
+   end Internet path in use.  This can be remedied by "Congestion Window
    Validation" in [RFC7661], which also defines a "pipeACK" variable
    that measures the recently acknowledged size of the network pipe when
    the sender was rate-limited.
@@ -330,11 +341,6 @@ Table of Contents
               Control", RFC 5681, DOI 10.17487/RFC5681, September 2009,
               <https://www.rfc-editor.org/rfc/rfc5681>.
 
-   [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, "Updating
-              TCP to Support Rate-Limited Traffic", RFC 7661,
-              DOI 10.17487/RFC7661, October 2015,
-              <https://www.rfc-editor.org/rfc/rfc7661>.
-
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
@@ -374,6 +380,11 @@ Table of Contents
               "Increasing TCP's Initial Window", RFC 6928,
               DOI 10.17487/RFC6928, April 2013,
               <https://www.rfc-editor.org/rfc/rfc6928>.
+
+   [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, "Updating
+              TCP to Support Rate-Limited Traffic", RFC 7661,
+              DOI 10.17487/RFC7661, October 2015,
+              <https://www.rfc-editor.org/rfc/rfc7661>.
 
 Appendix A.  An Example Using cwnd Represented in Bytes
 
@@ -498,7 +509,7 @@ B.1.  TCP ("Reno" congestion control)
 
 B.1.1.  Specification
 
-   [RFC7661] suggests there is no increase limitation in the standard
+   [RFC7661] suggested there was no increase limitation in the standard
    TCP behavior (which [RFC7661] changes), on page 4:
 
       Standard TCP does not impose additional restrictions on the growth

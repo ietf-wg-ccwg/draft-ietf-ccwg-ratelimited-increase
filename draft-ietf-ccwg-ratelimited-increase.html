@@ -1335,13 +1335,20 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-terminology">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
         </h3>
-<p id="section-2.1-1">This document uses the terms defined in <span><a href="https://rfc-editor.org/rfc/rfc5681#section-2" class="relref">Section 2</a> of [<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> and <span><a href="https://rfc-editor.org/rfc/rfc7661#section-3" class="relref">Section 3</a> of [<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>. Additionally, we define:<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-1">This document uses the terms defined in <span><a href="https://rfc-editor.org/rfc/rfc5681#section-2" class="relref">Section 2</a> of [<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">Additionally, the following are defined:<a href="#section-2.1-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-2.1-2.1">
-            <p id="section-2.1-2.1.1">initcwnd: The initial value of the congestion window, also known as the "initial window" ("IW" in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>).<a href="#section-2.1-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-2.1-3.1">
+            <p id="section-2.1-3.1.1">cwnd-limited: A TCP flow that has sent the maximum number of segments permitted by the cwnd, where the application utilises the allowed sending rate {Section 4.5.3 of of ?RFC7661}.<a href="#section-2.1-3.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-2.1-2.2">
-            <p id="section-2.1-2.2.1">maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer, and at least as large as initcwnd.<a href="#section-2.1-2.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-2.1-3.2">
+            <p id="section-2.1-3.2.1">rate-limited: A TCP flow that does not consume more than one half of cwnd and hence operates in the non-validated phase.  This includes periods when an application is either idle or chooses to send at a rate less than the maximum permitted by the cwnd {Section 3 of ?RFC7661}.<a href="#section-2.1-3.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-3.3">
+            <p id="section-2.1-3.3.1">initcwnd: The initial value of the congestion window, also known as the "initial window" ("IW" in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>).<a href="#section-2.1-3.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-3.4">
+            <p id="section-2.1-3.4.1">maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer, and at least as large as initcwnd.<a href="#section-2.1-3.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1379,7 +1386,7 @@ cwnd = min(cwnd_new, SMSS+maxFS)
 </pre><a href="#section-3-10" class="pilcrow">¶</a>
 </div>
 <p id="section-3-11">where cwnd and SMSS follow their definitions in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>.<a href="#section-3-11" class="pilcrow">¶</a></p>
-<p id="section-3-12">NOTE: This specification defines the current method used to increase the cwnd for a rate-limited sender. Without a way to reduce cwnd when the transport sender becomes rate-limited, maxFS can stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. This is remedied by "Congestion Window Validation" in <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>, which also defines a "pipeACK" variable that measures the recently acknowledged size of the network pipe when the sender was rate-limited.<a href="#section-3-12" class="pilcrow">¶</a></p>
+<p id="section-3-12">NOTE: This specification defines the current method used to increase the cwnd for a rate-limited sender. Without a way to reduce cwnd when the transport sender becomes rate-limited, maxFS can stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. This can be remedied by "Congestion Window Validation" in <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>, which also defines a "pipeACK" variable that measures the recently acknowledged size of the network pipe when the sender was rate-limited.<a href="#section-3-12" class="pilcrow">¶</a></p>
 <div id="example">
 <section id="section-3.1">
         <h3 id="name-example">
@@ -1474,10 +1481,6 @@ can protect their congestion control algorithm from network attack. This is orth
         <dd>
 <span class="refAuthor">Allman, M.</span>, <span class="refAuthor">Paxson, V.</span>, and <span class="refAuthor">E. Blanton</span>, <span class="refTitle">"TCP Congestion Control"</span>, <span class="seriesInfo">RFC 5681</span>, <span class="seriesInfo">DOI 10.17487/RFC5681</span>, <time datetime="2009-09" class="refDate">September 2009</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5681">https://www.rfc-editor.org/rfc/rfc5681</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC7661">[RFC7661]</dt>
-        <dd>
-<span class="refAuthor">Fairhurst, G.</span>, <span class="refAuthor">Sathiaseelan, A.</span>, and <span class="refAuthor">R. Secchi</span>, <span class="refTitle">"Updating TCP to Support Rate-Limited Traffic"</span>, <span class="seriesInfo">RFC 7661</span>, <span class="seriesInfo">DOI 10.17487/RFC7661</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7661">https://www.rfc-editor.org/rfc/rfc7661</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
@@ -1516,8 +1519,12 @@ can protect their congestion control algorithm from network attack. This is orth
 <span class="refAuthor">Floyd, S.</span> and <span class="refAuthor">E. Kohler</span>, <span class="refTitle">"Profile for Datagram Congestion Control Protocol (DCCP) Congestion Control ID 2: TCP-like Congestion Control"</span>, <span class="seriesInfo">RFC 4341</span>, <span class="seriesInfo">DOI 10.17487/RFC4341</span>, <time datetime="2006-03" class="refDate">March 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4341">https://www.rfc-editor.org/rfc/rfc4341</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6928">[RFC6928]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Chu, J.</span>, <span class="refAuthor">Dukkipati, N.</span>, <span class="refAuthor">Cheng, Y.</span>, and <span class="refAuthor">M. Mathis</span>, <span class="refTitle">"Increasing TCP's Initial Window"</span>, <span class="seriesInfo">RFC 6928</span>, <span class="seriesInfo">DOI 10.17487/RFC6928</span>, <time datetime="2013-04" class="refDate">April 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6928">https://www.rfc-editor.org/rfc/rfc6928</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7661">[RFC7661]</dt>
+      <dd>
+<span class="refAuthor">Fairhurst, G.</span>, <span class="refAuthor">Sathiaseelan, A.</span>, and <span class="refAuthor">R. Secchi</span>, <span class="refTitle">"Updating TCP to Support Rate-Limited Traffic"</span>, <span class="seriesInfo">RFC 7661</span>, <span class="seriesInfo">DOI 10.17487/RFC7661</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7661">https://www.rfc-editor.org/rfc/rfc7661</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1659,7 +1666,7 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
           <h4 id="name-specification">
 <a href="#appendix-B.1.1" class="section-number selfRef">B.1.1. </a><a href="#name-specification" class="section-name selfRef">Specification</a>
           </h4>
-<p id="appendix-B.1.1-1"><span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span> suggests there is no increase limitation in the standard TCP behavior (which <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span> changes), on page 4:<a href="#appendix-B.1.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-B.1.1-1"><span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span> suggested there was no increase limitation in the standard TCP behavior (which <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span> changes), on page 4:<a href="#appendix-B.1.1-1" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="appendix-B.1.1-2.1">
               <p id="appendix-B.1.1-2.1.1">Standard TCP does not impose additional restrictions on the growth of
