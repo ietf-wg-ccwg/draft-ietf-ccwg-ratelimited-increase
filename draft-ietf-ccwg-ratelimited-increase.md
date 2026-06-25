@@ -83,7 +83,7 @@ Such a limitation can be caused by the sending application not supplying data or
 
 A sender of a congestion controlled transport protocol becomes "rate-limited" when it does not send any data
 even though the congestion control rules would allow it to transmit data.
-This could occur because the application has not provided sufficient data to fully utilise the congestion window (cwnd).
+This could occur because the application has not provided sufficient data to fully utilize the congestion window (cwnd).
 It could also occur because the receiver has limited the sender using flow control
 (e.g., by the advertised TCP receiver window (rwnd) or by the connection or stream flow credit in QUIC).
 Current RFCs specifying congestion control algorithms diverge regarding the rules for increasing the cwnd when the sender is rate-limited.
@@ -91,7 +91,7 @@ Current RFCs specifying congestion control algorithms diverge regarding the rule
 Congestion Window Validation (CWV) {{!RFC7661}} provides an experimental specification defining how to manage a cwnd that has
 become larger than the current flight size, and how to respond to detected congestion when this is the case.
 In contrast, this present document concerns the increase in cwnd when a sender is rate-limited. These two topics are distinct,
-but are related, because both describe the management of the cwnd when a sender does not fully utilise the current cwnd.
+but are related, because both describe the management of the cwnd when a sender does not fully utilize the current cwnd.
 
 An appendix provides an example of how rate-limited increase can play out.
 
@@ -143,7 +143,7 @@ where cwnd and SMSS follow their definitions in {{!RFC5681}}.
 NOTE: This specification defines the current method used to increase the cwnd for a rate-limited sender. Without a way to reduce cwnd when the transport sender becomes rate-limited, maxFS can stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. This is remedied by "Congestion Window Validation" in {{!RFC7661}}, which also defines a "pipeACK" variable that measures the recently acknowledged size of the network pipe when the sender was rate-limited.
 
 ## Example
-We illustrate the working of Rate-Limited Increase by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when the rate-limited sender is constrained by Rate-Limited Increase. For simplicity, this example accounts for the cwnd in segments, rather than bytes. In both cases, we assume the initial cwnd (initcwnd) = 10 segments, as defined for TCP in {{?RFC6928}} and QUIC in {{?RFC9002}}, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterwards, no packets are lost, and an ACK is sent for every packet.
+We illustrate the working of Rate-Limited Increase by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when the rate-limited sender is constrained by Rate-Limited Increase. For simplicity, this example accounts for the cwnd in segments, rather than bytes. In both cases, we assume the initial cwnd (initcwnd) = 10 segments, as defined for TCP in {{?RFC6928}} and QUIC in {{?RFC9002}}, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterward, no packets are lost, and an ACK is sent for every packet.
 
 ### Unconstrained sender
 Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments, even though the sender is rate-limited (i.e., has never sent more than 10 segments per round-trip time (RTT)).
