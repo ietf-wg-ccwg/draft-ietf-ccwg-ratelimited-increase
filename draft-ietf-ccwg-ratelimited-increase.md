@@ -107,8 +107,8 @@ This document uses the terms defined in {{Section 2 of !RFC5681}}.
 
 Additionally, the following are defined:
 
-- cwnd-limited: A TCP flow that has sent the maximum number of segments permitted by the cwnd, where the application utilises the allowed sending rate {Section 4.5.3 of of ?RFC7661}.
-- rate-limited: A TCP flow that does not consume more than one half of cwnd and hence operates in the non-validated phase.  This includes periods when an application is either idle or chooses to send at a rate less than the maximum permitted by the cwnd {Section 3 of ?RFC7661}.
+- cwnd-limited: A TCP flow that has sent the maximum number of segments permitted by the cwnd, where the application utilises the allowed sending rate (Section 4.5.3 of of {{?RFC7661}}).
+- rate-limited: A TCP flow that does not consume more than one half of cwnd and hence operates in the non-validated phase.  This includes periods when an application is either idle or chooses to send at a rate less than the maximum permitted by the cwnd (Section 3 of {{?RFC7661}}).
 - initcwnd: The initial value of the congestion window, also known as the "initial window" ("IW" in {{!RFC5681}}).
 - maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer, and at least as large as initcwnd.
 
@@ -337,7 +337,7 @@ information about the state of the network path the flow is using.
 - Until release 3.42, ns-3 allowed cwnd to grow when rate-limited, either due to an application or rwnd limit.  Since release 3.42, ns-3 TCP models conform to Rate-Limited Increase, following the current Linux TCP approach in this regard (see next bullet).
 - In Congestion Avoidance, Linux only allows the cwnd to grow when the sender is unconstrained.
 Before kernel version 3.16, this also applied to Slow Start.
-The check for "unconstrained" is perfomed by checking if FlightSize is greater or equal to cwnd.
+The check for "unconstrained" is performed by checking if FlightSize is greater or equal to cwnd.
 Since kernel version 3.16, which was published in August 2014, in Slow Start, the increase
 implements Rate-Limited Increase in the `tcp_is_cwnd_limited` function in `tcp.h`.
 
@@ -407,7 +407,7 @@ With the exception of pacing, this specification conservatively limits the growt
 
 ### Assessment
 
-A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to {{?RFC2861}}.
+A DCCP Congestion Control ID (CCID) specifying TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to {{?RFC2861}}.
 The text in {{Section 5.1 of ?RFC4341}} is updated by this document to specify the management of the
 cwnd when the sender is rate-limited.
 
