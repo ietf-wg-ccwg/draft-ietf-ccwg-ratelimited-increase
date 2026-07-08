@@ -4,8 +4,8 @@
 
 Congestion Control Working Group                                M. Welzl
 Internet-Draft                                        University of Oslo
-Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
-         approved)                              University of Washington
+Updates: RFC4341, RFC5681, RFC9002, RFC9260,                T. Henderson
+         RFC9438 (if approved)                  University of Washington
 Intended status: Standards Track                            G. Fairhurst
 Expires: 9 January 2027                           University of Aberdeen
                                                          M. P. Tahiliani
@@ -619,14 +619,16 @@ B.5.  The Datagram Congestion Control Protocol (DCCP) CCID2
 
 B.5.1.  Specification
 
-   Section 5.1 of [RFC4341] states: >There are currently no standards
-   governing TCP's use of the congestion window during an application-
-   limited period.  In particular, it is possible for TCP's congestion
-   window to grow quite large during a long uncongested period when the
-   sender is application limited, sending at a low rate.  [RFC2861]
-   essentially suggests that TCP's congestion window not be increased
-   during application-limited periods when the congestion window is not
-   being fully utilized.
+   Section 5.1 of [RFC4341] states:
+
+      There are currently no standards governing TCP's use of the
+      congestion window during an application-limited period.  In
+      particular, it is possible for TCP's congestion window to grow
+      quite large during a long uncongested period when the sender is
+      application limited, sending at a low rate.  [RFC2861] essentially
+      suggests that TCP's congestion window not be increased during
+      application-limited periods when the congestion window is not
+      being fully utilized.
 
 B.5.2.  Assessment
 
