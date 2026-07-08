@@ -703,7 +703,7 @@ Appendix C.  Change Log
          newCWV (RFC7661), hence rule 2 was finally removed.
 
       -  Cleaned language and improved text explaining how this
-         compliments RFC7661.
+         complements RFC7661.
 
       -  Checked/updated definitions.
 
