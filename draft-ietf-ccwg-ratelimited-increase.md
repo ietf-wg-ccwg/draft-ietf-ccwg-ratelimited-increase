@@ -7,7 +7,7 @@ docname: draft-ietf-ccwg-ratelimited-increase-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
-updates: RFC5681, RFC9002, RFC9260, RFC9438
+updates: RFC5681, RFC9002, RFC9260, RFC9438, RFC4341
 consensus: true
 v: 3
 area: "Transport"
@@ -403,6 +403,7 @@ With the exception of pacing, this specification conservatively limits the growt
 ### Specification
 
 {{Section 5.1 of ?RFC4341}} states:
+
 >There are currently no standards governing TCP's use of the congestion window during an application-limited period.  In particular, it is possible for TCP's congestion window to grow quite large during a long uncongested period when the sender is application limited, sending at a low rate.  {{?RFC2861}} essentially suggests that TCP's congestion window not be increased during application-limited periods when the congestion window is not being fully utilized.
 
 ### Assessment
