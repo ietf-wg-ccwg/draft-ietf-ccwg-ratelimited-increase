@@ -441,7 +441,7 @@ cwnd when the sender is rate-limited.
   * Removed a confusing and unnecessary sentence about pacing (as suggested at IETF-123).
 * draft-ietf-ccwg-ratelimited-increase-03
   * The editors checked rule 2, and found that rule 1 was sufficient, and did not depend on the ordering of rules in newCWV (RFC7661), hence rule 2 was finally removed.
-  * Cleaned language and improved text explaining how this compliments RFC7661.
+  * Cleaned language and improved text explaining how this complements RFC7661.
   * Checked/updated definitions.
   * Added an example with cwnd in bytes.
 
