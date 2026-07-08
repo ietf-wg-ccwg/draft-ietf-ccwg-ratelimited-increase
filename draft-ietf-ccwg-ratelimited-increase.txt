@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 27 December 2026                         University of Aberdeen
+Expires: 9 January 2027                           University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                            25 June 2026
+                                                             8 July 2026
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -40,7 +40,7 @@ About This Document
    https://www.ietf.org/mailman/listinfo/ccwg/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/ietf-wg-ccwg/draft-ccwg-ratelimited-increase.
+   https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase.
 
 Status of This Memo
 
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 December 2026.
+   This Internet-Draft will expire on 9 January 2027.
 
 Copyright Notice
 
@@ -363,9 +363,9 @@ Table of Contents
    [I-D.ietf-ccwg-bbr]
               Cardwell, N., Swett, I., and J. Beshay, "BBR Congestion
               Control", Work in Progress, Internet-Draft, draft-ietf-
-              ccwg-bbr-05, 2 March 2026,
+              ccwg-bbr-06, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccwg-
-              bbr-05>.
+              bbr-06>.
 
    [RFC2861]  Handley, M., Padhye, J., and S. Floyd, "TCP Congestion
               Window Validation", RFC 2861, DOI 10.17487/RFC2861, June
