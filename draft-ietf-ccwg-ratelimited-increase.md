@@ -17,7 +17,7 @@ venue:
   type: "Working Group"
   mail: "ccwg@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ccwg/"
-  github: "ietf-wg-ccwg/draft-ccwg-ratelimited-increase"
+  github: "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase"
   latest: "https://ietf-wg-ccwg.github.io/draft-ietf-ccwg-ratelimited-increase/draft-ietf-ccwg-ratelimited-increase.html"
 
 stand_alone: yes
