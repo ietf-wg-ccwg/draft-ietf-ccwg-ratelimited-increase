@@ -158,15 +158,16 @@ Table of Contents
 
    Additionally, the following are defined:
 
-   *  cwnd-limited: A TCP flow that has sent the maximum number of
-      segments permitted by the cwnd, where the application utilises the
-      allowed sending rate {Section 4.5.3 of of ?RFC7661}.
+   *  cwnd-limited: A flow that has sent the maximum number of segments
+      permitted by the cwnd, where the application utilises the allowed
+      sending rate (based on the definition for TCP in Section 4.5.3 of
+      [RFC7661]).
 
-   *  rate-limited: A TCP flow that does not consume more than one half
-      of cwnd and hence operates in the non-validated phase.  This
-      includes periods when an application is either idle or chooses to
-      send at a rate less than the maximum permitted by the cwnd
-      {Section 3 of ?RFC7661}.
+   *  rate-limited: A flow that does not consume more than one half of
+      cwnd and hence operates in the non-validated phase.  This includes
+      periods when an application is either idle or chooses to send at a
+      rate less than the maximum permitted by the cwnd (based on the
+      definition for TCP in Section 3 of [RFC7661]).
 
    *  initcwnd: The initial value of the congestion window, also known
       as the "initial window" ("IW" in [RFC5681]).
@@ -533,7 +534,7 @@ B.1.2.  Implementation
    *  In Congestion Avoidance, Linux only allows the cwnd to grow when
       the sender is unconstrained.  Before kernel version 3.16, this
       also applied to Slow Start.  The check for "unconstrained" is
-      perfomed by checking if FlightSize is greater or equal to cwnd.
+      performed by checking if FlightSize is greater or equal to cwnd.
       Since kernel version 3.16, which was published in August 2014, in
       Slow Start, the increase implements Rate-Limited Increase in the
       tcp_is_cwnd_limited function in tcp.h.
@@ -629,7 +630,7 @@ B.5.1.  Specification
 
 B.5.2.  Assessment
 
-   A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour
+   A DCCP Congestion Control ID (CCID) specifying TCP-like behaviour
    ought to follow the method specified in this document.  The current
    guidance relates only to [RFC2861].  The text in Section 5.1 of
    [RFC4341] is updated by this document to specify the management of
