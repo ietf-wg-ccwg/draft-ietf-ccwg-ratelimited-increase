@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-06-28T04:07:35.866812+00:00",
+  "timestamp": "2026-07-09T03:35:05.534094+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1098,6 +1098,22 @@
           "updatedAt": "2026-06-25T14:41:30Z"
         }
       ]
+    },
+    {
+      "number": 86,
+      "id": "I_kwDOK4gIBc8AAAABH_fzgw",
+      "title": "Genart review by Linda Dunbar",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/86",
+      "state": "CLOSED",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Major issues: None\n\nMinor issues:\n- Appendix B.5.2 says that the text in Section 5.1 of RFC 4341 \u201cis updated by\nthis document. But the document header says the document updates RFC 5681, RFC\n9002, RFC 9260, and RFC 9438. Missing RFC4341. Is it intended?\n\n- Section 2.1 defines both \u201ccwnd-limited\u201d and \u201crate-limited\u201d as \u201cA TCP flow\n...\u201d, Does it mean that the mechanism specified by this document doesn't apply\nto QUIC or SCTP flows?\n\nNits/editorial comments:\n- Section 2.1, the references appear malformed:\n\u201c{Section 4.5.3 of of ?RFC7661}\u201d and \u201c{Section 3 of ?RFC7661}\u201d.\n\n-Appendix B.1.2: s/perfomed/performed/\n\n-Appendix B.5.2: s/specifing/specifying/",
+      "createdAt": "2026-07-07T18:46:36Z",
+      "updatedAt": "2026-07-08T17:23:31Z",
+      "closedAt": "2026-07-08T17:23:31Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -4283,6 +4299,275 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 85,
+      "id": "PR_kwDOK4gIBc7u9pgl",
+      "title": "Fix URL of the github repo",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/85",
+      "state": "MERGED",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR fixes a typo in the URL of the github repository. ",
+      "createdAt": "2026-07-07T18:45:18Z",
+      "updatedAt": "2026-07-08T09:36:17Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "454e364864f804b2f07545122fd0575573d7d398",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "main",
+      "headRefOid": "9a7823efe9bfc8de9eea2e884cef40844e5c2e6e",
+      "closedAt": "2026-07-08T09:36:17Z",
+      "mergedAt": "2026-07-08T09:36:16Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "0930debcc3648ff4be6421b5da27350b3d7f7a2d"
+      },
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks!!!",
+          "createdAt": "2026-07-08T09:36:12Z",
+          "updatedAt": "2026-07-08T09:36:12Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 87,
+      "id": "PR_kwDOK4gIBc7u98I1",
+      "title": "Fix typos listed in #86 and remove TCP from the definitions",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/87",
+      "state": "MERGED",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR fixes the typos listed in #86 and remove TCP from the definitions.",
+      "createdAt": "2026-07-07T18:58:07Z",
+      "updatedAt": "2026-07-08T09:40:28Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "454e364864f804b2f07545122fd0575573d7d398",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "typos",
+      "headRefOid": "077e192d97366c5485fead0ed1fb1deb322df517",
+      "closedAt": "2026-07-08T09:40:28Z",
+      "mergedAt": "2026-07-08T09:40:28Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "0a79658911d0c85a807363d9b3a1bd22555e8a63"
+      },
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks!!!",
+          "createdAt": "2026-07-08T09:40:24Z",
+          "updatedAt": "2026-07-08T09:40:24Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABFURgjA",
+          "commit": {
+            "abbreviatedOid": "457453c"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "I think we ought to remove \"TCP\" from the definitions :-).",
+          "createdAt": "2026-07-08T07:16:16Z",
+          "updatedAt": "2026-07-08T07:18:57Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I prefer:  cwnd-limited: A flow that has sent the maximum number of segments permitted by the cwnd, where the application utilises the allowed sending rate (Based on the definition for TCP in Section 4.5.3 of of {{?RFC7661}}).",
+              "createdAt": "2026-07-08T07:16:16Z",
+              "updatedAt": "2026-07-08T07:18:57Z"
+            },
+            {
+              "originalPosition": 7,
+              "body": "I prefer: \"rate-limited: A flow that does not consume more than one half of cwnd and hence operates in the non-validated phase.  This includes periods when an application is either idle or chooses to send at a rate less than the maximum permitted by the cwnd (Based on the definition for TCP in Section 3 of {{?RFC7661}}).",
+              "createdAt": "2026-07-08T07:16:54Z",
+              "updatedAt": "2026-07-08T07:18:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABFVPcIA",
+          "commit": {
+            "abbreviatedOid": "457453c"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-08T09:26:26Z",
+          "updatedAt": "2026-07-08T09:26:26Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Done. Updated in a separate commit in this PR.",
+              "createdAt": "2026-07-08T09:26:26Z",
+              "updatedAt": "2026-07-08T09:26:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABFVPhuA",
+          "commit": {
+            "abbreviatedOid": "457453c"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-08T09:26:37Z",
+          "updatedAt": "2026-07-08T09:26:37Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "Done. Updated in a separate commit in this PR.",
+              "createdAt": "2026-07-08T09:26:37Z",
+              "updatedAt": "2026-07-08T09:26:37Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 88,
+      "id": "PR_kwDOK4gIBc7vN6Kx",
+      "title": "Fix the spelling of complements",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/88",
+      "state": "MERGED",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "s/compliments/complements",
+      "createdAt": "2026-07-08T09:45:46Z",
+      "updatedAt": "2026-07-08T09:51:25Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "0a79658911d0c85a807363d9b3a1bd22555e8a63",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "typos",
+      "headRefOid": "6c793ac5e6c47e38e0a86e63b5cce69fbc5dc8ca",
+      "closedAt": "2026-07-08T09:51:25Z",
+      "mergedAt": "2026-07-08T09:51:25Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "d081c16190a6ab2b0ecc30929f101fe2a8fb1da7"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 89,
+      "id": "PR_kwDOK4gIBc7vN-Ry",
+      "title": "Update RFC 4341",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/89",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Resolves #86 ",
+      "createdAt": "2026-07-08T09:48:18Z",
+      "updatedAt": "2026-07-08T17:23:30Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "0a79658911d0c85a807363d9b3a1bd22555e8a63",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "mw-update-RFC4341",
+      "headRefOid": "689853b6e05d0c7ec8f57df96cca0a43da8cee77",
+      "closedAt": "2026-07-08T17:23:30Z",
+      "mergedAt": "2026-07-08T17:23:30Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "423cf1d1fd950ec594e9a6342a449e967a858c8d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABFWhOeg",
+          "commit": {
+            "abbreviatedOid": "382aa3b"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-08T12:35:44Z",
+          "updatedAt": "2026-07-08T12:35:58Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Should we place RFC4341 at the front to keep the chronological order intact?",
+              "createdAt": "2026-07-08T12:35:44Z",
+              "updatedAt": "2026-07-08T12:35:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABFWiB9w",
+          "commit": {
+            "abbreviatedOid": "382aa3b"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-08T12:37:33Z",
+          "updatedAt": "2026-07-08T12:37:33Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\nupdates: RFC4341, RFC5681, RFC9002, RFC9260, RFC9438\n```",
+              "createdAt": "2026-07-08T12:37:33Z",
+              "updatedAt": "2026-07-08T12:37:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABFWiUuw",
+          "commit": {
+            "abbreviatedOid": "382aa3b"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-08T12:38:13Z",
+          "updatedAt": "2026-07-08T12:38:14Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Yes, thanks! Done!",
+              "createdAt": "2026-07-08T12:38:13Z",
+              "updatedAt": "2026-07-08T12:38:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABFXgKLw",
+          "commit": {
+            "abbreviatedOid": "689853b"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-07-08T14:35:53Z",
+          "updatedAt": "2026-07-08T14:35:53Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
