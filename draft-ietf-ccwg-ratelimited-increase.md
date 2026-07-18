@@ -116,15 +116,15 @@ Additionally, the following are defined:
 
 When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, the following  "Rate-Limited Increase" rules apply for senders using a congestion controlled transport protocol:
 
-The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter, when the FlightSize is updated, the sender updates maxFS:
+- The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter, when the FlightSize is updated, the sender updates maxFS:
 
 ~~~
 maxFS = max(FlightSize, maxFS)
 ~~~
 
-Upon a reduction of cwnd (for any reason), maxFS MUST be reset to zero. This ensures that maxFS is reinitialized using the first FlightSize measurement taken after the cwnd reduction.
+- Upon a reduction of cwnd (for any reason), maxFS MUST be reset to zero. This ensures that maxFS is reinitialized using the first FlightSize measurement taken after the cwnd reduction.
 
-The sender MUST cap cwnd to be no larger than limit(maxFS).
+- The sender MUST cap cwnd to be no larger than limit(maxFS).
 
 The function limit() returns the maximum cwnd value the congestion control algorithm would yield by increasing for all ACKs that would be produced by successfully transmitting one window of size maxFS.
 For example, for Slow Start, as specified in {{!RFC5681}}, limit(maxFS)=2*maxFS, such that equation 2 in {{!RFC5681}} becomes:
