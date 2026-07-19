@@ -116,7 +116,7 @@ Additionally, the following are defined:
 
 When FlightSize < cwnd, regardless of the current state of a congestion control algorithm, the following  "Rate-Limited Increase" rules apply for senders using a congestion controlled transport protocol:
 
-- The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter, when the FlightSize is updated, the sender updates maxFS:
+- The sender MUST initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter, when the FlightSize is updated, the sender also updates the maxFS:
 
 ~~~
 maxFS = max(FlightSize, maxFS)
