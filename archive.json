@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-09T03:35:05.534094+00:00",
+  "timestamp": "2026-07-19T02:57:57.738086+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1113,6 +1113,22 @@
       "createdAt": "2026-07-07T18:46:36Z",
       "updatedAt": "2026-07-08T17:23:31Z",
       "closedAt": "2026-07-08T17:23:31Z",
+      "comments": []
+    },
+    {
+      "number": 90,
+      "id": "I_kwDOK4gIBc8AAAABJSklvA",
+      "title": "Artart review by Marc Blanchet",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/90",
+      "state": "OPEN",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "- [ ] 1) this document seems to imply that it applies to QUIC. However, in the\nterminology section, some words are defined for TCP. Should they be updated for\nQUIC?  Moreover, the example section seems to imply TCP as it talks about\nsegments. Should it be updated to also cover QUIC semantics?\n\n- [x] 2) (NIT): The first paragraph of section 3.  Rate-Limited Increase finishes\nwith a \":\". However, without indentation or bullet lists or numbering, it is\nnot clear which paragraphs that follows are related to the first paragraph.\nSuggest some indentation or bullet list or some formatting to improve.",
+      "createdAt": "2026-07-18T13:20:18Z",
+      "updatedAt": "2026-07-18T13:30:42Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -4568,6 +4584,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 91,
+      "id": "PR_kwDOK4gIBc7zVV_d",
+      "title": "Partial fixes for Artart review",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/91",
+      "state": "OPEN",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Adds bullets to separate out the rules and improve the readability",
+      "createdAt": "2026-07-18T13:29:31Z",
+      "updatedAt": "2026-07-18T13:29:32Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "423cf1d1fd950ec594e9a6342a449e967a858c8d",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "improvements",
+      "headRefOid": "92f44516ed0dd05c92ca86197c8569fda864d140",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
