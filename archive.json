@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-19T02:57:57.738086+00:00",
+  "timestamp": "2026-07-21T02:53:53.948444+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -4597,19 +4597,41 @@
       "labels": [],
       "body": "Adds bullets to separate out the rules and improve the readability",
       "createdAt": "2026-07-18T13:29:31Z",
-      "updatedAt": "2026-07-18T13:29:32Z",
+      "updatedAt": "2026-07-19T08:35:46Z",
       "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "423cf1d1fd950ec594e9a6342a449e967a858c8d",
       "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
       "headRefName": "improvements",
-      "headRefOid": "92f44516ed0dd05c92ca86197c8569fda864d140",
+      "headRefOid": "7b356e09632288361bf88e1352db3a02e9c9cd1d",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Added a few words - check if this reads to be correct!\r\n\r\nLooks good to me!",
+          "createdAt": "2026-07-19T08:35:46Z",
+          "updatedAt": "2026-07-19T08:35:46Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABGfRZlQ",
+          "commit": {
+            "abbreviatedOid": "7b356e0"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Added a few words - check if this reads to be correct!",
+          "createdAt": "2026-07-19T08:27:11Z",
+          "updatedAt": "2026-07-19T08:27:11Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
