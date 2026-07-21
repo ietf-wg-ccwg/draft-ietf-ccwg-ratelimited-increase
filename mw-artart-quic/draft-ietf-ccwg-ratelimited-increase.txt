@@ -230,16 +230,16 @@ Table of Contents
 3.1.  Example
 
    We illustrate the working of Rate-Limited Increase by showing the
-   increase of TCP's cwnd in two scenarios: when the growth of cwnd is
+   increase of cwnd in two scenarios: when the growth of cwnd is
    unconstrained, and when the rate-limited sender is constrained by
    Rate-Limited Increase.  For simplicity, this example accounts for the
-   cwnd in segments, rather than bytes.  In both cases, we assume the
-   initial cwnd (initcwnd) = 10 segments, as defined for TCP in
-   [RFC6928] and QUIC in [RFC9002], a single connection begins with Slow
-   Start, the sender transmits a total of 14 segments but pauses after
-   transmitting 10 segments and resumes the transmission for the
-   remaining 4 segments afterward, no packets are lost, and an ACK is
-   sent for every packet.
+   cwnd in TCP segments (or QUIC packets), rather than bytes.  In both
+   cases, we assume the initial cwnd (initcwnd) = 10 segments, as
+   defined for TCP in [RFC6928] and QUIC in [RFC9002], a single
+   connection begins with Slow Start, the sender transmits a total of 14
+   segments but pauses after transmitting 10 segments and resumes the
+   transmission for the remaining 4 segments afterward, no packets are
+   lost, and an ACK is sent for every packet.
 
 3.1.1.  Unconstrained sender
 
