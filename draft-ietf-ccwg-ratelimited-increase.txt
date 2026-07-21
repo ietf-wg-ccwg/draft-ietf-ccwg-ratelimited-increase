@@ -233,13 +233,13 @@ Table of Contents
    increase of cwnd in two scenarios: when the growth of cwnd is
    unconstrained, and when the rate-limited sender is constrained by
    Rate-Limited Increase.  For simplicity, this example accounts for the
-   cwnd in segments, rather than bytes.  In both cases, we assume the
-   initial cwnd (initcwnd) = 10 segments, as defined for TCP in
-   [RFC6928] and QUIC in [RFC9002], a single connection begins with Slow
-   Start, the sender transmits a total of 14 segments but pauses after
-   transmitting 10 segments and resumes the transmission for the
-   remaining 4 segments afterward, no packets are lost, and an ACK is
-   sent for every packet.
+   cwnd in TCP segments (or QUIC packets), rather than bytes.  In both
+   cases, we assume the initial cwnd (initcwnd) = 10 segments, as
+   defined for TCP in [RFC6928] and QUIC in [RFC9002], a single
+   connection begins with Slow Start, the sender transmits a total of 14
+   segments but pauses after transmitting 10 segments and resumes the
+   transmission for the remaining 4 segments afterward, no packets are
+   lost, and an ACK is sent for every packet.
 
 3.1.1.  Unconstrained sender
 
@@ -390,10 +390,10 @@ Table of Contents
 Appendix A.  An Example Using cwnd Represented in Bytes
 
    The following informative example is provided for a sender that
-   maintains the cwnd in bytes. 36 packets are sent in this example over
-   four rounds of transmission.  This shows the initial growth of the
-   cwnd by a rate-limited sender, followed by a transmission that uses
-   the full available cwnd.
+   maintains the cwnd in bytes. 36 packets (or segments in the case of
+   TCP) are sent in this example over four rounds of transmission.  This
+   shows the initial growth of the cwnd by a rate-limited sender,
+   followed by a transmission that uses the full available cwnd.
 
    The initial sender state is:
 
@@ -409,8 +409,8 @@ Appendix A.  An Example Using cwnd Represented in Bytes
    received for the first packet in a round.  One ACK is generated for
    each 2*MSS received bytes.
 
-   Round 1, the sender has 4000B to send in 4 packets: MSS=1000,
-   cwnd=10000
+   Round 1, the sender has 4000B to send in 4 packets: MSS (QUIC
+   MPS)=1000, cwnd=10000
 
      Send  seqno=0; FS=1000; maxFS=10000
      Send  seqno=1000; FS=1000; maxFS=10000

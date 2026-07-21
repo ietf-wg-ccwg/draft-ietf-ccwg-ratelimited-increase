@@ -1402,7 +1402,7 @@ cwnd = min(cwnd_new, SMSS+maxFS)
         <h3 id="name-example">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-example" class="section-name selfRef">Example</a>
         </h3>
-<p id="section-3.1-1">We illustrate the working of Rate-Limited Increase by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when the rate-limited sender is constrained by Rate-Limited Increase. For simplicity, this example accounts for the cwnd in segments, rather than bytes. In both cases, we assume the initial cwnd (initcwnd) = 10 segments, as defined for TCP in <span>[<a href="#RFC6928" class="cite xref">RFC6928</a>]</span> and QUIC in <span>[<a href="#RFC9002" class="cite xref">RFC9002</a>]</span>, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterward, no packets are lost, and an ACK is sent for every packet.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">We illustrate the working of Rate-Limited Increase by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when the rate-limited sender is constrained by Rate-Limited Increase. For simplicity, this example accounts for the cwnd in TCP segments (or QUIC packets), rather than bytes. In both cases, we assume the initial cwnd (initcwnd) = 10 segments, as defined for TCP in <span>[<a href="#RFC6928" class="cite xref">RFC6928</a>]</span> and QUIC in <span>[<a href="#RFC9002" class="cite xref">RFC9002</a>]</span>, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterward, no packets are lost, and an ACK is sent for every packet.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <div id="unconstrained-sender">
 <section id="section-3.1.1">
           <h4 id="name-unconstrained-sender">
@@ -1546,7 +1546,7 @@ can protect their congestion control algorithm from network attack. This is orth
       <h2 id="name-an-example-using-cwnd-repre">
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-an-example-using-cwnd-repre" class="section-name selfRef">An Example Using cwnd Represented in Bytes</a>
       </h2>
-<p id="appendix-A-1">The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">The initial sender state is:<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-3">
 <pre>
@@ -1560,7 +1560,7 @@ can protect their congestion control algorithm from network attack. This is orth
 </div>
 <p id="appendix-A-4">The network path’s bandwidth-delay product is such that, throughout this example, all packets in each round are sent before an ACK is received for the first packet in a round.
 One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
-<p id="appendix-A-5">Round 1, the sender has 4000B to send in 4 packets: MSS=1000, cwnd=10000<a href="#appendix-A-5" class="pilcrow">¶</a></p>
+<p id="appendix-A-5">Round 1, the sender has 4000B to send in 4 packets: MSS (QUIC MPS)=1000, cwnd=10000<a href="#appendix-A-5" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-6">
 <pre>
   Send  seqno=0; FS=1000; maxFS=10000
