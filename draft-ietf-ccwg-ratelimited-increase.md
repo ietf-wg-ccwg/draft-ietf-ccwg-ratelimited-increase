@@ -211,7 +211,7 @@ The initial sender state is:
 The network path’s bandwidth-delay product is such that, throughout this example, all packets in each round are sent before an ACK is received for the first packet in a round.
 One ACK is generated for each 2*MSS received bytes.
 
-Round 1, the sender has 4000B to send in 4 packets: MSS=1000, cwnd=10000
+Round 1, the sender has 4000B to send in 4 packets: MSS (QUIC MPS) =1000, cwnd=10000
 
 ~~~~~~~~~~
   Send  seqno=0; FS=1000; maxFS=10000
