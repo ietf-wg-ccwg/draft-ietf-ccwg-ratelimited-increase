@@ -146,7 +146,7 @@ where cwnd and SMSS follow their definitions in {{!RFC5681}}.
 NOTE: This specification defines the current method used to increase the cwnd for a rate-limited sender. Without a way to reduce cwnd when the transport sender becomes rate-limited, maxFS can stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. This can be remedied by "Congestion Window Validation" in {{?RFC7661}}, which also defines a "pipeACK" variable that measures the recently acknowledged size of the network pipe when the sender was rate-limited.
 
 ## Example
-We illustrate the working of Rate-Limited Increase by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when the rate-limited sender is constrained by Rate-Limited Increase. For simplicity, this example accounts for the cwnd in segments, rather than bytes. In both cases, we assume the initial cwnd (initcwnd) = 10 segments, as defined for TCP in {{?RFC6928}} and QUIC in {{?RFC9002}}, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterward, no packets are lost, and an ACK is sent for every packet.
+We illustrate the working of Rate-Limited Increase by showing the increase of TCP's cwnd in two scenarios: when the growth of cwnd is unconstrained, and when the rate-limited sender is constrained by Rate-Limited Increase. For simplicity, this example accounts for the cwnd in segments, rather than bytes. In both cases, we assume the initial cwnd (initcwnd) = 10 segments, as defined for TCP in {{?RFC6928}} and QUIC in {{?RFC9002}}, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterward, no packets are lost, and an ACK is sent for every packet.
 
 ### Unconstrained sender
 Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses. Since the sender is in the Slow Start phase, the arrival of each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, after the pause, the sender transmits 4 segments and pauses again. As a consequence, the arrival of 4 ACKs results in cwnd further increasing to 24 segments, even though the sender is rate-limited (i.e., has never sent more than 10 segments per round-trip time (RTT)).
@@ -195,7 +195,7 @@ This document requests no IANA action.
 
 # An Example Using cwnd Represented in Bytes
 
-The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd.
+The following informative TCP example is provided for a sender that maintains the cwnd in bytes. 36 packets are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd.
 
 The initial sender state is:
 
