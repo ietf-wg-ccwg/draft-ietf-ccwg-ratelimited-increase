@@ -409,8 +409,8 @@ Appendix A.  An Example Using cwnd Represented in Bytes
    received for the first packet in a round.  One ACK is generated for
    each 2*MSS received bytes.
 
-   Round 1, the sender has 4000B to send in 4 packets: MSS (QUIC MPS)
-   =1000, cwnd=10000
+   Round 1, the sender has 4000B to send in 4 packets: MSS (QUIC
+   MPS)=1000, cwnd=10000
 
      Send  seqno=0; FS=1000; maxFS=10000
      Send  seqno=1000; FS=1000; maxFS=10000
