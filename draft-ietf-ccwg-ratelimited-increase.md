@@ -72,7 +72,7 @@ I-D.ietf-ccwg-bbr:
 
 --- abstract
 
-This document specifies how transport protocols increase their congestion window when the sender is rate-limited, and updates RFC 5681, RFC 9002, RFC 9260, and RFC 9438.
+This document specifies how transport protocols increase their congestion window when the sender is rate-limited, and updates RFC 4341, RFC 5681, RFC 9002, RFC 9260, and RFC 9438.
 Such a limitation can be caused by the sending application not supplying data or by receiver flow control.
 
 
