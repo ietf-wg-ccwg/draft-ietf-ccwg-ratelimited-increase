@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: RFC4341, RFC5681, RFC9002, RFC9260,                T. Henderson
          RFC9438 (if approved)                  University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 9 January 2027                           University of Aberdeen
+Expires: 22 January 2027                          University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                             8 July 2026
+                                                            21 July 2026
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 January 2027.
+   This Internet-Draft will expire on 22 January 2027.
 
 Copyright Notice
 
@@ -184,17 +184,17 @@ Table of Contents
    rules apply for senders using a congestion controlled transport
    protocol:
 
-   The sender MUST initialise the maxFS parameter to initcwnd when the
-   congestion control algorithm is started.  Thereafter, when the
-   FlightSize is updated, the sender updates maxFS:
+   *  The sender MUST initialise the maxFS parameter to initcwnd when
+      the congestion control algorithm is started.  Thereafter, when the
+      FlightSize is updated, the sender also updates the maxFS:
 
    maxFS = max(FlightSize, maxFS)
 
-   Upon a reduction of cwnd (for any reason), maxFS MUST be reset to
-   zero.  This ensures that maxFS is reinitialized using the first
-   FlightSize measurement taken after the cwnd reduction.
+   *  Upon a reduction of cwnd (for any reason), maxFS MUST be reset to
+      zero.  This ensures that maxFS is reinitialized using the first
+      FlightSize measurement taken after the cwnd reduction.
 
-   The sender MUST cap cwnd to be no larger than limit(maxFS).
+   *  The sender MUST cap cwnd to be no larger than limit(maxFS).
 
    The function limit() returns the maximum cwnd value the congestion
    control algorithm would yield by increasing for all ACKs that would
