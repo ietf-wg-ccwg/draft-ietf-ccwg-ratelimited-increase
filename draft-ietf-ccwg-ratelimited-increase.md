@@ -195,7 +195,7 @@ This document requests no IANA action.
 
 # An Example Using cwnd Represented in Bytes
 
-The following informative TCP example is provided for a sender that maintains the cwnd in bytes. 36 packets are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd.
+The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd.
 
 The initial sender state is:
 
