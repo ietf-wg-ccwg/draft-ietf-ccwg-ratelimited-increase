@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-21T02:53:53.948444+00:00",
+  "timestamp": "2026-07-23T03:13:05.300042+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1120,15 +1120,15 @@
       "id": "I_kwDOK4gIBc8AAAABJSklvA",
       "title": "Artart review by Marc Blanchet",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/90",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mohittahiliani",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "- [ ] 1) this document seems to imply that it applies to QUIC. However, in the\nterminology section, some words are defined for TCP. Should they be updated for\nQUIC?  Moreover, the example section seems to imply TCP as it talks about\nsegments. Should it be updated to also cover QUIC semantics?\n\n- [x] 2) (NIT): The first paragraph of section 3.  Rate-Limited Increase finishes\nwith a \":\". However, without indentation or bullet lists or numbering, it is\nnot clear which paragraphs that follows are related to the first paragraph.\nSuggest some indentation or bullet list or some formatting to improve.",
+      "body": "- [x] 1) this document seems to imply that it applies to QUIC. However, in the\nterminology section, some words are defined for TCP. Should they be updated for\nQUIC?  Moreover, the example section seems to imply TCP as it talks about\nsegments. Should it be updated to also cover QUIC semantics?\n\n- [x] 2) (NIT): The first paragraph of section 3.  Rate-Limited Increase finishes\nwith a \":\". However, without indentation or bullet lists or numbering, it is\nnot clear which paragraphs that follows are related to the first paragraph.\nSuggest some indentation or bullet list or some formatting to improve.",
       "createdAt": "2026-07-18T13:20:18Z",
-      "updatedAt": "2026-07-18T13:30:42Z",
-      "closedAt": null,
+      "updatedAt": "2026-07-21T16:01:51Z",
+      "closedAt": "2026-07-21T16:01:51Z",
       "comments": []
     }
   ],
@@ -4590,24 +4590,26 @@
       "id": "PR_kwDOK4gIBc7zVV_d",
       "title": "Partial fixes for Artart review",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/91",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mohittahiliani",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Adds bullets to separate out the rules and improve the readability",
       "createdAt": "2026-07-18T13:29:31Z",
-      "updatedAt": "2026-07-19T08:35:46Z",
+      "updatedAt": "2026-07-21T07:15:31Z",
       "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "423cf1d1fd950ec594e9a6342a449e967a858c8d",
       "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
       "headRefName": "improvements",
       "headRefOid": "7b356e09632288361bf88e1352db3a02e9c9cd1d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-07-21T07:15:31Z",
+      "mergedAt": "2026-07-21T07:15:31Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "2bd557cd3962e3c0ab2d6db5acbf55a68a1158a1"
+      },
       "comments": [
         {
           "author": "mohittahiliani",
@@ -4630,6 +4632,183 @@
           "createdAt": "2026-07-19T08:27:11Z",
           "updatedAt": "2026-07-19T08:27:11Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 92,
+      "id": "PR_kwDOK4gIBc70Oivb",
+      "title": "Fix abstract RFC list",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/92",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Include RFC 4341 - bringing it in line with the list at the top.",
+      "createdAt": "2026-07-21T07:23:26Z",
+      "updatedAt": "2026-07-21T16:02:08Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "2bd557cd3962e3c0ab2d6db5acbf55a68a1158a1",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "mw-rfc4341",
+      "headRefOid": "c1abae6320f0ee2a298a7b5a06cb8761c8815055",
+      "closedAt": "2026-07-21T16:02:08Z",
+      "mergedAt": "2026-07-21T16:02:08Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "2158a663c1892aa9b647d8c5621c858946fe619a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABGq9FbA",
+          "commit": {
+            "abbreviatedOid": "c1abae6"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-07-21T08:25:38Z",
+          "updatedAt": "2026-07-21T08:25:38Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 93,
+      "id": "PR_kwDOK4gIBc70Oq5Z",
+      "title": "Clarify that the examples talk about TCP",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/93",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #90 ",
+      "createdAt": "2026-07-21T07:28:59Z",
+      "updatedAt": "2026-07-21T16:01:50Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "2bd557cd3962e3c0ab2d6db5acbf55a68a1158a1",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "mw-artart-quic",
+      "headRefOid": "9c821af58e6a90b970697ebe770b79aa1cd6346d",
+      "closedAt": "2026-07-21T16:01:50Z",
+      "mergedAt": "2026-07-21T16:01:49Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "b59021fe0ac545a2198154516033e00f31a8361e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABGq9XMQ",
+          "commit": {
+            "abbreviatedOid": "c25e255"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-07-21T08:26:16Z",
+          "updatedAt": "2026-07-21T08:26:16Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABGueZUQ",
+          "commit": {
+            "abbreviatedOid": "c25e255"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-21T15:40:10Z",
+          "updatedAt": "2026-07-21T15:40:10Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\nWe illustrate the working of Rate-Limited Increase by showing the increase of cwnd in two scenarios: when the growth of cwnd is unconstrained, and when the rate-limited sender is constrained by Rate-Limited Increase. For simplicity, this example accounts for the cwnd in TCP segments (or QUIC packets), rather than bytes. In both cases, we assume the initial cwnd (initcwnd) = 10 segments, as defined for TCP in {{?RFC6928}} and QUIC in {{?RFC9002}}, a single connection begins with Slow Start, the sender transmits a total of 14 segments but pauses after transmitting 10 segments and resumes the transmission for the remaining 4 segments afterward, no packets are lost, and an ACK is sent for every packet.\n```",
+              "createdAt": "2026-07-21T15:40:10Z",
+              "updatedAt": "2026-07-21T15:40:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABGufwXQ",
+          "commit": {
+            "abbreviatedOid": "47b2a51"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-21T15:43:03Z",
+          "updatedAt": "2026-07-21T15:43:03Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\nThe following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd.\n```",
+              "createdAt": "2026-07-21T15:43:03Z",
+              "updatedAt": "2026-07-21T15:43:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABGuh2WQ",
+          "commit": {
+            "abbreviatedOid": "0c79e5e"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-21T15:47:19Z",
+          "updatedAt": "2026-07-21T15:47:20Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "```suggestion\nRound 1, the sender has 4000B to send in 4 packets: MSS (QUIC MPS) =1000, cwnd=10000\n```",
+              "createdAt": "2026-07-21T15:47:19Z",
+              "updatedAt": "2026-07-21T15:47:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABGuimew",
+          "commit": {
+            "abbreviatedOid": "c76c4ad"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Looks good now",
+          "createdAt": "2026-07-21T15:48:46Z",
+          "updatedAt": "2026-07-21T15:48:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABGupjAw",
+          "commit": {
+            "abbreviatedOid": "c76c4ad"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-21T16:01:29Z",
+          "updatedAt": "2026-07-21T16:01:29Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "```suggestion\nRound 1, the sender has 4000B to send in 4 packets: MSS (QUIC MPS)=1000, cwnd=10000\n```",
+              "createdAt": "2026-07-21T16:01:29Z",
+              "updatedAt": "2026-07-21T16:01:29Z"
+            }
+          ]
         }
       ]
     }
