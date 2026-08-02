@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-23T03:13:05.300042+00:00",
+  "timestamp": "2026-08-02T03:15:32.388241+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1130,6 +1130,53 @@
       "updatedAt": "2026-07-21T16:01:51Z",
       "closedAt": "2026-07-21T16:01:51Z",
       "comments": []
+    },
+    {
+      "number": 94,
+      "id": "I_kwDOK4gIBc8AAAABK_TTCA",
+      "title": "Review by Ketan Talaulikar",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/94",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Thanks to the authors and the WG for their work on this document.\n\nLike Roman, I am unable to understand how this document is updating all those\nlisted transport protocol RFCs. My best reference was Appendix B which\n(unfortunately is going to get removed before publication!) holds the text that\nget the closest to the impact/change. From my reading of that text as someone\nnot familiar with the protocol, it seems like only DCCP (RFC4341) and TCP CC\n(RFC5681) are really updated and the others have tackled this already?\n\nI've never seen a document that is updating another but not specifically saying\nwhat is being updated. Is this covered in some non-obvious way? I would have\nfiled this as something to DISCUSS but I don't know if I would be able to hold\nsuch a discussion.\n\nAlso, I would expect RFC4341 to have been a normative reference if this\ndocument were indeed updating it, but I cannot be sure if it is updating that\n...",
+      "createdAt": "2026-07-31T18:42:28Z",
+      "updatedAt": "2026-07-31T18:42:28Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 95,
+      "id": "I_kwDOK4gIBc8AAAABLDSYcQ",
+      "title": "Review by Roman Danyliw",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/95",
+      "state": "OPEN",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This document\u2019s abstract, but not in the body of the document, asserts that:\n\n   This document specifies how transport protocols increase their\n   congestion window when the sender is rate-limited, and updates RFC\n   4341, RFC 5681, RFC 9002, RFC 9260, and RFC 9438.\n\nWhat is not clearly states is how to specifically merge this guidance into the\nexisting text in any of the referenced documents.\n",
+      "createdAt": "2026-08-01T10:38:11Z",
+      "updatedAt": "2026-08-01T15:30:19Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I suspect we might get close, if were to keep the appendix B when we publish.\n\nWe could review it a little to make it say what is clarified from the RFC rather than aiming to motivate the work, and add a small amount of text to each CC saying which parts of spec the cwnd if described within.",
+          "createdAt": "2026-08-01T14:02:47Z",
+          "updatedAt": "2026-08-01T14:02:47Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I thought the same!  We can cut the part about implementations and change it a little. Should it stay as an appendix?",
+          "createdAt": "2026-08-01T15:30:19Z",
+          "updatedAt": "2026-08-01T15:30:19Z"
+        }
+      ]
     }
   ],
   "pulls": [
