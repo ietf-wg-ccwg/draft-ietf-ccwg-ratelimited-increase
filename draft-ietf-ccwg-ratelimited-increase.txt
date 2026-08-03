@@ -297,9 +297,13 @@ Table of Contents
    of a congestion indication, a sender is allowed to increase its rate
    from the amount of data that it has transmitted during the previous
    RTT (this holds irrespective of whether the sender is rate-limited or
-   not).  Therefore, congestion control algorithms SHOULD implement a
-   behavior that is equivalent to Rate-Limited Increase, irrespective of
-   whether they use a cwnd variable or not.
+   not).
+
+   Rate-based congestion control algorithms MUST NOT result in an
+   unconstrained situation where a sender would increase the maximum
+   permitted rate even when there is no additional application data to
+   send.  This behavior SHOULD be equivalent to Rate-Limited Increase,
+   irrespective of whether an algorithm uses a cwnd variable or not.
 
 3.2.2.  Pacing
 
