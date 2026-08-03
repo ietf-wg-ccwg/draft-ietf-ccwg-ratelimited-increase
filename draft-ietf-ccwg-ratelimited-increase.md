@@ -166,8 +166,9 @@ However, in most common congestion control algorithms, in the absence of an indi
 
 The present document updates congestion control specifications that use a cwnd to limit the number of unacknowledged bytes (or packets) that a sender is allowed to emit. Use of a cwnd variable to control sending rate is not the only mechanism available and not the only mechanism that is used in practice.
 
-Congestion control algorithms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{?I-D.ietf-ccwg-bbr}}). The guiding principle behind Rate-Limited Increase applies to all congestion control algorithms: in the absence of a congestion indication, a sender is allowed to increase its rate from the amount of data that it has transmitted during the previous RTT (this holds irrespective of whether the sender is rate-limited or not). Therefore, congestion control algorithms SHOULD implement a behavior that is equivalent to Rate-Limited Increase, irrespective of whether they use a cwnd variable or not.
+Congestion control algorithms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{?I-D.ietf-ccwg-bbr}}). The guiding principle behind Rate-Limited Increase applies to all congestion control algorithms: in the absence of a congestion indication, a sender is allowed to increase its rate from the amount of data that it has transmitted during the previous RTT (this holds irrespective of whether the sender is rate-limited or not).
 
+Rate-based congestion control algorithms MUST NOT result in an unconstrained situation where a sender would increase the maximum permitted rate even when there is no additional application data to send. This behavior SHOULD be equivalent to Rate-Limited Increase, irrespective of whether an algorithm uses a cwnd variable or not.
 
 ### Pacing
 
