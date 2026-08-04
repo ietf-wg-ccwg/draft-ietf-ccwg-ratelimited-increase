@@ -177,7 +177,7 @@ Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (f
 
 ## RFC 4341: The Datagram Congestion Control Protocol (DCCP) Congestion Control ID (CCID) 2
 
-A DCCP CCID specifying TCP-like behaviour ought to follow the method specified in this document. 
+A DCCP CCID specifying TCP-like behaviour ought to follow the method specified in this document.
 The text in {{Section 5.1 of !RFC4341}} is updated by this document by adding the text in ({{rules}}) to specify the management of the
 cwnd when the sender is rate-limited.
 
