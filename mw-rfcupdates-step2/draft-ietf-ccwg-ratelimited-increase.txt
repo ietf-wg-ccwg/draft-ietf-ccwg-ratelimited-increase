@@ -89,7 +89,7 @@ Table of Contents
      4.1.  RFC 4341: The Datagram Congestion Control Protocol (DCCP)
            Congestion Control ID (CCID) 2
      4.2.  RFC 5681: TCP Congestion Control
-     4.3.  RFC 9002: The QUIC Transport Protocol
+     4.3.  RFC 9002: QUIC Loss Detection and Congestion Control
      4.4.  RFC 9260: The Stream Control Transmission Protocol (SCTP)
      4.5.  RFC 9438: CUBIC
    5.  Security Considerations
@@ -320,7 +320,7 @@ Table of Contents
    This document updates [RFC5681] by adding the text in Section 3 to
    specify how the cwnd is managed when the sender is rate-limited.
 
-4.3.  RFC 9002: The QUIC Transport Protocol
+4.3.  RFC 9002: QUIC Loss Detection and Congestion Control
 
    Section 7.8 of [RFC9002] states:
 
