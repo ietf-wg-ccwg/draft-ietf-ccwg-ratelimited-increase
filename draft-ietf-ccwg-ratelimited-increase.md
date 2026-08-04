@@ -198,7 +198,6 @@ This document updates {{!RFC5681}} by adding the text in {{rules}} to specify ho
 This limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative.
 
 {{!RFC9002}} is updated by this document by replacing the final sentence in the cited text with the text in ({{rules}}) to specify the management of the
-cwnd when the sender is rate-limited.
 
 
 ## RFC 9260: The Stream Control Transmission Protocol (SCTP)
