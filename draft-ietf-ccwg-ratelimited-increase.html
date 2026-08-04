@@ -1203,7 +1203,7 @@ Such a limitation can be caused by the sending application not supplying data or
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-updates-to-rfcs-4341-5681-9" class="internal xref">Updates to RFCs 4341, 5681, 9002, 9260, and 9438</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-rfc-4341-the-datagram-conge" class="internal xref">RFC 4341: The Datagram Congestion Control Protocol (DCCP) Congestion Control ID (CCID) 2</a></p>
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-rfc-4341-profile-for-datagr" class="internal xref">RFC 4341: Profile for Datagram Congestion Control Protocol (DCCP) Congestion Control ID 2: TCP-like Congestion Control</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-rfc-5681-tcp-congestion-con" class="internal xref">RFC 5681: TCP Congestion Control</a></p>
@@ -1215,7 +1215,7 @@ Such a limitation can be caused by the sending application not supplying data or
                 <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-rfc-9260-stream-control-tra" class="internal xref">RFC 9260: Stream Control Transmission Protocol</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
-                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="auto internal xref">4.5</a>.  <a href="#name-rfc-9438-cubic" class="internal xref">RFC 9438: CUBIC</a></p>
+                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="auto internal xref">4.5</a>.  <a href="#name-rfc-9438-cubic-for-fast-and" class="internal xref">RFC 9438: CUBIC for Fast and Long-Distance Networks</a></p>
 </li>
             </ul>
 </li>
@@ -1405,10 +1405,10 @@ Such unlimited growth in the cwnd is therefore disallowed.<a href="#section-3.2-
       <h2 id="name-updates-to-rfcs-4341-5681-9">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-updates-to-rfcs-4341-5681-9" class="section-name selfRef">Updates to RFCs 4341, 5681, 9002, 9260, and 9438</a>
       </h2>
-<div id="rfc-4341-the-datagram-congestion-control-protocol-dccp-congestion-control-id-ccid-2">
+<div id="rfc-4341-profile-for-datagram-congestion-control-protocol-dccp-congestion-control-id-2-tcp-like-congestion-control">
 <section id="section-4.1">
-        <h3 id="name-rfc-4341-the-datagram-conge">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-rfc-4341-the-datagram-conge" class="section-name selfRef">RFC 4341: The Datagram Congestion Control Protocol (DCCP) Congestion Control ID (CCID) 2</a>
+        <h3 id="name-rfc-4341-profile-for-datagr">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-rfc-4341-profile-for-datagr" class="section-name selfRef">RFC 4341: Profile for Datagram Congestion Control Protocol (DCCP) Congestion Control ID 2: TCP-like Congestion Control</a>
         </h3>
 <p id="section-4.1-1">According to <span>[<a href="#RFC4341" class="cite xref">RFC4341</a>]</span>, a DCCP CCID specifying TCP-like behavior is allowed to grow the cwnd without limit during an uncongested period when it sends at a rate unconstrained by the current cwnd.
 This document updates <span><a href="https://rfc-editor.org/rfc/rfc4341#section-5.1" class="relref">Section 5.1</a> of [<a href="#RFC4341" class="cite xref">RFC4341</a>]</span> by adding the text in <a href="#rules" class="auto internal xref">Section 3</a> to specify how the cwnd is managed when the sender is rate-limited.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
@@ -1459,10 +1459,10 @@ Only when these two conditions are met can the cwnd be increased; otherwise, the
 <p id="section-4.4-6">This ensures that the update applies to both Slow Start and Congestion Avoidance.<a href="#section-4.4-6" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="rfc-9438-cubic">
+<div id="rfc-9438-cubic-for-fast-and-long-distance-networks">
 <section id="section-4.5">
-        <h3 id="name-rfc-9438-cubic">
-<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-rfc-9438-cubic" class="section-name selfRef">RFC 9438: CUBIC</a>
+        <h3 id="name-rfc-9438-cubic-for-fast-and">
+<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-rfc-9438-cubic-for-fast-and" class="section-name selfRef">RFC 9438: CUBIC for Fast and Long-Distance Networks</a>
         </h3>
 <p id="section-4.5-1"><span><a href="https://rfc-editor.org/rfc/rfc9438#section-5.8" class="relref">Section 5.8</a> of [<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> states:<a href="#section-4.5-1" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">

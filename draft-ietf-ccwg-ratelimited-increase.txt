@@ -86,12 +86,12 @@ Table of Contents
        3.2.1.  Rate-based congestion control
        3.2.2.  Pacing
    4.  Updates to RFCs 4341, 5681, 9002, 9260, and 9438
-     4.1.  RFC 4341: The Datagram Congestion Control Protocol (DCCP)
-           Congestion Control ID (CCID) 2
+     4.1.  RFC 4341: Profile for Datagram Congestion Control Protocol
+           (DCCP) Congestion Control ID 2: TCP-like Congestion Control
      4.2.  RFC 5681: TCP Congestion Control
      4.3.  RFC 9002: QUIC Loss Detection and Congestion Control
      4.4.  RFC 9260: Stream Control Transmission Protocol
-     4.5.  RFC 9438: CUBIC
+     4.5.  RFC 9438: CUBIC for Fast and Long-Distance Networks
    5.  Security Considerations
    6.  IANA Considerations
    7.  References
@@ -301,8 +301,8 @@ Table of Contents
 
 4.  Updates to RFCs 4341, 5681, 9002, 9260, and 9438
 
-4.1.  RFC 4341: The Datagram Congestion Control Protocol (DCCP)
-      Congestion Control ID (CCID) 2
+4.1.  RFC 4341: Profile for Datagram Congestion Control Protocol (DCCP)
+      Congestion Control ID 2: TCP-like Congestion Control
 
    According to [RFC4341], a DCCP CCID specifying TCP-like behavior is
    allowed to grow the cwnd without limit during an uncongested period
@@ -365,7 +365,7 @@ Table of Contents
    This ensures that the update applies to both Slow Start and
    Congestion Avoidance.
 
-4.5.  RFC 9438: CUBIC
+4.5.  RFC 9438: CUBIC for Fast and Long-Distance Networks
 
    Section 5.8 of [RFC9438] states:
 
