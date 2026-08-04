@@ -218,7 +218,7 @@ The quoted statement from {{!RFC9260}} limits the cwnd growth in accordance with
 
 {{Section 7.2.2 of !RFC9260}} is also updated to add text in ({{rules}}). 
 
-cwnd when the sender is rate-limited.
+This ensures that the update applies to both Slow Start and Congestion Avoidance.
 
 
 ## RFC 9438: CUBIC
