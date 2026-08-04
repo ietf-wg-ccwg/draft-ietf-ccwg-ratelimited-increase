@@ -1569,11 +1569,12 @@ can protect their congestion control algorithm from network attack. This is orth
       <h2 id="name-an-example-using-cwnd-repre">
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-an-example-using-cwnd-repre" class="section-name selfRef">An Example Using cwnd Represented in Bytes</a>
       </h2>
-<p id="appendix-A-1">The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The MSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">The initial sender state is:<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-3">
 <pre>
   Sender sequence number (seqno) = 0
+  SMSS = 1400 bytes (larger than the sent MSS)
   MSS = 1000 bytes
   cwnd = 10000 bytes (initcwnd)
   maxFS = 10000 bytes (initcwnd)
@@ -1583,7 +1584,7 @@ can protect their congestion control algorithm from network attack. This is orth
 </div>
 <p id="appendix-A-4">The network path’s bandwidth-delay product is such that, throughout this example, all packets in each round are sent before an ACK is received for the first packet in a round.
 One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
-<p id="appendix-A-5">Round 1, the sender has 4000B to send in 4 packets: MSS (QUIC MPS)=1000, cwnd=10000<a href="#appendix-A-5" class="pilcrow">¶</a></p>
+<p id="appendix-A-5">Round 1, the sender has 4000B to send in 4 packets (MSS=1000B);  cwnd=10000<a href="#appendix-A-5" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-6">
 <pre>
   Send  seqno=0; FS=1000; maxFS=10000
@@ -1592,7 +1593,7 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
   Send  seqno=3000; FS=3000; maxFS=10000
 </pre><a href="#appendix-A-6" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-7">Received 2 ACKs; maxFS=10000, if (cwnd&lt;2*maxFS) {cwnd +=ACK’ed}<a href="#appendix-A-7" class="pilcrow">¶</a></p>
+<p id="appendix-A-7">Received 2 ACKs (N=2000); maxFS=10000, if (cwnd&lt;2*maxFS) {cwnd += N}<a href="#appendix-A-7" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-8">
 <pre>
   ACK for  2000 ACK’ed=2000 : cwnd+= 2000; cwnd=12000
@@ -1600,7 +1601,7 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
 </pre><a href="#appendix-A-8" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-9">Note: This round maxFS was not increased and cwnd was increased.<a href="#appendix-A-9" class="pilcrow">¶</a></p>
-<p id="appendix-A-10">Round 2, the sender has 8000B to send in 8 packets: MSS=1000, cwnd=14000<a href="#appendix-A-10" class="pilcrow">¶</a></p>
+<p id="appendix-A-10">Round 2, the sender has 8000B to send in 8 packets (MSS=1000B), cwnd=14000<a href="#appendix-A-10" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-11">
 <pre>
   Send  seqno=4000; FS=1000; maxFS=10000
@@ -1613,7 +1614,7 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
   Send seqno=11000; FS=8000; maxFS=10000
 </pre><a href="#appendix-A-11" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-12">Received 4 ACKs; maxFS=10000, if (cwnd&lt;2*maxFS) {cwnd +=ACK’ed}<a href="#appendix-A-12" class="pilcrow">¶</a></p>
+<p id="appendix-A-12">Received 4 ACKs (N=2000); maxFS=10000, if (cwnd&lt;2*maxFS) {cwnd += N}<a href="#appendix-A-12" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-13">
 <pre>
   ACK for  6000 ACK’ed=2000 : cwnd+=2000; cwnd=16000
@@ -1622,8 +1623,8 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
   ACK for 12000 ACK’ed=2000 : cwnd+=0; cwnd=20000
 </pre><a href="#appendix-A-13" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-14">Note: This round maxFS was not increased and cwnd was increased to 2*maxFS.<a href="#appendix-A-14" class="pilcrow">¶</a></p>
-<p id="appendix-A-15">Round 3, the sender has 4000B to send in 4 packets: MSS=1000, cwnd=20000<a href="#appendix-A-15" class="pilcrow">¶</a></p>
+<p id="appendix-A-14">Note: This round maxFS was not increased and cwnd was limited to 2*maxFS.<a href="#appendix-A-14" class="pilcrow">¶</a></p>
+<p id="appendix-A-15">Round 3, the sender has 4000B to send in 4 packets (MSS=1000B), cwnd=20000<a href="#appendix-A-15" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-16">
 <pre>
   Send seqno=12000; FS=1000; maxFS=10000
@@ -1632,7 +1633,7 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
   Send seqno=15000; FS=4000; maxFS=10000
 </pre><a href="#appendix-A-16" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-17">Received 2 ACKs; maxFS=10000, if (cwnd&lt;2*maxFS) {cwnd +=ACK’ed}<a href="#appendix-A-17" class="pilcrow">¶</a></p>
+<p id="appendix-A-17">Received 2 ACKs (N=2000); maxFS=10000, if (cwnd&lt;2*maxFS) {cwnd += N}<a href="#appendix-A-17" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-18">
 <pre>
   ACK for 14000 ACK’ed=2000 : cwnd+=0; cwnd=20000
@@ -1640,7 +1641,7 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
 </pre><a href="#appendix-A-18" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-19">Note: This round maxFS was not increased and cwnd was not increased.<a href="#appendix-A-19" class="pilcrow">¶</a></p>
-<p id="appendix-A-20">Round 4, the sender has 20000B to send in 20 packets: MSS=1000, cwnd=20000<a href="#appendix-A-20" class="pilcrow">¶</a></p>
+<p id="appendix-A-20">Round 4, the sender has 20000B to send in 20 packets (MSS=1000B), cwnd=20000<a href="#appendix-A-20" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-21">
 <pre>
   Send seqno=16000; FS= 1000; maxFS=10000
@@ -1665,7 +1666,7 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
   Send seqno=35000; FS=20000; maxFS=20000
 </pre><a href="#appendix-A-21" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-22">Received 10 ACKs; maxFS=20000, if (cwnd&lt;2*maxFS) {cwnd +=ACK’ed}<a href="#appendix-A-22" class="pilcrow">¶</a></p>
+<p id="appendix-A-22">Received 10 ACKs (N=2000); maxFS=20000, if (cwnd&lt;2*maxFS) {cwnd += N}<a href="#appendix-A-22" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-23">
 <pre>
   ACK for 18000 ACK’ed=2000 : cwnd+=2000; cwnd=22000
@@ -1680,7 +1681,7 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
   ACK for 36000 ACK’ed=2000 : cwnd+=2000; cwnd=40000
 </pre><a href="#appendix-A-23" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-24">Note: In this round, maxFS was increased and cwnd was increased to 2*maxFS.<a href="#appendix-A-24" class="pilcrow">¶</a></p>
+<p id="appendix-A-24">Note: In this round, maxFS increased and therefore cwnd was increased to 2*maxFS.<a href="#appendix-A-24" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="change-log">
@@ -1839,7 +1840,13 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
               <p id="appendix-B-1.12.2.2.1">Made RFC 4341 reference normative<a href="#appendix-B-1.12.2.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="appendix-B-1.12.2.3">
-              <p id="appendix-B-1.12.2.3.1">Moved appendix B into the main text as a new section that (only) defines the RFC updates.<a href="#appendix-B-1.12.2.3.1" class="pilcrow">¶</a></p>
+              <p id="appendix-B-1.12.2.3.1">Fixed Updates list to match boilerplate<a href="#appendix-B-1.12.2.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-B-1.12.2.4">
+              <p id="appendix-B-1.12.2.4.1">Moved some of appendix B to the main text as a new section that (only) defines the RFC updates.<a href="#appendix-B-1.12.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-B-1.12.2.5">
+              <p id="appendix-B-1.12.2.5.1">Updated description lines in appendix A<a href="#appendix-B-1.12.2.5.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
