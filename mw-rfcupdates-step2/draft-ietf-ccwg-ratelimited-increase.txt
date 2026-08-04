@@ -336,7 +336,7 @@ Table of Contents
 
    [RFC9002] is updated by this document by replacing the final sentence
    in the cited text with the text in (Section 3) to specify the
-   management of the cwnd when the sender is rate-limited.
+   management of the
 
 4.4.  RFC 9260: The Stream Control Transmission Protocol (SCTP)
 
