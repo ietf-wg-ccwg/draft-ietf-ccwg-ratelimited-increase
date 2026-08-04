@@ -268,7 +268,7 @@ in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies 
 
 ### Assessment
 
-With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with Rate-Limited Increase, and more conservative.
+With the exception of pacing, the QUIC specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with Rate-Limited Increase, and more conservative.
 
 
 # Security Considerations
