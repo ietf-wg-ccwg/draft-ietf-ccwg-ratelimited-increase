@@ -308,7 +308,7 @@ Received 4 ACKs (N=2000); maxFS=10000, if (cwnd<2*maxFS) {cwnd += N}
   ACK for 12000 ACK’ed=2000 : cwnd+=0; cwnd=20000
 ~~~~~~~~~~
 
-Note: This round maxFS was not increased and cwnd was increased limited to 2*maxFS.
+Note: This round maxFS was not increased and cwnd was limited to 2*maxFS.
 
 Round 3, the sender has 4000B to send in 4 packets (MSS=1000B), cwnd=20000
 
