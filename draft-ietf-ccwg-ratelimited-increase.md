@@ -213,7 +213,7 @@ The quoted statement from {{!RFC9260}} limits cwnd growth in accordance with Rat
 
 This document updates {{!RFC9260}} by replacing the final sentence of the quoted text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
 
-{{Section 7.2.2 of !RFC9260}} is also updated to add text in ({{rules}}).
+{{Section 7.2.2 of !RFC9260}} is also updated to add text in {{rules}}.
 
 This ensures that the update applies to both Slow Start and Congestion Avoidance.
 
