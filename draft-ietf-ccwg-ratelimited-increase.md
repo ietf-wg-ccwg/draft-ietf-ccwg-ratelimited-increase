@@ -200,7 +200,7 @@ This limits the cwnd growth in accordance with Rate-Limited Increase, but it is 
 This document updates {{!RFC9002}} by replacing the final sentence of the cited text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
 
 
-## RFC 9260: The Stream Control Transmission Protocol (SCTP)
+## RFC 9260: Stream Control Transmission Protocol
 
 {{Section 7.2.1 of !RFC9260}} says:
 
