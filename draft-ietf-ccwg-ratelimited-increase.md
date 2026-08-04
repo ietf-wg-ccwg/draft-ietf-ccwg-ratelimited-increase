@@ -199,7 +199,7 @@ cwnd when the sender is rate-limited.
 
 This limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative.
 
-{{!RFC9002}} is updated by this document by adding the text in ({{rules}}) to specify the management of the
+{{!RFC9002}} is updated by this document by replacing the final line in the cited text, by the text in in ({{rules}}) to specify the management of the
 cwnd when the sender is rate-limited.
 
 
