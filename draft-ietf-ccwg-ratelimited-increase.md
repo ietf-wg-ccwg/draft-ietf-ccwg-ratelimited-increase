@@ -186,7 +186,7 @@ This document updates {{Section 5.1 of !RFC4341}} by adding the text in {{rules}
 {{!RFC5681}} specifies no limit on cwnd growth in the standard TCP behavior
 when a TCP sender is unable to send at the maximum rate allowed by the cwnd.
 
-{{!RFC5681}} is updated by this document by adding the text in ({{rules}}) to specify the management of the
+This document updates {{!RFC5681}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
 
 
 ## RFC 9002: The QUIC Transport Protocol
