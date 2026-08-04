@@ -202,12 +202,12 @@ This document updates {{!RFC9002}} by replacing the final sentence of the cited 
 
 ## RFC 9260: Stream Control Transmission Protocol
 
-{{Section 7.2.1 of !RFC9260}} says:
+{{Section 7.2.1 of !RFC9260}} states:
 
->When cwnd is less than or equal to ssthresh, an SCTP endpoint MUST use the slow-start algorithm to
+>"When cwnd is less than or equal to ssthresh, an SCTP endpoint MUST use the slow-start algorithm to
 increase cwnd only if the current congestion window is being fully utilized and the data sender
 is not in Fast Recovery.
-Only when these two conditions are met can the cwnd be increased; otherwise, the cwnd MUST NOT be increased.
+Only when these two conditions are met can the cwnd be increased; otherwise, the cwnd MUST NOT be increased."
 
 The quoted statement from {{!RFC9260}} limits cwnd growth in accordance with Rate-Limited Increase, but it is more conservative. {{Section 7.2.1 of !RFC9260}} only discusses Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}}; however, this section does not contain a similar rule. It is therefore clear that the quoted statement from {{!RFC9260}} only applies to Slow Start.
 
@@ -220,14 +220,14 @@ This ensures that the update applies to both Slow Start and Congestion Avoidance
 
 ## RFC 9438: CUBIC
 
-{{Section 5.8 of !RFC9438}} says:
+{{Section 5.8 of !RFC9438}} states:
 
 >"Cubic doesn't increase cwnd when it's limited by the sending application or rwnd".
 
 This limits the cwnd growth in accordance with Rate-Limited Increase, but it
 is more conservative.
 
-This document updates {{!RFC9438}} by replacing this text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
+This document updates {{!RFC9438}} by replacing the quoted text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
 
 
 # Security Considerations
