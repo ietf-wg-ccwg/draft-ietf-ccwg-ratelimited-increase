@@ -375,8 +375,9 @@ Table of Contents
    This limits the cwnd growth in accordance with Rate-Limited Increase,
    but it is more conservative.
 
-   [RFC9438] is updated by this document by replacing this text with the
-   text in (Section 3) to specify the management of the
+   This document updates [RFC9438] by replacing this text with the text
+   in Section 3 to specify how the cwnd is managed when the sender is
+   rate-limited.
 
 5.  Security Considerations
 
