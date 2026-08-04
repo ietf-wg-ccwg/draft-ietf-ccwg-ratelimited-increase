@@ -334,9 +334,9 @@ Table of Contents
    This limits the cwnd growth in accordance with Rate-Limited Increase,
    but it is more conservative.
 
-   [RFC9002] is updated by this document by replacing the final sentence
-   in the cited text with the text in (Section 3) to specify the
-   management of the
+   This document updates [RFC9002] by replacing the final sentence of
+   the cited text with the text in Section 3 to specify how the cwnd is
+   managed when the sender is rate-limited.
 
 4.4.  RFC 9260: The Stream Control Transmission Protocol (SCTP)
 
