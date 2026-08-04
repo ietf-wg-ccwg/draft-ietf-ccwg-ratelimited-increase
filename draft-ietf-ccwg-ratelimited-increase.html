@@ -1593,7 +1593,8 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
   Send  seqno=3000; FS=3000; maxFS=10000
 </pre><a href="#appendix-A-6" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-7">Received 2 ACKs (N=2000); maxFS=10000, if (cwnd&lt;2*maxFS) {cwnd += N}<a href="#appendix-A-7" class="pilcrow">¶</a></p>
+<p id="appendix-A-7">Received 2 ACKs (N=2000); maxFS=10000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-7" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-8">
 <pre>
   ACK for  2000 ACK’ed=2000 : cwnd+= 2000; cwnd=12000
@@ -1614,7 +1615,8 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
   Send seqno=11000; FS=8000; maxFS=10000
 </pre><a href="#appendix-A-11" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-12">Received 4 ACKs (N=2000); maxFS=10000, if (cwnd&lt;2*maxFS) {cwnd += N}<a href="#appendix-A-12" class="pilcrow">¶</a></p>
+<p id="appendix-A-12">Received 4 ACKs (N=2000); maxFS=10000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-12" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-13">
 <pre>
   ACK for  6000 ACK’ed=2000 : cwnd+=2000; cwnd=16000
@@ -1633,7 +1635,8 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
   Send seqno=15000; FS=4000; maxFS=10000
 </pre><a href="#appendix-A-16" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-17">Received 2 ACKs (N=2000); maxFS=10000, if (cwnd&lt;2*maxFS) {cwnd += N}<a href="#appendix-A-17" class="pilcrow">¶</a></p>
+<p id="appendix-A-17">Received 2 ACKs (N=2000); maxFS=10000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-17" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-18">
 <pre>
   ACK for 14000 ACK’ed=2000 : cwnd+=0; cwnd=20000
@@ -1666,7 +1669,8 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
   Send seqno=35000; FS=20000; maxFS=20000
 </pre><a href="#appendix-A-21" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-22">Received 10 ACKs (N=2000); maxFS=20000, if (cwnd&lt;2*maxFS) {cwnd += N}<a href="#appendix-A-22" class="pilcrow">¶</a></p>
+<p id="appendix-A-22">Received 10 ACKs (N=2000); maxFS=20000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-22" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-23">
 <pre>
   ACK for 18000 ACK’ed=2000 : cwnd+=2000; cwnd=22000
@@ -1681,7 +1685,7 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
   ACK for 36000 ACK’ed=2000 : cwnd+=2000; cwnd=40000
 </pre><a href="#appendix-A-23" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-24">Note: In this round, maxFS increased and therefore cwnd was increased to 2*maxFS.<a href="#appendix-A-24" class="pilcrow">¶</a></p>
+<p id="appendix-A-24">Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.<a href="#appendix-A-24" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="change-log">
