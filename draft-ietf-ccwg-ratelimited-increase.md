@@ -175,71 +175,35 @@ Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (f
 
 # Updates to RFCs 4341, 5681, 9002, 9260, and 9438 {#rfc-updates}
 
-## RFC 4341: The Datagram Congestion Control Protocol (DCCP) CCID2
+## RFC 4341: The Datagram Congestion Control Protocol (DCCP) Congestion Control ID (CCID) 2
 
-### Specification
-
-{{Section 5.1 of !RFC4341}} states:
-
->There are currently no standards governing TCP's use of the congestion window during an application-limited period.  In particular, it is possible for TCP's congestion window to grow quite large during a long uncongested period when the sender is application limited, sending at a low rate.  {{?RFC2861}} essentially suggests that TCP's congestion window not be increased during application-limited periods when the congestion window is not being fully utilized.
-
-### Update
-
-A DCCP Congestion Control ID (CCID) specifying TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to {{?RFC2861}}.
-The text in {{Section 5.1 of !RFC4341}} is updated by this document by adding the text in ({{rules}}) of this document to specify the management of the
+A DCCP CCID specifying TCP-like behaviour ought to follow the method specified in this document. 
+The text in {{Section 5.1 of !RFC4341}} is updated by this document by adding the text in ({{rules}}) to specify the management of the
 cwnd when the sender is rate-limited.
 
 
-## TCP ("Reno" congestion control)
+## RFC 5681: TCP Congestion Control
 
-### Specification
+{{!RFC5681}} specifies no cwnd increase limitation in the standard TCP behavior
+when a TCP sender is unable to send at the maximum rate allowed by the cwnd.
 
-{{?RFC7661}} suggested there was no increase limitation in the standard TCP behavior (which {{?RFC7661}} changes), on page 4:
+{{!RFC5681}} is updated by this document by adding the text in ({{rules}}) to specify the management of the
+cwnd when the sender is rate-limited.
 
->Standard TCP does not impose additional restrictions on the growth of
-the congestion window when a TCP sender is unable to send at the
-maximum rate allowed by the cwnd. In this case, the rate-limited
-sender may grow a cwnd far beyond that corresponding to the current
-transmit rate, resulting in a value that does not reflect current
-information about the state of the network path the flow is using.
 
-### Implementation {#tcp-impl}
+## RFC 9002: The QUIC Transport Protocol
 
-- ns-2 allows cwnd to grow when it is rate-limited by rwnd. (Rate-limited by the sending application: not tested.)
-- Until release 3.42, ns-3 allowed cwnd to grow when rate-limited, either due to an application or rwnd limit.  Since release 3.42, ns-3 TCP models conform to Rate-Limited Increase, following the current Linux TCP approach in this regard (see next bullet).
-- In Congestion Avoidance, Linux only allows the cwnd to grow when the sender is unconstrained.
-Before kernel version 3.16, this also applied to Slow Start.
-The check for "unconstrained" is performed by checking if FlightSize is greater or equal to cwnd.
-Since kernel version 3.16, which was published in August 2014, in Slow Start, the increase
-implements Rate-Limited Increase in the `tcp_is_cwnd_limited` function in `tcp.h`.
+{{Section 7.8 of !RFC9002}} states:
 
-### Assessment
+>When bytes in flight is smaller than the congestion window and sending is not pacing limited, the congestion window is underutilized. This can happen due to insufficient application data or flow control limits. When this occurs, the congestion window SHOULD NOT be increased in either slow start or congestion avoidance.
 
-Linux currently implements a limit to cwnd growth in accordance with Rate-Limited Increase;
-in Slow Start, this limit follows the rule's upper limit, while in Congestion Avoidance, it is more conservative than Rate-Limited Increase.
-The specification and the ns-2 and (older) ns-3 implementations are in conflict with Rate-Limited Increase.
+This limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative.
 
-## CUBIC
+{{!RFC9002}} is updated by this document by adding the text in ({{rules}}) to specify the management of the
+cwnd when the sender is rate-limited.
 
-### Specification
 
-{{Section 5.8 of !RFC9438}} says:
-
->Cubic doesn't increase cwnd when it's limited by the sending application or rwnd.
-
-### Implementation
-
-The description of Linux described in {{tcp-impl}} also applies to Cubic.
-
-### Assessment
-
-Both the specification and the Linux implementation limit the cwnd growth in accordance with Rate-Limited Increase;
-in Congestion Avoidance, this limit is more conservative than Rate-Limited Increase,
-and in Slow Start, it implements the "maxFS" upper limit of Rate-Limited Increase.
-
-## The Stream Control Transmission Protocol (SCTP)
-
-### Specification
+## RFC 9260: The Stream Control Transmission Protocol (SCTP)
 
 {{Section 7.2.1 of !RFC9260}} says:
 
@@ -248,27 +212,23 @@ increase cwnd only if the current congestion window is being fully utilized and 
 is not in Fast Recovery.
 Only when these two conditions are met can the cwnd be increased; otherwise, the cwnd MUST NOT be increased.
 
-### Assessment
+The quoted statement from {{!RFC9260}} limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative. {{Section 7.2.1 of !RFC9260}} is limited to Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}} -- however, this section does not contain a similar rule. It is thus implicitly clear that the quoted statement from {{!RFC9260}} only applies to Slow Start, whereas Rate-Limited Increase applies to both Slow Start and Congestion Avoidance.
 
-The quoted statement from {{!RFC9260}} prescribes the same cwnd growth limitation that is also specified for Cubic and implemented for both Reno and Cubic in Linux.
-It is in accordance with Rate-Limited Increase, and more conservative.
+{{!RFC9260}} is updated by this document by adding the text in ({{rules}}) to specify the management of the
+cwnd when the sender is rate-limited.
 
-{{Section 7.2.1 of !RFC9260}} is specifically limited to Slow Start.
-Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}}
-However, this section neither contains a similar rule nor does it refer back to the rule that limits the growth of cwnd
-in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies to Slow Start, whereas Rate-Limited Increase applies to both Slow Start and Congestion Avoidance.
 
-## The QUIC Transport Protocol
+## RFC 9438: CUBIC
 
-### Specification
+{{Section 5.8 of !RFC9438}} says:
 
-{{Section 7.8 of !RFC9002}} states:
+>Cubic doesn't increase cwnd when it's limited by the sending application or rwnd.
 
->When bytes in flight is smaller than the congestion window and sending is not pacing limited, the congestion window is underutilized. This can happen due to insufficient application data or flow control limits. When this occurs, the congestion window SHOULD NOT be increased in either slow start or congestion avoidance.
+This limits the cwnd growth in accordance with Rate-Limited Increase, but it
+is more conservative.
 
-### Assessment
-
-With the exception of pacing, the QUIC specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with Rate-Limited Increase, and more conservative.
+{{!RFC9438}} is updated by this document by adding the text in ({{rules}}) to specify the management of the
+cwnd when the sender is rate-limited.
 
 
 # Security Considerations
