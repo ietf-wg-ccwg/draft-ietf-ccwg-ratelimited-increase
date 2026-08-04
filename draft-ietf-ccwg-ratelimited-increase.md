@@ -212,7 +212,7 @@ increase cwnd only if the current congestion window is being fully utilized and 
 is not in Fast Recovery.
 Only when these two conditions are met can the cwnd be increased; otherwise, the cwnd MUST NOT be increased.
 
-The quoted statement from {{!RFC9260}} limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative. {{Section 7.2.1 of !RFC9260}} is limited to Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}} -- however, this section does not contain a similar rule. It is thus implicitly clear that the quoted statement from {{!RFC9260}} only applies to Slow Start, whereas Rate-Limited Increase applies to both Slow Start and Congestion Avoidance.
+The quoted statement from {{!RFC9260}} limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative. {{Section 7.2.1 of !RFC9260}} is limited to Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}} -- however, this section does not contain a similar rule. It is implicitly clear that the quoted statement from {{!RFC9260}} only applies to Slow Start.
 
 {{!RFC9260}} is updated by this document by adding the text in ({{rules}}) to specify the management of the
 cwnd when the sender is rate-limited.
