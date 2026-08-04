@@ -227,7 +227,7 @@ This ensures that the update applies to both Slow Start and Congestion Avoidance
 This limits the cwnd growth in accordance with Rate-Limited Increase, but it
 is more conservative.
 
-{{!RFC9438}} is updated by this document by replacing this  text with the text in ({{rules}}) to specify the management of the
+This document updates {{!RFC9438}} by replacing this text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
 
 
 # Security Considerations
