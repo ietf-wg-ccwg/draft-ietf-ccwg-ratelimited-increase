@@ -306,9 +306,10 @@ Table of Contents
 
    According to [RFC4341], a DCCP CCID specifying TCP-like behavior is
    allowed to grow the cwnd without limit during an uncongested period
-   when it sends at a rate unconstrained by the current cwnd.  The text
-   in Section 5.1 of [RFC4341] is updated by this document by adding the
-   text in (Section 3) to specify the management of the
+   when it sends at a rate unconstrained by the current cwnd.  This
+   document updates Section 5.1 of [RFC4341] by adding the text in
+   Section 3 to specify how the cwnd is managed when the sender is rate-
+   limited.
 
 4.2.  RFC 5681: TCP Congestion Control
 
@@ -316,9 +317,8 @@ Table of Contents
    behavior when a TCP sender is unable to send at the maximum rate
    allowed by the cwnd.
 
-   [RFC5681] is updated by this document by adding the text in
-   (Section 3) to specify the management of the cwnd when the sender is
-   rate-limited.
+   This document updates [RFC5681] by adding the text in Section 3 to
+   specify how the cwnd is managed when the sender is rate-limited.
 
 4.3.  RFC 9002: The QUIC Transport Protocol
 
