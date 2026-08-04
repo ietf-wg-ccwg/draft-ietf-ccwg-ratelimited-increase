@@ -195,7 +195,7 @@ cwnd when the sender is rate-limited.
 
 {{Section 7.8 of !RFC9002}} states:
 
->When bytes in flight is smaller than the congestion window and sending is not pacing limited, the congestion window is underutilized. This can happen due to insufficient application data or flow control limits. When this occurs, the congestion window SHOULD NOT be increased in either slow start or congestion avoidance.
+>"When bytes in flight is smaller than the congestion window and sending is not pacing limited, the congestion window is underutilized. This can happen due to insufficient application data or flow control limits. When this occurs, the congestion window SHOULD NOT be increased in either slow start or congestion avoidance."
 
 This limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative.
 
