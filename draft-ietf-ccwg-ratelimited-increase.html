@@ -10,7 +10,7 @@
 <meta content="Godred Fairhurst" name="author">
 <meta content="Mohit P. Tahiliani" name="author">
 <meta content="
-       This document specifies how transport protocols increase their congestion window when the sender is rate-limited, and updates RFC 4341, RFC 5681, RFC 9002, RFC 9260, and RFC 9438.
+       This document specifies how transport protocols increase their congestion window when the sender is rate-limited, and updates RFCs 4341, 5681, 9002, 9260, and 9438.
 Such a limitation can be caused by the sending application not supplying data or by receiver flow control. 
     " name="description">
 <meta content="xml2rfc 3.34.0" name="generator">
@@ -1048,7 +1048,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Welzl, et al.</td>
-<td class="center">Expires 4 February 2027</td>
+<td class="center">Expires 5 February 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg {
 <a href="https://www.rfc-editor.org/rfc/rfcRFC4341" class="eref">RFC4341</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC5681" class="eref">RFC5681</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9002" class="eref">RFC9002</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9260" class="eref">RFC9260</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9438" class="eref">RFC9438</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-08-03" class="published">3 August 2026</time>
+<time datetime="2026-08-04" class="published">4 August 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-02-04">4 February 2027</time></dd>
+<dd class="expires"><time datetime="2027-02-05">5 February 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1094,7 +1094,7 @@ svg {
 <h1 id="title">Increase of the Congestion Window when the Sender Is Rate-Limited</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document specifies how transport protocols increase their congestion window when the sender is rate-limited, and updates RFC 4341, RFC 5681, RFC 9002, RFC 9260, and RFC 9438.
+<p id="section-abstract-1">This document specifies how transport protocols increase their congestion window when the sender is rate-limited, and updates RFCs 4341, 5681, 9002, 9260, and 9438.
 Such a limitation can be caused by the sending application not supplying data or by receiver flow control.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
@@ -1132,7 +1132,7 @@ Such a limitation can be caused by the sending application not supplying data or
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1200,99 +1200,99 @@ Such a limitation can be caused by the sending application not supplying data or
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-updates-to-rfcs-4341-5681-9" class="internal xref">Updates to RFCs 4341, 5681, 9002, 9260, and 9438</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-rfc-4341-the-datagram-conge" class="internal xref">RFC 4341: The Datagram Congestion Control Protocol (DCCP) CCID2</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.1">
+                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="auto internal xref">4.1.1</a>.  <a href="#name-specification" class="internal xref">Specification</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.2">
+                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="auto internal xref">4.1.2</a>.  <a href="#name-update" class="internal xref">Update</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-tcp-reno-congestion-control" class="internal xref">TCP ("Reno" congestion control)</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
+                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-specification-2" class="internal xref">Specification</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-implementation" class="internal xref">Implementation</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.3">
+                    <p id="section-toc.1-1.4.2.2.2.3.1"><a href="#section-4.2.3" class="auto internal xref">4.2.3</a>.  <a href="#name-assessment" class="internal xref">Assessment</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-cubic" class="internal xref">CUBIC</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.1">
+                    <p id="section-toc.1-1.4.2.3.2.1.1"><a href="#section-4.3.1" class="auto internal xref">4.3.1</a>.  <a href="#name-specification-3" class="internal xref">Specification</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.2">
+                    <p id="section-toc.1-1.4.2.3.2.2.1"><a href="#section-4.3.2" class="auto internal xref">4.3.2</a>.  <a href="#name-implementation-2" class="internal xref">Implementation</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.3">
+                    <p id="section-toc.1-1.4.2.3.2.3.1"><a href="#section-4.3.3" class="auto internal xref">4.3.3</a>.  <a href="#name-assessment-2" class="internal xref">Assessment</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-the-stream-control-transmis" class="internal xref">The Stream Control Transmission Protocol (SCTP)</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.1">
+                    <p id="section-toc.1-1.4.2.4.2.1.1"><a href="#section-4.4.1" class="auto internal xref">4.4.1</a>.  <a href="#name-specification-4" class="internal xref">Specification</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.2">
+                    <p id="section-toc.1-1.4.2.4.2.2.1"><a href="#section-4.4.2" class="auto internal xref">4.4.2</a>.  <a href="#name-assessment-3" class="internal xref">Assessment</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
+                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="auto internal xref">4.5</a>.  <a href="#name-the-quic-transport-protocol" class="internal xref">The QUIC Transport Protocol</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5.2.1">
+                    <p id="section-toc.1-1.4.2.5.2.1.1"><a href="#section-4.5.1" class="auto internal xref">4.5.1</a>.  <a href="#name-specification-5" class="internal xref">Specification</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5.2.2">
+                    <p id="section-toc.1-1.4.2.5.2.2.1"><a href="#section-4.5.2" class="auto internal xref">4.5.2</a>.  <a href="#name-assessment-4" class="internal xref">Assessment</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-references" class="internal xref">References</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-an-example-using-cwnd-repre" class="internal xref">An Example Using cwnd Represented in Bytes</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-the-state-of-rfcs-and-imple" class="internal xref">The state of RFCs and implementations</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-references" class="internal xref">References</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
-                <p id="section-toc.1-1.8.2.1.1"><a href="#appendix-B.1" class="auto internal xref">B.1</a>.  <a href="#name-tcp-reno-congestion-control" class="internal xref">TCP ("Reno" congestion control)</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.1">
-                    <p id="section-toc.1-1.8.2.1.2.1.1"><a href="#appendix-B.1.1" class="auto internal xref">B.1.1</a>.  <a href="#name-specification" class="internal xref">Specification</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2">
-                    <p id="section-toc.1-1.8.2.1.2.2.1"><a href="#appendix-B.1.2" class="auto internal xref">B.1.2</a>.  <a href="#name-implementation" class="internal xref">Implementation</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.3">
-                    <p id="section-toc.1-1.8.2.1.2.3.1"><a href="#appendix-B.1.3" class="auto internal xref">B.1.3</a>.  <a href="#name-assessment" class="internal xref">Assessment</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
-                <p id="section-toc.1-1.8.2.2.1"><a href="#appendix-B.2" class="auto internal xref">B.2</a>.  <a href="#name-cubic" class="internal xref">CUBIC</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2.2.1">
-                    <p id="section-toc.1-1.8.2.2.2.1.1"><a href="#appendix-B.2.1" class="auto internal xref">B.2.1</a>.  <a href="#name-specification-2" class="internal xref">Specification</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2.2.2">
-                    <p id="section-toc.1-1.8.2.2.2.2.1"><a href="#appendix-B.2.2" class="auto internal xref">B.2.2</a>.  <a href="#name-implementation-2" class="internal xref">Implementation</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2.2.3">
-                    <p id="section-toc.1-1.8.2.2.2.3.1"><a href="#appendix-B.2.3" class="auto internal xref">B.2.3</a>.  <a href="#name-assessment-2" class="internal xref">Assessment</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
-                <p id="section-toc.1-1.8.2.3.1"><a href="#appendix-B.3" class="auto internal xref">B.3</a>.  <a href="#name-the-stream-control-transmis" class="internal xref">The Stream Control Transmission Protocol (SCTP)</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.1">
-                    <p id="section-toc.1-1.8.2.3.2.1.1"><a href="#appendix-B.3.1" class="auto internal xref">B.3.1</a>.  <a href="#name-specification-3" class="internal xref">Specification</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.2">
-                    <p id="section-toc.1-1.8.2.3.2.2.1"><a href="#appendix-B.3.2" class="auto internal xref">B.3.2</a>.  <a href="#name-assessment-3" class="internal xref">Assessment</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4">
-                <p id="section-toc.1-1.8.2.4.1"><a href="#appendix-B.4" class="auto internal xref">B.4</a>.  <a href="#name-the-quic-transport-protocol" class="internal xref">The QUIC Transport Protocol</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4.2.1">
-                    <p id="section-toc.1-1.8.2.4.2.1.1"><a href="#appendix-B.4.1" class="auto internal xref">B.4.1</a>.  <a href="#name-specification-4" class="internal xref">Specification</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4.2.2">
-                    <p id="section-toc.1-1.8.2.4.2.2.1"><a href="#appendix-B.4.2" class="auto internal xref">B.4.2</a>.  <a href="#name-assessment-4" class="internal xref">Assessment</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.5">
-                <p id="section-toc.1-1.8.2.5.1"><a href="#appendix-B.5" class="auto internal xref">B.5</a>.  <a href="#name-the-datagram-congestion-con" class="internal xref">The Datagram Congestion Control Protocol (DCCP) CCID2</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.5.2.1">
-                    <p id="section-toc.1-1.8.2.5.2.1.1"><a href="#appendix-B.5.1" class="auto internal xref">B.5.1</a>.  <a href="#name-specification-5" class="internal xref">Specification</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.5.2.2">
-                    <p id="section-toc.1-1.8.2.5.2.2.1"><a href="#appendix-B.5.2" class="auto internal xref">B.5.2</a>.  <a href="#name-assessment-5" class="internal xref">Assessment</a></p>
-</li>
-                </ul>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-an-example-using-cwnd-repre" class="internal xref">An Example Using cwnd Represented in Bytes</a></p>
+</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#appendix-C" class="auto internal xref">Appendix C</a>.  <a href="#name-change-log" class="internal xref">Change Log</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-change-log" class="internal xref">Change Log</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-E" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1308,14 +1308,12 @@ even though the congestion control rules would allow it to transmit data.
 This could occur because the application has not provided sufficient data to fully utilize the congestion window (cwnd).
 It could also occur because the receiver has limited the sender using flow control
 (e.g., by the advertised TCP receiver window (rwnd) or by the connection or stream flow credit in QUIC).
-Current RFCs specifying congestion control algorithms diverge regarding the rules for increasing the cwnd when the sender is rate-limited.<a href="#section-1-1" class="pilcrow">¶</a></p>
+Current RFCs specifying congestion control algorithms diverge regarding the rules for increasing the cwnd when the sender is rate-limited. This document provides a uniform behavior in (<a href="#rules" class="auto internal xref">Section 3</a>), and specifies updates to RFCs 4341, 5681, 9002, 9260, and 9438 in (<a href="#rfc-updates" class="auto internal xref">Section 4</a>).<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">Congestion Window Validation (CWV) <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span> provides an experimental specification defining how to manage a cwnd that has
 become larger than the current flight size, and how to respond to detected congestion when this is the case.
 In contrast, this present document concerns the increase in cwnd when a sender is rate-limited. These two topics are distinct,
 but are related, because both describe the management of the cwnd when a sender does not fully utilize the current cwnd.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">An appendix provides an example of how rate-limited increase can play out.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">RFC-Ed Note, please remove the following sentence prior to publication:
-Another appendix provides an overview of the divergence in current RFCs and some implementations regarding cwnd increase when the sender is rate-limited (the second appendix is to be removed before publication).<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1448,42 +1446,242 @@ Such unlimited growth in the cwnd is therefore disallowed.<a href="#section-3.2-
 </div>
 </section>
 </div>
-<div id="security-considerations">
+<div id="rfc-updates">
 <section id="section-4">
-      <h2 id="name-security-considerations">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      <h2 id="name-updates-to-rfcs-4341-5681-9">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-updates-to-rfcs-4341-5681-9" class="section-name selfRef">Updates to RFCs 4341, 5681, 9002, 9260, and 9438</a>
       </h2>
-<p id="section-4-1">While congestion control designs could result in unwanted competing traffic, they do not directly result in new security considerations.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">The security considerations are the same as for other
+<div id="rfc-4341-the-datagram-congestion-control-protocol-dccp-ccid2">
+<section id="section-4.1">
+        <h3 id="name-rfc-4341-the-datagram-conge">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-rfc-4341-the-datagram-conge" class="section-name selfRef">RFC 4341: The Datagram Congestion Control Protocol (DCCP) CCID2</a>
+        </h3>
+<div id="specification">
+<section id="section-4.1.1">
+          <h4 id="name-specification">
+<a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-specification" class="section-name selfRef">Specification</a>
+          </h4>
+<p id="section-4.1.1-1"><span><a href="https://rfc-editor.org/rfc/rfc4341#section-5.1" class="relref">Section 5.1</a> of [<a href="#RFC4341" class="cite xref">RFC4341</a>]</span> states:<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-4.1.1-2.1">
+              <p id="section-4.1.1-2.1.1">There are currently no standards governing TCP's use of the congestion window during an application-limited period.  In particular, it is possible for TCP's congestion window to grow quite large during a long uncongested period when the sender is application limited, sending at a low rate.  <span>[<a href="#RFC2861" class="cite xref">RFC2861</a>]</span> essentially suggests that TCP's congestion window not be increased during application-limited periods when the congestion window is not being fully utilized.<a href="#section-4.1.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="update">
+<section id="section-4.1.2">
+          <h4 id="name-update">
+<a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-update" class="section-name selfRef">Update</a>
+          </h4>
+<p id="section-4.1.2-1">A DCCP Congestion Control ID (CCID) specifying TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to <span>[<a href="#RFC2861" class="cite xref">RFC2861</a>]</span>.
+The text in <span><a href="https://rfc-editor.org/rfc/rfc4341#section-5.1" class="relref">Section 5.1</a> of [<a href="#RFC4341" class="cite xref">RFC4341</a>]</span> is updated by this document by adding the text in (<a href="#rules" class="auto internal xref">Section 3</a>) of this document to specify the management of the
+cwnd when the sender is rate-limited.<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="tcp-reno-congestion-control">
+<section id="section-4.2">
+        <h3 id="name-tcp-reno-congestion-control">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-tcp-reno-congestion-control" class="section-name selfRef">TCP ("Reno" congestion control)</a>
+        </h3>
+<div id="specification-1">
+<section id="section-4.2.1">
+          <h4 id="name-specification-2">
+<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-specification-2" class="section-name selfRef">Specification</a>
+          </h4>
+<p id="section-4.2.1-1"><span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span> suggested there was no increase limitation in the standard TCP behavior (which <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span> changes), on page 4:<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-4.2.1-2.1">
+              <p id="section-4.2.1-2.1.1">Standard TCP does not impose additional restrictions on the growth of
+the congestion window when a TCP sender is unable to send at the
+maximum rate allowed by the cwnd. In this case, the rate-limited
+sender may grow a cwnd far beyond that corresponding to the current
+transmit rate, resulting in a value that does not reflect current
+information about the state of the network path the flow is using.<a href="#section-4.2.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="tcp-impl">
+<section id="section-4.2.2">
+          <h4 id="name-implementation">
+<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-implementation" class="section-name selfRef">Implementation</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-4.2.2-1.1">
+              <p id="section-4.2.2-1.1.1">ns-2 allows cwnd to grow when it is rate-limited by rwnd. (Rate-limited by the sending application: not tested.)<a href="#section-4.2.2-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.2.2-1.2">
+              <p id="section-4.2.2-1.2.1">Until release 3.42, ns-3 allowed cwnd to grow when rate-limited, either due to an application or rwnd limit.  Since release 3.42, ns-3 TCP models conform to Rate-Limited Increase, following the current Linux TCP approach in this regard (see next bullet).<a href="#section-4.2.2-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.2.2-1.3">
+              <p id="section-4.2.2-1.3.1">In Congestion Avoidance, Linux only allows the cwnd to grow when the sender is unconstrained.
+Before kernel version 3.16, this also applied to Slow Start.
+The check for "unconstrained" is performed by checking if FlightSize is greater or equal to cwnd.
+Since kernel version 3.16, which was published in August 2014, in Slow Start, the increase
+implements Rate-Limited Increase in the <code>tcp_is_cwnd_limited</code> function in <code>tcp.h</code>.<a href="#section-4.2.2-1.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="assessment">
+<section id="section-4.2.3">
+          <h4 id="name-assessment">
+<a href="#section-4.2.3" class="section-number selfRef">4.2.3. </a><a href="#name-assessment" class="section-name selfRef">Assessment</a>
+          </h4>
+<p id="section-4.2.3-1">Linux currently implements a limit to cwnd growth in accordance with Rate-Limited Increase;
+in Slow Start, this limit follows the rule's upper limit, while in Congestion Avoidance, it is more conservative than Rate-Limited Increase.
+The specification and the ns-2 and (older) ns-3 implementations are in conflict with Rate-Limited Increase.<a href="#section-4.2.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="cubic">
+<section id="section-4.3">
+        <h3 id="name-cubic">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-cubic" class="section-name selfRef">CUBIC</a>
+        </h3>
+<div id="specification-2">
+<section id="section-4.3.1">
+          <h4 id="name-specification-3">
+<a href="#section-4.3.1" class="section-number selfRef">4.3.1. </a><a href="#name-specification-3" class="section-name selfRef">Specification</a>
+          </h4>
+<p id="section-4.3.1-1"><span><a href="https://rfc-editor.org/rfc/rfc9438#section-5.8" class="relref">Section 5.8</a> of [<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> says:<a href="#section-4.3.1-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-4.3.1-2.1">
+              <p id="section-4.3.1-2.1.1">Cubic doesn't increase cwnd when it's limited by the sending application or rwnd.<a href="#section-4.3.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="implementation">
+<section id="section-4.3.2">
+          <h4 id="name-implementation-2">
+<a href="#section-4.3.2" class="section-number selfRef">4.3.2. </a><a href="#name-implementation-2" class="section-name selfRef">Implementation</a>
+          </h4>
+<p id="section-4.3.2-1">The description of Linux described in <a href="#tcp-impl" class="auto internal xref">Section 4.2.2</a> also applies to Cubic.<a href="#section-4.3.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="assessment-1">
+<section id="section-4.3.3">
+          <h4 id="name-assessment-2">
+<a href="#section-4.3.3" class="section-number selfRef">4.3.3. </a><a href="#name-assessment-2" class="section-name selfRef">Assessment</a>
+          </h4>
+<p id="section-4.3.3-1">Both the specification and the Linux implementation limit the cwnd growth in accordance with Rate-Limited Increase;
+in Congestion Avoidance, this limit is more conservative than Rate-Limited Increase,
+and in Slow Start, it implements the "maxFS" upper limit of Rate-Limited Increase.<a href="#section-4.3.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="the-stream-control-transmission-protocol-sctp">
+<section id="section-4.4">
+        <h3 id="name-the-stream-control-transmis">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-the-stream-control-transmis" class="section-name selfRef">The Stream Control Transmission Protocol (SCTP)</a>
+        </h3>
+<div id="specification-3">
+<section id="section-4.4.1">
+          <h4 id="name-specification-4">
+<a href="#section-4.4.1" class="section-number selfRef">4.4.1. </a><a href="#name-specification-4" class="section-name selfRef">Specification</a>
+          </h4>
+<p id="section-4.4.1-1"><span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.1" class="relref">Section 7.2.1</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> says:<a href="#section-4.4.1-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-4.4.1-2.1">
+              <p id="section-4.4.1-2.1.1">When cwnd is less than or equal to ssthresh, an SCTP endpoint <span class="bcp14">MUST</span> use the slow-start algorithm to
+increase cwnd only if the current congestion window is being fully utilized and the data sender
+is not in Fast Recovery.
+Only when these two conditions are met can the cwnd be increased; otherwise, the cwnd <span class="bcp14">MUST NOT</span> be increased.<a href="#section-4.4.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="assessment-2">
+<section id="section-4.4.2">
+          <h4 id="name-assessment-3">
+<a href="#section-4.4.2" class="section-number selfRef">4.4.2. </a><a href="#name-assessment-3" class="section-name selfRef">Assessment</a>
+          </h4>
+<p id="section-4.4.2-1">The quoted statement from <span>[<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> prescribes the same cwnd growth limitation that is also specified for Cubic and implemented for both Reno and Cubic in Linux.
+It is in accordance with Rate-Limited Increase, and more conservative.<a href="#section-4.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.2-2"><span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.1" class="relref">Section 7.2.1</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> is specifically limited to Slow Start.
+Congestion Avoidance is discussed in <span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.2" class="relref">Section 7.2.2</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span>
+However, this section neither contains a similar rule nor does it refer back to the rule that limits the growth of cwnd
+in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies to Slow Start, whereas Rate-Limited Increase applies to both Slow Start and Congestion Avoidance.<a href="#section-4.4.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="the-quic-transport-protocol">
+<section id="section-4.5">
+        <h3 id="name-the-quic-transport-protocol">
+<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-the-quic-transport-protocol" class="section-name selfRef">The QUIC Transport Protocol</a>
+        </h3>
+<div id="specification-4">
+<section id="section-4.5.1">
+          <h4 id="name-specification-5">
+<a href="#section-4.5.1" class="section-number selfRef">4.5.1. </a><a href="#name-specification-5" class="section-name selfRef">Specification</a>
+          </h4>
+<p id="section-4.5.1-1"><span><a href="https://rfc-editor.org/rfc/rfc9002#section-7.8" class="relref">Section 7.8</a> of [<a href="#RFC9002" class="cite xref">RFC9002</a>]</span> states:<a href="#section-4.5.1-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-4.5.1-2.1">
+              <p id="section-4.5.1-2.1.1">When bytes in flight is smaller than the congestion window and sending is not pacing limited, the congestion window is underutilized. This can happen due to insufficient application data or flow control limits. When this occurs, the congestion window <span class="bcp14">SHOULD NOT</span> be increased in either slow start or congestion avoidance.<a href="#section-4.5.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="assessment-3">
+<section id="section-4.5.2">
+          <h4 id="name-assessment-4">
+<a href="#section-4.5.2" class="section-number selfRef">4.5.2. </a><a href="#name-assessment-4" class="section-name selfRef">Assessment</a>
+          </h4>
+<p id="section-4.5.2-1">With the exception of pacing, the QUIC specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with Rate-Limited Increase, and more conservative.<a href="#section-4.5.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-5">
+      <h2 id="name-security-considerations">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-5-1">While congestion control designs could result in unwanted competing traffic, they do not directly result in new security considerations.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">The security considerations are the same as for other
 congestion control methods.  Such methods rely on the receiver
 appropriately acknowledging receipt of data.  The ability of an on-path or off-path attacker to influence congestion control depends
 upon the security properties of the transport protocol being used.
 Transport protocols that provide authentication (including those using encryption), or are carried over protocols that provide authentication,
-can protect their congestion control algorithm from network attack. This is orthogonal to the specification of congestion control rules.<a href="#section-4-2" class="pilcrow">¶</a></p>
+can protect their congestion control algorithm from network attack. This is orthogonal to the specification of congestion control rules.<a href="#section-5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-5">
+<section id="section-6">
       <h2 id="name-iana-considerations">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-5-1">This document requests no IANA action.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">This document requests no IANA action.<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
-<section id="section-6">
+<section id="section-7">
       <h2 id="name-references">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-6.1">
+<section id="section-7.1">
         <h3 id="name-normative-references">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4341">[RFC4341]</dt>
+        <dd>
+<span class="refAuthor">Floyd, S.</span> and <span class="refAuthor">E. Kohler</span>, <span class="refTitle">"Profile for Datagram Congestion Control Protocol (DCCP) Congestion Control ID 2: TCP-like Congestion Control"</span>, <span class="seriesInfo">RFC 4341</span>, <span class="seriesInfo">DOI 10.17487/RFC4341</span>, <time datetime="2006-03" class="refDate">March 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4341">https://www.rfc-editor.org/rfc/rfc4341</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5681">[RFC5681]</dt>
         <dd>
@@ -1509,9 +1707,9 @@ can protect their congestion control algorithm from network attack. This is orth
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-6.2">
+<section id="section-7.2">
         <h3 id="name-informative-references">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.ietf-ccwg-bbr">[I-D.ietf-ccwg-bbr]</dt>
@@ -1521,10 +1719,6 @@ can protect their congestion control algorithm from network attack. This is orth
 <dt id="RFC2861">[RFC2861]</dt>
         <dd>
 <span class="refAuthor">Handley, M.</span>, <span class="refAuthor">Padhye, J.</span>, and <span class="refAuthor">S. Floyd</span>, <span class="refTitle">"TCP Congestion Window Validation"</span>, <span class="seriesInfo">RFC 2861</span>, <span class="seriesInfo">DOI 10.17487/RFC2861</span>, <time datetime="2000-06" class="refDate">June 2000</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2861">https://www.rfc-editor.org/rfc/rfc2861</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC4341">[RFC4341]</dt>
-        <dd>
-<span class="refAuthor">Floyd, S.</span> and <span class="refAuthor">E. Kohler</span>, <span class="refTitle">"Profile for Datagram Congestion Control Protocol (DCCP) Congestion Control ID 2: TCP-like Congestion Control"</span>, <span class="seriesInfo">RFC 4341</span>, <span class="seriesInfo">DOI 10.17487/RFC4341</span>, <time datetime="2006-03" class="refDate">March 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4341">https://www.rfc-editor.org/rfc/rfc4341</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6928">[RFC6928]</dt>
         <dd>
@@ -1658,310 +1852,163 @@ One ACK is generated for each 2*MSS received bytes.<a href="#appendix-A-4" class
 <p id="appendix-A-24">Note: In this round, maxFS was increased and cwnd was increased to 2*maxFS.<a href="#appendix-A-24" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="the-state-of-rfcs-and-implementations">
-<section id="appendix-B">
-      <h2 id="name-the-state-of-rfcs-and-imple">
-<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-the-state-of-rfcs-and-imple" class="section-name selfRef">The state of RFCs and implementations</a>
-      </h2>
-<p id="appendix-B-1">RFC-Ed Note: This section is provided as input for IETF discussion, and should be removed before publication.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<div id="tcp-reno-congestion-control">
-<section id="appendix-B.1">
-        <h3 id="name-tcp-reno-congestion-control">
-<a href="#appendix-B.1" class="section-number selfRef">B.1. </a><a href="#name-tcp-reno-congestion-control" class="section-name selfRef">TCP ("Reno" congestion control)</a>
-        </h3>
-<div id="specification">
-<section id="appendix-B.1.1">
-          <h4 id="name-specification">
-<a href="#appendix-B.1.1" class="section-number selfRef">B.1.1. </a><a href="#name-specification" class="section-name selfRef">Specification</a>
-          </h4>
-<p id="appendix-B.1.1-1"><span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span> suggested there was no increase limitation in the standard TCP behavior (which <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span> changes), on page 4:<a href="#appendix-B.1.1-1" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="appendix-B.1.1-2.1">
-              <p id="appendix-B.1.1-2.1.1">Standard TCP does not impose additional restrictions on the growth of
-the congestion window when a TCP sender is unable to send at the
-maximum rate allowed by the cwnd. In this case, the rate-limited
-sender may grow a cwnd far beyond that corresponding to the current
-transmit rate, resulting in a value that does not reflect current
-information about the state of the network path the flow is using.<a href="#appendix-B.1.1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-</section>
-</div>
-<div id="tcp-impl">
-<section id="appendix-B.1.2">
-          <h4 id="name-implementation">
-<a href="#appendix-B.1.2" class="section-number selfRef">B.1.2. </a><a href="#name-implementation" class="section-name selfRef">Implementation</a>
-          </h4>
-<ul class="normal">
-<li class="normal" id="appendix-B.1.2-1.1">
-              <p id="appendix-B.1.2-1.1.1">ns-2 allows cwnd to grow when it is rate-limited by rwnd. (Rate-limited by the sending application: not tested.)<a href="#appendix-B.1.2-1.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="appendix-B.1.2-1.2">
-              <p id="appendix-B.1.2-1.2.1">Until release 3.42, ns-3 allowed cwnd to grow when rate-limited, either due to an application or rwnd limit.  Since release 3.42, ns-3 TCP models conform to Rate-Limited Increase, following the current Linux TCP approach in this regard (see next bullet).<a href="#appendix-B.1.2-1.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="appendix-B.1.2-1.3">
-              <p id="appendix-B.1.2-1.3.1">In Congestion Avoidance, Linux only allows the cwnd to grow when the sender is unconstrained.
-Before kernel version 3.16, this also applied to Slow Start.
-The check for "unconstrained" is performed by checking if FlightSize is greater or equal to cwnd.
-Since kernel version 3.16, which was published in August 2014, in Slow Start, the increase
-implements Rate-Limited Increase in the <code>tcp_is_cwnd_limited</code> function in <code>tcp.h</code>.<a href="#appendix-B.1.2-1.3.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-</section>
-</div>
-<div id="assessment">
-<section id="appendix-B.1.3">
-          <h4 id="name-assessment">
-<a href="#appendix-B.1.3" class="section-number selfRef">B.1.3. </a><a href="#name-assessment" class="section-name selfRef">Assessment</a>
-          </h4>
-<p id="appendix-B.1.3-1">Linux implements a limit to cwnd growth in accordance with Rate-Limited Increase;
-in Slow Start, this limit follows the rule's upper limit, while in Congestion Avoidance, it is more conservative than Rate-Limited Increase.
-The specification and the ns-2 and (older) ns-3 implementations are in conflict with Rate-Limited Increase.<a href="#appendix-B.1.3-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="cubic">
-<section id="appendix-B.2">
-        <h3 id="name-cubic">
-<a href="#appendix-B.2" class="section-number selfRef">B.2. </a><a href="#name-cubic" class="section-name selfRef">CUBIC</a>
-        </h3>
-<div id="specification-1">
-<section id="appendix-B.2.1">
-          <h4 id="name-specification-2">
-<a href="#appendix-B.2.1" class="section-number selfRef">B.2.1. </a><a href="#name-specification-2" class="section-name selfRef">Specification</a>
-          </h4>
-<p id="appendix-B.2.1-1"><span><a href="https://rfc-editor.org/rfc/rfc9438#section-5.8" class="relref">Section 5.8</a> of [<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> says:<a href="#appendix-B.2.1-1" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="appendix-B.2.1-2.1">
-              <p id="appendix-B.2.1-2.1.1">Cubic doesn't increase cwnd when it's limited by the sending application or rwnd.<a href="#appendix-B.2.1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-</section>
-</div>
-<div id="implementation">
-<section id="appendix-B.2.2">
-          <h4 id="name-implementation-2">
-<a href="#appendix-B.2.2" class="section-number selfRef">B.2.2. </a><a href="#name-implementation-2" class="section-name selfRef">Implementation</a>
-          </h4>
-<p id="appendix-B.2.2-1">The description of Linux described in <a href="#tcp-impl" class="auto internal xref">Appendix B.1.2</a> also applies to Cubic.<a href="#appendix-B.2.2-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="assessment-1">
-<section id="appendix-B.2.3">
-          <h4 id="name-assessment-2">
-<a href="#appendix-B.2.3" class="section-number selfRef">B.2.3. </a><a href="#name-assessment-2" class="section-name selfRef">Assessment</a>
-          </h4>
-<p id="appendix-B.2.3-1">Both the specification and the Linux implementation limit the cwnd growth in accordance with Rate-Limited Increase;
-in Congestion Avoidance, this limit is more conservative than Rate-Limited Increase,
-and in Slow Start, it implements the "maxFS" upper limit of Rate-Limited Increase.<a href="#appendix-B.2.3-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="the-stream-control-transmission-protocol-sctp">
-<section id="appendix-B.3">
-        <h3 id="name-the-stream-control-transmis">
-<a href="#appendix-B.3" class="section-number selfRef">B.3. </a><a href="#name-the-stream-control-transmis" class="section-name selfRef">The Stream Control Transmission Protocol (SCTP)</a>
-        </h3>
-<div id="specification-2">
-<section id="appendix-B.3.1">
-          <h4 id="name-specification-3">
-<a href="#appendix-B.3.1" class="section-number selfRef">B.3.1. </a><a href="#name-specification-3" class="section-name selfRef">Specification</a>
-          </h4>
-<p id="appendix-B.3.1-1"><span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.1" class="relref">Section 7.2.1</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> says:<a href="#appendix-B.3.1-1" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="appendix-B.3.1-2.1">
-              <p id="appendix-B.3.1-2.1.1">When cwnd is less than or equal to ssthresh, an SCTP endpoint <span class="bcp14">MUST</span> use the slow-start algorithm to
-increase cwnd only if the current congestion window is being fully utilized and the data sender
-is not in Fast Recovery.
-Only when these two conditions are met can the cwnd be increased; otherwise, the cwnd <span class="bcp14">MUST NOT</span> be increased.<a href="#appendix-B.3.1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-</section>
-</div>
-<div id="assessment-2">
-<section id="appendix-B.3.2">
-          <h4 id="name-assessment-3">
-<a href="#appendix-B.3.2" class="section-number selfRef">B.3.2. </a><a href="#name-assessment-3" class="section-name selfRef">Assessment</a>
-          </h4>
-<p id="appendix-B.3.2-1">The quoted statement from <span>[<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> prescribes the same cwnd growth limitation that is also specified for Cubic and implemented for both Reno and Cubic in Linux.
-It is in accordance with Rate-Limited Increase, and more conservative.<a href="#appendix-B.3.2-1" class="pilcrow">¶</a></p>
-<p id="appendix-B.3.2-2"><span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.1" class="relref">Section 7.2.1</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> is specifically limited to Slow Start.
-Congestion Avoidance is discussed in <span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.2" class="relref">Section 7.2.2</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span>
-However, this section neither contains a similar rule nor does it refer back to the rule that limits the growth of cwnd
-in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies to Slow Start, whereas Rate-Limited Increase applies to both Slow Start and Congestion Avoidance.<a href="#appendix-B.3.2-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="the-quic-transport-protocol">
-<section id="appendix-B.4">
-        <h3 id="name-the-quic-transport-protocol">
-<a href="#appendix-B.4" class="section-number selfRef">B.4. </a><a href="#name-the-quic-transport-protocol" class="section-name selfRef">The QUIC Transport Protocol</a>
-        </h3>
-<div id="specification-3">
-<section id="appendix-B.4.1">
-          <h4 id="name-specification-4">
-<a href="#appendix-B.4.1" class="section-number selfRef">B.4.1. </a><a href="#name-specification-4" class="section-name selfRef">Specification</a>
-          </h4>
-<p id="appendix-B.4.1-1"><span><a href="https://rfc-editor.org/rfc/rfc9002#section-7.8" class="relref">Section 7.8</a> of [<a href="#RFC9002" class="cite xref">RFC9002</a>]</span> states:<a href="#appendix-B.4.1-1" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="appendix-B.4.1-2.1">
-              <p id="appendix-B.4.1-2.1.1">When bytes in flight is smaller than the congestion window and sending is not pacing limited, the congestion window is underutilized. This can happen due to insufficient application data or flow control limits. When this occurs, the congestion window <span class="bcp14">SHOULD NOT</span> be increased in either slow start or congestion avoidance.<a href="#appendix-B.4.1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-</section>
-</div>
-<div id="assessment-3">
-<section id="appendix-B.4.2">
-          <h4 id="name-assessment-4">
-<a href="#appendix-B.4.2" class="section-number selfRef">B.4.2. </a><a href="#name-assessment-4" class="section-name selfRef">Assessment</a>
-          </h4>
-<p id="appendix-B.4.2-1">With the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with Rate-Limited Increase, and more conservative.<a href="#appendix-B.4.2-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="the-datagram-congestion-control-protocol-dccp-ccid2">
-<section id="appendix-B.5">
-        <h3 id="name-the-datagram-congestion-con">
-<a href="#appendix-B.5" class="section-number selfRef">B.5. </a><a href="#name-the-datagram-congestion-con" class="section-name selfRef">The Datagram Congestion Control Protocol (DCCP) CCID2</a>
-        </h3>
-<div id="specification-4">
-<section id="appendix-B.5.1">
-          <h4 id="name-specification-5">
-<a href="#appendix-B.5.1" class="section-number selfRef">B.5.1. </a><a href="#name-specification-5" class="section-name selfRef">Specification</a>
-          </h4>
-<p id="appendix-B.5.1-1"><span><a href="https://rfc-editor.org/rfc/rfc4341#section-5.1" class="relref">Section 5.1</a> of [<a href="#RFC4341" class="cite xref">RFC4341</a>]</span> states:<a href="#appendix-B.5.1-1" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="appendix-B.5.1-2.1">
-              <p id="appendix-B.5.1-2.1.1">There are currently no standards governing TCP's use of the congestion window during an application-limited period.  In particular, it is possible for TCP's congestion window to grow quite large during a long uncongested period when the sender is application limited, sending at a low rate.  <span>[<a href="#RFC2861" class="cite xref">RFC2861</a>]</span> essentially suggests that TCP's congestion window not be increased during application-limited periods when the congestion window is not being fully utilized.<a href="#appendix-B.5.1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-</section>
-</div>
-<div id="assessment-4">
-<section id="appendix-B.5.2">
-          <h4 id="name-assessment-5">
-<a href="#appendix-B.5.2" class="section-number selfRef">B.5.2. </a><a href="#name-assessment-5" class="section-name selfRef">Assessment</a>
-          </h4>
-<p id="appendix-B.5.2-1">A DCCP Congestion Control ID (CCID) specifying TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to <span>[<a href="#RFC2861" class="cite xref">RFC2861</a>]</span>.
-The text in <span><a href="https://rfc-editor.org/rfc/rfc4341#section-5.1" class="relref">Section 5.1</a> of [<a href="#RFC4341" class="cite xref">RFC4341</a>]</span> is updated by this document to specify the management of the
-cwnd when the sender is rate-limited.<a href="#appendix-B.5.2-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-</section>
-</div>
 <div id="change-log">
-<section id="appendix-C">
+<section id="appendix-B">
       <h2 id="name-change-log">
-<a href="#appendix-C" class="section-number selfRef">Appendix C. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
 <ul class="normal">
-<li class="normal" id="appendix-C-1.1">
-          <p id="appendix-C-1.1.1">-00 was the first individual submission for feedback by CCWG.<a href="#appendix-C-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-1.1">
+          <p id="appendix-B-1.1.1">-00 was the first individual submission for feedback by CCWG.<a href="#appendix-B-1.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-C-1.2">
-          <p id="appendix-C-1.2.1">-01 includes editorial improvements<a href="#appendix-C-1.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-1.2">
+          <p id="appendix-B-1.2.1">-01 includes editorial improvements<a href="#appendix-B-1.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-C-1.2.2.1">
-              <p id="appendix-C-1.2.2.1.1">Removes application interaction with QUIC pacing, since pacing might be within the QUIC stack.<a href="#appendix-C-1.2.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-1.2.2.1">
+              <p id="appendix-B-1.2.2.1.1">Removes application interaction with QUIC pacing, since pacing might be within the QUIC stack.<a href="#appendix-B-1.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.2.2.2">
-              <p id="appendix-C-1.2.2.2.1">Adds explicit mention of DCCP/CCID2.<a href="#appendix-C-1.2.2.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.2.2.2">
+              <p id="appendix-B-1.2.2.2.1">Adds explicit mention of DCCP/CCID2.<a href="#appendix-B-1.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.2.2.3">
-              <p id="appendix-C-1.2.2.3.1">Adds this change log.<a href="#appendix-C-1.2.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.2.2.3">
+              <p id="appendix-B-1.2.2.3.1">Adds this change log.<a href="#appendix-B-1.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
-        <li class="normal" id="appendix-C-1.3">
-          <p id="appendix-C-1.3.1">-02 addresses comments from IETF-119<a href="#appendix-C-1.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-1.3">
+          <p id="appendix-B-1.3.1">-02 addresses comments from IETF-119<a href="#appendix-B-1.3.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-C-1.3.2.1">
-              <p id="appendix-C-1.3.2.1.1">Discusses rate-based controls and pacing.<a href="#appendix-C-1.3.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-1.3.2.1">
+              <p id="appendix-B-1.3.2.1.1">Discusses rate-based controls and pacing.<a href="#appendix-B-1.3.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.3.2.2">
-              <p id="appendix-C-1.3.2.2.1">Trims the list of possible RFCs to update.<a href="#appendix-C-1.3.2.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.3.2.2">
+              <p id="appendix-B-1.3.2.2.1">Trims the list of possible RFCs to update.<a href="#appendix-B-1.3.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.3.2.3">
-              <p id="appendix-C-1.3.2.3.1">Some editorial fixes: "congestion control algorithm" instead of "mechanism" for consistency with RFC5033.bis; earlier definition of maxFS; explicit mention of RFCs to update in abstract.<a href="#appendix-C-1.3.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.3.2.3">
+              <p id="appendix-B-1.3.2.3.1">Some editorial fixes: "congestion control algorithm" instead of "mechanism" for consistency with RFC5033.bis; earlier definition of maxFS; explicit mention of RFCs to update in abstract.<a href="#appendix-B-1.3.2.3.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
-        <li class="normal" id="appendix-C-1.4">
-          <p id="appendix-C-1.4.1">-03 addresses comments from IETF-120<a href="#appendix-C-1.4.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-1.4">
+          <p id="appendix-B-1.4.1">-03 addresses comments from IETF-120<a href="#appendix-B-1.4.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-C-1.4.2.1">
-              <p id="appendix-C-1.4.2.1.1">Introduces a third rule, with <span class="bcp14">MAY</span>, that avoids having an unvalidated long-lived maxFS (using pipeACK from RFC 7661).<a href="#appendix-C-1.4.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-1.4.2.1">
+              <p id="appendix-B-1.4.2.1.1">Introduces a third rule, with <span class="bcp14">MAY</span>, that avoids having an unvalidated long-lived maxFS (using pipeACK from RFC 7661).<a href="#appendix-B-1.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.4.2.2">
-              <p id="appendix-C-1.4.2.2.1">Changes "inc" to "limit" and adapts the wording of rule 2 to make it clearer (thanks to Neal Cardwell).<a href="#appendix-C-1.4.2.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.4.2.2">
+              <p id="appendix-B-1.4.2.2.1">Changes "inc" to "limit" and adapts the wording of rule 2 to make it clearer (thanks to Neal Cardwell).<a href="#appendix-B-1.4.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.4.2.3">
-              <p id="appendix-C-1.4.2.3.1">Appendix: updates ns-3 in line with the recent implementation.<a href="#appendix-C-1.4.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.4.2.3">
+              <p id="appendix-B-1.4.2.3.1">Appendix: updates ns-3 in line with the recent implementation.<a href="#appendix-B-1.4.2.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.4.2.4">
-              <p id="appendix-C-1.4.2.4.1">Appendix: makes the RFC 9002 text clearer and shorter.<a href="#appendix-C-1.4.2.4.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.4.2.4">
+              <p id="appendix-B-1.4.2.4.1">Appendix: makes the RFC 9002 text clearer and shorter.<a href="#appendix-B-1.4.2.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
-        <li class="normal" id="appendix-C-1.5">
-          <p id="appendix-C-1.5.1">draft-ietf-ccwg-ratelimited-increase-00<a href="#appendix-C-1.5.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-1.5">
+          <p id="appendix-B-1.5.1">draft-ietf-ccwg-ratelimited-increase-00<a href="#appendix-B-1.5.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-C-1.5.2.1">
-              <p id="appendix-C-1.5.2.1.1">adds Mohit Tahiliani as a co-author<a href="#appendix-C-1.5.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-1.5.2.1">
+              <p id="appendix-B-1.5.2.1.1">adds Mohit Tahiliani as a co-author<a href="#appendix-B-1.5.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.5.2.2">
-              <p id="appendix-C-1.5.2.2.1">refines the "rule" text (shorter, clearer)<a href="#appendix-C-1.5.2.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.5.2.2">
+              <p id="appendix-B-1.5.2.2.1">refines the "rule" text (shorter, clearer)<a href="#appendix-B-1.5.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.5.2.3">
-              <p id="appendix-C-1.5.2.3.1">adds an example<a href="#appendix-C-1.5.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.5.2.3">
+              <p id="appendix-B-1.5.2.3.1">adds an example<a href="#appendix-B-1.5.2.3.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
-        <li class="normal" id="appendix-C-1.6">
-          <p id="appendix-C-1.6.1">draft-ietf-ccwg-ratelimited-increase-01<a href="#appendix-C-1.6.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-1.6">
+          <p id="appendix-B-1.6.1">draft-ietf-ccwg-ratelimited-increase-01<a href="#appendix-B-1.6.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-C-1.6.2.1">
-              <p id="appendix-C-1.6.2.1.1">Clarified what we mean with an RTT<a href="#appendix-C-1.6.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-1.6.2.1">
+              <p id="appendix-B-1.6.2.1.1">Clarified what we mean with an RTT<a href="#appendix-B-1.6.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.6.2.2">
-              <p id="appendix-C-1.6.2.2.1">rephrased example regarding initcwnd, citing RFCs 6928 and 9002<a href="#appendix-C-1.6.2.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.6.2.2">
+              <p id="appendix-B-1.6.2.2.1">rephrased example regarding initcwnd, citing RFCs 6928 and 9002<a href="#appendix-B-1.6.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.6.2.3">
-              <p id="appendix-C-1.6.2.3.1">removed the too vague rule 1 and made rule 2 (now rule 1) a <span class="bcp14">MUST</span><a href="#appendix-C-1.6.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.6.2.3">
+              <p id="appendix-B-1.6.2.3.1">removed the too vague rule 1 and made rule 2 (now rule 1) a <span class="bcp14">MUST</span><a href="#appendix-B-1.6.2.3.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
-        <li class="normal" id="appendix-C-1.7">
-          <p id="appendix-C-1.7.1">draft-ietf-ccwg-ratelimited-increase-02<a href="#appendix-C-1.7.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-1.7">
+          <p id="appendix-B-1.7.1">draft-ietf-ccwg-ratelimited-increase-02<a href="#appendix-B-1.7.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-C-1.7.2.1">
-              <p id="appendix-C-1.7.2.1.1">Improved the last sentence of section 3.1.2.<a href="#appendix-C-1.7.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-1.7.2.1">
+              <p id="appendix-B-1.7.2.1.1">Improved the last sentence of section 3.1.2.<a href="#appendix-B-1.7.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.7.2.2">
-              <p id="appendix-C-1.7.2.2.1">Removed a confusing and unnecessary sentence about pacing (as suggested at IETF-123).<a href="#appendix-C-1.7.2.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.7.2.2">
+              <p id="appendix-B-1.7.2.2.1">Removed a confusing and unnecessary sentence about pacing (as suggested at IETF-123).<a href="#appendix-B-1.7.2.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
-        <li class="normal" id="appendix-C-1.8">
-          <p id="appendix-C-1.8.1">draft-ietf-ccwg-ratelimited-increase-03<a href="#appendix-C-1.8.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-1.8">
+          <p id="appendix-B-1.8.1">draft-ietf-ccwg-ratelimited-increase-03<a href="#appendix-B-1.8.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-C-1.8.2.1">
-              <p id="appendix-C-1.8.2.1.1">The editors checked rule 2, and found that rule 1 was sufficient, and did not depend on the ordering of rules in newCWV (RFC7661), hence rule 2 was finally removed.<a href="#appendix-C-1.8.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-B-1.8.2.1">
+              <p id="appendix-B-1.8.2.1.1">The editors checked rule 2, and found that rule 1 was sufficient, and did not depend on the ordering of rules in newCWV (RFC7661), hence rule 2 was finally removed.<a href="#appendix-B-1.8.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.8.2.2">
-              <p id="appendix-C-1.8.2.2.1">Cleaned language and improved text explaining how this complements RFC7661.<a href="#appendix-C-1.8.2.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.8.2.2">
+              <p id="appendix-B-1.8.2.2.1">Cleaned language and improved text explaining how this complements RFC7661.<a href="#appendix-B-1.8.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.8.2.3">
-              <p id="appendix-C-1.8.2.3.1">Checked/updated definitions.<a href="#appendix-C-1.8.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.8.2.3">
+              <p id="appendix-B-1.8.2.3.1">Checked/updated definitions.<a href="#appendix-B-1.8.2.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-C-1.8.2.4">
-              <p id="appendix-C-1.8.2.4.1">Added an example with cwnd in bytes.<a href="#appendix-C-1.8.2.4.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-B-1.8.2.4">
+              <p id="appendix-B-1.8.2.4.1">Added an example with cwnd in bytes.<a href="#appendix-B-1.8.2.4.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</li>
+        <li class="normal" id="appendix-B-1.9">
+          <p id="appendix-B-1.9.1">draft-ietf-ccwg-ratelimited-increase-04<a href="#appendix-B-1.9.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-1.9.2.1">
+              <p id="appendix-B-1.9.2.1.1">Repeated definitions from RFC 7661 instead of just pointing at the RFC<a href="#appendix-B-1.9.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-B-1.9.2.2">
+              <p id="appendix-B-1.9.2.2.1">Made RFC 7661 informational<a href="#appendix-B-1.9.2.2.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</li>
+        <li class="normal" id="appendix-B-1.10">
+          <p id="appendix-B-1.10.1">draft-ietf-ccwg-ratelimited-increase-05<a href="#appendix-B-1.10.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-1.10.2.1">
+              <p id="appendix-B-1.10.2.1.1">Rephrased references to RFC 7661<a href="#appendix-B-1.10.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-B-1.10.2.2">
+              <p id="appendix-B-1.10.2.2.1">Nits<a href="#appendix-B-1.10.2.2.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</li>
+        <li class="normal" id="appendix-B-1.11">
+          <p id="appendix-B-1.11.1">draft-ietf-ccwg-ratelimited-increase-06<a href="#appendix-B-1.11.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-1.11.2.1">
+              <p id="appendix-B-1.11.2.1.1">Changed some TCP-specific language so it applies to QUIC too<a href="#appendix-B-1.11.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-B-1.11.2.2">
+              <p id="appendix-B-1.11.2.2.1">RFC 4341 added to list of updated RFCs in the abstract<a href="#appendix-B-1.11.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-B-1.11.2.3">
+              <p id="appendix-B-1.11.2.3.1">Nits<a href="#appendix-B-1.11.2.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</li>
+        <li class="normal" id="appendix-B-1.12">
+          <p id="appendix-B-1.12.1">draft-ietf-ccwg-ratelimited-increase-07<a href="#appendix-B-1.12.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-1.12.2.1">
+              <p id="appendix-B-1.12.2.1.1">Updated this list<a href="#appendix-B-1.12.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-B-1.12.2.2">
+              <p id="appendix-B-1.12.2.2.1">Made RFC 4341 reference normative<a href="#appendix-B-1.12.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-B-1.12.2.3">
+              <p id="appendix-B-1.12.2.3.1">Moved appendix B into the main text as a new section that (only) defines the RFC updates.<a href="#appendix-B-1.12.2.3.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
@@ -1969,15 +2016,15 @@ cwnd when the sender is rate-limited.<a href="#appendix-B.5.2-1" class="pilcrow"
 </section>
 </div>
 <div id="acknowledgments">
-<section id="appendix-D">
+<section id="appendix-C">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-D-1">The authors would like to thank Neal Cardwell and Martin Duke for suggesting improvements to this document.<a href="#appendix-D-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">The authors would like to thank Neal Cardwell and Martin Duke for suggesting improvements to this document.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-E">
+<section id="appendix-D">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
