@@ -300,7 +300,7 @@ Round 2, the sender has 8000B to send in 8 packets (MSS=1000B), cwnd=14000
   Send seqno=11000; FS=8000; maxFS=10000
 ~~~~~~~~~~
 
-Received 4 ACKs (N=2000); maxFS=10000 
+Received 4 ACKs (N=2000); maxFS=10000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
