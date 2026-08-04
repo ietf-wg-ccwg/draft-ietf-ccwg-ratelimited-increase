@@ -308,8 +308,7 @@ Table of Contents
    allowed to grow the cwnd without limit during an uncongested period
    when it sends at a rate unconstrained by the current cwnd.  The text
    in Section 5.1 of [RFC4341] is updated by this document by adding the
-   text in (Section 3) to specify the management of the cwnd when the
-   sender is rate-limited.
+   text in (Section 3) to specify the management of the
 
 4.2.  RFC 5681: TCP Congestion Control
 
