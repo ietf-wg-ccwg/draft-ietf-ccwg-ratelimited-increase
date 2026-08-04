@@ -189,7 +189,7 @@ when a TCP sender is unable to send at the maximum rate allowed by the cwnd.
 This document updates {{!RFC5681}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
 
 
-## RFC 9002: The QUIC Transport Protocol
+## RFC 9002: QUIC Loss Detection and Congestion Control
 
 {{Section 7.8 of !RFC9002}} states:
 
