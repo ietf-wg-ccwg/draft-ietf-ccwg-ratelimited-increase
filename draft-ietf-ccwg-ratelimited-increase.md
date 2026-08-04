@@ -187,7 +187,6 @@ This document updates {{Section 5.1 of !RFC4341}} by adding the text in {{rules}
 when a TCP sender is unable to send at the maximum rate allowed by the cwnd.
 
 {{!RFC5681}} is updated by this document by adding the text in ({{rules}}) to specify the management of the
-cwnd when the sender is rate-limited.
 
 
 ## RFC 9002: The QUIC Transport Protocol
