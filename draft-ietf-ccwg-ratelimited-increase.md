@@ -214,7 +214,10 @@ Only when these two conditions are met can the cwnd be increased; otherwise, the
 
 The quoted statement from {{!RFC9260}} limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative. {{Section 7.2.1 of !RFC9260}} is limited to Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}} -- however, this section does not contain a similar rule. It is implicitly clear that the quoted statement from {{!RFC9260}} only applies to Slow Start.
 
-{{!RFC9260}} is updated by this document by adding the text in ({{rules}}) to specify the management of the
+{{!RFC9260}} is updated by this document by replacing the  the final line of quoted text with the text in ({{rules}}) to specify the management of the cwnd when the sender is rate-limited.
+
+{{Section 7.2.2 of !RFC9260}} is also updated to add text in ({{rules}}). 
+
 cwnd when the sender is rate-limited.
 
 
