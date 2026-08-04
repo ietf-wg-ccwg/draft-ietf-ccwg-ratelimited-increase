@@ -249,7 +249,7 @@ This document requests no IANA action.
 --- back
 
 
-# An Example Using cwnd Represented in Bytes
+# An Example Using cwnd Represented in Bytes - the old version with ACK Delay for QUIC packets
 
 The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The MSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement.
 
@@ -257,7 +257,7 @@ The initial sender state is:
 
 ~~~~~~~~~~
   Sender sequence number (seqno) = 0
-  SMSS = 1400 bytes (larger than the sent MSS)
+  SMSS = 1000 bytes
   MSS = 1000 bytes
   cwnd = 10000 bytes (initcwnd)
   maxFS = 10000 bytes (initcwnd)
@@ -271,7 +271,7 @@ One ACK is generated for each 2*MSS received bytes.
 Round 1, the sender has 4000B to send in 4 packets (MSS=1000B);  cwnd=10000
 
 ~~~~~~~~~~
-  Send  seqno=0; FS=1000; maxFS=10000
+  Send  seqno=0;    FS=1000; maxFS=10000
   Send  seqno=1000; FS=1000; maxFS=10000
   Send  seqno=2000; FS=2000; maxFS=10000
   Send  seqno=3000; FS=3000; maxFS=10000
@@ -374,6 +374,274 @@ cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.
 
+# An Example Using cwnd Represented in Bytes - the old version as per this RFC for TCP packets
+
+The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The MSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement.
+
+The initial sender state is:
+
+~~~~~~~~~~
+  Sender sequence number (seqno) = 0
+  SMSS = 1100 bytes
+  MSS = 1000 bytes
+  cwnd = 10000 bytes (initcwnd)
+  maxFS = 10000 bytes (initcwnd)
+  FlightSize (FS) = 0 bytes
+  ssthresh is infinity, i.e. the congestion control algorithm is in slow start.
+~~~~~~~~~~
+
+The network path’s bandwidth-delay product is such that, throughout this example, all packets in each round are sent before an ACK is received for the first packet in a round.
+One ACK is generated for each 2*MSS received bytes (every second packet).
+
+Round 1, the sender has 4000B to send in 4 packets (1000B);  cwnd=10000
+
+~~~~~~~~~~
+  Send  seqno=0;    FS=1000; maxFS=10000
+  Send  seqno=1000; FS=1000; maxFS=10000
+  Send  seqno=2000; FS=2000; maxFS=10000
+  Send  seqno=3000; FS=3000; maxFS=10000
+~~~~~~~~~~
+
+Received 2 ACKs (N=2000); maxFS=10000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
+
+~~~~~~~~~~
+  ACK for  2000 ACK’ed=2000 : cwnd+= 1100; cwnd=11100
+  ACK for  4000 ACK’ed=2000 : cwnd+= 1100; cwnd=12200
+~~~~~~~~~~
+
+Note: This round maxFS was not increased and cwnd was increased.
+
+Round 2, the sender has 8000B to send in 8 packets (1000B), cwnd=14000
+
+~~~~~~~~~~
+  Send  seqno=4000; FS=1000; maxFS=10000
+  Send  seqno=5000; FS=2000; maxFS=10000
+  Send  seqno=6000; FS=3000; maxFS=10000
+  Send  seqno=7000; FS=4000; maxFS=10000
+  Send  seqno=8000; FS=5000; maxFS=10000
+  Send  seqno=9000; FS=6000; maxFS=10000
+  Send seqno=10000; FS=7000; maxFS=10000
+  Send seqno=11000; FS=8000; maxFS=10000
+~~~~~~~~~~
+
+Received 4 ACKs (N=2000); maxFS=10000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
+
+~~~~~~~~~~
+  ACK for  6000 ACK’ed=2000 : cwnd+=1100; cwnd=13300
+  ACK for  8000 ACK’ed=2000 : cwnd+=1100; cwnd=14400
+  ACK for 10000 ACK’ed=2000 : cwnd+=1100; cwnd=15500
+  ACK for 12000 ACK’ed=2000 : cwnd+=1100; cwnd=16600
+~~~~~~~~~~
+
+Note: This round maxFS was not increased and cwnd was limited to 2*maxFS.
+
+Round 3, the sender has 4000B to send in 4 packets (1000B), cwnd=20000
+
+~~~~~~~~~~
+  Send seqno=12000; FS=1000; maxFS=10000
+  Send seqno=13000; FS=2000; maxFS=10000
+  Send seqno=14000; FS=3000; maxFS=10000
+  Send seqno=15000; FS=4000; maxFS=10000
+~~~~~~~~~~
+
+Received 2 ACKs (N=2000); maxFS=10000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
+
+~~~~~~~~~~
+  ACK for 14000 ACK’ed=2000 : cwnd+=1100; cwnd=17700
+  ACK for 16000 ACK’ed=2000 : cwnd+=1100; cwnd=18800
+~~~~~~~~~~
+
+Note: This round maxFS was not increased and cwnd was not increased.
+
+Round 4, the sender has 20000B to send in 20 packets (1000B), cwnd=20000
+
+~~~~~~~~~~
+  Send seqno=16000; FS= 1000; maxFS=10000
+  Send seqno=17000; FS= 2000; maxFS=10000
+  Send seqno=18000; FS= 3000; maxFS=10000
+  Send seqno=19000; FS= 4000; maxFS=10000
+  Send seqno=20000; FS= 5000; maxFS=10000
+  Send seqno=21000; FS= 6000; maxFS=10000
+  Send seqno=22000; FS= 7000; maxFS=10000
+  Send seqno=23000; FS= 8000; maxFS=10000
+  Send seqno=24000; FS= 9000; maxFS=10000
+  Send seqno=25000; FS=10000; maxFS=10000
+  Send seqno=26000; FS=11000; maxFS=11000
+  Send seqno=27000; FS=12000; maxFS=12000
+  Send seqno=28000; FS=13000; maxFS=13000
+  Send seqno=29000; FS=14000; maxFS=14000
+  Send seqno=30000; FS=15000; maxFS=15000
+  Send seqno=31000; FS=16000; maxFS=16000
+  Send seqno=32000; FS=17000; maxFS=17000
+  Send seqno=33000; FS=18000; maxFS=18000
+  Send seqno=34000; FS=19000; maxFS=19000
+  Send seqno=35000; FS=20000; maxFS=20000
+~~~~~~~~~~
+
+Received 10 ACKs (N=2000); maxFS=20000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
+
+~~~~~~~~~~
+  ACK for 18000 ACK’ed=2000 : cwnd+=2000; cwnd=19900
+  ACK for 20000 ACK’ed=2000 : cwnd+=2000; cwnd= etc
+  ACK for 22000 ACK’ed=2000 : cwnd+=2000; cwnd=
+  ACK for 24000 ACK’ed=2000 : cwnd+=2000; cwnd=
+  ACK for 26000 ACK’ed=2000 : cwnd+=2000; cwnd=
+  ACK for 28000 ACK’ed=2000 : cwnd+=2000; cwnd=
+  ACK for 30000 ACK’ed=2000 : cwnd+=2000; cwnd=
+  ACK for 32000 ACK’ed=2000 : cwnd+=2000; cwnd=
+  ACK for 34000 ACK’ed=2000 : cwnd+=2000; cwnd=
+  ACK for 36000 ACK’ed=2000 : cwnd+=2000; cwnd=
+~~~~~~~~~~
+
+Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.
+
+# An Example Using cwnd Represented in Bytes --  GF Recommended version.
+
+The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The MSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement.
+
+The initial sender state is:
+
+~~~~~~~~~~
+  Sender sequence number (seqno) = 0
+  SMSS = 1400 bytes (larger than the sent MSS)
+  MSS = 1000 bytes
+  cwnd = 10000 bytes (initcwnd)
+  maxFS = 10000 bytes (initcwnd)
+  FlightSize (FS) = 0 bytes
+  ssthresh is infinity, i.e. the congestion control algorithm is in slow start.
+~~~~~~~~~~
+
+The network path’s bandwidth-delay product is such that, throughout this example,
+all packets in each round are sent before an ACK is received for the first packet in a round.
+One ACK is generated for each received packet.
+
+Round 1, the sender has 4000B to send in 4 packets (1000B);  cwnd=10000
+
+~~~~~~~~~~
+  Send  seqno=0;    FS=1000; maxFS=10000
+  Send  seqno=1000; FS=1000; maxFS=10000
+  Send  seqno=2000; FS=2000; maxFS=10000
+  Send  seqno=3000; FS=3000; maxFS=10000
+~~~~~~~~~~
+
+Received 4 ACKs (each N=1000); maxFS=10000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
+
+~~~~~~~~~~
+  ACK for  1000 ACK’ed=1000 : cwnd+= 1000; cwnd=11000
+  ACK for  2000 ACK’ed=1000 : cwnd+= 1000; cwnd=12000
+  ACK for  1000 ACK’ed=1000 : cwnd+= 1000; cwnd=13000
+  ACK for  4000 ACK’ed=1000 : cwnd+= 1000; cwnd=14000
+~~~~~~~~~~
+
+Note: This round maxFS was not increased and cwnd was increased.
+
+Round 2, the sender has 8000B to send in 8 packets (1000B), cwnd=14000
+
+~~~~~~~~~~
+  Send  seqno=4000; FS=1000; maxFS=10000
+  Send  seqno=5000; FS=2000; maxFS=10000
+  Send  seqno=6000; FS=3000; maxFS=10000
+  Send  seqno=7000; FS=4000; maxFS=10000
+  Send  seqno=8000; FS=5000; maxFS=10000
+  Send  seqno=9000; FS=6000; maxFS=10000
+  Send seqno=10000; FS=7000; maxFS=10000
+  Send seqno=11000; FS=8000; maxFS=10000
+~~~~~~~~~~
+
+Received 8 ACKs (N=2000); maxFS=10000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
+
+~~~~~~~~~~
+  ACK for  5000 ACK’ed=2000 : cwnd+=1000; cwnd=15000
+  ACK for  6000 ACK’ed=2000 : cwnd+=1000; cwnd=16000
+  ACK for  7000 ACK’ed=2000 : cwnd+=1000; cwnd=17000
+  ACK for  8000 ACK’ed=2000 : cwnd+=1000; cwnd=18000
+  ACK for  9000 ACK’ed=2000 : cwnd+=1000; cwnd=19000
+  ACK for 10000 ACK’ed=2000 : cwnd+=1000; cwnd=20000
+  ACK for 11000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
+  ACK for 12000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
+~~~~~~~~~~
+
+Note: This round maxFS was not increased and cwnd was limited to 2*maxFS.
+
+Round 3, the sender has 4000B to send in 4 packets (1000B), cwnd=20000
+
+~~~~~~~~~~
+  Send seqno=12000; FS=1000; maxFS=10000
+  Send seqno=13000; FS=2000; maxFS=10000
+  Send seqno=14000; FS=3000; maxFS=10000
+  Send seqno=15000; FS=4000; maxFS=10000
+~~~~~~~~~~
+
+Received 2 ACKs (N=2000); maxFS=10000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
+
+~~~~~~~~~~
+  ACK for 13000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
+  ACK for 14000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
+  ACK for 15000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
+  ACK for 16000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
+~~~~~~~~~~
+
+Note: This round maxFS was not increased and cwnd was not increased.
+
+Round 4, the sender has 20000B to send in 20 packets (1000B), cwnd=20000
+
+~~~~~~~~~~
+  Send seqno=16000; FS= 1000; maxFS=10000
+  Send seqno=17000; FS= 2000; maxFS=10000
+  Send seqno=18000; FS= 3000; maxFS=10000
+  Send seqno=19000; FS= 4000; maxFS=10000
+  Send seqno=20000; FS= 5000; maxFS=10000
+  Send seqno=21000; FS= 6000; maxFS=10000
+  Send seqno=22000; FS= 7000; maxFS=10000
+  Send seqno=23000; FS= 8000; maxFS=10000
+  Send seqno=24000; FS= 9000; maxFS=10000
+  Send seqno=25000; FS=10000; maxFS=10000
+  Send seqno=26000; FS=11000; maxFS=11000
+  Send seqno=27000; FS=12000; maxFS=12000
+  Send seqno=28000; FS=13000; maxFS=13000
+  Send seqno=29000; FS=14000; maxFS=14000
+  Send seqno=30000; FS=15000; maxFS=15000
+  Send seqno=31000; FS=16000; maxFS=16000
+  Send seqno=32000; FS=17000; maxFS=17000
+  Send seqno=33000; FS=18000; maxFS=18000
+  Send seqno=34000; FS=19000; maxFS=19000
+  Send seqno=35000; FS=20000; maxFS=20000
+~~~~~~~~~~
+
+Received 10 ACKs (N=2000); maxFS=20000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
+
+~~~~~~~~~~
+  ACK for 18000 ACK’ed=2000 : cwnd+=1000; cwnd=21000
+  ACK for 19000 ACK’ed=2000 : cwnd+=1000; cwnd=22000
+  ACK for 19000 ACK’ed=2000 : cwnd+=1000; cwnd=23000
+  ACK for 20000 ACK’ed=2000 : cwnd+=1000; cwnd=24000
+  ACK for 21000 ACK’ed=2000 : cwnd+=1000; cwnd=25000
+  ACK for 22000 ACK’ed=2000 : cwnd+=1000; cwnd=26000
+  ACK for 23000 ACK’ed=2000 : cwnd+=1000; cwnd=27000
+  ACK for 24000 ACK’ed=2000 : cwnd+=1000; cwnd=28000
+  ACK for 25000 ACK’ed=2000 : cwnd+=1000; cwnd=29000
+  ACK for 26000 ACK’ed=2000 : cwnd+=1000; cwnd=30000
+  ACK for 27000 ACK’ed=2000 : cwnd+=1000; cwnd=31000
+  ACK for 28000 ACK’ed=2000 : cwnd+=1000; cwnd=32000
+  ACK for 29000 ACK’ed=2000 : cwnd+=1000; cwnd=33000
+  ACK for 30000 ACK’ed=2000 : cwnd+=1000; cwnd=34000
+  ACK for 31000 ACK’ed=2000 : cwnd+=1000; cwnd=35000
+  ACK for 32000 ACK’ed=2000 : cwnd+=1000; cwnd=36000
+  ACK for 33000 ACK’ed=2000 : cwnd+=1000; cwnd=37000
+  ACK for 34000 ACK’ed=2000 : cwnd+=1000; cwnd=38000
+  ACK for 35000 ACK’ed=2000 : cwnd+=1000; cwnd=39000
+  ACK for 36000 ACK’ed=2000 : cwnd+=1000; cwnd=40000
+~~~~~~~~~~
+
+Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.
 
 
 # Change Log
