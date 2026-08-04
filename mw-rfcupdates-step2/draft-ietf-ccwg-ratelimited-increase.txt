@@ -356,9 +356,15 @@ Table of Contents
    section does not contain a similar rule.  It is implicitly clear that
    the quoted statement from [RFC9260] only applies to Slow Start.
 
-   [RFC9260] is updated by this document by adding the text in
-   (Section 3) to specify the management of the cwnd when the sender is
-   rate-limited.
+   [RFC9260] is updated by this document by replacing the the final line
+   of quoted text with the text in (Section 3) to specify the management
+   of the cwnd when the sender is rate-limited.
+
+   Section 7.2.2 of [RFC9260] is also updated to add text in
+   (Section 3).
+
+   This ensures that the update applies to both Slow Start and
+   Congestion Avoidance.
 
 4.5.  RFC 9438: CUBIC
 
@@ -370,9 +376,9 @@ Table of Contents
    This limits the cwnd growth in accordance with Rate-Limited Increase,
    but it is more conservative.
 
-   [RFC9438] is updated by this document by adding the text in
-   (Section 3) to specify the management of the cwnd when the sender is
-   rate-limited.
+   [RFC9438] is updated by this document by replacing this text with the
+   text in (Section 3) to specify the management of the cwnd when the
+   sender is rate-limited.
 
 5.  Security Considerations
 

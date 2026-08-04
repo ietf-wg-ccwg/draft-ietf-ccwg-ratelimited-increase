@@ -1457,8 +1457,9 @@ Only when these two conditions are met can the cwnd be increased; otherwise, the
 </li>
         </ul>
 <p id="section-4.4-3">The quoted statement from <span>[<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative. <span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.1" class="relref">Section 7.2.1</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> is limited to Slow Start. Congestion Avoidance is discussed in <span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.2" class="relref">Section 7.2.2</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> -- however, this section does not contain a similar rule. It is implicitly clear that the quoted statement from <span>[<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> only applies to Slow Start.<a href="#section-4.4-3" class="pilcrow">¶</a></p>
-<p id="section-4.4-4"><span>[<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> is updated by this document by adding the text in (<a href="#rules" class="auto internal xref">Section 3</a>) to specify the management of the
-cwnd when the sender is rate-limited.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
+<p id="section-4.4-4"><span>[<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> is updated by this document by replacing the  the final line of quoted text with the text in (<a href="#rules" class="auto internal xref">Section 3</a>) to specify the management of the cwnd when the sender is rate-limited.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
+<p id="section-4.4-5"><span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.2" class="relref">Section 7.2.2</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> is also updated to add text in (<a href="#rules" class="auto internal xref">Section 3</a>).<a href="#section-4.4-5" class="pilcrow">¶</a></p>
+<p id="section-4.4-6">This ensures that the update applies to both Slow Start and Congestion Avoidance.<a href="#section-4.4-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="rfc-9438-cubic">
@@ -1474,7 +1475,7 @@ cwnd when the sender is rate-limited.<a href="#section-4.4-4" class="pilcrow">¶
         </ul>
 <p id="section-4.5-3">This limits the cwnd growth in accordance with Rate-Limited Increase, but it
 is more conservative.<a href="#section-4.5-3" class="pilcrow">¶</a></p>
-<p id="section-4.5-4"><span>[<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> is updated by this document by adding the text in (<a href="#rules" class="auto internal xref">Section 3</a>) to specify the management of the
+<p id="section-4.5-4"><span>[<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> is updated by this document by replacing this  text with the text in (<a href="#rules" class="auto internal xref">Section 3</a>) to specify the management of the
 cwnd when the sender is rate-limited.<a href="#section-4.5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
