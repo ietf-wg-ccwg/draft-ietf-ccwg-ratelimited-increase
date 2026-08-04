@@ -251,12 +251,13 @@ This document requests no IANA action.
 
 # An Example Using cwnd Represented in Bytes
 
-The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd.
+The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The MSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement.
 
 The initial sender state is:
 
 ~~~~~~~~~~
   Sender sequence number (seqno) = 0
+  SMSS = 1400 bytes (larger than the sent MSS)
   MSS = 1000 bytes
   cwnd = 10000 bytes (initcwnd)
   maxFS = 10000 bytes (initcwnd)
@@ -267,7 +268,7 @@ The initial sender state is:
 The network path’s bandwidth-delay product is such that, throughout this example, all packets in each round are sent before an ACK is received for the first packet in a round.
 One ACK is generated for each 2*MSS received bytes.
 
-Round 1, the sender has 4000B to send in 4 packets: MSS (QUIC MPS)=1000, cwnd=10000
+Round 1, the sender has 4000B to send in 4 packets (MSS=1000B);  cwnd=10000
 
 ~~~~~~~~~~
   Send  seqno=0; FS=1000; maxFS=10000
@@ -276,7 +277,7 @@ Round 1, the sender has 4000B to send in 4 packets: MSS (QUIC MPS)=1000, cwnd=10
   Send  seqno=3000; FS=3000; maxFS=10000
 ~~~~~~~~~~
 
-Received 2 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+Received 2 ACKs (N=2000); maxFS=10000, if (cwnd<2*maxFS) {cwnd += N}
 
 ~~~~~~~~~~
   ACK for  2000 ACK’ed=2000 : cwnd+= 2000; cwnd=12000
@@ -285,7 +286,7 @@ Received 2 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
 
 Note: This round maxFS was not increased and cwnd was increased.
 
-Round 2, the sender has 8000B to send in 8 packets: MSS=1000, cwnd=14000
+Round 2, the sender has 8000B to send in 8 packets (MSS=1000B), cwnd=14000
 
 ~~~~~~~~~~
   Send  seqno=4000; FS=1000; maxFS=10000
@@ -298,7 +299,7 @@ Round 2, the sender has 8000B to send in 8 packets: MSS=1000, cwnd=14000
   Send seqno=11000; FS=8000; maxFS=10000
 ~~~~~~~~~~
 
-Received 4 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+Received 4 ACKs (N=2000); maxFS=10000, if (cwnd<2*maxFS) {cwnd += N}
 
 ~~~~~~~~~~
   ACK for  6000 ACK’ed=2000 : cwnd+=2000; cwnd=16000
@@ -307,9 +308,9 @@ Received 4 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
   ACK for 12000 ACK’ed=2000 : cwnd+=0; cwnd=20000
 ~~~~~~~~~~
 
-Note: This round maxFS was not increased and cwnd was increased to 2*maxFS.
+Note: This round maxFS was not increased and cwnd was limited to 2*maxFS.
 
-Round 3, the sender has 4000B to send in 4 packets: MSS=1000, cwnd=20000
+Round 3, the sender has 4000B to send in 4 packets (MSS=1000B), cwnd=20000
 
 ~~~~~~~~~~
   Send seqno=12000; FS=1000; maxFS=10000
@@ -318,7 +319,7 @@ Round 3, the sender has 4000B to send in 4 packets: MSS=1000, cwnd=20000
   Send seqno=15000; FS=4000; maxFS=10000
 ~~~~~~~~~~
 
-Received 2 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+Received 2 ACKs (N=2000); maxFS=10000, if (cwnd<2*maxFS) {cwnd += N}
 
 ~~~~~~~~~~
   ACK for 14000 ACK’ed=2000 : cwnd+=0; cwnd=20000
@@ -327,7 +328,7 @@ Received 2 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
 
 Note: This round maxFS was not increased and cwnd was not increased.
 
-Round 4, the sender has 20000B to send in 20 packets: MSS=1000, cwnd=20000
+Round 4, the sender has 20000B to send in 20 packets (MSS=1000B), cwnd=20000
 
 ~~~~~~~~~~
   Send seqno=16000; FS= 1000; maxFS=10000
@@ -352,7 +353,7 @@ Round 4, the sender has 20000B to send in 20 packets: MSS=1000, cwnd=20000
   Send seqno=35000; FS=20000; maxFS=20000
 ~~~~~~~~~~
 
-Received 10 ACKs; maxFS=20000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+Received 10 ACKs (N=2000); maxFS=20000, if (cwnd<2*maxFS) {cwnd += N}
 
 ~~~~~~~~~~
   ACK for 18000 ACK’ed=2000 : cwnd+=2000; cwnd=22000
@@ -367,7 +368,7 @@ Received 10 ACKs; maxFS=20000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
   ACK for 36000 ACK’ed=2000 : cwnd+=2000; cwnd=40000
 ~~~~~~~~~~
 
-Note: In this round, maxFS was increased and cwnd was increased to 2*maxFS.
+Note: In this round, maxFS increased and therefore cwnd was increased to 2*maxFS.
 
 
 
@@ -416,8 +417,9 @@ Note: In this round, maxFS was increased and cwnd was increased to 2*maxFS.
 * draft-ietf-ccwg-ratelimited-increase-07
   * Updated this list
   * Made RFC 4341 reference normative
-  * Moved appendix B into the main text as a new section that (only) defines the RFC updates.
-
+  * Fixed Updates list to match boilerplate
+  * Moved some of appendix B to the main text as a new section that (only) defines the RFC updates.
+  * Updated description lines in appendix A
 
 # Acknowledgments
 {:numbered="false"}
