@@ -443,7 +443,7 @@ Table of Contents
 
 4.5.2.  Assessment
 
-   With the exception of pacing, this specification conservatively
+   With the exception of pacing, the QUIC specification conservatively
    limits the growth in cwnd, similar to Cubic and SCTP.  It is in
    accordance with Rate-Limited Increase, and more conservative.
 
