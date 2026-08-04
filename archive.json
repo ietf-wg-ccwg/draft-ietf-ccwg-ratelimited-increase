@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-02T03:15:32.388241+00:00",
+  "timestamp": "2026-08-04T02:46:36.414227+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1159,7 +1159,7 @@
       "labels": [],
       "body": "This document\u2019s abstract, but not in the body of the document, asserts that:\n\n   This document specifies how transport protocols increase their\n   congestion window when the sender is rate-limited, and updates RFC\n   4341, RFC 5681, RFC 9002, RFC 9260, and RFC 9438.\n\nWhat is not clearly states is how to specifically merge this guidance into the\nexisting text in any of the referenced documents.\n",
       "createdAt": "2026-08-01T10:38:11Z",
-      "updatedAt": "2026-08-01T15:30:19Z",
+      "updatedAt": "2026-08-02T11:19:18Z",
       "closedAt": null,
       "comments": [
         {
@@ -1175,8 +1175,47 @@
           "body": "I thought the same!  We can cut the part about implementations and change it a little. Should it stay as an appendix?",
           "createdAt": "2026-08-01T15:30:19Z",
           "updatedAt": "2026-08-01T15:30:19Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think it is OK as an appendix (for me) - I expect the CC people do understand what to do to realise the spec., but anyone reading the document to see if the RFC-to-be applies to their work would maybe get lost about which sections the updates applies to in each spec.",
+          "createdAt": "2026-08-02T11:19:18Z",
+          "updatedAt": "2026-08-02T11:19:18Z"
         }
       ]
+    },
+    {
+      "number": 96,
+      "id": "I_kwDOK4gIBc8AAAABLN1-OA",
+      "title": "Review by \u00c9ric Vyncke",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/96",
+      "state": "OPEN",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "----------------------------------------------------------------------\nDISCUSS:\n----------------------------------------------------------------------\n\n\n# \u00c9ric Vyncke INT AD comments for draft-ietf-ccwg-ratelimited-increase-06\nCC @evyncke\n\nThank you for the work put into this document.\n\nPlease find below one blocking DISCUSS points (easy to address), and one\nnon-blocking COMMENT points/nits.\n\nSpecial thanks to  for the shepherd's detailed write-up including the WG\nconsensus and the justification of the intended status.\n\nI hope that this review helps to improve the document,\n\nRegards,\n\n-\u00e9ric\n\nNote: this ballot comments follow the Markdown syntax of\nhttps://github.com/mnot/ietf-comments/tree/main, i.e., they can be processed by\na tool to create github issues.\n\n## DISCUSS (blocking)\n\nAs noted in\nhttps://datatracker.ietf.org/doc/statement-iesg-handling-ballot-positions-20220121/,\na DISCUSS ballot is a request to have a discussion on the points below; I\nreally think that the document would be improved with a change here, but can be\nconvinced otherwise.\n\n### Section 3.2.1\n\nWhy not a \"MUST\" (or lowercase \"should\") in `Therefore, congestion control\nalgorithms SHOULD implement a behavior that is equivalent to Rate-Limited\nIncrease, irrespective of whether they use a cwnd variable or not.` See also\nthe IESG statement about providing guidance when SHOULD is used\nhttps://datatracker.ietf.org/doc/statement-iesg-statement-on-clarifying-the-use-of-bcp-14-key-words/\n\n\n----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\n\n## COMMENTS (non-blocking)\n\n### Section 3.1\n\nWho is the \"we\" in `We illustrate the working of...` ? The authors ? The WG ?\nThe IETF community ? Please avoid ambiguities. Possibly also in other places.",
+      "createdAt": "2026-08-03T08:10:35Z",
+      "updatedAt": "2026-08-03T08:10:35Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 99,
+      "id": "I_kwDOK4gIBc8AAAABLV0Ygg",
+      "title": "Review by Mahesh Jethanandani",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/99",
+      "state": "OPEN",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "----------------------------------------------------------------------\nDISCUSS:\n----------------------------------------------------------------------\n\nI support Ketan's and Roman's COMMENTs and want to raise it to a DISCUSS questioning how this\ndocument actually updates RFC 4341, RFC 5681, RFC 9002, RFC 9260, and RFC\n9438. I think it is worth a discussion to understand why is it that the only place in\nthe document that states, per updated RFC, what changes are in\nAppendix B -- and Appendix B is explicitly marked for removal before publication.\n\nOutside of Appendix B, Section 3.2.1 speaks to rate-based and cwnd-based\nalgorithms in general terms, and Section 1 only relates this document to CWV\n[RFC7661] in general terms; neither one says, per RFC, what text is affected.\n\nI'd ask the authors to move the substance of the per-RFC Assessment\nsubsections -- or at least the operative sentence of each, out of\nAppendix B and into body text (Section 1 or\na new section).\n\n\n----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\nAppendix A, worked example pseudocode:\n\n415 >   Received 2 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK'ed}\n416 >     ACK for  2000 ACK'ed=2000 : cwnd+= 2000; cwnd=12000\n417 >     ACK for  4000 ACK'ed=2000 : cwnd+= 2000; cwnd=14000\n\nThis pseudocode (repeated at lines 433, 451, and 481) doesn't implement the\nsame rule as Section 3's formula:\n\n200 >   cwnd_new = cwnd + min (N, SMSS)\n201 >   cwnd = min(cwnd_new, 2*maxFS)\n\nSection 3 always clamps to the cap via min(), so cwnd can never exceed\nlimit(maxFS) even when an increment would carry it past the boundary. The\nappendix's \"if (cwnd<2*maxFS) {cwnd+=ACK'ed}\" instead gates the entire\nincrement on a strict less-than test: if cwnd is even 1 byte under the cap,\nthe full ACK'ed amount is added, which can carry cwnd past the cap when the\nincrement doesn't land exactly on the boundary. The worked example never\nexposes this because every increment in it happens to align exactly with the\ncap (cwnd reaches the cap precisely on an ACK boundary in each round). I'd\nsuggest rewriting the pseudocode as \"cwnd = min(cwnd + ACK'ed, 2*maxFS)\" to\nmatch Section 3 and avoid an implementer copying the appendix's version\nliterally and overshooting the cap.\n\n---\n\n357 >   6.2.  Informative References\n...\n380 >   [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, \"Updating\n381 >              TCP to Support Rate-Limited Traffic\", RFC 7661,\n382 >              DOI 10.17487/RFC7661, October 2015,\n383 >              <https://www.rfc-editor.org/rfc/rfc7661>.\n\nThe shepherd write-up's answer to question 17 states \"The document has a\nnormative reference to RFC 7661, which is Experimental,\" and Lars Eggert's\nTSVART review of -03 flagged the resulting DOWNREF as missing from the Last\nCall and the DOWNREF registry. But -06, as quoted above, lists RFC 7661\nunder Informative References, not Normative. Given the Terminology section's\ntwo new definitions, each cite RFC 7661 as their basis, I can see why the\ncategorization has been changing across versions. Could the shepherd or\nauthors confirm which is correct for -06? If Informative is correct, the\nDOWNREF concern is moot, and the shepherd write-up should be updated to say\nso; if RFC 7661 should in fact be Normative, the DOWNREF registry step Lars\nflagged still needs to happen.\n\n----------------------------------------------------------------------\nNIT\n----------------------------------------------------------------------\n\nAll comments below are about very minor potential issues that you may\nchoose to address in some way - or ignore - as you see fit. Some were\nflagged by automated tools (via\nhttps://github.com/larseggert/ietf-reviewtool), so there will likely\nbe some false positives. There is no need to let me know what you did\nwith these suggestions.\n\n4 > Updates: RFC4341, RFC5681, RFC9002, RFC9260,                T. Henderson\n5 >          RFC9438 (if approved)                  University of Washington\n\nThe shepherd write-up's nit list already caught this: the Updates line\nshould list bare RFC numbers (4341, 5681, 9002, 9260, 9438), not \"RFC4341\"\netc. Still present in -06.\n\n---\n\n366 >   [RFC2861]  Handley, M., Padhye, J., and S. Floyd, \"TCP Congestion\n367 >              Window Validation\", RFC 2861, DOI 10.17487/RFC2861, June\n368 >              2000, <https://www.rfc-editor.org/rfc/rfc2861>.\n\nRFC 2861 is obsoleted by RFC 7661. The document is not referenced anywhere\nand since the document already cites RFC 7661 elsewhere, why keep this obsoleted\nreference.\n",
+      "createdAt": "2026-08-04T02:30:22Z",
+      "updatedAt": "2026-08-04T02:30:22Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -4858,6 +4897,89 @@
           ]
         }
       ]
+    },
+    {
+      "number": 97,
+      "id": "PR_kwDOK4gIBc756Cpw",
+      "title": "Clarify Rate-Limited Increase example should not use \"we\"",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/97",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Reword example",
+      "createdAt": "2026-08-03T08:46:10Z",
+      "updatedAt": "2026-08-03T13:29:56Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "2158a663c1892aa9b647d8c5621c858946fe619a",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-14",
+      "headRefOid": "50322822a18557340edb4831fefcd8128ffda016",
+      "closedAt": "2026-08-03T13:29:56Z",
+      "mergedAt": "2026-08-03T13:29:56Z",
+      "mergedBy": "gorryfair",
+      "mergeCommit": {
+        "oid": "99ee8a1ff76282d0583abfde875b18a96c7cdb82"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIKejIA",
+          "commit": {
+            "abbreviatedOid": "5032282"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks for this!",
+          "createdAt": "2026-08-03T09:51:13Z",
+          "updatedAt": "2026-08-03T09:51:13Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIMAkqQ",
+          "commit": {
+            "abbreviatedOid": "5032282"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-08-03T13:20:21Z",
+          "updatedAt": "2026-08-03T13:20:21Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 98,
+      "id": "PR_kwDOK4gIBc76DGsY",
+      "title": "Update congestion control principles for rate increase",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/98",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Clarify RFC2119-speak to require something for Rate-Based methods",
+      "createdAt": "2026-08-03T14:14:26Z",
+      "updatedAt": "2026-08-03T14:20:06Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "99ee8a1ff76282d0583abfde875b18a96c7cdb82",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-15",
+      "headRefOid": "a8d12b822abbf3311baf9f1fd73e18981401509d",
+      "closedAt": "2026-08-03T14:20:06Z",
+      "mergedAt": "2026-08-03T14:20:06Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "01025d807f5c44f5081acca9c02e486e7e438d8b"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
