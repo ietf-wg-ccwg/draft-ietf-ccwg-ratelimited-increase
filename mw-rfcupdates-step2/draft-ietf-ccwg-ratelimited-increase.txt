@@ -355,9 +355,9 @@ Table of Contents
    section does not contain a similar rule.  It is implicitly clear that
    the quoted statement from [RFC9260] only applies to Slow Start.
 
-   [RFC9260] is updated by this document by replacing the the final
-   sentence of quoted text with the text in (Section 3) to specify the
-   management of the cwnd when the sender is rate-limited.
+   This document updates [RFC9260] by replacing the final sentence of
+   the quoted text with the text in Section 3 to specify how the cwnd is
+   managed when the sender is rate-limited.
 
    Section 7.2.2 of [RFC9260] is also updated to add text in
    (Section 3).
