@@ -7,7 +7,7 @@ docname: draft-ietf-ccwg-ratelimited-increase-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
-updates: RFC4341, RFC5681, RFC9002, RFC9260, RFC9438
+updates: 4341, 5681, 9002, 9260, 9438
 consensus: true
 v: 3
 area: "Transport"
