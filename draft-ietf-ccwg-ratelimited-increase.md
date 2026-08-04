@@ -85,7 +85,7 @@ even though the congestion control rules would allow it to transmit data.
 This could occur because the application has not provided sufficient data to fully utilize the congestion window (cwnd).
 It could also occur because the receiver has limited the sender using flow control
 (e.g., by the advertised TCP receiver window (rwnd) or by the connection or stream flow credit in QUIC).
-Current RFCs specifying congestion control algorithms diverge regarding the rules for increasing the cwnd when the sender is rate-limited. This document provides a uniform rule in ({{rules}}), and specifies updates to RFCs 4341, 5681, 9002, 9260, and 9438 in ({{rfc-updates}}).
+Current RFCs specifying congestion control algorithms diverge regarding the rules for increasing the cwnd when the sender is rate-limited. This document provides a uniform behavior in ({{rules}}), and specifies updates to RFCs 4341, 5681, 9002, 9260, and 9438 in ({{rfc-updates}}).
 
 Congestion Window Validation (CWV) {{?RFC7661}} provides an experimental specification defining how to manage a cwnd that has
 become larger than the current flight size, and how to respond to detected congestion when this is the case.
