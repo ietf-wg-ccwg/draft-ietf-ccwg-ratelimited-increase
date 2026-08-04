@@ -125,9 +125,9 @@ Table of Contents
    advertised TCP receiver window (rwnd) or by the connection or stream
    flow credit in QUIC).  Current RFCs specifying congestion control
    algorithms diverge regarding the rules for increasing the cwnd when
-   the sender is rate-limited.  This document provides a uniform rule in
-   (Section 3), and specifies updates to RFCs 4341, 5681, 9002, 9260,
-   and 9438 in (Section 4).
+   the sender is rate-limited.  This document provides a uniform
+   behavior in (Section 3), and specifies updates to RFCs 4341, 5681,
+   9002, 9260, and 9438 in (Section 4).
 
    Congestion Window Validation (CWV) [RFC7661] provides an experimental
    specification defining how to manage a cwnd that has become larger
