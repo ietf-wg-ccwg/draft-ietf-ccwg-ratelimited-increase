@@ -511,8 +511,8 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      ACK for 10000 ACK’ed=2000 : cwnd+=2000; cwnd=20000
      ACK for 12000 ACK’ed=2000 : cwnd+=0; cwnd=20000
 
-   Note: This round maxFS was not increased and cwnd was increased
-   limited to 2*maxFS.
+   Note: This round maxFS was not increased and cwnd was limited to
+   2*maxFS.
 
    Round 3, the sender has 4000B to send in 4 packets (MSS=1000B),
    cwnd=20000
