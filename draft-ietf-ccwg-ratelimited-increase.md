@@ -215,7 +215,7 @@ implements Rate-Limited Increase in the `tcp_is_cwnd_limited` function in `tcp.h
 
 ### Assessment
 
-Linux implements a limit to cwnd growth in accordance with Rate-Limited Increase;
+Linux currently implements a limit to cwnd growth in accordance with Rate-Limited Increase;
 in Slow Start, this limit follows the rule's upper limit, while in Congestion Avoidance, it is more conservative than Rate-Limited Increase.
 The specification and the ns-2 and (older) ns-3 implementations are in conflict with Rate-Limited Increase.
 
