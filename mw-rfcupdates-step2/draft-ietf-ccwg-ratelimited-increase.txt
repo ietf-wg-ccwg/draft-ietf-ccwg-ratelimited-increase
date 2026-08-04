@@ -376,8 +376,7 @@ Table of Contents
    but it is more conservative.
 
    [RFC9438] is updated by this document by replacing this text with the
-   text in (Section 3) to specify the management of the cwnd when the
-   sender is rate-limited.
+   text in (Section 3) to specify the management of the
 
 5.  Security Considerations
 
