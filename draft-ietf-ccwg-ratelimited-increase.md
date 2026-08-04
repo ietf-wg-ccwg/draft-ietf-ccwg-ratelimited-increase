@@ -222,7 +222,7 @@ cwnd when the sender is rate-limited.
 
 {{Section 5.8 of !RFC9438}} says:
 
->Cubic doesn't increase cwnd when it's limited by the sending application or rwnd.
+>"Cubic doesn't increase cwnd when it's limited by the sending application or rwnd".
 
 This limits the cwnd growth in accordance with Rate-Limited Increase, but it
 is more conservative.
