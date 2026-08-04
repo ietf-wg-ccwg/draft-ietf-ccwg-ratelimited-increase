@@ -340,13 +340,14 @@ Table of Contents
 
 4.4.  RFC 9260: Stream Control Transmission Protocol
 
-   Section 7.2.1 of [RFC9260] says:
+   Section 7.2.1 of [RFC9260] states:
 
-      When cwnd is less than or equal to ssthresh, an SCTP endpoint MUST
-      use the slow-start algorithm to increase cwnd only if the current
-      congestion window is being fully utilized and the data sender is
-      not in Fast Recovery.  Only when these two conditions are met can
-      the cwnd be increased; otherwise, the cwnd MUST NOT be increased.
+      "When cwnd is less than or equal to ssthresh, an SCTP endpoint
+      MUST use the slow-start algorithm to increase cwnd only if the
+      current congestion window is being fully utilized and the data
+      sender is not in Fast Recovery.  Only when these two conditions
+      are met can the cwnd be increased; otherwise, the cwnd MUST NOT be
+      increased."
 
    The quoted statement from [RFC9260] limits cwnd growth in accordance
    with Rate-Limited Increase, but it is more conservative.
@@ -366,7 +367,7 @@ Table of Contents
 
 4.5.  RFC 9438: CUBIC
 
-   Section 5.8 of [RFC9438] says:
+   Section 5.8 of [RFC9438] states:
 
       "Cubic doesn't increase cwnd when it's limited by the sending
       application or rwnd".
@@ -374,9 +375,9 @@ Table of Contents
    This limits the cwnd growth in accordance with Rate-Limited Increase,
    but it is more conservative.
 
-   This document updates [RFC9438] by replacing this text with the text
-   in Section 3 to specify how the cwnd is managed when the sender is
-   rate-limited.
+   This document updates [RFC9438] by replacing the quoted text with the
+   text in Section 3 to specify how the cwnd is managed when the sender
+   is rate-limited.
 
 5.  Security Considerations
 
