@@ -277,7 +277,8 @@ Round 1, the sender has 4000B to send in 4 packets (MSS=1000B);  cwnd=10000
   Send  seqno=3000; FS=3000; maxFS=10000
 ~~~~~~~~~~
 
-Received 2 ACKs (N=2000); maxFS=10000, if (cwnd<2*maxFS) {cwnd += N}
+Received 2 ACKs (N=2000); maxFS=10000 
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
   ACK for  2000 ACK’ed=2000 : cwnd+= 2000; cwnd=12000
@@ -299,7 +300,8 @@ Round 2, the sender has 8000B to send in 8 packets (MSS=1000B), cwnd=14000
   Send seqno=11000; FS=8000; maxFS=10000
 ~~~~~~~~~~
 
-Received 4 ACKs (N=2000); maxFS=10000, if (cwnd<2*maxFS) {cwnd += N}
+Received 4 ACKs (N=2000); maxFS=10000 
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
   ACK for  6000 ACK’ed=2000 : cwnd+=2000; cwnd=16000
@@ -319,7 +321,8 @@ Round 3, the sender has 4000B to send in 4 packets (MSS=1000B), cwnd=20000
   Send seqno=15000; FS=4000; maxFS=10000
 ~~~~~~~~~~
 
-Received 2 ACKs (N=2000); maxFS=10000, if (cwnd<2*maxFS) {cwnd += N}
+Received 2 ACKs (N=2000); maxFS=10000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
   ACK for 14000 ACK’ed=2000 : cwnd+=0; cwnd=20000
@@ -353,7 +356,8 @@ Round 4, the sender has 20000B to send in 20 packets (MSS=1000B), cwnd=20000
   Send seqno=35000; FS=20000; maxFS=20000
 ~~~~~~~~~~
 
-Received 10 ACKs (N=2000); maxFS=20000, if (cwnd<2*maxFS) {cwnd += N}
+Received 10 ACKs (N=2000); maxFS=20000
+cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
   ACK for 18000 ACK’ed=2000 : cwnd+=2000; cwnd=22000
@@ -368,7 +372,7 @@ Received 10 ACKs (N=2000); maxFS=20000, if (cwnd<2*maxFS) {cwnd += N}
   ACK for 36000 ACK’ed=2000 : cwnd+=2000; cwnd=40000
 ~~~~~~~~~~
 
-Note: In this round, maxFS increased and therefore cwnd was increased to 2*maxFS.
+Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.
 
 
 
