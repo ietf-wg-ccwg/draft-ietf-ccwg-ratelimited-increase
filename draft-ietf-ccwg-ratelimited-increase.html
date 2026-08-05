@@ -1048,7 +1048,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Welzl, et al.</td>
-<td class="center">Expires 5 February 2027</td>
+<td class="center">Expires 6 February 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg {
 <a href="https://www.rfc-editor.org/rfc/rfc4341" class="eref">4341</a>, <a href="https://www.rfc-editor.org/rfc/rfc5681" class="eref">5681</a>, <a href="https://www.rfc-editor.org/rfc/rfc9002" class="eref">9002</a>, <a href="https://www.rfc-editor.org/rfc/rfc9260" class="eref">9260</a>, <a href="https://www.rfc-editor.org/rfc/rfc9438" class="eref">9438</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-08-04" class="published">4 August 2026</time>
+<time datetime="2026-08-05" class="published">5 August 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-02-05">5 February 2027</time></dd>
+<dd class="expires"><time datetime="2027-02-06">6 February 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1132,7 +1132,7 @@ Such a limitation can be caused by the sending application not supplying data or
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 6 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1823,13 +1823,12 @@ cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-B-22" class="pilc
       <h2 id="name-an-example-using-cwnd-represe">
 <a href="#appendix-C" class="section-number selfRef">Appendix C. </a><a href="#name-an-example-using-cwnd-represe" class="section-name selfRef">An Example Using cwnd Represented in Bytes --  GF Recommended version.</a>
       </h2>
-<p id="appendix-C-1">The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The MSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The MSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement. For simplicity, in this example the receiver sends an ACK for each received packet.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 <p id="appendix-C-2">The initial sender state is:<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-C-3">
 <pre>
   Sender sequence number (seqno) = 0
-  SMSS = 1400 bytes (larger than the sent MSS)
-  MSS = 1000 bytes
+  SMSS = 1000 bytes
   cwnd = 10000 bytes (initcwnd)
   maxFS = 10000 bytes (initcwnd)
   FlightSize (FS) = 0 bytes
@@ -1843,19 +1842,19 @@ One ACK is generated for each received packet.<a href="#appendix-C-4" class="pil
 <div class="alignLeft art-text artwork" id="appendix-C-6">
 <pre>
   Send  seqno=0;    FS=1000; maxFS=10000
-  Send  seqno=1000; FS=1000; maxFS=10000
-  Send  seqno=2000; FS=2000; maxFS=10000
-  Send  seqno=3000; FS=3000; maxFS=10000
+  Send  seqno=1000; FS=2000; maxFS=10000
+  Send  seqno=2000; FS=3000; maxFS=10000
+  Send  seqno=3000; FS=4000; maxFS=10000
 </pre><a href="#appendix-C-6" class="pilcrow">¶</a>
 </div>
 <p id="appendix-C-7">Received 4 ACKs (each N=1000); maxFS=10000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-C-7" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-C-8">
 <pre>
-  ACK for  1000 ACK’ed=1000 : cwnd+= 1000; cwnd=11000
-  ACK for  2000 ACK’ed=1000 : cwnd+= 1000; cwnd=12000
-  ACK for  1000 ACK’ed=1000 : cwnd+= 1000; cwnd=13000
-  ACK for  4000 ACK’ed=1000 : cwnd+= 1000; cwnd=14000
+  ACK for  1000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=11000
+  ACK for  2000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=12000
+  ACK for  3000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=13000
+  ACK for  4000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=14000
 </pre><a href="#appendix-C-8" class="pilcrow">¶</a>
 </div>
 <p id="appendix-C-9">Note: This round maxFS was not increased and cwnd was increased.<a href="#appendix-C-9" class="pilcrow">¶</a></p>
@@ -1876,14 +1875,14 @@ cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-C-7" class="pilcr
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-C-12" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-C-13">
 <pre>
-  ACK for  5000 ACK’ed=2000 : cwnd+=1000; cwnd=15000
-  ACK for  6000 ACK’ed=2000 : cwnd+=1000; cwnd=16000
-  ACK for  7000 ACK’ed=2000 : cwnd+=1000; cwnd=17000
-  ACK for  8000 ACK’ed=2000 : cwnd+=1000; cwnd=18000
-  ACK for  9000 ACK’ed=2000 : cwnd+=1000; cwnd=19000
-  ACK for 10000 ACK’ed=2000 : cwnd+=1000; cwnd=20000
-  ACK for 11000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
-  ACK for 12000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
+  ACK for  5000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=15000
+  ACK for  6000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=16000
+  ACK for  7000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=17000
+  ACK for  8000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=18000
+  ACK for  9000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=19000
+  ACK for 10000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=20000
+  ACK for 11000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+  ACK for 12000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
 </pre><a href="#appendix-C-13" class="pilcrow">¶</a>
 </div>
 <p id="appendix-C-14">Note: This round maxFS was not increased and cwnd was limited to 2*maxFS.<a href="#appendix-C-14" class="pilcrow">¶</a></p>
@@ -1900,10 +1899,10 @@ cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-C-12" class="pilc
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-C-17" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-C-18">
 <pre>
-  ACK for 13000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
-  ACK for 14000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
-  ACK for 15000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
-  ACK for 16000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
+  ACK for 13000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+  ACK for 14000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+  ACK for 15000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+  ACK for 16000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
 </pre><a href="#appendix-C-18" class="pilcrow">¶</a>
 </div>
 <p id="appendix-C-19">Note: This round maxFS was not increased and cwnd was not increased.<a href="#appendix-C-19" class="pilcrow">¶</a></p>
@@ -1936,26 +1935,26 @@ cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-C-17" class="pilc
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-C-22" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-C-23">
 <pre>
-  ACK for 18000 ACK’ed=2000 : cwnd+=1000; cwnd=21000
-  ACK for 19000 ACK’ed=2000 : cwnd+=1000; cwnd=22000
-  ACK for 19000 ACK’ed=2000 : cwnd+=1000; cwnd=23000
-  ACK for 20000 ACK’ed=2000 : cwnd+=1000; cwnd=24000
-  ACK for 21000 ACK’ed=2000 : cwnd+=1000; cwnd=25000
-  ACK for 22000 ACK’ed=2000 : cwnd+=1000; cwnd=26000
-  ACK for 23000 ACK’ed=2000 : cwnd+=1000; cwnd=27000
-  ACK for 24000 ACK’ed=2000 : cwnd+=1000; cwnd=28000
-  ACK for 25000 ACK’ed=2000 : cwnd+=1000; cwnd=29000
-  ACK for 26000 ACK’ed=2000 : cwnd+=1000; cwnd=30000
-  ACK for 27000 ACK’ed=2000 : cwnd+=1000; cwnd=31000
-  ACK for 28000 ACK’ed=2000 : cwnd+=1000; cwnd=32000
-  ACK for 29000 ACK’ed=2000 : cwnd+=1000; cwnd=33000
-  ACK for 30000 ACK’ed=2000 : cwnd+=1000; cwnd=34000
-  ACK for 31000 ACK’ed=2000 : cwnd+=1000; cwnd=35000
-  ACK for 32000 ACK’ed=2000 : cwnd+=1000; cwnd=36000
-  ACK for 33000 ACK’ed=2000 : cwnd+=1000; cwnd=37000
-  ACK for 34000 ACK’ed=2000 : cwnd+=1000; cwnd=38000
-  ACK for 35000 ACK’ed=2000 : cwnd+=1000; cwnd=39000
-  ACK for 36000 ACK’ed=2000 : cwnd+=1000; cwnd=40000
+  ACK for 18000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=21000
+  ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=22000
+  ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=23000
+  ACK for 20000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=24000
+  ACK for 21000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=25000
+  ACK for 22000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=26000
+  ACK for 23000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=27000
+  ACK for 24000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=28000
+  ACK for 25000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=29000
+  ACK for 26000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=30000
+  ACK for 27000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=31000
+  ACK for 28000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=32000
+  ACK for 29000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=33000
+  ACK for 30000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=34000
+  ACK for 31000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=35000
+  ACK for 32000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=36000
+  ACK for 33000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=37000
+  ACK for 34000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=38000
+  ACK for 35000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=39000
+  ACK for 36000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=40000
 </pre><a href="#appendix-C-23" class="pilcrow">¶</a>
 </div>
 <p id="appendix-C-24">Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.<a href="#appendix-C-24" class="pilcrow">¶</a></p>
