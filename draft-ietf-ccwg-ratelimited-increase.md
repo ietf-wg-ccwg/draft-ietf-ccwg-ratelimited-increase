@@ -250,7 +250,7 @@ This document requests no IANA action.
 
 # An Example Using cwnd Represented in Bytes
 
-The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The MSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement. For simplicity, in this example the receiver sends an ACK for each received packet.
+The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The SMSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement. For simplicity, in this example the receiver sends an ACK for each received packet.
 
 The initial sender state is:
 
