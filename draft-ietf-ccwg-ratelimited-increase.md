@@ -501,14 +501,13 @@ Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.
 
 # An Example Using cwnd Represented in Bytes --  GF Recommended version.
 
-The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The MSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement.
+The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The MSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement. For simplicity, in this example the receiver sends an ACK for each received packet.
 
 The initial sender state is:
 
 ~~~~~~~~~~
   Sender sequence number (seqno) = 0
-  SMSS = 1400 bytes (larger than the sent MSS)
-  MSS = 1000 bytes
+  SMSS = 1000 bytes
   cwnd = 10000 bytes (initcwnd)
   maxFS = 10000 bytes (initcwnd)
   FlightSize (FS) = 0 bytes
@@ -523,19 +522,19 @@ Round 1, the sender has 4000B to send in 4 packets (1000B);  cwnd=10000
 
 ~~~~~~~~~~
   Send  seqno=0;    FS=1000; maxFS=10000
-  Send  seqno=1000; FS=1000; maxFS=10000
-  Send  seqno=2000; FS=2000; maxFS=10000
-  Send  seqno=3000; FS=3000; maxFS=10000
+  Send  seqno=1000; FS=2000; maxFS=10000
+  Send  seqno=2000; FS=3000; maxFS=10000
+  Send  seqno=3000; FS=4000; maxFS=10000
 ~~~~~~~~~~
 
 Received 4 ACKs (each N=1000); maxFS=10000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
-  ACK for  1000 ACK’ed=1000 : cwnd+= 1000; cwnd=11000
-  ACK for  2000 ACK’ed=1000 : cwnd+= 1000; cwnd=12000
-  ACK for  1000 ACK’ed=1000 : cwnd+= 1000; cwnd=13000
-  ACK for  4000 ACK’ed=1000 : cwnd+= 1000; cwnd=14000
+  ACK for  1000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=11000
+  ACK for  2000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=12000
+  ACK for  3000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=13000
+  ACK for  4000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=14000
 ~~~~~~~~~~
 
 Note: This round maxFS was not increased and cwnd was increased.
@@ -557,14 +556,14 @@ Received 8 ACKs (N=2000); maxFS=10000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
-  ACK for  5000 ACK’ed=2000 : cwnd+=1000; cwnd=15000
-  ACK for  6000 ACK’ed=2000 : cwnd+=1000; cwnd=16000
-  ACK for  7000 ACK’ed=2000 : cwnd+=1000; cwnd=17000
-  ACK for  8000 ACK’ed=2000 : cwnd+=1000; cwnd=18000
-  ACK for  9000 ACK’ed=2000 : cwnd+=1000; cwnd=19000
-  ACK for 10000 ACK’ed=2000 : cwnd+=1000; cwnd=20000
-  ACK for 11000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
-  ACK for 12000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
+  ACK for  5000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=15000
+  ACK for  6000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=16000
+  ACK for  7000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=17000
+  ACK for  8000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=18000
+  ACK for  9000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=19000
+  ACK for 10000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=20000
+  ACK for 11000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+  ACK for 12000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
 ~~~~~~~~~~
 
 Note: This round maxFS was not increased and cwnd was limited to 2*maxFS.
@@ -582,10 +581,10 @@ Received 2 ACKs (N=2000); maxFS=10000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
-  ACK for 13000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
-  ACK for 14000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
-  ACK for 15000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
-  ACK for 16000 ACK’ed=2000 : cwnd+=0;    cwnd=20000
+  ACK for 13000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+  ACK for 14000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+  ACK for 15000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+  ACK for 16000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
 ~~~~~~~~~~
 
 Note: This round maxFS was not increased and cwnd was not increased.
@@ -619,26 +618,26 @@ Received 10 ACKs (N=2000); maxFS=20000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
-  ACK for 18000 ACK’ed=2000 : cwnd+=1000; cwnd=21000
-  ACK for 19000 ACK’ed=2000 : cwnd+=1000; cwnd=22000
-  ACK for 19000 ACK’ed=2000 : cwnd+=1000; cwnd=23000
-  ACK for 20000 ACK’ed=2000 : cwnd+=1000; cwnd=24000
-  ACK for 21000 ACK’ed=2000 : cwnd+=1000; cwnd=25000
-  ACK for 22000 ACK’ed=2000 : cwnd+=1000; cwnd=26000
-  ACK for 23000 ACK’ed=2000 : cwnd+=1000; cwnd=27000
-  ACK for 24000 ACK’ed=2000 : cwnd+=1000; cwnd=28000
-  ACK for 25000 ACK’ed=2000 : cwnd+=1000; cwnd=29000
-  ACK for 26000 ACK’ed=2000 : cwnd+=1000; cwnd=30000
-  ACK for 27000 ACK’ed=2000 : cwnd+=1000; cwnd=31000
-  ACK for 28000 ACK’ed=2000 : cwnd+=1000; cwnd=32000
-  ACK for 29000 ACK’ed=2000 : cwnd+=1000; cwnd=33000
-  ACK for 30000 ACK’ed=2000 : cwnd+=1000; cwnd=34000
-  ACK for 31000 ACK’ed=2000 : cwnd+=1000; cwnd=35000
-  ACK for 32000 ACK’ed=2000 : cwnd+=1000; cwnd=36000
-  ACK for 33000 ACK’ed=2000 : cwnd+=1000; cwnd=37000
-  ACK for 34000 ACK’ed=2000 : cwnd+=1000; cwnd=38000
-  ACK for 35000 ACK’ed=2000 : cwnd+=1000; cwnd=39000
-  ACK for 36000 ACK’ed=2000 : cwnd+=1000; cwnd=40000
+  ACK for 18000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=21000
+  ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=22000
+  ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=23000
+  ACK for 20000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=24000
+  ACK for 21000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=25000
+  ACK for 22000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=26000
+  ACK for 23000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=27000
+  ACK for 24000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=28000
+  ACK for 25000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=29000
+  ACK for 26000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=30000
+  ACK for 27000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=31000
+  ACK for 28000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=32000
+  ACK for 29000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=33000
+  ACK for 30000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=34000
+  ACK for 31000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=35000
+  ACK for 32000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=36000
+  ACK for 33000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=37000
+  ACK for 34000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=38000
+  ACK for 35000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=39000
+  ACK for 36000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=40000
 ~~~~~~~~~~
 
 Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.
