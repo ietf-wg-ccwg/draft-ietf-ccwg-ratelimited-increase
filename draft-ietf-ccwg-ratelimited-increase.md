@@ -167,7 +167,7 @@ The present document updates congestion control specifications that use a cwnd t
 Congestion control algorithms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods {{?I-D.ietf-ccwg-bbr}}). The guiding principle behind Rate-Limited Increase applies to all congestion control algorithms: in the absence of a congestion indication, a sender is allowed to increase its rate from the amount of data that it has transmitted during the previous RTT (this holds irrespective of whether the sender is rate-limited or not).
 
 Rate-based congestion control algorithms MUST ensure their maximum sustained rate is
-limited to a value that is not greater than would have been 
+limited to a value that is not greater than would have been
 permitted by the Rate-Limited Increase method defined in {{rules}}.
 
 ### Pacing
