@@ -284,11 +284,10 @@ Table of Contents
    RTT (this holds irrespective of whether the sender is rate-limited or
    not).
 
-   Rate-based congestion control algorithms MUST NOT result in an
-   unconstrained situation where a sender would increase the maximum
-   permitted rate even when there is no additional application data to
-   send.  This behavior SHOULD be equivalent to Rate-Limited Increase,
-   irrespective of whether an algorithm uses a cwnd variable or not.
+   Rate-based congestion control algorithms MUST ensure their maximum
+   sustained rate is limited to a value that is not greater than would
+   have been permitted by the Rate-Limited Increase method defined in
+   Section 3.
 
 3.2.2.  Pacing
 
@@ -697,6 +696,11 @@ Appendix B.  Change Log
          (only) defines the RFC updates.
 
       -  Updated description lines in appendix A
+
+   *  draft-ietf-ccwg-ratelimited-increase-08
+
+      -  Addressed a comment from Eric Vyncke about the paragraph on
+         rate-based cc. algs.
 
 Acknowledgments
 
