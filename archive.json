@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-04T02:46:36.414227+00:00",
+  "timestamp": "2026-08-06T02:46:58.718379+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1136,31 +1136,39 @@
       "id": "I_kwDOK4gIBc8AAAABK_TTCA",
       "title": "Review by Ketan Talaulikar",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/94",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Thanks to the authors and the WG for their work on this document.\n\nLike Roman, I am unable to understand how this document is updating all those\nlisted transport protocol RFCs. My best reference was Appendix B which\n(unfortunately is going to get removed before publication!) holds the text that\nget the closest to the impact/change. From my reading of that text as someone\nnot familiar with the protocol, it seems like only DCCP (RFC4341) and TCP CC\n(RFC5681) are really updated and the others have tackled this already?\n\nI've never seen a document that is updating another but not specifically saying\nwhat is being updated. Is this covered in some non-obvious way? I would have\nfiled this as something to DISCUSS but I don't know if I would be able to hold\nsuch a discussion.\n\nAlso, I would expect RFC4341 to have been a normative reference if this\ndocument were indeed updating it, but I cannot be sure if it is updating that\n...",
       "createdAt": "2026-07-31T18:42:28Z",
-      "updatedAt": "2026-07-31T18:42:28Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-08-04T11:19:26Z",
+      "closedAt": "2026-08-04T11:19:26Z",
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The ref to RFC 4341 is now normative; the rest is redundant with #99, so closing.",
+          "createdAt": "2026-08-04T11:19:26Z",
+          "updatedAt": "2026-08-04T11:19:26Z"
+        }
+      ]
     },
     {
       "number": 95,
       "id": "I_kwDOK4gIBc8AAAABLDSYcQ",
       "title": "Review by Roman Danyliw",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/95",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mohittahiliani",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This document\u2019s abstract, but not in the body of the document, asserts that:\n\n   This document specifies how transport protocols increase their\n   congestion window when the sender is rate-limited, and updates RFC\n   4341, RFC 5681, RFC 9002, RFC 9260, and RFC 9438.\n\nWhat is not clearly states is how to specifically merge this guidance into the\nexisting text in any of the referenced documents.\n",
       "createdAt": "2026-08-01T10:38:11Z",
-      "updatedAt": "2026-08-02T11:19:18Z",
-      "closedAt": null,
+      "updatedAt": "2026-08-04T09:12:23Z",
+      "closedAt": "2026-08-04T09:12:23Z",
       "comments": [
         {
           "author": "gorryfair",
@@ -1182,6 +1190,13 @@
           "body": "I think it is OK as an appendix (for me) - I expect the CC people do understand what to do to realise the spec., but anyone reading the document to see if the RFC-to-be applies to their work would maybe get lost about which sections the updates applies to in each spec.",
           "createdAt": "2026-08-02T11:19:18Z",
           "updatedAt": "2026-08-02T11:19:18Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This issue is redundant with #94 and #99. Hence, closing it.",
+          "createdAt": "2026-08-04T09:12:23Z",
+          "updatedAt": "2026-08-04T09:12:23Z"
         }
       ]
     },
@@ -1190,32 +1205,123 @@
       "id": "I_kwDOK4gIBc8AAAABLN1-OA",
       "title": "Review by \u00c9ric Vyncke",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/96",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mohittahiliani",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "----------------------------------------------------------------------\nDISCUSS:\n----------------------------------------------------------------------\n\n\n# \u00c9ric Vyncke INT AD comments for draft-ietf-ccwg-ratelimited-increase-06\nCC @evyncke\n\nThank you for the work put into this document.\n\nPlease find below one blocking DISCUSS points (easy to address), and one\nnon-blocking COMMENT points/nits.\n\nSpecial thanks to  for the shepherd's detailed write-up including the WG\nconsensus and the justification of the intended status.\n\nI hope that this review helps to improve the document,\n\nRegards,\n\n-\u00e9ric\n\nNote: this ballot comments follow the Markdown syntax of\nhttps://github.com/mnot/ietf-comments/tree/main, i.e., they can be processed by\na tool to create github issues.\n\n## DISCUSS (blocking)\n\nAs noted in\nhttps://datatracker.ietf.org/doc/statement-iesg-handling-ballot-positions-20220121/,\na DISCUSS ballot is a request to have a discussion on the points below; I\nreally think that the document would be improved with a change here, but can be\nconvinced otherwise.\n\n### Section 3.2.1\n\nWhy not a \"MUST\" (or lowercase \"should\") in `Therefore, congestion control\nalgorithms SHOULD implement a behavior that is equivalent to Rate-Limited\nIncrease, irrespective of whether they use a cwnd variable or not.` See also\nthe IESG statement about providing guidance when SHOULD is used\nhttps://datatracker.ietf.org/doc/statement-iesg-statement-on-clarifying-the-use-of-bcp-14-key-words/\n\n\n----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\n\n## COMMENTS (non-blocking)\n\n### Section 3.1\n\nWho is the \"we\" in `We illustrate the working of...` ? The authors ? The WG ?\nThe IETF community ? Please avoid ambiguities. Possibly also in other places.",
       "createdAt": "2026-08-03T08:10:35Z",
-      "updatedAt": "2026-08-03T08:10:35Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-08-05T09:30:46Z",
+      "closedAt": "2026-08-05T09:30:46Z",
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "In an email, @gorryfair asked, about the thing in section 3.2.1, \"if this looks like acceptable text...\"   - once he has a \"yes\", we should close this issue.",
+          "createdAt": "2026-08-04T09:00:21Z",
+          "updatedAt": "2026-08-04T09:00:21Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This is thought resolved in the various PRs that have now been merged, and will be published in a new revision of this I-D.",
+          "createdAt": "2026-08-05T09:30:46Z",
+          "updatedAt": "2026-08-05T09:30:46Z"
+        }
+      ]
     },
     {
       "number": 99,
       "id": "I_kwDOK4gIBc8AAAABLV0Ygg",
       "title": "Review by Mahesh Jethanandani",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/99",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mohittahiliani",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "----------------------------------------------------------------------\nDISCUSS:\n----------------------------------------------------------------------\n\nI support Ketan's and Roman's COMMENTs and want to raise it to a DISCUSS questioning how this\ndocument actually updates RFC 4341, RFC 5681, RFC 9002, RFC 9260, and RFC\n9438. I think it is worth a discussion to understand why is it that the only place in\nthe document that states, per updated RFC, what changes are in\nAppendix B -- and Appendix B is explicitly marked for removal before publication.\n\nOutside of Appendix B, Section 3.2.1 speaks to rate-based and cwnd-based\nalgorithms in general terms, and Section 1 only relates this document to CWV\n[RFC7661] in general terms; neither one says, per RFC, what text is affected.\n\nI'd ask the authors to move the substance of the per-RFC Assessment\nsubsections -- or at least the operative sentence of each, out of\nAppendix B and into body text (Section 1 or\na new section).\n\n\n----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\nAppendix A, worked example pseudocode:\n\n415 >   Received 2 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK'ed}\n416 >     ACK for  2000 ACK'ed=2000 : cwnd+= 2000; cwnd=12000\n417 >     ACK for  4000 ACK'ed=2000 : cwnd+= 2000; cwnd=14000\n\nThis pseudocode (repeated at lines 433, 451, and 481) doesn't implement the\nsame rule as Section 3's formula:\n\n200 >   cwnd_new = cwnd + min (N, SMSS)\n201 >   cwnd = min(cwnd_new, 2*maxFS)\n\nSection 3 always clamps to the cap via min(), so cwnd can never exceed\nlimit(maxFS) even when an increment would carry it past the boundary. The\nappendix's \"if (cwnd<2*maxFS) {cwnd+=ACK'ed}\" instead gates the entire\nincrement on a strict less-than test: if cwnd is even 1 byte under the cap,\nthe full ACK'ed amount is added, which can carry cwnd past the cap when the\nincrement doesn't land exactly on the boundary. The worked example never\nexposes this because every increment in it happens to align exactly with the\ncap (cwnd reaches the cap precisely on an ACK boundary in each round). I'd\nsuggest rewriting the pseudocode as \"cwnd = min(cwnd + ACK'ed, 2*maxFS)\" to\nmatch Section 3 and avoid an implementer copying the appendix's version\nliterally and overshooting the cap.\n\n---\n\n357 >   6.2.  Informative References\n...\n380 >   [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, \"Updating\n381 >              TCP to Support Rate-Limited Traffic\", RFC 7661,\n382 >              DOI 10.17487/RFC7661, October 2015,\n383 >              <https://www.rfc-editor.org/rfc/rfc7661>.\n\nThe shepherd write-up's answer to question 17 states \"The document has a\nnormative reference to RFC 7661, which is Experimental,\" and Lars Eggert's\nTSVART review of -03 flagged the resulting DOWNREF as missing from the Last\nCall and the DOWNREF registry. But -06, as quoted above, lists RFC 7661\nunder Informative References, not Normative. Given the Terminology section's\ntwo new definitions, each cite RFC 7661 as their basis, I can see why the\ncategorization has been changing across versions. Could the shepherd or\nauthors confirm which is correct for -06? If Informative is correct, the\nDOWNREF concern is moot, and the shepherd write-up should be updated to say\nso; if RFC 7661 should in fact be Normative, the DOWNREF registry step Lars\nflagged still needs to happen.\n\n----------------------------------------------------------------------\nNIT\n----------------------------------------------------------------------\n\nAll comments below are about very minor potential issues that you may\nchoose to address in some way - or ignore - as you see fit. Some were\nflagged by automated tools (via\nhttps://github.com/larseggert/ietf-reviewtool), so there will likely\nbe some false positives. There is no need to let me know what you did\nwith these suggestions.\n\n4 > Updates: RFC4341, RFC5681, RFC9002, RFC9260,                T. Henderson\n5 >          RFC9438 (if approved)                  University of Washington\n\nThe shepherd write-up's nit list already caught this: the Updates line\nshould list bare RFC numbers (4341, 5681, 9002, 9260, 9438), not \"RFC4341\"\netc. Still present in -06.\n\n---\n\n366 >   [RFC2861]  Handley, M., Padhye, J., and S. Floyd, \"TCP Congestion\n367 >              Window Validation\", RFC 2861, DOI 10.17487/RFC2861, June\n368 >              2000, <https://www.rfc-editor.org/rfc/rfc2861>.\n\nRFC 2861 is obsoleted by RFC 7661. The document is not referenced anywhere\nand since the document already cites RFC 7661 elsewhere, why keep this obsoleted\nreference.\n",
       "createdAt": "2026-08-04T02:30:22Z",
-      "updatedAt": "2026-08-04T02:30:22Z",
-      "closedAt": null,
+      "updatedAt": "2026-08-05T09:31:02Z",
+      "closedAt": "2026-08-05T09:31:02Z",
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think we have now addressed everything here except for the comment about the Shepherd write-up. @gorryfair - you're going to take care of this, right?  Please close the issue when this is done.",
+          "createdAt": "2026-08-05T09:21:47Z",
+          "updatedAt": "2026-08-05T09:21:47Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This is thought resolved in the various PRs that have now been merged, and will be published in a new revision of this I-D.",
+          "createdAt": "2026-08-05T09:29:32Z",
+          "updatedAt": "2026-08-05T09:29:32Z"
+        }
+      ]
+    },
+    {
+      "number": 105,
+      "id": "I_kwDOK4gIBc8AAAABLc036w",
+      "title": "Appendix A - decision",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/105",
+      "state": "CLOSED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Two potential issues.\n(1) Do we want to include ACK delay in the example? - currently it does as I has understood for QUIC.\n\nNow I wonder what the example ought to do... see email. (We could change to ACK every received packet).\n\n(2)\nNote however, it doesn't address the concern in issue https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/99. In our main text, we have: 1) cwnd_new = cwnd + ....; 2) cwnd = min(cwnd, 2maxFS). Instead, here, we have: \"if cwnd < 2maxFS: cwnd += ....\" - with this code, we allow to exceed 2*maxFS, because \"add\" comes after the \"if\", and this one addition may just exceed it.\n\nIt would be better to update the text to avoid this \"if cwnd < 2*maxFS\" and instead write 1) cwnd is increased, 2) the min function is applied. This will also make it easier to read, as it's in line with section 3. \n\n>> I see. It would be good to rewrite as +=, followed by a MIN(,)",
+      "createdAt": "2026-08-04T17:54:20Z",
+      "updatedAt": "2026-08-05T07:59:34Z",
+      "closedAt": "2026-08-05T07:59:34Z",
       "comments": []
+    },
+    {
+      "number": 108,
+      "id": "I_kwDOK4gIBc8AAAABLixZzw",
+      "title": "New comment from Eric Vyncke",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/108",
+      "state": "CLOSED",
+      "author": "mwelzl",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "He's still unhappy with our update to the text in Section 3.2.1 which includes a SHOULD. His statement:\n\n-------\n\n\"Rate-based congestion control algorithms MUST NOT result in an\nunconstrained situation where a sender would increase the maximum\npermitted rate even when there is no additional application data to\nsend. This behavior SHOULD be equivalent to Rate-Limited Increase,\nirrespective of whether an algorithm uses a cwnd variable or not.\"\n\n- If that looks like acceptable text, the editors will roll a new\nrevision of the draft for you to review,\n\nEV> Alas no, as I still fail to see what will happen if the SHOULD is bypassed (if there is any interoperability issue).\n\n-------\n\nIn an earlier message, he pointed us at:\nhttps://datatracker.ietf.org/doc/statement-iesg-statement-on-clarifying-the-use-of-bcp-14-key-words/\nwhere it says:\n\"It improves the document to provide readers with all of the details they need to make an informed decision. Thus, \u201cYou SHOULD do X\u201d is less valuable than \u201cYou SHOULD do X because if you don\u2019t, you get Y, which is less preferable because Z\u201d.\"",
+      "createdAt": "2026-08-05T09:52:16Z",
+      "updatedAt": "2026-08-05T14:58:44Z",
+      "closedAt": "2026-08-05T14:58:44Z",
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": ".... so I think we need to add a sentence saying that going against the SHOULD recommendation may result in an unnecessarily conservative behavior? Or something like that?\n\nHmmmmmmmmmm but the MUST NOT is so vague that it would also be allowed to be much more aggressive than ratelimited-increase as long as the situation is not entirely \"unconstrained\". So this is all not clear enough, really  :-(",
+          "createdAt": "2026-08-05T09:53:12Z",
+          "updatedAt": "2026-08-05T09:53:12Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "How can we better phrase: \"This behavior SHOULD be equivalent to Rate-Limited Increase, irrespective of whether an algorithm uses a cwnd variable or not.\"\n- Could we specify timescales, or the envelope?",
+          "createdAt": "2026-08-05T10:55:56Z",
+          "updatedAt": "2026-08-05T10:55:56Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Have you seen my email suggestion?\nIt removes \u201cequivalent\u201d - why bother, why even require this - I think we really want to make sure that noone is **more aggressive** than this RFC, right?\nSo, what we need is just a MUST NOT, phrased clearly - which is what I suggested.",
+          "createdAt": "2026-08-05T11:07:00Z",
+          "updatedAt": "2026-08-05T11:07:00Z"
+        },
+        {
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Fix merged in #109 ",
+          "createdAt": "2026-08-05T14:58:44Z",
+          "updatedAt": "2026-08-05T14:58:44Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -4980,6 +5086,1163 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 100,
+      "id": "PR_kwDOK4gIBc76dU3n",
+      "title": "Move appendix, update change log, RFC 7661 ref normative",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/100",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This doesn't change the actual appendix B text yet. Because the change is so big, I thought it's easier to do this in two steps.",
+      "createdAt": "2026-08-04T09:31:06Z",
+      "updatedAt": "2026-08-04T11:07:57Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "01025d807f5c44f5081acca9c02e486e7e438d8b",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "mw-rfcupdates",
+      "headRefOid": "1e654542561ac8c1de96ccc23273dcf0eee1c9ad",
+      "closedAt": "2026-08-04T11:07:57Z",
+      "mergedAt": "2026-08-04T11:07:57Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "94d0ba86ee6b423f1dd15e6639be6c90c63b1dee"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIT8NOA",
+          "commit": {
+            "abbreviatedOid": "33ea9c2"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T09:36:44Z",
+          "updatedAt": "2026-08-04T09:36:45Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "```suggestion\n>At the time of writing, there were no standards governing TCP's use of the congestion window during an application-limited period.  In particular, it was possible for TCP's congestion window to grow quite large during a long uncongested period when the sender is application limited, sending at a low rate.  {{?RFC2861}} essentially suggests that TCP's congestion window not be increased during application-limited periods when the congestion window is not being fully utilized.\n```",
+              "createdAt": "2026-08-04T09:36:45Z",
+              "updatedAt": "2026-08-04T09:36:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIT9Jdg",
+          "commit": {
+            "abbreviatedOid": "c9916bc"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T09:38:34Z",
+          "updatedAt": "2026-08-04T09:38:34Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "No because that's a literal quote.",
+              "createdAt": "2026-08-04T09:38:34Z",
+              "updatedAt": "2026-08-04T09:38:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIT8pgw",
+          "commit": {
+            "abbreviatedOid": "33ea9c2"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Hoping this is nudging in the correct direction, obviously I didn't change text for each RFC (yet).",
+          "createdAt": "2026-08-04T09:37:36Z",
+          "updatedAt": "2026-08-04T09:48:11Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "We shouldn't be talking about 2861 here, since this was obsoleted by RFC 7661.",
+              "createdAt": "2026-08-04T09:37:36Z",
+              "updatedAt": "2026-08-04T09:48:11Z"
+            },
+            {
+              "originalPosition": 44,
+              "body": "```suggestion\nThe text in {{Section 5.1 of !RFC4341}} is updated by adding the text in Section in ({{rules}}) of this document to specify the management of the\n```",
+              "createdAt": "2026-08-04T09:41:04Z",
+              "updatedAt": "2026-08-04T09:48:11Z"
+            },
+            {
+              "originalPosition": 54,
+              "body": "```suggestion\n>At the time of writing, Standard TCP did not impose additional restrictions on the growth of\n```",
+              "createdAt": "2026-08-04T09:43:09Z",
+              "updatedAt": "2026-08-04T09:48:11Z"
+            },
+            {
+              "originalPosition": 73,
+              "body": "```suggestion\nLinux currently implements a limit to cwnd growth in accordance with Rate-Limited Increase;\n```",
+              "createdAt": "2026-08-04T09:43:55Z",
+              "updatedAt": "2026-08-04T09:48:11Z"
+            },
+            {
+              "originalPosition": 126,
+              "body": "```suggestion\nWith the exception of pacing, the QUIC specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. It is in accordance with Rate-Limited Increase, and more conservative.\n```",
+              "createdAt": "2026-08-04T09:45:05Z",
+              "updatedAt": "2026-08-04T09:48:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIUpjfw",
+          "commit": {
+            "abbreviatedOid": "c9916bc"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T11:05:37Z",
+          "updatedAt": "2026-08-04T11:05:38Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "```suggestion\nThe text in {{Section 5.1 of !RFC4341}} is updated by this document by adding the text in ({{rules}}) of this document to specify the management of the\n```",
+              "createdAt": "2026-08-04T11:05:37Z",
+              "updatedAt": "2026-08-04T11:05:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIUqHsQ",
+          "commit": {
+            "abbreviatedOid": "b6f235a"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T11:06:37Z",
+          "updatedAt": "2026-08-04T11:06:37Z",
+          "comments": [
+            {
+              "originalPosition": 54,
+              "body": "Again a literal quote.",
+              "createdAt": "2026-08-04T11:06:37Z",
+              "updatedAt": "2026-08-04T11:06:37Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 101,
+      "id": "PR_kwDOK4gIBc76hElM",
+      "title": "RFC update text",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/101",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-08-04T11:43:14Z",
+      "updatedAt": "2026-08-04T15:36:35Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "94d0ba86ee6b423f1dd15e6639be6c90c63b1dee",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "mw-rfcupdates-step2",
+      "headRefOid": "ee641af9f7c09220cc85a42f2c57f04ffe0926e6",
+      "closedAt": "2026-08-04T15:36:35Z",
+      "mergedAt": "2026-08-04T15:36:35Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "4aca4130b39edebb8e0105d18619d104deb427bf"
+      },
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Many thanks for the many updates @gorryfair !   Now, maybe @mohittahiliani  could take a look too before we merge this?",
+          "createdAt": "2026-08-04T13:02:55Z",
+          "updatedAt": "2026-08-04T13:02:55Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIU_A5w",
+          "commit": {
+            "abbreviatedOid": "e5ddf7b"
+          },
+          "author": "github-actions",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T11:43:41Z",
+          "updatedAt": "2026-08-04T11:43:41Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "````suggestion\nA DCCP CCID specifying TCP-like behaviour ought to follow the method specified in this document.\n````",
+              "createdAt": "2026-08-04T11:43:41Z",
+              "updatedAt": "2026-08-04T11:43:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIVadFA",
+          "commit": {
+            "abbreviatedOid": "b837040"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "I tried to improve on saying what changes, but there may still be inconsistencies that need to be checked when this is finally approved.",
+          "createdAt": "2026-08-04T12:24:43Z",
+          "updatedAt": "2026-08-04T12:45:20Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\nAccording to {{!RFC4341}, a DCCP CCID specifying TCP-like behaviour is allowed to grow an unlimited cwnd during an uncongested period when it sends at a rate unconstrained by the current cwnd. \n```",
+              "createdAt": "2026-08-04T12:24:44Z",
+              "updatedAt": "2026-08-04T12:45:20Z"
+            },
+            {
+              "originalPosition": 69,
+              "body": "```suggestion\n>\"When bytes in flight is smaller than the congestion window and sending is not pacing limited, the congestion window is underutilized. This can happen due to insufficient application data or flow control limits. When this occurs, the congestion window SHOULD NOT be increased in either slow start or congestion avoidance.\"\n```",
+              "createdAt": "2026-08-04T12:31:54Z",
+              "updatedAt": "2026-08-04T12:45:20Z"
+            },
+            {
+              "originalPosition": 77,
+              "body": "```suggestion\n{{!RFC9002}} is updated by this document by replacing the final line in the cited text, by the text in in ({{rules}}) to specify the management of the\n```",
+              "createdAt": "2026-08-04T12:34:03Z",
+              "updatedAt": "2026-08-04T12:45:20Z"
+            },
+            {
+              "originalPosition": 95,
+              "body": "```suggestion\nThe quoted statement from {{!RFC9260}} limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative. {{Section 7.2.1 of !RFC9260}} is limited to Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}} -- however, this section does not contain a similar rule. It is implicitly clear that the quoted statement from {{!RFC9260}} only applies to Slow Start.\n```",
+              "createdAt": "2026-08-04T12:39:53Z",
+              "updatedAt": "2026-08-04T12:45:20Z"
+            },
+            {
+              "originalPosition": 101,
+              "body": "```suggestion\n{{!RFC9260}} is updated by this document by replacing the  the final line of quoted text with the text in ({{rules}}) to specify the management of the cwnd when the sender is rate-limited.\n\n{{Section 7.2.2 of !RFC9260}} is also updated to add text in ({{rules}}). \n\n```",
+              "createdAt": "2026-08-04T12:42:18Z",
+              "updatedAt": "2026-08-04T12:45:20Z"
+            },
+            {
+              "originalPosition": 102,
+              "body": "```suggestion\nThis ensures that the update applies to both Slow Start and Congestion Avoidance.\n```",
+              "createdAt": "2026-08-04T12:42:47Z",
+              "updatedAt": "2026-08-04T12:45:20Z"
+            },
+            {
+              "originalPosition": 113,
+              "body": "```suggestion\n>\"Cubic doesn't increase cwnd when it's limited by the sending application or rwnd\".\n```",
+              "createdAt": "2026-08-04T12:43:17Z",
+              "updatedAt": "2026-08-04T12:45:20Z"
+            },
+            {
+              "originalPosition": 120,
+              "body": "```suggestion\n{{!RFC9438}} is updated by this document by replacing this  text with the text in ({{rules}}) to specify the management of the\n```",
+              "createdAt": "2026-08-04T12:44:19Z",
+              "updatedAt": "2026-08-04T12:45:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIVr8vw",
+          "commit": {
+            "abbreviatedOid": "e7fe7a4"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T12:49:29Z",
+          "updatedAt": "2026-08-04T12:49:29Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\nAccording to {{!RFC4341}}, a DCCP CCID specifying TCP-like behaviour is allowed to grow an unlimited cwnd during an uncongested period when it sends at a rate unconstrained by the current cwnd. \n```",
+              "createdAt": "2026-08-04T12:49:29Z",
+              "updatedAt": "2026-08-04T12:49:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIVsOzA",
+          "commit": {
+            "abbreviatedOid": "e7fe7a4"
+          },
+          "author": "github-actions",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T12:49:51Z",
+          "updatedAt": "2026-08-04T12:49:51Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "````suggestion\nAccording to {{!RFC4341}, a DCCP CCID specifying TCP-like behaviour is allowed to grow an unlimited cwnd during an uncongested period when it sends at a rate unconstrained by the current cwnd.\n````",
+              "createdAt": "2026-08-04T12:49:51Z",
+              "updatedAt": "2026-08-04T12:49:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIVsZEg",
+          "commit": {
+            "abbreviatedOid": "8ed9183"
+          },
+          "author": "github-actions",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T12:50:05Z",
+          "updatedAt": "2026-08-04T12:50:05Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "````suggestion\nAccording to {{!RFC4341}}, a DCCP CCID specifying TCP-like behaviour is allowed to grow an unlimited cwnd during an uncongested period when it sends at a rate unconstrained by the current cwnd.\n````",
+              "createdAt": "2026-08-04T12:50:05Z",
+              "updatedAt": "2026-08-04T12:50:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIVtbVw",
+          "commit": {
+            "abbreviatedOid": "2861e92"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T12:51:32Z",
+          "updatedAt": "2026-08-04T12:51:32Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "```suggestion\n{{!RFC9002}} is updated by this document by replacing the final line in the cited text with the text in ({{rules}}) to specify the management of the\n```",
+              "createdAt": "2026-08-04T12:51:32Z",
+              "updatedAt": "2026-08-04T12:51:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIV0fUw",
+          "commit": {
+            "abbreviatedOid": "421ce2c"
+          },
+          "author": "github-actions",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T13:01:39Z",
+          "updatedAt": "2026-08-04T13:01:39Z",
+          "comments": [
+            {
+              "originalPosition": 102,
+              "body": "````suggestion\n{{Section 7.2.2 of !RFC9260}} is also updated to add text in ({{rules}}).\n````",
+              "createdAt": "2026-08-04T13:01:39Z",
+              "updatedAt": "2026-08-04T13:01:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIV0tKw",
+          "commit": {
+            "abbreviatedOid": "1730a97"
+          },
+          "author": "github-actions",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T13:01:58Z",
+          "updatedAt": "2026-08-04T13:01:59Z",
+          "comments": [
+            {
+              "originalPosition": 102,
+              "body": "````suggestion\n{{Section 7.2.2 of !RFC9260}} is also updated to add text in ({{rules}}).\n````",
+              "createdAt": "2026-08-04T13:01:58Z",
+              "updatedAt": "2026-08-04T13:01:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIV2vdg",
+          "commit": {
+            "abbreviatedOid": "d7c1e51"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Whoops /line/sentence/ !!!",
+          "createdAt": "2026-08-04T13:05:01Z",
+          "updatedAt": "2026-08-04T13:05:49Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "```suggestion\n{{!RFC9002}} is updated by this document by replacing the final sentence in the cited text with the text in ({{rules}}) to specify the management of the\n```",
+              "createdAt": "2026-08-04T13:05:01Z",
+              "updatedAt": "2026-08-04T13:05:49Z"
+            },
+            {
+              "originalPosition": 96,
+              "body": "```suggestion\n{{!RFC9260}} is updated by this document by replacing the  the final sentence of quoted text with the text in ({{rules}}) to specify the management of the cwnd when the sender is rate-limited.\n```",
+              "createdAt": "2026-08-04T13:05:20Z",
+              "updatedAt": "2026-08-04T13:05:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIWpAqQ",
+          "commit": {
+            "abbreviatedOid": "f781fca"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T14:23:44Z",
+          "updatedAt": "2026-08-04T15:06:32Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "Does this look better?\n\nAccording to {{!RFC4341}}, a DCCP CCID specifying TCP-like behavior is allowed to grow the cwnd without limit during an uncongested period when it sends at a rate unconstrained by the current cwnd.\n\nJust wanted to make this part clear \"grow an unlimited cwnd\".\n\nAlso changed behaviour to behavior to make it uniform across the document.",
+              "createdAt": "2026-08-04T14:23:44Z",
+              "updatedAt": "2026-08-04T15:06:32Z"
+            },
+            {
+              "originalPosition": 18,
+              "body": "This document updates {{Section 5.1 of !RFC4341}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.",
+              "createdAt": "2026-08-04T14:40:44Z",
+              "updatedAt": "2026-08-04T15:06:32Z"
+            },
+            {
+              "originalPosition": 51,
+              "body": "{{!RFC5681}} specifies no limit on cwnd growth in the standard TCP behavior when a TCP sender is unable to send at the maximum rate allowed by the cwnd.",
+              "createdAt": "2026-08-04T14:42:04Z",
+              "updatedAt": "2026-08-04T15:06:32Z"
+            },
+            {
+              "originalPosition": 57,
+              "body": "This document updates {{!RFC5681}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.",
+              "createdAt": "2026-08-04T14:44:43Z",
+              "updatedAt": "2026-08-04T15:06:32Z"
+            },
+            {
+              "originalPosition": 63,
+              "body": "RFC 9002: QUIC Loss Detection and Congestion Control",
+              "createdAt": "2026-08-04T14:45:30Z",
+              "updatedAt": "2026-08-04T15:06:32Z"
+            },
+            {
+              "originalPosition": 77,
+              "body": "This document updates {{!RFC9002}} by replacing the final sentence of the cited text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.",
+              "createdAt": "2026-08-04T14:46:24Z",
+              "updatedAt": "2026-08-04T15:06:32Z"
+            },
+            {
+              "originalPosition": 83,
+              "body": "RFC 9260: Stream Control Transmission Protocol",
+              "createdAt": "2026-08-04T14:57:21Z",
+              "updatedAt": "2026-08-04T15:06:32Z"
+            },
+            {
+              "originalPosition": 96,
+              "body": "This document updates {{!RFC9260}} by replacing the final sentence of the quoted text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.\n\nNote: even if this suggestion is avoided, we have to fix \"the the\" in the original sentence",
+              "createdAt": "2026-08-04T14:59:28Z",
+              "updatedAt": "2026-08-04T15:06:32Z"
+            },
+            {
+              "originalPosition": 122,
+              "body": "This document updates {{!RFC9438}} by replacing this text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.",
+              "createdAt": "2026-08-04T15:00:16Z",
+              "updatedAt": "2026-08-04T15:06:32Z"
+            },
+            {
+              "originalPosition": 92,
+              "body": "Just changed a couple of words:\n\nThe quoted statement from {{!RFC9260}} limits cwnd growth in accordance with Rate-Limited Increase, but it is more conservative. {{Section 7.2.1 of !RFC9260}} is limited to Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}}; however, this section does not contain a similar rule. It is therefore clear that the quoted statement from {{!RFC9260}} only applies to Slow Start.",
+              "createdAt": "2026-08-04T15:06:20Z",
+              "updatedAt": "2026-08-04T15:06:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXI39g",
+          "commit": {
+            "abbreviatedOid": "f781fca"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:16:40Z",
+          "updatedAt": "2026-08-04T15:16:41Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\nAccording to {{!RFC4341}}, a DCCP CCID specifying TCP-like behavior is allowed to grow the cwnd without limit during an uncongested period when it sends at a rate unconstrained by the current cwnd.\n```",
+              "createdAt": "2026-08-04T15:16:40Z",
+              "updatedAt": "2026-08-04T15:16:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXKEAQ",
+          "commit": {
+            "abbreviatedOid": "33adf62"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:18:38Z",
+          "updatedAt": "2026-08-04T15:18:38Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "```suggestion\n{{!RFC5681}} specifies no limit on cwnd growth in the standard TCP behavior\n```",
+              "createdAt": "2026-08-04T15:18:38Z",
+              "updatedAt": "2026-08-04T15:18:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXOUXw",
+          "commit": {
+            "abbreviatedOid": "6586280"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:26:15Z",
+          "updatedAt": "2026-08-04T15:26:16Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "```suggestion\nThis document updates {{Section 5.1 of !RFC4341}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.\n```",
+              "createdAt": "2026-08-04T15:26:15Z",
+              "updatedAt": "2026-08-04T15:26:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXOdZw",
+          "commit": {
+            "abbreviatedOid": "6586280"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:26:31Z",
+          "updatedAt": "2026-08-04T15:26:32Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\n```",
+              "createdAt": "2026-08-04T15:26:31Z",
+              "updatedAt": "2026-08-04T15:26:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXPPzw",
+          "commit": {
+            "abbreviatedOid": "2cac768"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:28:00Z",
+          "updatedAt": "2026-08-04T15:28:00Z",
+          "comments": [
+            {
+              "originalPosition": 57,
+              "body": "```suggestion\nThis document updates {{!RFC5681}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.\n```",
+              "createdAt": "2026-08-04T15:28:00Z",
+              "updatedAt": "2026-08-04T15:28:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXPXfg",
+          "commit": {
+            "abbreviatedOid": "2cac768"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:28:13Z",
+          "updatedAt": "2026-08-04T15:28:14Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "```suggestion\n```",
+              "createdAt": "2026-08-04T15:28:14Z",
+              "updatedAt": "2026-08-04T15:28:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXP6Pg",
+          "commit": {
+            "abbreviatedOid": "66f9de4"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:29:11Z",
+          "updatedAt": "2026-08-04T15:29:11Z",
+          "comments": [
+            {
+              "originalPosition": 63,
+              "body": "```suggestion\n## RFC 9002: QUIC Loss Detection and Congestion Control\n```",
+              "createdAt": "2026-08-04T15:29:11Z",
+              "updatedAt": "2026-08-04T15:29:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXQS9g",
+          "commit": {
+            "abbreviatedOid": "faf2c9e"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:29:50Z",
+          "updatedAt": "2026-08-04T15:29:51Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "```suggestion\nThis document updates {{!RFC9002}} by replacing the final sentence of the cited text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.\n```",
+              "createdAt": "2026-08-04T15:29:50Z",
+              "updatedAt": "2026-08-04T15:29:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXQbrA",
+          "commit": {
+            "abbreviatedOid": "faf2c9e"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:30:04Z",
+          "updatedAt": "2026-08-04T15:30:04Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "```suggestion\n```",
+              "createdAt": "2026-08-04T15:30:04Z",
+              "updatedAt": "2026-08-04T15:30:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXQ05w",
+          "commit": {
+            "abbreviatedOid": "123a5a0"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:30:46Z",
+          "updatedAt": "2026-08-04T15:30:47Z",
+          "comments": [
+            {
+              "originalPosition": 83,
+              "body": "```suggestion\n## RFC 9260: Stream Control Transmission Protocol\n```",
+              "createdAt": "2026-08-04T15:30:46Z",
+              "updatedAt": "2026-08-04T15:30:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXRINQ",
+          "commit": {
+            "abbreviatedOid": "95aecf4"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:31:20Z",
+          "updatedAt": "2026-08-04T15:31:20Z",
+          "comments": [
+            {
+              "originalPosition": 122,
+              "body": "```suggestion\nThis document updates {{!RFC9438}} by replacing this text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.\n```",
+              "createdAt": "2026-08-04T15:31:20Z",
+              "updatedAt": "2026-08-04T15:31:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXRQNA",
+          "commit": {
+            "abbreviatedOid": "95aecf4"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:31:33Z",
+          "updatedAt": "2026-08-04T15:31:33Z",
+          "comments": [
+            {
+              "originalPosition": 121,
+              "body": "```suggestion\n```",
+              "createdAt": "2026-08-04T15:31:33Z",
+              "updatedAt": "2026-08-04T15:31:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXRw4Q",
+          "commit": {
+            "abbreviatedOid": "4f4454c"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:32:33Z",
+          "updatedAt": "2026-08-04T15:32:33Z",
+          "comments": [
+            {
+              "originalPosition": 96,
+              "body": "```suggestion\nThis document updates {{!RFC9260}} by replacing the final sentence of the quoted text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.\n```",
+              "createdAt": "2026-08-04T15:32:33Z",
+              "updatedAt": "2026-08-04T15:32:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXS8GQ",
+          "commit": {
+            "abbreviatedOid": "c6240e1"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T15:34:48Z",
+          "updatedAt": "2026-08-04T15:34:48Z",
+          "comments": [
+            {
+              "originalPosition": 92,
+              "body": "```suggestion\nThe quoted statement from {{!RFC9260}} limits cwnd growth in accordance with Rate-Limited Increase, but it is more conservative. {{Section 7.2.1 of !RFC9260}} only discusses Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}}; however, this section does not contain a similar rule. It is therefore clear that the quoted statement from {{!RFC9260}} only applies to Slow Start.\n```",
+              "createdAt": "2026-08-04T15:34:48Z",
+              "updatedAt": "2026-08-04T15:34:48Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 102,
+      "id": "PR_kwDOK4gIBc76pNEA",
+      "title": "Change RFC updates to numeric format",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/102",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Format error in \"updates list\".\r\nStill checking for more bugs.",
+      "createdAt": "2026-08-04T16:06:22Z",
+      "updatedAt": "2026-08-04T16:17:56Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "d6bf41d639cd2f701e7a75726c9a292b7444df44",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-16",
+      "headRefOid": "19b54899f5e87c264452cfd2a7b5ec4a25c8f080",
+      "closedAt": "2026-08-04T16:17:56Z",
+      "mergedAt": "2026-08-04T16:17:56Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "7e402a352e0bae7409a693ad526daf565c3be38a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXmtww",
+          "commit": {
+            "abbreviatedOid": "19b5489"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-08-04T16:10:31Z",
+          "updatedAt": "2026-08-04T16:10:31Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIXqwVA",
+          "commit": {
+            "abbreviatedOid": "19b5489"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-08-04T16:17:41Z",
+          "updatedAt": "2026-08-04T16:17:41Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 103,
+      "id": "PR_kwDOK4gIBc76qaIH",
+      "title": "Update the decsription lines in appendix A",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/103",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Clarified cwnd and MSS references in examples, updated ACK handling descriptions, and improved change log entries.",
+      "createdAt": "2026-08-04T16:50:34Z",
+      "updatedAt": "2026-08-04T17:48:57Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "7e402a352e0bae7409a693ad526daf565c3be38a",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-17",
+      "headRefOid": "788fa8193eb592a4679643d88ee136e9066b7336",
+      "closedAt": "2026-08-04T17:48:57Z",
+      "mergedAt": "2026-08-04T17:48:57Z",
+      "mergedBy": "gorryfair",
+      "mergeCommit": {
+        "oid": "671f22379bf2d9cd5584a36649877c7c0ce9496d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIX8cMQ",
+          "commit": {
+            "abbreviatedOid": "a4d31a2"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T16:53:23Z",
+          "updatedAt": "2026-08-04T16:55:12Z",
+          "comments": [
+            {
+              "originalPosition": 56,
+              "body": "Should the word `increased` be deleted from `cwnd was increased limited`?",
+              "createdAt": "2026-08-04T16:53:24Z",
+              "updatedAt": "2026-08-04T16:55:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIX-0EQ",
+          "commit": {
+            "abbreviatedOid": "a4d31a2"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T16:58:16Z",
+          "updatedAt": "2026-08-04T16:58:17Z",
+          "comments": [
+            {
+              "originalPosition": 56,
+              "body": "For sure. Doing it.",
+              "createdAt": "2026-08-04T16:58:16Z",
+              "updatedAt": "2026-08-04T16:58:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIX-8fA",
+          "commit": {
+            "abbreviatedOid": "a4d31a2"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T16:58:29Z",
+          "updatedAt": "2026-08-04T16:58:29Z",
+          "comments": [
+            {
+              "originalPosition": 56,
+              "body": "```suggestion\nNote: This round maxFS was not increased and cwnd was limited to 2*maxFS.\n```",
+              "createdAt": "2026-08-04T16:58:29Z",
+              "updatedAt": "2026-08-04T16:58:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIYA4hw",
+          "commit": {
+            "abbreviatedOid": "a4d31a2"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "This LGTM, thanks!\n\nNote however, it doesn't address the concern in issue #99. In our main text, we have: 1) cwnd_new = cwnd + ....;  2) cwnd = min(cwnd, 2*maxFS).  Instead, here, we have: \"if cwnd < 2*maxFS: cwnd += ....\"   - with this code, we allow to exceed 2*maxFS, because \"add\" comes after the \"if\", and this one addition may just exceed it.\n\nSo it's confusing - and it would be better to update the text to avoid this \"if cwnd < 2*maxFS\" and instead write 1) cwnd is increased, 2) the min function is applied.\n\nThis will also make it easier to read, as it's in line with section 3.  I can do this tomorrow.",
+          "createdAt": "2026-08-04T17:02:13Z",
+          "updatedAt": "2026-08-04T17:02:13Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 104,
+      "id": "PR_kwDOK4gIBc76qb0E",
+      "title": "Add RFC titles",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/104",
+      "state": "MERGED",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Update the titles of DCCP and CUBIC RFCs",
+      "createdAt": "2026-08-04T16:51:30Z",
+      "updatedAt": "2026-08-04T17:57:28Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "7e402a352e0bae7409a693ad526daf565c3be38a",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "improvements",
+      "headRefOid": "8adfb331524b10c10d1ee38511ddf0f43fb3f68d",
+      "closedAt": "2026-08-04T17:57:27Z",
+      "mergedAt": "2026-08-04T17:57:27Z",
+      "mergedBy": "gorryfair",
+      "mergeCommit": {
+        "oid": "e29006c0fab670e231350c5db7dff0afebe9cf4d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIX8F1Q",
+          "commit": {
+            "abbreviatedOid": "8adfb33"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks, LGTM",
+          "createdAt": "2026-08-04T16:52:49Z",
+          "updatedAt": "2026-08-04T16:52:49Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIYcJZQ",
+          "commit": {
+            "abbreviatedOid": "8adfb33"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-08-04T17:57:14Z",
+          "updatedAt": "2026-08-04T17:57:14Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 106,
+      "id": "PR_kwDOK4gIBc76sS8O",
+      "title": "Refactor cwnd update logic for clarity",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/106",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR fixed one half of the problem.\r\nWe still need to decode about delayed (culmulative) ACKs to resolve the issue.",
+      "createdAt": "2026-08-04T18:03:40Z",
+      "updatedAt": "2026-08-04T18:46:59Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "e29006c0fab670e231350c5db7dff0afebe9cf4d",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-18",
+      "headRefOid": "bca7951f14370031b9989fef7cc3237d473dcb8c",
+      "closedAt": "2026-08-04T18:46:59Z",
+      "mergedAt": "2026-08-04T18:46:59Z",
+      "mergedBy": "gorryfair",
+      "mergeCommit": {
+        "oid": "bd1a6588c92cec1ca0cb05e33cf3b5d0cf90e25a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIYfbYg",
+          "commit": {
+            "abbreviatedOid": "09a650b"
+          },
+          "author": "github-actions",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T18:04:07Z",
+          "updatedAt": "2026-08-04T18:04:07Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "````suggestion\nReceived 4 ACKs (N=2000); maxFS=10000\n````",
+              "createdAt": "2026-08-04T18:04:07Z",
+              "updatedAt": "2026-08-04T18:04:07Z"
+            },
+            {
+              "originalPosition": 5,
+              "body": "````suggestion\nReceived 2 ACKs (N=2000); maxFS=10000\n````",
+              "createdAt": "2026-08-04T18:04:07Z",
+              "updatedAt": "2026-08-04T18:04:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIYzFsA",
+          "commit": {
+            "abbreviatedOid": "7b66cca"
+          },
+          "author": "github-actions",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-04T18:45:52Z",
+          "updatedAt": "2026-08-04T18:45:52Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "````suggestion\nReceived 4 ACKs (N=2000); maxFS=10000\n````",
+              "createdAt": "2026-08-04T18:45:52Z",
+              "updatedAt": "2026-08-04T18:45:52Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 107,
+      "id": "PR_kwDOK4gIBc76745E",
+      "title": "This will remove 2 cwnd examples",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/107",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The examples show the receiver ACK policy, they show the benefit of per ACK'ed packet processing in SS - which is what methods like DASS allow to achieve a x2 growth of window. This is also possible in QUIC. \r\n\r\nThe I-D is best served by taking only an example with an ACK for each packet.",
+      "createdAt": "2026-08-05T07:10:08Z",
+      "updatedAt": "2026-08-05T07:59:33Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "bbe4969e668f00101959bd2e1d33639a05adce79",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-19",
+      "headRefOid": "036ca01b802c4bbfe50f322229b32b42e019e7d4",
+      "closedAt": "2026-08-05T07:59:33Z",
+      "mergedAt": "2026-08-05T07:59:33Z",
+      "mergedBy": "gorryfair",
+      "mergeCommit": {
+        "oid": "6e4d13a74fb69deecc758f155843a9daa981b8a5"
+      },
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Great, yes, go ahead and merge this once we have converged via email. I agree that we only want the third version.",
+          "createdAt": "2026-08-05T07:35:42Z",
+          "updatedAt": "2026-08-05T07:35:42Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 109,
+      "id": "PR_kwDOK4gIBc77H40q",
+      "title": "Rate-limited rule + updated changelog",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/109",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "To address Eric Vyncke's comment (pending his answer: in case of updates, we push them to this PR and only merge them when we know it's ok)",
+      "createdAt": "2026-08-05T14:36:44Z",
+      "updatedAt": "2026-08-05T14:57:05Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "121330265436d88a02e5b19ccf50792362576575",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "mw-ratebased",
+      "headRefOid": "fd9840bf145cc928d75a51d93224643dee0fe7d4",
+      "closedAt": "2026-08-05T14:57:05Z",
+      "mergedAt": "2026-08-05T14:57:04Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "e52ab0ea95ae7e3fde8bf72e243a6f21a5fda656"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIgJb9g",
+          "commit": {
+            "abbreviatedOid": "6678078"
+          },
+          "author": "github-actions",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-05T14:37:26Z",
+          "updatedAt": "2026-08-05T14:37:26Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "````suggestion\nlimited to a value that is not greater than would have been\n````",
+              "createdAt": "2026-08-05T14:37:26Z",
+              "updatedAt": "2026-08-05T14:37:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABIgVgEQ",
+          "commit": {
+            "abbreviatedOid": "fd9840b"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-08-05T14:56:05Z",
+          "updatedAt": "2026-08-05T14:56:05Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
