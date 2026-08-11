@@ -445,7 +445,7 @@ Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.
 * draft-ietf-ccwg-ratelimited-increase-08
   * Addressed a comment from Eric Vyncke about the paragraph on rate-based cc. algs.
 * draft-ietf-ccwg-ratelimited-increase-09
-*  Corrections and additions proposed by Mahesh Jethanandani 
+*  Corrections and additions proposed by Mahesh Jethanandani
 
 # Acknowledgments
 {:numbered="false"}
