@@ -4,13 +4,13 @@
 
 Congestion Control Working Group                                M. Welzl
 Internet-Draft                                        University of Oslo
-Updates: RFC4341, RFC5681, RFC9002, RFC9260,                T. Henderson
-         RFC9438 (if approved)                  University of Washington
+Updates: 4341, 5681, 9002, 9260, 9438 (if                   T. Henderson
+         approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 9 January 2027                           University of Aberdeen
+Expires: 12 February 2027                         University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                             8 July 2026
+                                                          11 August 2026
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -19,10 +19,10 @@ Expires: 9 January 2027                           University of Aberdeen
 Abstract
 
    This document specifies how transport protocols increase their
-   congestion window when the sender is rate-limited, and updates RFC
-   5681, RFC 9002, RFC 9260, and RFC 9438.  Such a limitation can be
-   caused by the sending application not supplying data or by receiver
-   flow control.
+   congestion window when the sender is rate-limited, and updates RFCs
+   4341, 5681, 9002, 9260, and 9438.  Such a limitation can be caused by
+   the sending application not supplying data or by receiver flow
+   control.
 
 About This Document
 
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 January 2027.
+   This Internet-Draft will expire on 12 February 2027.
 
 Copyright Notice
 
@@ -85,31 +85,20 @@ Table of Contents
      3.2.  Discussion
        3.2.1.  Rate-based congestion control
        3.2.2.  Pacing
-   4.  Security Considerations
-   5.  IANA Considerations
-   6.  References
-     6.1.  Normative References
-     6.2.  Informative References
+   4.  Updates to RFCs 4341, 5681, 9002, 9260, and 9438
+     4.1.  RFC 4341: Profile for Datagram Congestion Control Protocol
+           (DCCP) Congestion Control ID 2: TCP-like Congestion Control
+     4.2.  RFC 5681: TCP Congestion Control
+     4.3.  RFC 9002: QUIC Loss Detection and Congestion Control
+     4.4.  RFC 9260: Stream Control Transmission Protocol
+     4.5.  RFC 9438: CUBIC for Fast and Long-Distance Networks
+   5.  Security Considerations
+   6.  IANA Considerations
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
    Appendix A.  An Example Using cwnd Represented in Bytes
-   Appendix B.  The state of RFCs and implementations
-     B.1.  TCP ("Reno" congestion control)
-       B.1.1.  Specification
-       B.1.2.  Implementation
-       B.1.3.  Assessment
-     B.2.  CUBIC
-       B.2.1.  Specification
-       B.2.2.  Implementation
-       B.2.3.  Assessment
-     B.3.  The Stream Control Transmission Protocol (SCTP)
-       B.3.1.  Specification
-       B.3.2.  Assessment
-     B.4.  The QUIC Transport Protocol
-       B.4.1.  Specification
-       B.4.2.  Assessment
-     B.5.  The Datagram Congestion Control Protocol (DCCP) CCID2
-       B.5.1.  Specification
-       B.5.2.  Assessment
-   Appendix C.  Change Log
+   Appendix B.  Change Log
    Acknowledgments
    Authors' Addresses
 
@@ -124,7 +113,9 @@ Table of Contents
    advertised TCP receiver window (rwnd) or by the connection or stream
    flow credit in QUIC).  Current RFCs specifying congestion control
    algorithms diverge regarding the rules for increasing the cwnd when
-   the sender is rate-limited.
+   the sender is rate-limited.  This document provides a uniform
+   behavior in (Section 3), and specifies updates to RFCs 4341, 5681,
+   9002, 9260, and 9438 in (Section 4).
 
    Congestion Window Validation (CWV) [RFC7661] provides an experimental
    specification defining how to manage a cwnd that has become larger
@@ -137,12 +128,6 @@ Table of Contents
 
    An appendix provides an example of how rate-limited increase can play
    out.
-
-   RFC-Ed Note, please remove the following sentence prior to
-   publication: Another appendix provides an overview of the divergence
-   in current RFCs and some implementations regarding cwnd increase when
-   the sender is rate-limited (the second appendix is to be removed
-   before publication).
 
 2.  Conventions and Definitions
 
@@ -184,17 +169,17 @@ Table of Contents
    rules apply for senders using a congestion controlled transport
    protocol:
 
-   The sender MUST initialise the maxFS parameter to initcwnd when the
-   congestion control algorithm is started.  Thereafter, when the
-   FlightSize is updated, the sender updates maxFS:
+   *  The sender MUST initialise the maxFS parameter to initcwnd when
+      the congestion control algorithm is started.  Thereafter, when the
+      FlightSize is updated, the sender also updates the maxFS:
 
    maxFS = max(FlightSize, maxFS)
 
-   Upon a reduction of cwnd (for any reason), maxFS MUST be reset to
-   zero.  This ensures that maxFS is reinitialized using the first
-   FlightSize measurement taken after the cwnd reduction.
+   *  Upon a reduction of cwnd (for any reason), maxFS MUST be reset to
+      zero.  This ensures that maxFS is reinitialized using the first
+      FlightSize measurement taken after the cwnd reduction.
 
-   The sender MUST cap cwnd to be no larger than limit(maxFS).
+   *  The sender MUST cap cwnd to be no larger than limit(maxFS).
 
    The function limit() returns the maximum cwnd value the congestion
    control algorithm would yield by increasing for all ACKs that would
@@ -229,17 +214,17 @@ Table of Contents
 
 3.1.  Example
 
-   We illustrate the working of Rate-Limited Increase by showing the
-   increase of cwnd in two scenarios: when the growth of cwnd is
+   The working of Rate-Limited Increase can be illustrated by showing
+   the increase of cwnd in two scenarios: when the growth of cwnd is
    unconstrained, and when the rate-limited sender is constrained by
    Rate-Limited Increase.  For simplicity, this example accounts for the
-   cwnd in segments, rather than bytes.  In both cases, we assume the
-   initial cwnd (initcwnd) = 10 segments, as defined for TCP in
-   [RFC6928] and QUIC in [RFC9002], a single connection begins with Slow
-   Start, the sender transmits a total of 14 segments but pauses after
-   transmitting 10 segments and resumes the transmission for the
-   remaining 4 segments afterward, no packets are lost, and an ACK is
-   sent for every packet.
+   cwnd in TCP segments (or QUIC packets), rather than bytes.  In both
+   cases, this assumes the initial cwnd (initcwnd) = 10 segments, as
+   defined for TCP in [RFC6928] and QUIC in [RFC9002], a single
+   connection begins with Slow Start, the sender transmits a total of 14
+   segments but pauses after transmitting 10 segments and resumes the
+   transmission for the remaining 4 segments afterward, no packets are
+   lost, and an ACK is sent for every packet.
 
 3.1.1.  Unconstrained sender
 
@@ -297,9 +282,12 @@ Table of Contents
    of a congestion indication, a sender is allowed to increase its rate
    from the amount of data that it has transmitted during the previous
    RTT (this holds irrespective of whether the sender is rate-limited or
-   not).  Therefore, congestion control algorithms SHOULD implement a
-   behavior that is equivalent to Rate-Limited Increase, irrespective of
-   whether they use a cwnd variable or not.
+   not).
+
+   Rate-based congestion control algorithms MUST ensure their maximum
+   sustained rate is limited to a value that is not greater than would
+   have been permitted by the Rate-Limited Increase method defined in
+   Section 3.
 
 3.2.2.  Pacing
 
@@ -310,7 +298,87 @@ Table of Contents
    number of bytes in flight per RTT is unaffected by pacing, Rate-
    Limited Increase does not constrain the use of pacing mechanisms.
 
-4.  Security Considerations
+4.  Updates to RFCs 4341, 5681, 9002, 9260, and 9438
+
+4.1.  RFC 4341: Profile for Datagram Congestion Control Protocol (DCCP)
+      Congestion Control ID 2: TCP-like Congestion Control
+
+   According to [RFC4341], a DCCP CCID specifying TCP-like behavior is
+   allowed to grow the cwnd without limit during an uncongested period
+   when it sends at a rate unconstrained by the current cwnd.  This
+   document updates Section 5.1 of [RFC4341] by adding the text in
+   Section 3 to specify how the cwnd is managed when the sender is rate-
+   limited.
+
+4.2.  RFC 5681: TCP Congestion Control
+
+   Section 3.1 of [RFC5681] specifies no limit on the cwnd growth in the
+   standard TCP behavior when a TCP sender is unable to send at the
+   maximum rate allowed by the cwnd.
+
+   This document updates [RFC5681] by adding the text in Section 3 to
+   specify how the cwnd is managed when the sender is rate-limited.
+
+4.3.  RFC 9002: QUIC Loss Detection and Congestion Control
+
+   Section 7.8 of [RFC9002] states:
+
+      "When bytes in flight is smaller than the congestion window and
+      sending is not pacing limited, the congestion window is
+      underutilized.  This can happen due to insufficient application
+      data or flow control limits.  When this occurs, the congestion
+      window SHOULD NOT be increased in either slow start or congestion
+      avoidance."
+
+   This limits the cwnd growth in accordance with Rate-Limited Increase,
+   but it is more conservative.
+
+   This document updates [RFC9002] by replacing the final sentence of
+   the cited text with the text in Section 3 to specify how the cwnd is
+   managed when the sender is rate-limited.
+
+4.4.  RFC 9260: Stream Control Transmission Protocol
+
+   Section 7.2.1 of [RFC9260] states:
+
+      "When cwnd is less than or equal to ssthresh, an SCTP endpoint
+      MUST use the slow-start algorithm to increase cwnd only if the
+      current congestion window is being fully utilized and the data
+      sender is not in Fast Recovery.  Only when these two conditions
+      are met can the cwnd be increased; otherwise, the cwnd MUST NOT be
+      increased."
+
+   The quoted statement from [RFC9260] limits cwnd growth in accordance
+   with Rate-Limited Increase, but it is more conservative.
+   Section 7.2.1 of [RFC9260] only discusses Slow Start.  Congestion
+   Avoidance is discussed in Section 7.2.2 of [RFC9260]; however, this
+   section does not contain a similar rule.  It is therefore clear that
+   the quoted statement from [RFC9260] only applies to Slow Start.
+
+   This document updates [RFC9260] by replacing the final sentence of
+   the quoted text with the text in Section 3 to specify how the cwnd is
+   managed when the sender is rate-limited.
+
+   Section 7.2.2 of [RFC9260] is also updated to add text in Section 3.
+
+   This ensures that the update applies to both Slow Start and
+   Congestion Avoidance.
+
+4.5.  RFC 9438: CUBIC for Fast and Long-Distance Networks
+
+   Section 5.8 of [RFC9438] states:
+
+      "Cubic doesn't increase cwnd when it's limited by the sending
+      application or rwnd".
+
+   This limits the cwnd growth in accordance with Rate-Limited Increase,
+   but it is more conservative.
+
+   This document updates [RFC9438] by replacing the quoted text with the
+   text in Section 3 to specify how the cwnd is managed when the sender
+   is rate-limited.
+
+5.  Security Considerations
 
    While congestion control designs could result in unwanted competing
    traffic, they do not directly result in new security considerations.
@@ -325,18 +393,23 @@ Table of Contents
    their congestion control algorithm from network attack.  This is
    orthogonal to the specification of congestion control rules.
 
-5.  IANA Considerations
+6.  IANA Considerations
 
    This document requests no IANA action.
 
-6.  References
+7.  References
 
-6.1.  Normative References
+7.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC4341]  Floyd, S. and E. Kohler, "Profile for Datagram Congestion
+              Control Protocol (DCCP) Congestion Control ID 2: TCP-like
+              Congestion Control", RFC 4341, DOI 10.17487/RFC4341, March
+              2006, <https://www.rfc-editor.org/rfc/rfc4341>.
 
    [RFC5681]  Allman, M., Paxson, V., and E. Blanton, "TCP Congestion
               Control", RFC 5681, DOI 10.17487/RFC5681, September 2009,
@@ -359,7 +432,7 @@ Table of Contents
               DOI 10.17487/RFC9438, August 2023,
               <https://www.rfc-editor.org/rfc/rfc9438>.
 
-6.2.  Informative References
+7.2.  Informative References
 
    [I-D.ietf-ccwg-bbr]
               Cardwell, N., Swett, I., and J. Beshay, "BBR Congestion
@@ -367,15 +440,6 @@ Table of Contents
               ccwg-bbr-06, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccwg-
               bbr-06>.
-
-   [RFC2861]  Handley, M., Padhye, J., and S. Floyd, "TCP Congestion
-              Window Validation", RFC 2861, DOI 10.17487/RFC2861, June
-              2000, <https://www.rfc-editor.org/rfc/rfc2861>.
-
-   [RFC4341]  Floyd, S. and E. Kohler, "Profile for Datagram Congestion
-              Control Protocol (DCCP) Congestion Control ID 2: TCP-like
-              Congestion Control", RFC 4341, DOI 10.17487/RFC4341, March
-              2006, <https://www.rfc-editor.org/rfc/rfc4341>.
 
    [RFC6928]  Chu, J., Dukkipati, N., Cheng, Y., and M. Mathis,
               "Increasing TCP's Initial Window", RFC 6928,
@@ -390,15 +454,18 @@ Table of Contents
 Appendix A.  An Example Using cwnd Represented in Bytes
 
    The following informative example is provided for a sender that
-   maintains the cwnd in bytes. 36 packets are sent in this example over
-   four rounds of transmission.  This shows the initial growth of the
-   cwnd by a rate-limited sender, followed by a transmission that uses
-   the full available cwnd.
+   maintains the cwnd in bytes. 36 packets (or segments in the case of
+   TCP) are sent in this example over four rounds of transmission.  This
+   shows the initial growth of the cwnd by a rate-limited sender,
+   followed by a transmission that uses the full available cwnd.  The
+   SMSS (QUIC MPS)=1000.  N is the number of previously unacknowledged
+   bytes in a received acknowledgement.  For simplicity, in this example
+   the receiver sends an ACK for each received packet.
 
    The initial sender state is:
 
   Sender sequence number (seqno) = 0
-  MSS = 1000 bytes
+  SMSS = 1000 bytes
   cwnd = 10000 bytes (initcwnd)
   maxFS = 10000 bytes (initcwnd)
   FlightSize (FS) = 0 bytes
@@ -407,24 +474,27 @@ Appendix A.  An Example Using cwnd Represented in Bytes
    The network path’s bandwidth-delay product is such that, throughout
    this example, all packets in each round are sent before an ACK is
    received for the first packet in a round.  One ACK is generated for
-   each 2*MSS received bytes.
+   each received packet.
 
-   Round 1, the sender has 4000B to send in 4 packets: MSS=1000,
+   Round 1, the sender has 4000B to send in 4 packets (1000B);
    cwnd=10000
 
-     Send  seqno=0; FS=1000; maxFS=10000
-     Send  seqno=1000; FS=1000; maxFS=10000
-     Send  seqno=2000; FS=2000; maxFS=10000
-     Send  seqno=3000; FS=3000; maxFS=10000
+     Send  seqno=0;    FS=1000; maxFS=10000
+     Send  seqno=1000; FS=2000; maxFS=10000
+     Send  seqno=2000; FS=3000; maxFS=10000
+     Send  seqno=3000; FS=4000; maxFS=10000
 
-   Received 2 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+   Received 4 ACKs (each N=1000); maxFS=10000 cwnd_new += N; cwnd =
+   min(cwnd_new, 2*maxFS)
 
-     ACK for  2000 ACK’ed=2000 : cwnd+= 2000; cwnd=12000
-     ACK for  4000 ACK’ed=2000 : cwnd+= 2000; cwnd=14000
+     ACK for  1000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=11000
+     ACK for  2000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=12000
+     ACK for  3000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=13000
+     ACK for  4000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=14000
 
    Note: This round maxFS was not increased and cwnd was increased.
 
-   Round 2, the sender has 8000B to send in 8 packets: MSS=1000,
+   Round 2, the sender has 8000B to send in 8 packets (1000B),
    cwnd=14000
 
      Send  seqno=4000; FS=1000; maxFS=10000
@@ -436,17 +506,22 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send seqno=10000; FS=7000; maxFS=10000
      Send seqno=11000; FS=8000; maxFS=10000
 
-   Received 4 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+   Received 8 ACKs (N=1000); maxFS=10000 cwnd_new += N; cwnd =
+   min(cwnd_new, 2*maxFS)
 
-     ACK for  6000 ACK’ed=2000 : cwnd+=2000; cwnd=16000
-     ACK for  8000 ACK’ed=2000 : cwnd+=2000; cwnd=18000
-     ACK for 10000 ACK’ed=2000 : cwnd+=2000; cwnd=20000
-     ACK for 12000 ACK’ed=2000 : cwnd+=0; cwnd=20000
+     ACK for  5000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=15000
+     ACK for  6000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=16000
+     ACK for  7000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=17000
+     ACK for  8000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=18000
+     ACK for  9000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=19000
+     ACK for 10000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=20000
+     ACK for 11000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+     ACK for 12000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
 
-   Note: This round maxFS was not increased and cwnd was increased to
+   Note: This round maxFS was not increased and cwnd was limited to
    2*maxFS.
 
-   Round 3, the sender has 4000B to send in 4 packets: MSS=1000,
+   Round 3, the sender has 4000B to send in 4 packets (1000B),
    cwnd=20000
 
      Send seqno=12000; FS=1000; maxFS=10000
@@ -454,14 +529,17 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send seqno=14000; FS=3000; maxFS=10000
      Send seqno=15000; FS=4000; maxFS=10000
 
-   Received 2 ACKs; maxFS=10000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+   Received 2 ACKs (N=1000); maxFS=10000 cwnd_new += N; cwnd =
+   min(cwnd_new, 2*maxFS)
 
-     ACK for 14000 ACK’ed=2000 : cwnd+=0; cwnd=20000
-     ACK for 16000 ACK’ed=2000 : cwnd+=0; cwnd=20000
+     ACK for 13000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+     ACK for 14000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+     ACK for 15000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
+     ACK for 16000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
 
    Note: This round maxFS was not increased and cwnd was not increased.
 
-   Round 4, the sender has 20000B to send in 20 packets: MSS=1000,
+   Round 4, the sender has 20000B to send in 20 packets (1000B),
    cwnd=20000
 
      Send seqno=16000; FS= 1000; maxFS=10000
@@ -485,160 +563,34 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send seqno=34000; FS=19000; maxFS=19000
      Send seqno=35000; FS=20000; maxFS=20000
 
-   Received 10 ACKs; maxFS=20000, if (cwnd<2*maxFS) {cwnd +=ACK’ed}
+   Received 10 ACKs (N=1000); maxFS=20000 cwnd_new += N; cwnd =
+   min(cwnd_new, 2*maxFS)
 
-     ACK for 18000 ACK’ed=2000 : cwnd+=2000; cwnd=22000
-     ACK for 20000 ACK’ed=2000 : cwnd+=2000; cwnd=24000
-     ACK for 22000 ACK’ed=2000 : cwnd+=2000; cwnd=26000
-     ACK for 24000 ACK’ed=2000 : cwnd+=2000; cwnd=28000
-     ACK for 26000 ACK’ed=2000 : cwnd+=2000; cwnd=30000
-     ACK for 28000 ACK’ed=2000 : cwnd+=2000; cwnd=32000
-     ACK for 30000 ACK’ed=2000 : cwnd+=2000; cwnd=34000
-     ACK for 32000 ACK’ed=2000 : cwnd+=2000; cwnd=36000
-     ACK for 34000 ACK’ed=2000 : cwnd+=2000; cwnd=38000
-     ACK for 36000 ACK’ed=2000 : cwnd+=2000; cwnd=40000
+     ACK for 18000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=21000
+     ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=22000
+     ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=23000
+     ACK for 20000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=24000
+     ACK for 21000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=25000
+     ACK for 22000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=26000
+     ACK for 23000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=27000
+     ACK for 24000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=28000
+     ACK for 25000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=29000
+     ACK for 26000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=30000
+     ACK for 27000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=31000
+     ACK for 28000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=32000
+     ACK for 29000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=33000
+     ACK for 30000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=34000
+     ACK for 31000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=35000
+     ACK for 32000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=36000
+     ACK for 33000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=37000
+     ACK for 34000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=38000
+     ACK for 35000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=39000
+     ACK for 36000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=40000
 
-   Note: In this round, maxFS was increased and cwnd was increased to
+   Note: In this round, maxFS increased and therefore cwnd increased to
    2*maxFS.
 
-Appendix B.  The state of RFCs and implementations
-
-   RFC-Ed Note: This section is provided as input for IETF discussion,
-   and should be removed before publication.
-
-B.1.  TCP ("Reno" congestion control)
-
-B.1.1.  Specification
-
-   [RFC7661] suggested there was no increase limitation in the standard
-   TCP behavior (which [RFC7661] changes), on page 4:
-
-      Standard TCP does not impose additional restrictions on the growth
-      of the congestion window when a TCP sender is unable to send at
-      the maximum rate allowed by the cwnd.  In this case, the rate-
-      limited sender may grow a cwnd far beyond that corresponding to
-      the current transmit rate, resulting in a value that does not
-      reflect current information about the state of the network path
-      the flow is using.
-
-B.1.2.  Implementation
-
-   *  ns-2 allows cwnd to grow when it is rate-limited by rwnd.  (Rate-
-      limited by the sending application: not tested.)
-
-   *  Until release 3.42, ns-3 allowed cwnd to grow when rate-limited,
-      either due to an application or rwnd limit.  Since release 3.42,
-      ns-3 TCP models conform to Rate-Limited Increase, following the
-      current Linux TCP approach in this regard (see next bullet).
-
-   *  In Congestion Avoidance, Linux only allows the cwnd to grow when
-      the sender is unconstrained.  Before kernel version 3.16, this
-      also applied to Slow Start.  The check for "unconstrained" is
-      performed by checking if FlightSize is greater or equal to cwnd.
-      Since kernel version 3.16, which was published in August 2014, in
-      Slow Start, the increase implements Rate-Limited Increase in the
-      tcp_is_cwnd_limited function in tcp.h.
-
-B.1.3.  Assessment
-
-   Linux implements a limit to cwnd growth in accordance with Rate-
-   Limited Increase; in Slow Start, this limit follows the rule's upper
-   limit, while in Congestion Avoidance, it is more conservative than
-   Rate-Limited Increase.  The specification and the ns-2 and (older)
-   ns-3 implementations are in conflict with Rate-Limited Increase.
-
-B.2.  CUBIC
-
-B.2.1.  Specification
-
-   Section 5.8 of [RFC9438] says:
-
-      Cubic doesn't increase cwnd when it's limited by the sending
-      application or rwnd.
-
-B.2.2.  Implementation
-
-   The description of Linux described in Appendix B.1.2 also applies to
-   Cubic.
-
-B.2.3.  Assessment
-
-   Both the specification and the Linux implementation limit the cwnd
-   growth in accordance with Rate-Limited Increase; in Congestion
-   Avoidance, this limit is more conservative than Rate-Limited
-   Increase, and in Slow Start, it implements the "maxFS" upper limit of
-   Rate-Limited Increase.
-
-B.3.  The Stream Control Transmission Protocol (SCTP)
-
-B.3.1.  Specification
-
-   Section 7.2.1 of [RFC9260] says:
-
-      When cwnd is less than or equal to ssthresh, an SCTP endpoint MUST
-      use the slow-start algorithm to increase cwnd only if the current
-      congestion window is being fully utilized and the data sender is
-      not in Fast Recovery.  Only when these two conditions are met can
-      the cwnd be increased; otherwise, the cwnd MUST NOT be increased.
-
-B.3.2.  Assessment
-
-   The quoted statement from [RFC9260] prescribes the same cwnd growth
-   limitation that is also specified for Cubic and implemented for both
-   Reno and Cubic in Linux.  It is in accordance with Rate-Limited
-   Increase, and more conservative.
-
-   Section 7.2.1 of [RFC9260] is specifically limited to Slow Start.
-   Congestion Avoidance is discussed in Section 7.2.2 of [RFC9260]
-   However, this section neither contains a similar rule nor does it
-   refer back to the rule that limits the growth of cwnd in
-   Section 7.2.1.  It is thus implicitly clear that the quoted rule only
-   applies to Slow Start, whereas Rate-Limited Increase applies to both
-   Slow Start and Congestion Avoidance.
-
-B.4.  The QUIC Transport Protocol
-
-B.4.1.  Specification
-
-   Section 7.8 of [RFC9002] states:
-
-      When bytes in flight is smaller than the congestion window and
-      sending is not pacing limited, the congestion window is
-      underutilized.  This can happen due to insufficient application
-      data or flow control limits.  When this occurs, the congestion
-      window SHOULD NOT be increased in either slow start or congestion
-      avoidance.
-
-B.4.2.  Assessment
-
-   With the exception of pacing, this specification conservatively
-   limits the growth in cwnd, similar to Cubic and SCTP.  It is in
-   accordance with Rate-Limited Increase, and more conservative.
-
-B.5.  The Datagram Congestion Control Protocol (DCCP) CCID2
-
-B.5.1.  Specification
-
-   Section 5.1 of [RFC4341] states:
-
-      There are currently no standards governing TCP's use of the
-      congestion window during an application-limited period.  In
-      particular, it is possible for TCP's congestion window to grow
-      quite large during a long uncongested period when the sender is
-      application limited, sending at a low rate.  [RFC2861] essentially
-      suggests that TCP's congestion window not be increased during
-      application-limited periods when the congestion window is not
-      being fully utilized.
-
-B.5.2.  Assessment
-
-   A DCCP Congestion Control ID (CCID) specifying TCP-like behaviour
-   ought to follow the method specified in this document.  The current
-   guidance relates only to [RFC2861].  The text in Section 5.1 of
-   [RFC4341] is updated by this document to specify the management of
-   the cwnd when the sender is rate-limited.
-
-Appendix C.  Change Log
+Appendix B.  Change Log
 
    *  -00 was the first individual submission for feedback by CCWG.
 
@@ -705,16 +657,61 @@ Appendix C.  Change Log
          newCWV (RFC7661), hence rule 2 was finally removed.
 
       -  Cleaned language and improved text explaining how this
-         compliments RFC7661.
+         complements RFC7661.
 
       -  Checked/updated definitions.
 
       -  Added an example with cwnd in bytes.
 
+   *  draft-ietf-ccwg-ratelimited-increase-04
+
+      -  Repeated definitions from RFC 7661 instead of just pointing at
+         the RFC
+
+      -  Made RFC 7661 informational
+
+   *  draft-ietf-ccwg-ratelimited-increase-05
+
+      -  Rephrased references to RFC 7661
+
+      -  Nits
+
+   *  draft-ietf-ccwg-ratelimited-increase-06
+
+      -  Changed some TCP-specific language so it applies to QUIC too
+
+      -  RFC 4341 added to list of updated RFCs in the abstract
+
+      -  Nits
+
+   *  draft-ietf-ccwg-ratelimited-increase-07
+
+      -  Updated this list
+
+      -  Made RFC 4341 reference normative
+
+      -  Fixed Updates list to match boilerplate
+
+      -  Moved some of appendix B to the main text as a new section that
+         (only) defines the RFC updates.
+
+      -  Updated description lines in appendix A
+
+   *  draft-ietf-ccwg-ratelimited-increase-08
+
+      -  Addressed a comment from Eric Vyncke about the paragraph on
+         rate-based cc. algs.
+
+   *  draft-ietf-ccwg-ratelimited-increase-09
+
+   *  Corrections and additions proposed by Mahesh Jethanandani
+
 Acknowledgments
 
    The authors would like to thank Neal Cardwell and Martin Duke for
-   suggesting improvements to this document.
+   suggesting improvements to this document.  Thanks are due to the
+   various IETF reviewers, and especially to Lars Eggert and Mahesh
+   Jethanandani.
 
 Authors' Addresses
 
