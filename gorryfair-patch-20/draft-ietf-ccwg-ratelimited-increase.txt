@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: 4341, 5681, 9002, 9260, 9438 (if                   T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 12 February 2027                         University of Aberdeen
+Expires: 13 February 2027                         University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                          11 August 2026
+                                                          12 August 2026
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 February 2027.
+   This Internet-Draft will expire on 13 February 2027.
 
 Copyright Notice
 
@@ -312,9 +312,9 @@ Table of Contents
 
 4.2.  RFC 5681: TCP Congestion Control
 
-   Section 3.1 of [RFC5681] specifies no limit on the cwnd growth in the
-   standard TCP behavior when a TCP sender is unable to send at the
-   maximum rate allowed by the cwnd.
+   [RFC5681] specifies no limit on the cwnd growth in the standard TCP
+   behavior when a TCP sender is unable to send at the maximum rate
+   allowed by the cwnd.
 
    This document updates [RFC5681] by adding the text in Section 3 to
    specify how the cwnd is managed when the sender is rate-limited.
