@@ -185,7 +185,7 @@ This document updates {{Section 5.1 of !RFC4341}} by adding the text in {{rules}
 
 ## RFC 5681: TCP Congestion Control
 
-{{Section 3.1 of !RFC5681}} specifies no limit on the cwnd growth in the standard TCP behavior
+{{!RFC5681}} specifies no limit on the cwnd growth in the standard TCP behavior
 when a TCP sender is unable to send at the maximum rate allowed by the cwnd.
 
 This document updates {{!RFC5681}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
