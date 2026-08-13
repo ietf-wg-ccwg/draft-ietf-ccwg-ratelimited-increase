@@ -185,10 +185,10 @@ This document updates {{Section 5.1 of !RFC4341}} by adding the text in {{rules}
 
 ## RFC 5681: TCP Congestion Control
 
-{{!RFC5681}} specifies no limit on cwnd growth in the standard TCP behavior
+{{!RFC5681}} specifies no limit on the cwnd growth in the standard TCP behavior
 when a TCP sender is unable to send at the maximum rate allowed by the cwnd.
 
-This document updates {{!RFC5681}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
+This document updates {{Section 3.1 of !RFC5681}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
 
 
 ## RFC 9002: QUIC Loss Detection and Congestion Control
@@ -303,7 +303,7 @@ Round 2, the sender has 8000B to send in 8 packets (1000B), cwnd=14000
   Send seqno=11000; FS=8000; maxFS=10000
 ~~~~~~~~~~
 
-Received 8 ACKs (N=2000); maxFS=10000
+Received 8 ACKs (N=1000); maxFS=10000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
@@ -328,7 +328,7 @@ Round 3, the sender has 4000B to send in 4 packets (1000B), cwnd=20000
   Send seqno=15000; FS=4000; maxFS=10000
 ~~~~~~~~~~
 
-Received 2 ACKs (N=2000); maxFS=10000
+Received 2 ACKs (N=1000); maxFS=10000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
@@ -365,7 +365,7 @@ Round 4, the sender has 20000B to send in 20 packets (1000B), cwnd=20000
   Send seqno=35000; FS=20000; maxFS=20000
 ~~~~~~~~~~
 
-Received 10 ACKs (N=2000); maxFS=20000
+Received 10 ACKs (N=1000); maxFS=20000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
@@ -444,9 +444,10 @@ Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.
   * Updated description lines in appendix A
 * draft-ietf-ccwg-ratelimited-increase-08
   * Addressed a comment from Eric Vyncke about the paragraph on rate-based cc. algs.
-
+* draft-ietf-ccwg-ratelimited-increase-09
+*  Corrections and additions proposed by Mahesh Jethanandani
 
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Neal Cardwell and Martin Duke for suggesting improvements to this document.
+The authors would like to thank Neal Cardwell and Martin Duke for suggesting improvements to this document. Thanks are due to the various IETF reviewers, and especially to Lars Eggert and Mahesh Jethanandani.
