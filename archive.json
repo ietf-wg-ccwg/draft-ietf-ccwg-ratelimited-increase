@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-06T02:46:58.718379+00:00",
+  "timestamp": "2026-08-13T02:10:29.201245+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1322,6 +1322,22 @@
           "updatedAt": "2026-08-05T14:58:44Z"
         }
       ]
+    },
+    {
+      "number": 110,
+      "id": "I_kwDOK4gIBc8AAAABMPjd7Q",
+      "title": "New comments from Mahesh Jethanandani",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/110",
+      "state": "OPEN",
+      "author": "mohittahiliani",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Section 4.2 (RFC 5681) doesn't name a section, unlike 4.1/4.3/4.4/4.5.\nRFC 5681 Section 3.1 is where the slow-start and congestion-avoidance\nrules you're amending actually live \u2014 naming it would make the set of\nfive subsections consistent.\n\nAppendix A's Round 4 looks like it wasn't fully updated when the\nexample was reworked to one-ACK-per-packet: the header still reads\n\"Received 10 ACKs (N=2000)\" but twenty ACK lines follow it, each for\nN=1000, and \"ACK for 19000\" appears twice in a row. Rounds 2 and 3\nhave the same stale \"(N=2000)\" in their headers. Given how much of\nAppendix A changed between -06 and -08, another pass over it seems\nwarranted.",
+      "createdAt": "2026-08-11T04:11:47Z",
+      "updatedAt": "2026-08-11T04:11:47Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -6241,6 +6257,146 @@
           "createdAt": "2026-08-05T14:56:05Z",
           "updatedAt": "2026-08-05T14:56:05Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 111,
+      "id": "PR_kwDOK4gIBc79ZHEh",
+      "title": "Corrections following review by Mahesh Jethanandani",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/111",
+      "state": "OPEN",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Corrected N= in example,  added a sction no to RFC 5681 and updated acknowledgments section.\r\n\r\nResolves #110 ",
+      "createdAt": "2026-08-11T07:44:54Z",
+      "updatedAt": "2026-08-12T09:14:11Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "e52ab0ea95ae7e3fde8bf72e243a6f21a5fda656",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-20",
+      "headRefOid": "28c341357e2bd928c589b397cb97ba3d9d2b98b5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABJE0OzQ",
+          "commit": {
+            "abbreviatedOid": "50d2d87"
+          },
+          "author": "github-actions",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-11T07:45:25Z",
+          "updatedAt": "2026-08-11T07:45:26Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "````suggestion\n*  Corrections and additions proposed by Mahesh Jethanandani\n````",
+              "createdAt": "2026-08-11T07:45:25Z",
+              "updatedAt": "2026-08-11T07:45:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABJJPTnw",
+          "commit": {
+            "abbreviatedOid": "16cd096"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-08-11T16:47:02Z",
+          "updatedAt": "2026-08-11T16:47:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABJKOs1w",
+          "commit": {
+            "abbreviatedOid": "16cd096"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2026-08-11T18:48:46Z",
+          "updatedAt": "2026-08-11T18:49:40Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Actually I think we shouldn't do that. The entire RFC doesn't specify it - this is why I didn't refer to a section. As this now stands, it leaves the reader wondering: \"is it written elsewhere in the RFC perhaps?\".  Sure we could compromise and say: Section 3.1 defines the Slow Stand and Congestion Avoidance behavior, but does not specify...   but this also doesn't make it better. Frankly, I would just leave this standing as it is.\n```suggestion\n{{!RFC5681}} specifies no limit on the cwnd growth in the standard TCP behavior\n```",
+              "createdAt": "2026-08-11T18:48:46Z",
+              "updatedAt": "2026-08-11T18:49:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABJOYGTA",
+          "commit": {
+            "abbreviatedOid": "df7ef32"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-12T07:30:09Z",
+          "updatedAt": "2026-08-12T07:30:09Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\nThis document updates {{Section 3.1 of !RFC5681}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.\n```",
+              "createdAt": "2026-08-12T07:30:09Z",
+              "updatedAt": "2026-08-12T07:30:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABJOYneg",
+          "commit": {
+            "abbreviatedOid": "df7ef32"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Being careful in edits...",
+          "createdAt": "2026-08-12T07:31:11Z",
+          "updatedAt": "2026-08-12T07:31:32Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I agree, with Michael (it doesn't make sense to say a sction does not have it), so is it actually here where we should say a section?",
+              "createdAt": "2026-08-12T07:31:11Z",
+              "updatedAt": "2026-08-12T07:31:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABJPL2sw",
+          "commit": {
+            "abbreviatedOid": "28c3413"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks!!",
+          "createdAt": "2026-08-12T09:13:40Z",
+          "updatedAt": "2026-08-12T09:14:11Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "Ah yes!",
+              "createdAt": "2026-08-12T09:13:40Z",
+              "updatedAt": "2026-08-12T09:14:11Z"
+            }
+          ]
         }
       ]
     }
