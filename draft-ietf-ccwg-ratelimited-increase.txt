@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: 4341, 5681, 9002, 9260, 9438 (if                   T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 6 February 2027                          University of Aberdeen
+Expires: 14 February 2027                         University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                           5 August 2026
+                                                          13 August 2026
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 February 2027.
+   This Internet-Draft will expire on 14 February 2027.
 
 Copyright Notice
 
@@ -312,12 +312,13 @@ Table of Contents
 
 4.2.  RFC 5681: TCP Congestion Control
 
-   [RFC5681] specifies no limit on cwnd growth in the standard TCP
+   [RFC5681] specifies no limit on the cwnd growth in the standard TCP
    behavior when a TCP sender is unable to send at the maximum rate
    allowed by the cwnd.
 
-   This document updates [RFC5681] by adding the text in Section 3 to
-   specify how the cwnd is managed when the sender is rate-limited.
+   This document updates Section 3.1 of [RFC5681] by adding the text in
+   Section 3 to specify how the cwnd is managed when the sender is rate-
+   limited.
 
 4.3.  RFC 9002: QUIC Loss Detection and Congestion Control
 
@@ -506,7 +507,7 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send seqno=10000; FS=7000; maxFS=10000
      Send seqno=11000; FS=8000; maxFS=10000
 
-   Received 8 ACKs (N=2000); maxFS=10000 cwnd_new += N; cwnd =
+   Received 8 ACKs (N=1000); maxFS=10000 cwnd_new += N; cwnd =
    min(cwnd_new, 2*maxFS)
 
      ACK for  5000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=15000
@@ -529,7 +530,7 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send seqno=14000; FS=3000; maxFS=10000
      Send seqno=15000; FS=4000; maxFS=10000
 
-   Received 2 ACKs (N=2000); maxFS=10000 cwnd_new += N; cwnd =
+   Received 2 ACKs (N=1000); maxFS=10000 cwnd_new += N; cwnd =
    min(cwnd_new, 2*maxFS)
 
      ACK for 13000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
@@ -563,7 +564,7 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send seqno=34000; FS=19000; maxFS=19000
      Send seqno=35000; FS=20000; maxFS=20000
 
-   Received 10 ACKs (N=2000); maxFS=20000 cwnd_new += N; cwnd =
+   Received 10 ACKs (N=1000); maxFS=20000 cwnd_new += N; cwnd =
    min(cwnd_new, 2*maxFS)
 
      ACK for 18000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=21000
@@ -702,10 +703,16 @@ Appendix B.  Change Log
       -  Addressed a comment from Eric Vyncke about the paragraph on
          rate-based cc. algs.
 
+   *  draft-ietf-ccwg-ratelimited-increase-09
+
+   *  Corrections and additions proposed by Mahesh Jethanandani
+
 Acknowledgments
 
    The authors would like to thank Neal Cardwell and Martin Duke for
-   suggesting improvements to this document.
+   suggesting improvements to this document.  Thanks are due to the
+   various IETF reviewers, and especially to Lars Eggert and Mahesh
+   Jethanandani.
 
 Authors' Addresses
 
