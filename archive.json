@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-13T02:10:29.201245+00:00",
+  "timestamp": "2026-08-16T01:26:59.183906+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1328,15 +1328,15 @@
       "id": "I_kwDOK4gIBc8AAAABMPjd7Q",
       "title": "New comments from Mahesh Jethanandani",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/110",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mohittahiliani",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Section 4.2 (RFC 5681) doesn't name a section, unlike 4.1/4.3/4.4/4.5.\nRFC 5681 Section 3.1 is where the slow-start and congestion-avoidance\nrules you're amending actually live \u2014 naming it would make the set of\nfive subsections consistent.\n\nAppendix A's Round 4 looks like it wasn't fully updated when the\nexample was reworked to one-ACK-per-packet: the header still reads\n\"Received 10 ACKs (N=2000)\" but twenty ACK lines follow it, each for\nN=1000, and \"ACK for 19000\" appears twice in a row. Rounds 2 and 3\nhave the same stale \"(N=2000)\" in their headers. Given how much of\nAppendix A changed between -06 and -08, another pass over it seems\nwarranted.",
       "createdAt": "2026-08-11T04:11:47Z",
-      "updatedAt": "2026-08-11T04:11:47Z",
-      "closedAt": null,
+      "updatedAt": "2026-08-13T09:42:30Z",
+      "closedAt": "2026-08-13T09:42:30Z",
       "comments": []
     }
   ],
@@ -6265,24 +6265,26 @@
       "id": "PR_kwDOK4gIBc79ZHEh",
       "title": "Corrections following review by Mahesh Jethanandani",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/111",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "gorryfair",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Corrected N= in example,  added a sction no to RFC 5681 and updated acknowledgments section.\r\n\r\nResolves #110 ",
       "createdAt": "2026-08-11T07:44:54Z",
-      "updatedAt": "2026-08-12T09:14:11Z",
+      "updatedAt": "2026-08-13T09:42:29Z",
       "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "e52ab0ea95ae7e3fde8bf72e243a6f21a5fda656",
       "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
       "headRefName": "gorryfair-patch-20",
       "headRefOid": "28c341357e2bd928c589b397cb97ba3d9d2b98b5",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-08-13T09:42:29Z",
+      "mergedAt": "2026-08-13T09:42:29Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "0b20828272fa80d186bd81dd84d5eb51abd75794"
+      },
       "comments": [],
       "reviews": [
         {
