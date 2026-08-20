@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-16T01:26:59.183906+00:00",
+  "timestamp": "2026-08-20T01:21:50.794874+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1337,6 +1337,22 @@
       "createdAt": "2026-08-11T04:11:47Z",
       "updatedAt": "2026-08-13T09:42:30Z",
       "closedAt": "2026-08-13T09:42:30Z",
+      "comments": []
+    },
+    {
+      "number": 112,
+      "id": "I_kwDOK4gIBc8AAAABNLEYrQ",
+      "title": "Still problems in the appendix",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/112",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Review from Mike Bishop:\n\n`This draft is mostly ready to go to the RFC Editor, with one item outstanding \u2014 Mahesh's updated ballot calls out some issues in Appendix A that were only partially addressed in -09. Can you take another pass over that and make sure everything is correct?\n\nSpecifically, \"(N=2000)\" was corrected to \"(N=1000)\", but the header still says \"Received 10 ACKs\" while twenty ACK lines actually follow it, and \"ACK for 19000\" still appears twice in a row. Round 3 has the same undercount problem: the header reads \"Received 2 ACKs\" but four ACK lines (13000\u201316000) follow.`",
+      "createdAt": "2026-08-18T06:51:07Z",
+      "updatedAt": "2026-08-18T06:51:07Z",
+      "closedAt": null,
       "comments": []
     }
   ],
