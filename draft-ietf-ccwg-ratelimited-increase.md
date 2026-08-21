@@ -449,7 +449,6 @@ Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.
   *  Corrections and additions proposed by Mahesh Jethanandani
 * draft-ietf-ccwg-ratelimited-increase-10
   *  Corrections to accounting of bytes in example in the Appendix
-    
 # Acknowledgments
 {:numbered="false"}
 
