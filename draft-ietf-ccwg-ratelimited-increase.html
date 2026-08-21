@@ -17,14 +17,14 @@ Such a limitation can be caused by the sending application not supplying data or
 <meta content="draft-ietf-ccwg-ratelimited-increase-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.34.0
-    Python 3.14.5
+    Python 3.14.7
     ConfigArgParse 1.7.5
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.11.0
+    platformdirs 4.11.3
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -1048,7 +1048,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Welzl, et al.</td>
-<td class="center">Expires 14 February 2027</td>
+<td class="center">Expires 22 February 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg {
 <a href="https://www.rfc-editor.org/rfc/rfc4341" class="eref">4341</a>, <a href="https://www.rfc-editor.org/rfc/rfc5681" class="eref">5681</a>, <a href="https://www.rfc-editor.org/rfc/rfc9002" class="eref">9002</a>, <a href="https://www.rfc-editor.org/rfc/rfc9260" class="eref">9260</a>, <a href="https://www.rfc-editor.org/rfc/rfc9438" class="eref">9438</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-08-13" class="published">13 August 2026</time>
+<time datetime="2026-08-21" class="published">21 August 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-02-14">14 February 2027</time></dd>
+<dd class="expires"><time datetime="2027-02-22">22 February 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1132,7 +1132,7 @@ Such a limitation can be caused by the sending application not supplying data or
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1571,7 +1571,7 @@ can protect their congestion control algorithm from network attack. This is orth
       <h2 id="name-an-example-using-cwnd-repre">
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-an-example-using-cwnd-repre" class="section-name selfRef">An Example Using cwnd Represented in Bytes</a>
       </h2>
-<p id="appendix-A-1">The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The SMSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement. For simplicity, in this example the receiver sends an ACK for each received packet.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The SMSS (QUIC MPS)=1000 bytes. N is the number of previously unacknowledged bytes in a received acknowledgement. For simplicity, in this example the receiver sends an ACK for each received packet.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">The initial sender state is:<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-3">
 <pre>
@@ -1580,7 +1580,8 @@ can protect their congestion control algorithm from network attack. This is orth
   cwnd = 10000 bytes (initcwnd)
   maxFS = 10000 bytes (initcwnd)
   FlightSize (FS) = 0 bytes
-  ssthresh is infinity, i.e. the congestion control algorithm is in slow start.
+  ssthresh is infinity, i.e. the congestion control algorithm
+  is in slow start.
 </pre><a href="#appendix-A-3" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A-4">The network path’s bandwidth-delay product is such that, throughout this example,
@@ -1643,7 +1644,7 @@ cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-12" class="pilc
   Send seqno=15000; FS=4000; maxFS=10000
 </pre><a href="#appendix-A-16" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-17">Received 2 ACKs (N=1000); maxFS=10000
+<p id="appendix-A-17">Received 4 ACKs (N=1000); maxFS=10000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-17" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-18">
 <pre>
@@ -1679,12 +1680,12 @@ cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-17" class="pilc
   Send seqno=35000; FS=20000; maxFS=20000
 </pre><a href="#appendix-A-21" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-22">Received 10 ACKs (N=1000); maxFS=20000
+<p id="appendix-A-22">Received 20 ACKs (N=1000); maxFS=20000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-22" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-23">
 <pre>
-  ACK for 18000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=21000
-  ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=22000
+  ACK for 17000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=21000
+  ACK for 18000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=22000
   ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=23000
   ACK for 20000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=24000
   ACK for 21000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=25000
@@ -1884,9 +1885,19 @@ cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-22" class="pilc
 </li>
         <li class="normal" id="appendix-B-1.14">
           <p id="appendix-B-1.14.1">draft-ietf-ccwg-ratelimited-increase-09<a href="#appendix-B-1.14.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-1.14.2.1">
+              <p id="appendix-B-1.14.2.1.1">Corrections and additions proposed by Mahesh Jethanandani<a href="#appendix-B-1.14.2.1.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
 </li>
         <li class="normal" id="appendix-B-1.15">
-          <p id="appendix-B-1.15.1">Corrections and additions proposed by Mahesh Jethanandani<a href="#appendix-B-1.15.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-1.15.1">draft-ietf-ccwg-ratelimited-increase-10<a href="#appendix-B-1.15.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-1.15.2.1">
+              <p id="appendix-B-1.15.2.1.1">Corrections to accounting of bytes in example in the Appendix<a href="#appendix-B-1.15.2.1.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
 </li>
       </ul>
 </section>

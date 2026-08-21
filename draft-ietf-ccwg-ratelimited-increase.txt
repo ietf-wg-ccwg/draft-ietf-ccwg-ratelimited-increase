@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: 4341, 5681, 9002, 9260, 9438 (if                   T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 14 February 2027                         University of Aberdeen
+Expires: 22 February 2027                         University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                          13 August 2026
+                                                          21 August 2026
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 February 2027.
+   This Internet-Draft will expire on 22 February 2027.
 
 Copyright Notice
 
@@ -459,18 +459,19 @@ Appendix A.  An Example Using cwnd Represented in Bytes
    TCP) are sent in this example over four rounds of transmission.  This
    shows the initial growth of the cwnd by a rate-limited sender,
    followed by a transmission that uses the full available cwnd.  The
-   SMSS (QUIC MPS)=1000.  N is the number of previously unacknowledged
-   bytes in a received acknowledgement.  For simplicity, in this example
-   the receiver sends an ACK for each received packet.
+   SMSS (QUIC MPS)=1000 bytes.  N is the number of previously
+   unacknowledged bytes in a received acknowledgement.  For simplicity,
+   in this example the receiver sends an ACK for each received packet.
 
    The initial sender state is:
 
-  Sender sequence number (seqno) = 0
-  SMSS = 1000 bytes
-  cwnd = 10000 bytes (initcwnd)
-  maxFS = 10000 bytes (initcwnd)
-  FlightSize (FS) = 0 bytes
-  ssthresh is infinity, i.e. the congestion control algorithm is in slow start.
+     Sender sequence number (seqno) = 0
+     SMSS = 1000 bytes
+     cwnd = 10000 bytes (initcwnd)
+     maxFS = 10000 bytes (initcwnd)
+     FlightSize (FS) = 0 bytes
+     ssthresh is infinity, i.e. the congestion control algorithm
+     is in slow start.
 
    The network path’s bandwidth-delay product is such that, throughout
    this example, all packets in each round are sent before an ACK is
@@ -530,7 +531,7 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send seqno=14000; FS=3000; maxFS=10000
      Send seqno=15000; FS=4000; maxFS=10000
 
-   Received 2 ACKs (N=1000); maxFS=10000 cwnd_new += N; cwnd =
+   Received 4 ACKs (N=1000); maxFS=10000 cwnd_new += N; cwnd =
    min(cwnd_new, 2*maxFS)
 
      ACK for 13000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
@@ -564,11 +565,11 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send seqno=34000; FS=19000; maxFS=19000
      Send seqno=35000; FS=20000; maxFS=20000
 
-   Received 10 ACKs (N=1000); maxFS=20000 cwnd_new += N; cwnd =
+   Received 20 ACKs (N=1000); maxFS=20000 cwnd_new += N; cwnd =
    min(cwnd_new, 2*maxFS)
 
-     ACK for 18000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=21000
-     ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=22000
+     ACK for 17000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=21000
+     ACK for 18000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=22000
      ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=23000
      ACK for 20000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=24000
      ACK for 21000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=25000
@@ -705,7 +706,11 @@ Appendix B.  Change Log
 
    *  draft-ietf-ccwg-ratelimited-increase-09
 
-   *  Corrections and additions proposed by Mahesh Jethanandani
+      -  Corrections and additions proposed by Mahesh Jethanandani
+
+   *  draft-ietf-ccwg-ratelimited-increase-10
+
+      -  Corrections to accounting of bytes in example in the Appendix
 
 Acknowledgments
 
