@@ -252,7 +252,7 @@ This document requests no IANA action.
 
 # An Example Using cwnd Represented in Bytes
 
-The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The SMSS (QUIC MPS)=1000. N is the number of previously unacknowledged bytes in a received acknowledgement. For simplicity, in this example the receiver sends an ACK for each received packet.
+The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The SMSS (QUIC MPS)=1000 bytes. N is the number of previously unacknowledged bytes in a received acknowledgement. For simplicity, in this example the receiver sends an ACK for each received packet.
 
 The initial sender state is:
 
@@ -262,7 +262,8 @@ The initial sender state is:
   cwnd = 10000 bytes (initcwnd)
   maxFS = 10000 bytes (initcwnd)
   FlightSize (FS) = 0 bytes
-  ssthresh is infinity, i.e. the congestion control algorithm is in slow start.
+  ssthresh is infinity, i.e. the congestion control algorithm
+  is in slow start.
 ~~~~~~~~~~
 
 The network path’s bandwidth-delay product is such that, throughout this example,
@@ -328,7 +329,7 @@ Round 3, the sender has 4000B to send in 4 packets (1000B), cwnd=20000
   Send seqno=15000; FS=4000; maxFS=10000
 ~~~~~~~~~~
 
-Received 2 ACKs (N=1000); maxFS=10000
+Received 4 ACKs (N=1000); maxFS=10000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
@@ -365,12 +366,12 @@ Round 4, the sender has 20000B to send in 20 packets (1000B), cwnd=20000
   Send seqno=35000; FS=20000; maxFS=20000
 ~~~~~~~~~~
 
-Received 10 ACKs (N=1000); maxFS=20000
+Received 20 ACKs (N=1000); maxFS=20000
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
-  ACK for 18000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=21000
-  ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=22000
+  ACK for 17000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=21000
+  ACK for 18000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=22000
   ACK for 19000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=23000
   ACK for 20000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=24000
   ACK for 21000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=25000
@@ -445,8 +446,9 @@ Note: In this round, maxFS increased and therefore cwnd increased to 2*maxFS.
 * draft-ietf-ccwg-ratelimited-increase-08
   * Addressed a comment from Eric Vyncke about the paragraph on rate-based cc. algs.
 * draft-ietf-ccwg-ratelimited-increase-09
-*  Corrections and additions proposed by Mahesh Jethanandani
-
+  *  Corrections and additions proposed by Mahesh Jethanandani
+* draft-ietf-ccwg-ratelimited-increase-10
+  *  Corrections and additions to accounting of bytes in example in the Appendix.
 # Acknowledgments
 {:numbered="false"}
 
