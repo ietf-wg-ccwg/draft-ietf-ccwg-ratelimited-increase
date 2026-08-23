@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-20T01:21:50.794874+00:00",
+  "timestamp": "2026-08-23T01:34:43.984405+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1344,15 +1344,15 @@
       "id": "I_kwDOK4gIBc8AAAABNLEYrQ",
       "title": "Still problems in the appendix",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/112",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Review from Mike Bishop:\n\n`This draft is mostly ready to go to the RFC Editor, with one item outstanding \u2014 Mahesh's updated ballot calls out some issues in Appendix A that were only partially addressed in -09. Can you take another pass over that and make sure everything is correct?\n\nSpecifically, \"(N=2000)\" was corrected to \"(N=1000)\", but the header still says \"Received 10 ACKs\" while twenty ACK lines actually follow it, and \"ACK for 19000\" still appears twice in a row. Round 3 has the same undercount problem: the header reads \"Received 2 ACKs\" but four ACK lines (13000\u201316000) follow.`",
       "createdAt": "2026-08-18T06:51:07Z",
-      "updatedAt": "2026-08-18T06:51:07Z",
-      "closedAt": null,
+      "updatedAt": "2026-08-21T13:04:23Z",
+      "closedAt": "2026-08-21T13:04:23Z",
       "comments": []
     }
   ],
@@ -6415,6 +6415,101 @@
               "updatedAt": "2026-08-12T09:14:11Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 113,
+      "id": "PR_kwDOK4gIBc8AAAABAg_N7g",
+      "title": "Fix cwnd example and update acknowledgments",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/113",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Corrected and clarified the cwnd example and updated acknowledgments.",
+      "createdAt": "2026-08-21T07:03:34Z",
+      "updatedAt": "2026-08-21T13:04:22Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "0b20828272fa80d186bd81dd84d5eb51abd75794",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-21",
+      "headRefOid": "f5bc1bb46cdb02122c4086409b2c48243017a419",
+      "closedAt": "2026-08-21T13:04:22Z",
+      "mergedAt": "2026-08-21T13:04:22Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "235b6eb3130d8d0f0184a42a973abacd06f44543"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABKXfiZQ",
+          "commit": {
+            "abbreviatedOid": "3bc2adf"
+          },
+          "author": "github-actions",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-21T07:12:34Z",
+          "updatedAt": "2026-08-21T07:12:34Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "````suggestion\n\n````",
+              "createdAt": "2026-08-21T07:12:34Z",
+              "updatedAt": "2026-08-21T07:12:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABKZBhEQ",
+          "commit": {
+            "abbreviatedOid": "4b57b58"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-21T10:20:07Z",
+          "updatedAt": "2026-08-21T10:20:07Z",
+          "comments": [
+            {
+              "originalPosition": 52,
+              "body": "```suggestion\n  *  Corrections to accounting of bytes in example in the Appendix\n\n```",
+              "createdAt": "2026-08-21T10:20:07Z",
+              "updatedAt": "2026-08-21T10:20:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABKZGozA",
+          "commit": {
+            "abbreviatedOid": "f5bc1bb"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-08-21T10:32:29Z",
+          "updatedAt": "2026-08-21T10:32:29Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABKaCz8g",
+          "commit": {
+            "abbreviatedOid": "f5bc1bb"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-08-21T12:48:50Z",
+          "updatedAt": "2026-08-21T12:48:50Z",
+          "comments": []
         }
       ]
     }
