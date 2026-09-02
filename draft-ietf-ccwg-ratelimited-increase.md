@@ -211,11 +211,21 @@ increase cwnd only if the current congestion window is being fully utilized and 
 is not in Fast Recovery.
 Only when these two conditions are met can the cwnd be increased; otherwise, the cwnd MUST NOT be increased."
 
-The quoted statement from {{!RFC9260}} limits cwnd growth in accordance with Rate-Limited Increase, but it is more conservative. {{Section 7.2.1 of !RFC9260}} only discusses Slow Start. Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}}; however, this section does not contain a similar rule. It is therefore clear that the quoted statement from {{!RFC9260}} only applies to Slow Start.
+The quoted statement from {{!RFC9260}} limits cwnd growth in accordance with Rate-Limited Increase, but it is more conservative. {{Section 7.2.1 of !RFC9260}} only discusses Slow Start; Congestion Avoidance is discussed in {{Section 7.2.2 of !RFC9260}} and is addressed separately below.
 
-This document updates {{!RFC9260}} by replacing the final sentence of the quoted text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
+This document updates {{Section 7.2.1 of !RFC9260}} as follows, to specify when the cwnd is increased when the sender is rate-limited:
 
-{{Section 7.2.2 of !RFC9260}} is also updated to add text in {{rules}}.
+- In the first sentence of the quoted text, the words "the current congestion window is being fully utilized and" are removed, so that the use of the slow-start algorithm to increase the cwnd is conditioned only on the data sender not being in Fast Recovery.
+- The final sentence of the quoted text is replaced with the text in {{rules}}.
+- In the sentence that immediately follows the quoted text ("If these conditions are met, then cwnd MUST be increased by, at most, the lesser of ..."), the words "these conditions are" are replaced with "this condition is".
+
+For Congestion Avoidance, {{Section 7.2.2 of !RFC9260}} recommends that "SCTP SHOULD increment cwnd by PMDCS once per RTT when the sender has cwnd or more bytes of data outstanding for the corresponding transport address", and further states:
+
+>"SCTP MUST NOT increment cwnd by more than PMDCS per RTT."
+
+These statements also limit cwnd growth in accordance with Rate-Limited Increase, but they are more conservative.
+
+This document updates {{Section 7.2.2 of !RFC9260}} by adding, after the statement "SCTP MUST NOT increment cwnd by more than PMDCS per RTT.", the text in {{rules}}. The SHOULD-level recommendation remains in place: a sender that follows it will not increase the cwnd while it is rate-limited. Based on the explanations in the present document, a sender can instead increase the cwnd while it is rate-limited, provided that the cwnd never exceeds limit(maxFS), as specified in {{rules}}.
 
 This ensures that the update applies to both Slow Start and Congestion Avoidance.
 
