@@ -230,7 +230,7 @@ This limits the cwnd growth in accordance with Rate-Limited Increase, but it
 is more conservative.
 
 This document updates {{!RFC9438}} by replacing the quoted text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
-The last sentence of {{Section 5.8 of !RFC9438}} regarding {{Section 4.2}} and inclusion of application-limited periods is unchanged by this document.
+The last sentence of {{Section 5.8 of !RFC9438}} regarding {{Section 4.2 of !RFC9438}} and inclusion of application-limited periods is unchanged by this document.
 
 # Security Considerations
 
