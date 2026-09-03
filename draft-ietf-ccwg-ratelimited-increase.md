@@ -106,7 +106,7 @@ This document uses the terms defined in {{Section 2 of !RFC5681}}.
 Additionally, the following are defined:
 
 - cwnd-limited: A flow that has sent the maximum number of segments permitted by the cwnd, where the application utilises the allowed sending rate (based on the definition for TCP in Section 4.5.3 of {{?RFC7661}}).
-- rate-limited: A flow that does not consume more than one half of cwnd and hence operates in the non-validated phase. This includes periods when an application is either idle or chooses to send at a rate less than the maximum permitted by the cwnd (based on the definition for TCP in Section 3 of {{?RFC7661}}).
+- rate-limited: Periods when a flow is either idle or the sender chooses to send at a rate less than the maximum permitted by the cwnd. (Note: Section 3 of {{?RFC7661}} provides a more specific definition applied to the reduction of the cwnd when a sender remains rate-limited for a period of time).
 - initcwnd: The initial value of the congestion window, also known as the "initial window" ("IW" in {{!RFC5681}}).
 - maxFS: the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer, and at least as large as initcwnd.
 
