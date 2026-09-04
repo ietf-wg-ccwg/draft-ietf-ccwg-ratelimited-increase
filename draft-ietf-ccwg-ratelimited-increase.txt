@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: 4341, 5681, 9002, 9260, 9438 (if                   T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 7 March 2027                             University of Aberdeen
+Expires: 8 March 2027                             University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                        3 September 2026
+                                                        4 September 2026
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 March 2027.
+   This Internet-Draft will expire on 8 March 2027.
 
 Copyright Notice
 
@@ -179,7 +179,8 @@ Table of Contents
       zero.  This ensures that maxFS is reinitialized using the first
       FlightSize measurement taken after the cwnd reduction.
 
-   *  The sender MUST cap cwnd to be no larger than limit(maxFS).
+   *  When increasing cwnd, the sender MUST cap cwnd to become no larger
+      than limit(maxFS).
 
    The function limit() returns the maximum cwnd value the congestion
    control algorithm would yield by increasing for all ACKs that would
