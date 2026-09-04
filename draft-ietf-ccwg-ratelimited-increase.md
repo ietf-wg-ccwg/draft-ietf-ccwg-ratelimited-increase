@@ -330,7 +330,7 @@ Round 3, the sender has 4000B to send in 4 packets (1000B), cwnd=20000
 ~~~~~~~~~~
 
 Received 4 ACKs (N=1000); maxFS=10000;
-cwnd_new += min(N, SMSS)N; cwnd = min(cwnd_new, 2*maxFS)
+cwnd_new += min(N, SMSS); cwnd = min(cwnd_new, 2*maxFS)
 
 ~~~~~~~~~~
   ACK for 13000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
