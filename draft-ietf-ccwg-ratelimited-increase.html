@@ -1309,7 +1309,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-rate-limited-increase">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-rate-limited-increase" class="section-name selfRef">Rate-Limited Increase</a>
       </h2>
-<p id="section-3-1">When FlightSize &lt; cwnd, regardless of the current state of a congestion control algorithm, the following  "Rate-Limited Increase" rules apply for senders using a congestion controlled transport protocol:<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">When a sender using a congestion control algorithm increases cwnd, the following "Rate-Limited Increase" rules apply:<a href="#section-3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3-2.1">
           <p id="section-3-2.1.1">The sender <span class="bcp14">MUST</span> initialise the maxFS parameter to initcwnd when the congestion control algorithm is started. Thereafter, when the FlightSize is updated, the sender also updates the maxFS:<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
