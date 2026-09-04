@@ -1262,7 +1262,7 @@ even though the congestion control rules would allow it to transmit data.
 This could occur because the application has not provided sufficient data to fully utilize the congestion window (cwnd).
 It could also occur because the receiver has limited the sender using flow control
 (e.g., by the advertised TCP receiver window (rwnd) or by the connection or stream flow credit in QUIC).
-Current RFCs specifying congestion control algorithms diverge regarding the rules for increasing the cwnd when the sender is rate-limited. This document provides a uniform behavior in (<a href="#rules" class="auto internal xref">Section 3</a>), and specifies updates to RFCs 4341, 5681, 9002, 9260, and 9438 in (<a href="#rfc-updates" class="auto internal xref">Section 4</a>).<a href="#section-1-1" class="pilcrow">¶</a></p>
+Current RFCs specifying congestion control algorithms diverge regarding the rules for increasing the cwnd when the sender is rate-limited. This document provides a uniform behavior in <a href="#rules" class="auto internal xref">Section 3</a>, and specifies updates to RFCs 4341, 5681, 9002, 9260, and 9438 in <a href="#rfc-updates" class="auto internal xref">Section 4</a>.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">Congestion Window Validation (CWV) <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span> provides an experimental specification defining how to manage a cwnd that has
 become larger than the current flight size, and how to respond to detected congestion when this is the case.
 In contrast, this present document concerns the increase in cwnd when a sender is rate-limited. These two topics are distinct,
@@ -1345,7 +1345,7 @@ cwnd = min(cwnd_new, SMSS+maxFS)
 </pre><a href="#section-3-9" class="pilcrow">¶</a>
 </div>
 <p id="section-3-10">where cwnd and SMSS follow their definitions in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>.<a href="#section-3-10" class="pilcrow">¶</a></p>
-<p id="section-3-11">NOTE: This specification defines the current method used to increase the cwnd for a rate-limited sender. Without a way to reduce cwnd when the transport sender becomes rate-limited, maxFS can stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. This can be remedied by "Congestion Window Validation" in <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>, which also defines a "pipeACK" variable that measures the recently acknowledged size of the network pipe when the sender was rate-limited.<a href="#section-3-11" class="pilcrow">¶</a></p>
+<p id="section-3-11">NOTE: This specification defines the method used to increase the cwnd for a rate-limited sender. Without a way to reduce cwnd when the transport sender becomes rate-limited, maxFS can stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. This can be remedied by "Congestion Window Validation" in <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span>, which also defines a "pipeACK" variable that measures the recently acknowledged size of the network pipe when the sender was rate-limited.<a href="#section-3-11" class="pilcrow">¶</a></p>
 <div id="example">
 <section id="section-3.1">
         <h3 id="name-example">
@@ -1365,7 +1365,7 @@ cwnd = min(cwnd_new, SMSS+maxFS)
           <h4 id="name-sender-constrained-by-rate-">
 <a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-sender-constrained-by-rate-" class="section-name selfRef">Sender constrained by Rate-Limited Increase</a>
           </h4>
-<p id="section-3.1.2-1">Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are both 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 new segments, Rate-Limited Increase constrains the growth of the cwnd because FlightSize &lt; cwnd and therefore this caps the cwnd to be no larger than limit(maxFS) = 2 X maxFS = 2 X 10 segments = 20 segments.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-1">Initially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are both 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 new segments, Rate-Limited Increase constrains the growth of the cwnd because FlightSize &lt; cwnd and therefore this caps the cwnd to be no larger than limit(maxFS) = 2<em>maxFS = 2</em>10 segments = 20 segments.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1438,7 +1438,7 @@ when a TCP sender is unable to send at the maximum rate allowed by the cwnd.<a h
 </li>
         </ul>
 <p id="section-4.3-3">This limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
-<p id="section-4.3-4">This document updates <span>[<a href="#RFC9002" class="cite xref">RFC9002</a>]</span> by replacing the final sentence of the cited text with the text in <a href="#rules" class="auto internal xref">Section 3</a> to specify how the cwnd is managed when the sender is rate-limited.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+<p id="section-4.3-4">This document updates <span>[<a href="#RFC9002" class="cite xref">RFC9002</a>]</span> by replacing the final sentence of the quoted text with the text in <a href="#rules" class="auto internal xref">Section 3</a> to specify how the cwnd is managed when the sender is rate-limited.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="rfc-9260-stream-control-transmission-protocol">
@@ -1469,12 +1469,13 @@ Only when these two conditions are met can the cwnd be increased; otherwise, the
 <p id="section-4.5-1"><span><a href="https://rfc-editor.org/rfc/rfc9438#section-5.8" class="relref">Section 5.8</a> of [<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> states:<a href="#section-4.5-1" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-4.5-2.1">
-            <p id="section-4.5-2.1.1">"Cubic doesn't increase cwnd when it's limited by the sending application or rwnd".<a href="#section-4.5-2.1.1" class="pilcrow">¶</a></p>
+            <p id="section-4.5-2.1.1">"CUBIC does not increase its congestion window if a flow is application limited".<a href="#section-4.5-2.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-4.5-3">This limits the cwnd growth in accordance with Rate-Limited Increase, but it
 is more conservative.<a href="#section-4.5-3" class="pilcrow">¶</a></p>
-<p id="section-4.5-4">This document updates <span>[<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> by replacing the quoted text with the text in <a href="#rules" class="auto internal xref">Section 3</a> to specify how the cwnd is managed when the sender is rate-limited.<a href="#section-4.5-4" class="pilcrow">¶</a></p>
+<p id="section-4.5-4">This document updates <span>[<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> by replacing the quoted text with the text in <a href="#rules" class="auto internal xref">Section 3</a> to specify how the cwnd is managed when the sender is rate-limited.
+The last sentence of <span><a href="https://rfc-editor.org/rfc/rfc9438#section-5.8" class="relref">Section 5.8</a> of [<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> regarding <span><a href="https://rfc-editor.org/rfc/rfc9438#section-4.2" class="relref">Section 4.2</a> of [<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> and inclusion of application-limited periods is unchanged by this document.<a href="#section-4.5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1571,7 +1572,7 @@ can protect their congestion control algorithm from network attack. This is orth
       <h2 id="name-an-example-using-cwnd-repre">
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-an-example-using-cwnd-repre" class="section-name selfRef">An Example Using cwnd Represented in Bytes</a>
       </h2>
-<p id="appendix-A-1">The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The SMSS (QUIC MPS)=1000 bytes. N is the number of previously unacknowledged bytes in a received acknowledgement. For simplicity, in this example the receiver sends an ACK for each received packet.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">The following informative example is provided for a sender that maintains the cwnd in bytes. 36 packets (or segments in the case of TCP) are sent in this example over four rounds of transmission. This shows the initial growth of the cwnd by a rate-limited sender, followed by a transmission that uses the full available cwnd. The SMSS (QUIC max_datagram_size)=1000 bytes. N is the number of previously unacknowledged bytes in a received acknowledgement. For simplicity, in this example the receiver sends an ACK for each received packet.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">The initial sender state is:<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-3">
 <pre>
@@ -1580,11 +1581,11 @@ can protect their congestion control algorithm from network attack. This is orth
   cwnd = 10000 bytes (initcwnd)
   maxFS = 10000 bytes (initcwnd)
   FlightSize (FS) = 0 bytes
-  ssthresh is infinity, i.e. the congestion control algorithm
+  ssthresh is infinity, i.e., the congestion control algorithm
   is in slow start.
 </pre><a href="#appendix-A-3" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-4">The network path’s bandwidth-delay product is such that, throughout this example,
+<p id="appendix-A-4">The network path's bandwidth-delay product is such that, throughout this example,
 all packets in each round are sent before an ACK is received for the first packet in a round.
 One ACK is generated for each received packet.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
 <p id="appendix-A-5">Round 1, the sender has 4000B to send in 4 packets (1000B);  cwnd=10000<a href="#appendix-A-5" class="pilcrow">¶</a></p>
@@ -1596,11 +1597,11 @@ One ACK is generated for each received packet.<a href="#appendix-A-4" class="pil
   Send  seqno=3000; FS=4000; maxFS=10000
 </pre><a href="#appendix-A-6" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-7">Received 4 ACKs (each N=1000); maxFS=10000
+<p id="appendix-A-7">Received 4 ACKs (each N=1000); maxFS=10000;
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-7" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-8">
 <pre>
-  ACK for  1000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=11000
+  ACK for  1000 ACK'ed=1000; FS-=1000: cwnd+= 1000; cwnd=11000
   ACK for  2000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=12000
   ACK for  3000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=13000
   ACK for  4000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=14000
@@ -1620,8 +1621,8 @@ cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-7" class="pilcr
   Send seqno=11000; FS=8000; maxFS=10000
 </pre><a href="#appendix-A-11" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-12">Received 8 ACKs (N=1000); maxFS=10000
-cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-12" class="pilcrow">¶</a></p>
+<p id="appendix-A-12">Received 8 ACKs (N=1000); maxFS=10000;
+cwnd_new += min(N, SMSS); cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-12" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-13">
 <pre>
   ACK for  5000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=15000
@@ -1644,8 +1645,8 @@ cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-12" class="pilc
   Send seqno=15000; FS=4000; maxFS=10000
 </pre><a href="#appendix-A-16" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-17">Received 4 ACKs (N=1000); maxFS=10000
-cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-17" class="pilcrow">¶</a></p>
+<p id="appendix-A-17">Received 4 ACKs (N=1000); maxFS=10000;
+cwnd_new += min(N, SMSS); cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-17" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-18">
 <pre>
   ACK for 13000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
@@ -1680,7 +1681,7 @@ cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-17" class="pilc
   Send seqno=35000; FS=20000; maxFS=20000
 </pre><a href="#appendix-A-21" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-22">Received 20 ACKs (N=1000); maxFS=20000
+<p id="appendix-A-22">Received 20 ACKs (N=1000); maxFS=20000;
 cwnd_new += N; cwnd = min(cwnd_new, 2*maxFS)<a href="#appendix-A-22" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A-23">
 <pre>

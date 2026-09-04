@@ -114,8 +114,8 @@ Table of Contents
    flow credit in QUIC).  Current RFCs specifying congestion control
    algorithms diverge regarding the rules for increasing the cwnd when
    the sender is rate-limited.  This document provides a uniform
-   behavior in (Section 3), and specifies updates to RFCs 4341, 5681,
-   9002, 9260, and 9438 in (Section 4).
+   behavior in Section 3, and specifies updates to RFCs 4341, 5681,
+   9002, 9260, and 9438 in Section 4.
 
    Congestion Window Validation (CWV) [RFC7661] provides an experimental
    specification defining how to manage a cwnd that has become larger
@@ -202,11 +202,11 @@ Table of Contents
 
    where cwnd and SMSS follow their definitions in [RFC5681].
 
-   NOTE: This specification defines the current method used to increase
-   the cwnd for a rate-limited sender.  Without a way to reduce cwnd
-   when the transport sender becomes rate-limited, maxFS can stay valid
-   for a long time, possibly not reflecting the reality of the end-to-
-   end Internet path in use.  This can be remedied by "Congestion Window
+   NOTE: This specification defines the method used to increase the cwnd
+   for a rate-limited sender.  Without a way to reduce cwnd when the
+   transport sender becomes rate-limited, maxFS can stay valid for a
+   long time, possibly not reflecting the reality of the end-to-end
+   Internet path in use.  This can be remedied by "Congestion Window
    Validation" in [RFC7661], which also defines a "pipeACK" variable
    that measures the recently acknowledged size of the network pipe when
    the sender was rate-limited.
@@ -247,7 +247,7 @@ Table of Contents
    20 segments.  Subsequently, when the sender resumes and transmits 4
    new segments, Rate-Limited Increase constrains the growth of the cwnd
    because FlightSize < cwnd and therefore this caps the cwnd to be no
-   larger than limit(maxFS) = 2 X maxFS = 2 X 10 segments = 20 segments.
+   larger than limit(maxFS) = 2_maxFS = 2_10 segments = 20 segments.
 
 3.2.  Discussion
 
@@ -334,7 +334,7 @@ Table of Contents
    but it is more conservative.
 
    This document updates [RFC9002] by replacing the final sentence of
-   the cited text with the text in Section 3 to specify how the cwnd is
+   the quoted text with the text in Section 3 to specify how the cwnd is
    managed when the sender is rate-limited.
 
 4.4.  RFC 9260: Stream Control Transmission Protocol
@@ -368,15 +368,17 @@ Table of Contents
 
    Section 5.8 of [RFC9438] states:
 
-      "Cubic doesn't increase cwnd when it's limited by the sending
-      application or rwnd".
+      "CUBIC does not increase its congestion window if a flow is
+      application limited".
 
    This limits the cwnd growth in accordance with Rate-Limited Increase,
    but it is more conservative.
 
    This document updates [RFC9438] by replacing the quoted text with the
    text in Section 3 to specify how the cwnd is managed when the sender
-   is rate-limited.
+   is rate-limited.  The last sentence of Section 5.8 of [RFC9438]
+   regarding Section 4.2 of [RFC9438] and inclusion of application-
+   limited periods is unchanged by this document.
 
 5.  Security Considerations
 
@@ -458,9 +460,10 @@ Appendix A.  An Example Using cwnd Represented in Bytes
    TCP) are sent in this example over four rounds of transmission.  This
    shows the initial growth of the cwnd by a rate-limited sender,
    followed by a transmission that uses the full available cwnd.  The
-   SMSS (QUIC MPS)=1000 bytes.  N is the number of previously
-   unacknowledged bytes in a received acknowledgement.  For simplicity,
-   in this example the receiver sends an ACK for each received packet.
+   SMSS (QUIC max_datagram_size)=1000 bytes.  N is the number of
+   previously unacknowledged bytes in a received acknowledgement.  For
+   simplicity, in this example the receiver sends an ACK for each
+   received packet.
 
    The initial sender state is:
 
@@ -469,10 +472,10 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      cwnd = 10000 bytes (initcwnd)
      maxFS = 10000 bytes (initcwnd)
      FlightSize (FS) = 0 bytes
-     ssthresh is infinity, i.e. the congestion control algorithm
+     ssthresh is infinity, i.e., the congestion control algorithm
      is in slow start.
 
-   The network path’s bandwidth-delay product is such that, throughout
+   The network path's bandwidth-delay product is such that, throughout
    this example, all packets in each round are sent before an ACK is
    received for the first packet in a round.  One ACK is generated for
    each received packet.
@@ -485,10 +488,10 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send  seqno=2000; FS=3000; maxFS=10000
      Send  seqno=3000; FS=4000; maxFS=10000
 
-   Received 4 ACKs (each N=1000); maxFS=10000 cwnd_new += N; cwnd =
+   Received 4 ACKs (each N=1000); maxFS=10000; cwnd_new += N; cwnd =
    min(cwnd_new, 2*maxFS)
 
-     ACK for  1000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=11000
+     ACK for  1000 ACK'ed=1000; FS-=1000: cwnd+= 1000; cwnd=11000
      ACK for  2000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=12000
      ACK for  3000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=13000
      ACK for  4000 ACK’ed=1000; FS-=1000: cwnd+= 1000; cwnd=14000
@@ -507,8 +510,8 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send seqno=10000; FS=7000; maxFS=10000
      Send seqno=11000; FS=8000; maxFS=10000
 
-   Received 8 ACKs (N=1000); maxFS=10000 cwnd_new += N; cwnd =
-   min(cwnd_new, 2*maxFS)
+   Received 8 ACKs (N=1000); maxFS=10000; cwnd_new += min(N, SMSS); cwnd
+   = min(cwnd_new, 2*maxFS)
 
      ACK for  5000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=15000
      ACK for  6000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=16000
@@ -530,8 +533,8 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send seqno=14000; FS=3000; maxFS=10000
      Send seqno=15000; FS=4000; maxFS=10000
 
-   Received 4 ACKs (N=1000); maxFS=10000 cwnd_new += N; cwnd =
-   min(cwnd_new, 2*maxFS)
+   Received 4 ACKs (N=1000); maxFS=10000; cwnd_new += min(N, SMSS); cwnd
+   = min(cwnd_new, 2*maxFS)
 
      ACK for 13000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
      ACK for 14000 ACK’ed=1000; FS-=1000: cwnd+=0;    cwnd=20000
@@ -564,7 +567,7 @@ Appendix A.  An Example Using cwnd Represented in Bytes
      Send seqno=34000; FS=19000; maxFS=19000
      Send seqno=35000; FS=20000; maxFS=20000
 
-   Received 20 ACKs (N=1000); maxFS=20000 cwnd_new += N; cwnd =
+   Received 20 ACKs (N=1000); maxFS=20000; cwnd_new += N; cwnd =
    min(cwnd_new, 2*maxFS)
 
      ACK for 17000 ACK’ed=1000; FS-=1000: cwnd+=1000; cwnd=21000
