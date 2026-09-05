@@ -7,10 +7,10 @@ Internet-Draft                                        University of Oslo
 Updates: 4341, 5681, 9002, 9260, 9438 (if                   T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 8 March 2027                             University of Aberdeen
+Expires: 9 March 2027                             University of Aberdeen
                                                          M. P. Tahiliani
                               National Institute of Technology Karnataka
-                                                        4 September 2026
+                                                        5 September 2026
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 March 2027.
+   This Internet-Draft will expire on 9 March 2027.
 
 Copyright Notice
 
@@ -350,16 +350,44 @@ Table of Contents
 
    The quoted statement from [RFC9260] limits cwnd growth in accordance
    with Rate-Limited Increase, but it is more conservative.
-   Section 7.2.1 of [RFC9260] only discusses Slow Start.  Congestion
-   Avoidance is discussed in Section 7.2.2 of [RFC9260]; however, this
-   section does not contain a similar rule.  It is therefore clear that
-   the quoted statement from [RFC9260] only applies to Slow Start.
+   Section 7.2.1 of [RFC9260] only discusses Slow Start; Congestion
+   Avoidance is discussed in Section 7.2.2 of [RFC9260] and is addressed
+   separately below.
 
-   This document updates [RFC9260] by replacing the final sentence of
-   the quoted text with the text in Section 3 to specify how the cwnd is
-   managed when the sender is rate-limited.
+   This document updates Section 7.2.1 of [RFC9260] as follows, to
+   specify when the cwnd is increased when the sender is rate-limited:
 
-   Section 7.2.2 of [RFC9260] is also updated to add text in Section 3.
+   *  In the first sentence of the quoted text, the words "the current
+      congestion window is being fully utilized and" are removed, so
+      that the use of the slow-start algorithm to increase the cwnd is
+      conditioned only on the data sender not being in Fast Recovery.
+
+   *  The final sentence of the quoted text is replaced with the text in
+      Section 3.
+
+   *  In the sentence that immediately follows the quoted text ("If
+      these conditions are met, then cwnd MUST be increased by, at most,
+      the lesser of ..."), the words "these conditions are" are replaced
+      with "this condition is".
+
+   For Congestion Avoidance, Section 7.2.2 of [RFC9260] recommends that
+   "SCTP SHOULD increment cwnd by PMDCS once per RTT when the sender has
+   cwnd or more bytes of data outstanding for the corresponding
+   transport address", and further states:
+
+      "SCTP MUST NOT increment cwnd by more than PMDCS per RTT."
+
+   These statements also limit cwnd growth in accordance with Rate-
+   Limited Increase, but they are more conservative.
+
+   This document updates Section 7.2.2 of [RFC9260] by adding, after the
+   statement "SCTP MUST NOT increment cwnd by more than PMDCS per RTT.",
+   the text in Section 3.  The SHOULD-level recommendation remains in
+   place: a sender that follows it will not increase the cwnd while it
+   is rate-limited.  Based on the explanations in the present document,
+   a sender can instead increase the cwnd while it is rate-limited,
+   provided that the cwnd never exceeds limit(maxFS), as specified in
+   Section 3.
 
    This ensures that the update applies to both Slow Start and
    Congestion Avoidance.
