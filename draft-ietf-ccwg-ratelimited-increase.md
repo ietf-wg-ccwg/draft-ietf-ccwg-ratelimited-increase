@@ -180,7 +180,7 @@ Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (f
 ## RFC 4341: Profile for Datagram Congestion Control Protocol (DCCP) Congestion Control ID 2: TCP-like Congestion Control
 
 According to {{!RFC4341}}, a DCCP CCID specifying TCP-like behavior is allowed to grow the cwnd without limit during an uncongested period when it sends at a rate unconstrained by the current cwnd.
-This document updates {{Section 5.1 of !RFC4341}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
+This document updates {{Section 5.1 of !RFC4341}} by adding the text in {{rules}} to specify how the cwnd is increased when the sender is rate-limited.
 
 
 ## RFC 5681: TCP Congestion Control
@@ -188,7 +188,7 @@ This document updates {{Section 5.1 of !RFC4341}} by adding the text in {{rules}
 {{!RFC5681}} specifies no limit on the cwnd growth in the standard TCP behavior
 when a TCP sender is unable to send at the maximum rate allowed by the cwnd.
 
-This document updates {{Section 3.1 of !RFC5681}} by adding the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
+This document updates {{Section 3.1 of !RFC5681}} by adding the text in {{rules}} to specify how the cwnd is increased when the sender is rate-limited.
 
 
 ## RFC 9002: QUIC Loss Detection and Congestion Control
@@ -199,7 +199,7 @@ This document updates {{Section 3.1 of !RFC5681}} by adding the text in {{rules}
 
 This limits the cwnd growth in accordance with Rate-Limited Increase, but it is more conservative.
 
-This document updates {{!RFC9002}} by replacing the final sentence of the quoted text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
+This document updates {{!RFC9002}} by replacing the final sentence of the quoted text with the text in {{rules}} to specify how the cwnd is increased when the sender is rate-limited.
 
 
 ## RFC 9260: Stream Control Transmission Protocol
@@ -239,7 +239,7 @@ This ensures that the update applies to both Slow Start and Congestion Avoidance
 This limits the cwnd growth in accordance with Rate-Limited Increase, but it
 is more conservative.
 
-This document updates {{!RFC9438}} by replacing the quoted text with the text in {{rules}} to specify how the cwnd is managed when the sender is rate-limited.
+This document updates {{!RFC9438}} by replacing the quoted text with the text in {{rules}} to specify how the cwnd is increased when the sender is rate-limited.
 The last sentence of {{Section 5.8 of !RFC9438}} regarding {{Section 4.2 of !RFC9438}} and inclusion of application-limited periods is unchanged by this document.
 
 # Security Considerations
