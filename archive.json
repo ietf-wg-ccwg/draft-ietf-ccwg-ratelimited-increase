@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-03T03:35:02.965386+00:00",
+  "timestamp": "2026-09-06T03:37:19.016929+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1360,15 +1360,15 @@
       "id": "I_kwDOK4gIBc8AAAABPRFQzA",
       "title": "clarify that maxFS initialization/reset/update rules apply unconditionally",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/114",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "tomhenderson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Section 3 of draft version 10 starts with \"When FlightSize < cwnd\" but, even when FlightSize = cwnd, we want to increase maxFS (such as round 4 of the Appendix A example).\n\nMichael suggested:\n\nOLD:\nWhen FlightSize < cwnd, regardless of the current state of a congestion control algorithm, the following \"Rate-Limited Increase\" rules apply for senders using a congestion controlled transport protocol:\n\nNEW:\nWhen a sender using a congestion control algorithm increases cwnd, the following \"Rate-Limited Increase\" rules apply:",
       "createdAt": "2026-09-02T03:52:52Z",
-      "updatedAt": "2026-09-02T03:52:52Z",
-      "closedAt": null,
+      "updatedAt": "2026-09-04T07:01:53Z",
+      "closedAt": "2026-09-04T07:01:53Z",
       "comments": []
     },
     {
@@ -1376,15 +1376,15 @@
       "id": "I_kwDOK4gIBc8AAAABPRGEaw",
       "title": "cap should be written as an increase-time rule, not as a state invariant",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/115",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "tomhenderson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The cap is intended to apply only inside the ACK-processing increase equations, but as worded in Section 3, if applied unconditionally and taken too literally, it could lead to deadlock (if maxFS = 0, then limit(0) = 0 and cwnd is capped at 0).\n\nMichael suggested to change rule 3:\n\nOLD:\nThe sender MUST cap cwnd to be no larger than limit(maxFS).\n\nNEW:\nWhen increasing cwnd, the sender MUST cap cwnd to become no larger than limit(maxFS).",
       "createdAt": "2026-09-02T03:55:13Z",
-      "updatedAt": "2026-09-02T03:55:13Z",
-      "closedAt": null,
+      "updatedAt": "2026-09-04T07:01:30Z",
+      "closedAt": "2026-09-04T07:01:30Z",
       "comments": []
     },
     {
@@ -1392,15 +1392,15 @@
       "id": "I_kwDOK4gIBc8AAAABPRG7Qg",
       "title": "Fix editorial issues in version -10",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/116",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "tomhenderson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The RFC 9438 quote is not verbatim (Section 4.5) and doesn't clarify which parts of RFC 9438 Section 5.8 to keep.\n\ns/current method/method/\n\ns/MPS/max_datagram_size/\n\nMiscellaneous punctuation fixes.",
       "createdAt": "2026-09-02T03:57:32Z",
-      "updatedAt": "2026-09-02T22:15:13Z",
-      "closedAt": null,
+      "updatedAt": "2026-09-04T07:03:30Z",
+      "closedAt": "2026-09-04T07:03:30Z",
       "comments": []
     },
     {
@@ -1432,15 +1432,15 @@
       "id": "I_kwDOK4gIBc8AAAABPbKPxw",
       "title": "Fix RFC9260 issues",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/121",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "tomhenderson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "In version -10, Section 4.4 claims that RFC 9260 Section 7.2.2 does not contain rules similar to those quoted from Section 7.2.1. This is incorrect: Section 7.2.2 conditions congestion-avoidance increase on full utilization (the SHOULD-level recommendation and the partial_bytes_acked rules), so simply adding the Section 3 rules to Section 7.2.2 would produce contradictory text.\n\nMichael suggested keeping the proposed update as it is for slow start, removing the third rule in Section 7.2.2 (\"SCTP MUST NOT increment cwnd by more than PMDCS per RTT.\"), and adding our own text, resulting in:\n1. our own MUST (the cap), which allows a sender to go a bit higher than SCTP currently does, and\n2. still the SHOULD, which is more conservative, but people can go their own way as long as our MUST cap applies.\n\nSeparately, the RFC 9260 Section 7.2.1 edit left contradictory material in force: Rate-Limited Increase contradicts the first sentence's \"MUST use the slow-start algorithm to increase cwnd only if the current congestion window is being fully utilized\", which the edit did not touch. Also, the sentence immediately following the quoted text (\"If these conditions are met...\") was left with a dangling forward reference to the removed \"two conditions\".",
       "createdAt": "2026-09-02T22:50:19Z",
-      "updatedAt": "2026-09-02T22:50:19Z",
-      "closedAt": null,
+      "updatedAt": "2026-09-05T10:58:28Z",
+      "closedAt": "2026-09-05T10:58:28Z",
       "comments": []
     },
     {
@@ -1448,16 +1448,24 @@
       "id": "I_kwDOK4gIBc8AAAABPbQwtA",
       "title": "Fix inconsistencies with 'rate-limited' definitions",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/issues/123",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "tomhenderson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Section 2.1 (terminology) imports RFC 7661's definition but doesn't use it anywhere.  Section 3's trigger is 'FlightSize < cwnd'.  The Section 2.1 definition could be deleted.  Also, the cwnd-limited definition is located in RFC 7661 Section 3, instead of Section 4.5.3.",
       "createdAt": "2026-09-02T23:06:41Z",
-      "updatedAt": "2026-09-02T23:06:41Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-09-05T10:59:15Z",
+      "closedAt": "2026-09-05T10:59:15Z",
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This was eventually fixed not by #124 but by #125",
+          "createdAt": "2026-09-05T10:59:15Z",
+          "updatedAt": "2026-09-05T10:59:15Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -6622,124 +6630,511 @@
       "id": "PR_kwDOK4gIBc8AAAABB-EI1g",
       "title": "Fix editorial issues in version -10",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/118",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "tomhenderson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #116 ",
       "createdAt": "2026-09-02T22:15:28Z",
-      "updatedAt": "2026-09-02T22:15:29Z",
+      "updatedAt": "2026-09-04T07:03:29Z",
       "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "235b6eb3130d8d0f0184a42a973abacd06f44543",
       "headRepository": "tomhenderson/draft-ccwg-ratelimited-increase",
       "headRefName": "editorial",
-      "headRefOid": "e6b1eb9dc80b9d8b48c6ee77f789fe560154bfc9",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "515da2ce9cf4999c73cf891a2b0f534aa5617cb1",
+      "closedAt": "2026-09-04T07:03:29Z",
+      "mergedAt": "2026-09-04T07:03:29Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "0ab8c7b75ef4818cf15ca352c46c79597eed1ca4"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABL-0uJg",
+          "commit": {
+            "abbreviatedOid": "e6b1eb9"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-03T07:29:32Z",
+          "updatedAt": "2026-09-03T07:29:32Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABL_icGw",
+          "commit": {
+            "abbreviatedOid": "e6b1eb9"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-09-03T08:48:35Z",
+          "updatedAt": "2026-09-03T08:48:35Z",
+          "comments": [
+            {
+              "originalPosition": 48,
+              "body": "```suggestion\nThe last sentence of {{Section 5.8 of !RFC9438}} regarding {{Section 4.2 of !RFC9438}} and inclusion of application-limited periods is unchanged by this document.\n```",
+              "createdAt": "2026-09-03T08:48:35Z",
+              "updatedAt": "2026-09-03T08:48:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABL_pYLg",
+          "commit": {
+            "abbreviatedOid": "4b026a3"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Suggesting tiny changes - the second one is more important (I think it's at typo). Else LTGM! Thanks!",
+          "createdAt": "2026-09-03T08:59:50Z",
+          "updatedAt": "2026-09-03T09:03:22Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "```suggestion\nInitially, cwnd = initcwnd. Therefore, using initcwnd = 10 segments, the sender transmits 10 segments and pauses; note that FlightSize and maxFS are both 10 segments at this point. Since the sender is in the Slow Start phase, the arrival of each ACK for the 10 sent segments increases the cwnd by 1 segment, resulting in the cwnd increasing to 20 segments. Subsequently, when the sender resumes and transmits 4 new segments, Rate-Limited Increase constrains the growth of the cwnd because FlightSize < cwnd and therefore this caps the cwnd to be no larger than limit(maxFS) = 2*maxFS = 2*10 segments = 20 segments.\n```\n\nJust to be coherent with the appendix",
+              "createdAt": "2026-09-03T08:59:50Z",
+              "updatedAt": "2026-09-03T09:03:22Z"
+            },
+            {
+              "originalPosition": 107,
+              "body": "```suggestion\ncwnd_new += min(N, SMSS); cwnd = min(cwnd_new, 2*maxFS)\n```",
+              "createdAt": "2026-09-03T09:02:41Z",
+              "updatedAt": "2026-09-03T09:03:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABMExqUw",
+          "commit": {
+            "abbreviatedOid": "4b026a3"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-03T18:12:10Z",
+          "updatedAt": "2026-09-03T18:12:10Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 119,
       "id": "PR_kwDOK4gIBc8AAAABB-FaNQ",
       "title": "clarify that maxFS rules apply unconditionally",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/119",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "tomhenderson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #114 ",
       "createdAt": "2026-09-02T22:18:21Z",
-      "updatedAt": "2026-09-02T22:18:22Z",
+      "updatedAt": "2026-09-04T07:01:52Z",
       "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "235b6eb3130d8d0f0184a42a973abacd06f44543",
       "headRepository": "tomhenderson/draft-ccwg-ratelimited-increase",
       "headRefName": "clarify-unconditionally",
       "headRefOid": "392d1e9f6e82d44b02cb9973ae4f3bdd7e1d592c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-09-04T07:01:51Z",
+      "mergedAt": "2026-09-04T07:01:51Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "7a264941602c14f3d168cda4eea27114b466df0c"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABL_CCqQ",
+          "commit": {
+            "abbreviatedOid": "392d1e9"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-03T07:52:54Z",
+          "updatedAt": "2026-09-03T07:52:54Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABL_g1fg",
+          "commit": {
+            "abbreviatedOid": "392d1e9"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks!",
+          "createdAt": "2026-09-03T08:45:47Z",
+          "updatedAt": "2026-09-03T08:45:47Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABMEwMVQ",
+          "commit": {
+            "abbreviatedOid": "392d1e9"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-03T18:09:51Z",
+          "updatedAt": "2026-09-03T18:09:51Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 120,
       "id": "PR_kwDOK4gIBc8AAAABB-HSaQ",
       "title": "Clarify that the cap is intended to apply only upon increasing cwnd",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/120",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "tomhenderson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #115 ",
       "createdAt": "2026-09-02T22:22:41Z",
-      "updatedAt": "2026-09-02T22:22:42Z",
+      "updatedAt": "2026-09-04T07:01:29Z",
       "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "235b6eb3130d8d0f0184a42a973abacd06f44543",
       "headRepository": "tomhenderson/draft-ccwg-ratelimited-increase",
       "headRefName": "increase-time-rule",
       "headRefOid": "5ca805c0203b87d63c0bbadca78eaa61c6c61689",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-09-04T07:01:29Z",
+      "mergedAt": "2026-09-04T07:01:29Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "4fb9b89273da834cec3a01a8bb02f7e189d65543"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABL_Afkw",
+          "commit": {
+            "abbreviatedOid": "5ca805c"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-03T07:50:13Z",
+          "updatedAt": "2026-09-03T07:50:13Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABL_gcuw",
+          "commit": {
+            "abbreviatedOid": "5ca805c"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks!",
+          "createdAt": "2026-09-03T08:45:05Z",
+          "updatedAt": "2026-09-03T08:45:05Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABMEvgcA",
+          "commit": {
+            "abbreviatedOid": "5ca805c"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-03T18:08:39Z",
+          "updatedAt": "2026-09-03T18:08:39Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 122,
       "id": "PR_kwDOK4gIBc8AAAABB-UAOw",
       "title": "Fix RFC 9260 update to avoid contradictory text",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/122",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "tomhenderson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #121 ",
       "createdAt": "2026-09-02T22:55:25Z",
-      "updatedAt": "2026-09-02T22:55:26Z",
+      "updatedAt": "2026-09-05T10:58:27Z",
       "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
       "baseRefName": "main",
-      "baseRefOid": "235b6eb3130d8d0f0184a42a973abacd06f44543",
+      "baseRefOid": "24fcf4ca4f57eff4ecb0cda62624ef8e52801131",
       "headRepository": "tomhenderson/draft-ccwg-ratelimited-increase",
       "headRefName": "rfc9260-references",
-      "headRefOid": "877308707934f49c117c45f3d7e2d49d80c26541",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "headRefOid": "6a5270779b0e7daf923605fe3639aea666dd063f",
+      "closedAt": "2026-09-05T10:58:27Z",
+      "mergedAt": "2026-09-05T10:58:27Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "08e7f0919a572a7a36dfa0005bf4af3f4ec34aa4"
+      },
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@tomhenderson , can you merge this if you agree with the last change suggestions?",
+          "createdAt": "2026-09-04T07:06:34Z",
+          "updatedAt": "2026-09-04T07:06:34Z"
+        },
+        {
+          "author": "tomhenderson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> @tomhenderson , can you merge this if you agree with the last change suggestions?\r\n\r\nI added the two suggestions; I can merge if everyone is OK (or feel free to proceed with merging it).",
+          "createdAt": "2026-09-04T20:07:46Z",
+          "updatedAt": "2026-09-04T20:07:46Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABL-_omw",
+          "commit": {
+            "abbreviatedOid": "8773087"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-09-03T07:48:39Z",
+          "updatedAt": "2026-09-03T07:48:39Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\nThis document updates {{Section 7.2.1 of !RFC9260}} as follows, to specify when the cwnd is increased when the sender is rate-limited:\n```",
+              "createdAt": "2026-09-03T07:48:39Z",
+              "updatedAt": "2026-09-03T07:48:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABL_dWDg",
+          "commit": {
+            "abbreviatedOid": "8773087"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2026-09-03T08:40:11Z",
+          "updatedAt": "2026-09-03T08:44:39Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I think this is good.",
+              "createdAt": "2026-09-03T08:40:12Z",
+              "updatedAt": "2026-09-03T08:44:40Z"
+            },
+            {
+              "originalPosition": 21,
+              "body": "```suggestion\nThis document updates {{Section 7.2.2 of !RFC9260}} by adding, after the statement \"SCTP MUST NOT increment cwnd by more than PMDCS per RTT.\", the text in {{rules}}. The SHOULD-level recommendation remains in place: a sender that follows it will not increase the cwnd while it is rate-limited. Based on the explanations in the present document, a sender can instead increase the cwnd while it is rate-limited, provided that the cwnd never exceeds limit(maxFS), as specified in {{rules}}.\n```\n\nI'm sorry, this was my mistake. I said we must replace this rule because Claude did talk about replacing rules - but this would be just rules that require \"if the sender has cwnd or more bytes of data outstanding for the corresponding transport address\". This is stated above these rules in RFC 9260, but not as a MUST.\n\nReplacing the \"MUST NOT\" rule from RFC 9260 *might* technically work out because the CC. algorithm only allows to increase by 1 PMDCS per RTT (unless this is the only place where this is written??) and we refer back to the CC. algorithm in our draft, but it's really confusing and misleading - like we're trying to eliminate the CA. linear increase with our update and allowing to increase by more than 1 PMDCS / RTT. That's not our intention.",
+              "createdAt": "2026-09-03T08:44:26Z",
+              "updatedAt": "2026-09-03T08:44:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABMEuafw",
+          "commit": {
+            "abbreviatedOid": "8773087"
+          },
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-03T18:06:43Z",
+          "updatedAt": "2026-09-03T18:06:43Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABMQSfhw",
+          "commit": {
+            "abbreviatedOid": "8773087"
+          },
+          "author": "tomhenderson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-09-04T20:06:23Z",
+          "updatedAt": "2026-09-04T20:06:24Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I updated according to Gorry's suggestion.",
+              "createdAt": "2026-09-04T20:06:24Z",
+              "updatedAt": "2026-09-04T20:06:24Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 124,
       "id": "PR_kwDOK4gIBc8AAAABB-YNdw",
       "title": "Remove imported rate-limited definition from Terminology",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/124",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "tomhenderson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #123 ",
       "createdAt": "2026-09-02T23:08:06Z",
-      "updatedAt": "2026-09-02T23:08:07Z",
+      "updatedAt": "2026-09-04T07:04:46Z",
       "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "235b6eb3130d8d0f0184a42a973abacd06f44543",
       "headRepository": "tomhenderson/draft-ccwg-ratelimited-increase",
       "headRefName": "rate-limited-consistency",
       "headRefOid": "98eb7c6950d0c9a474ffc889f914328ad99f2e96",
+      "closedAt": "2026-09-04T07:04:46Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See alternative in PR #125",
+          "createdAt": "2026-09-03T07:47:32Z",
+          "updatedAt": "2026-09-03T07:47:32Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I agree with @gorryfair. The next person seeing this and agreeing should close this PR  (though, note, it's sort of defined anyway by the first sentence of the intro).",
+          "createdAt": "2026-09-03T08:21:44Z",
+          "updatedAt": "2026-09-03T08:22:16Z"
+        },
+        {
+          "author": "mohittahiliani",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I agree with @gorryfair but #125 does not address @tomhenderson's point about cwnd-limited being located in RFC 7661 Section 3, instead of Section 4.5.3.",
+          "createdAt": "2026-09-03T18:00:59Z",
+          "updatedAt": "2026-09-03T18:00:59Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Ah, OK - I will fix the ref to sect 3 in master.\r\nI think, this PR can now be abandoned as taken-over by #125.",
+          "createdAt": "2026-09-04T07:02:28Z",
+          "updatedAt": "2026-09-04T07:02:28Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABL-3Nxw",
+          "commit": {
+            "abbreviatedOid": "98eb7c6"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Rate-limited is used extensively in the text and a commonly used term, and whilst I sympathise that we don't (likely) want the details of RFC7661 for managing a cwnd reduction, I think we still need to define the term.",
+          "createdAt": "2026-09-03T07:33:57Z",
+          "updatedAt": "2026-09-03T07:33:57Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 125,
+      "id": "PR_kwDOK4gIBc8AAAABCBPHpg",
+      "title": "Refine 'rate-limited' definition",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/125",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Provide an updated definition of 'rate-limited' in document, but clarified the definition of 'rate-limited' in the context of this method for limiting increase of cwnd, which is looser than that of RFC7661 for cwnd reduction. This at least keeps the word defined, albeit requiring a note to explain the difference.",
+      "createdAt": "2026-09-03T07:46:47Z",
+      "updatedAt": "2026-09-03T11:41:27Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "235b6eb3130d8d0f0184a42a973abacd06f44543",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-22",
+      "headRefOid": "c713c0edc03c20722c53d28e807535087ae894b7",
+      "closedAt": "2026-09-03T11:41:26Z",
+      "mergedAt": "2026-09-03T11:41:26Z",
+      "mergedBy": "gorryfair",
+      "mergeCommit": {
+        "oid": "117116a775388d848340f23858f66449cfbc1c0c"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABL_PqxA",
+          "commit": {
+            "abbreviatedOid": "eacc8c9"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "It's strange that we define \"cwnd-limited\" as a \"A flow that...\", but rate-limited as \"Periods when...\". Sure, a flow can switch between being cwnd-limited, rate-limited, or greedy, but why make this complicated here. It's better to be coherent.",
+          "createdAt": "2026-09-03T08:18:56Z",
+          "updatedAt": "2026-09-03T08:20:36Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\n- rate-limited: a flow that is either idle or sends at a rate less than the maximum permitted by the cwnd. (Note: Section 3 of {{?RFC7661}} provides a more specific definition applied to the reduction of the cwnd when a sender remains rate-limited for a period of time).\n```",
+              "createdAt": "2026-09-03T08:18:56Z",
+              "updatedAt": "2026-09-03T08:20:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc8AAAABMAR2aQ",
+          "commit": {
+            "abbreviatedOid": "c713c0e"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-03T10:07:23Z",
+          "updatedAt": "2026-09-03T10:07:23Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 126,
+      "id": "PR_kwDOK4gIBc8AAAABCV7EPQ",
+      "title": "change cwnd /management/increase/",
+      "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/126",
+      "state": "OPEN",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "It seems like the potential for misreading is linked to thinking that the draft is about managing the size of the cwnd, rather than bounding its growth. Ought we to change these words?",
+      "createdAt": "2026-09-05T18:00:52Z",
+      "updatedAt": "2026-09-05T18:00:53Z",
+      "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "08e7f0919a572a7a36dfa0005bf4af3f4ec34aa4",
+      "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-23",
+      "headRefOid": "03306633b0c2c5eaf39dbfd3e41ac58cb52e1d74",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
