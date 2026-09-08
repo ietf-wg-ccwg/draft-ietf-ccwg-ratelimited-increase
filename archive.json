@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-06T03:37:19.016929+00:00",
+  "timestamp": "2026-09-08T03:41:42.340502+00:00",
   "repo": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -7121,24 +7121,26 @@
       "id": "PR_kwDOK4gIBc8AAAABCV7EPQ",
       "title": "change cwnd /management/increase/",
       "url": "https://github.com/ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase/pull/126",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "gorryfair",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "It seems like the potential for misreading is linked to thinking that the draft is about managing the size of the cwnd, rather than bounding its growth. Ought we to change these words?",
       "createdAt": "2026-09-05T18:00:52Z",
-      "updatedAt": "2026-09-05T18:00:53Z",
+      "updatedAt": "2026-09-06T09:24:53Z",
       "baseRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "08e7f0919a572a7a36dfa0005bf4af3f4ec34aa4",
       "headRepository": "ietf-wg-ccwg/draft-ietf-ccwg-ratelimited-increase",
       "headRefName": "gorryfair-patch-23",
       "headRefOid": "03306633b0c2c5eaf39dbfd3e41ac58cb52e1d74",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-09-06T09:24:52Z",
+      "mergedAt": "2026-09-06T09:24:52Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "815d8777f8e0be50a19d3034c8e419da92229687"
+      },
       "comments": [],
       "reviews": []
     }
